@@ -1,177 +1,123 @@
 ﻿using System;
 using System.Collections.Generic;
+using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Web;
-using System.Text;
-using System.Text.RegularExpressions;
-using System.Threading.Tasks;
-using DatabaseHelper;
 using System.Data;
-using System.Web.Security;
+using DatabaseHelper;
 using PhotoHelper;
+
 
 namespace BusinessObjects
 {
-    public class Post
+    public class Post : HeaderData
     {
-        #region  Private Members 
-        private Guid _CategoryId = Guid.Empty;
-        private string _Name = string.Empty;
-        private string _Description = string.Empty;
-        private string _FilePath = string.Empty;
-        private Decimal _Price = 0;
-        private byte[] _Image = null;
+        #region Private Members
+        private Guid _UserId = Guid.Empty;
+        private Byte[] _Photo = null;
+        private String _Title = String.Empty;
+        private String _Description = String.Empty;
         private BrokenRuleList _BrokenRules = new BrokenRuleList();
-        private string _RelativeFileName = string.Empty;
-
+        private String _FilePath = String.Empty;
+        private String _RelativeFileName = String.Empty;
         #endregion
 
-        #region  Public Properties
-
-        public string RelativeFileName
+        #region Public Properties
+        public String FilePath
         {
-            get
-            {
-                return _RelativeFileName;
-            }
+            get { return _FilePath; }
+            set { _FilePath = value; }
+        }
+        public String RelativeFileName
+        {
+            get { return _RelativeFileName; }
+            set { _RelativeFileName = value; }
+        }
+        public String Title
+        {
+            get { return _Title; }
             set
             {
-                _RelativeFileName = value;
+                if (_Title != value)
+                {
+                    _Title = value;
+                    base.IsDirty = true;
+                    Boolean Savable = IsSavable();
+                    SavableEventArgs e = new SavableEventArgs(Savable);
+                    RaiseEvent(e);
+                }
             }
         }
-
-        public Guid CategoryId
+        public String Description
         {
-            get
-            {
-                return _CategoryId;
-            }
+            get { return _Description; }
             set
             {
-                if (_CategoryId != value)
+                if (_Description != value)
                 {
-                    _CategoryId = value;
+                    _Description = value;
                     base.IsDirty = true;
-                    bool Savable = IsSavable();
+                    Boolean Savable = IsSavable();
                     SavableEventArgs e = new SavableEventArgs(Savable);
                     RaiseEvent(e);
                 }
             }
         }
 
-        public string Name
+        public Byte[] Photo
         {
-            get
-            {
-                return _Name;
-            }
+            get { return _Photo; }
             set
             {
-                if (_Name != value)
+                if (_Photo != value)
                 {
-                    _Name = value;
+                    _Photo = value;
                     base.IsDirty = true;
-                    bool Savable = IsSavable();
+                    Boolean Savable = IsSavable();
                     SavableEventArgs e = new SavableEventArgs(Savable);
                     RaiseEvent(e);
                 }
             }
         }
-
-        public Decimal Price
+        public Guid UserId
         {
-            get
-            {
-                return _Price;
-            }
+            get { return _UserId; }
             set
             {
-                if (_Price != value)
+                if (_UserId != value)
                 {
-                    _Price = value;
+                    _UserId = value;
                     base.IsDirty = true;
-                    bool Savable = IsSavable();
+                    Boolean Savable = IsSavable();
                     SavableEventArgs e = new SavableEventArgs(Savable);
                     RaiseEvent(e);
                 }
             }
         }
-
-        public string FilePath
-        {
-            get
-            {
-                return _FilePath;
-            }
-            set
-            {
-                _FilePath = value;
-            }
-        }
-
-        public byte[] Image
-        {
-            get
-            {
-                return _Image;
-            }
-            set
-            {
-                if (_Image != value)
-                {
-                    _Image = value;
-                    base.IsDirty = true;
-                    bool Savable = IsSavable();
-                    SavableEventArgs e = new SavableEventArgs(Savable);
-                    RaiseEvent(e);
-                }
-            }
-        }
-
-        public string Description
-        {
-            get
-            {
-                return _Description;
-            }
-            set
-            {
-                _Description = value;
-            }
-        }
-
-
-        public BrokenRuleList BrokenRules
-        {
-            get
-            {
-                return _BrokenRules;
-            }
-        }
-
         #endregion
 
-        #region  Private Methods 
-        private bool Insert(Database database)
+        #region Private Methods
+        private Boolean Insert(Database database)
         {
-            bool result = true;
+            Boolean result = true;
+
             try
             {
                 database.Command.Parameters.Clear();
-                database.Command.CommandType = System.Data.CommandType.StoredProcedure;
-                database.Command.CommandText = "tblProductINSERT";
-                database.Command.Parameters.Add("@CategoryId", SqlDbType.UniqueIdentifier).Value = _CategoryId;
-                database.Command.Parameters.Add("@Name", SqlDbType.VarChar).Value = _Name;
-                database.Command.Parameters.Add("@Price", SqlDbType.Decimal).Value = _Price;
-                database.Command.Parameters.Add("@Image", SqlDbType.Image).Value = Photo.ImageToByteArray(_FilePath);
+                database.Command.CommandType = CommandType.StoredProcedure;
+                database.Command.CommandText = "tblPostINSERT";
+                database.Command.Parameters.Add("@UserId", SqlDbType.UniqueIdentifier).Value = _UserId;
+                database.Command.Parameters.Add("@Title", SqlDbType.VarChar).Value = _Title;
                 database.Command.Parameters.Add("@Description", SqlDbType.VarChar).Value = _Description;
+                database.Command.Parameters.Add("@Photo", SqlDbType.Image).Value = Photo.ImageToByteArray(_FilePath);
 
-
+                // Provides the empty buckets
                 base.Initialize(database, Guid.Empty);
                 database.ExecuteNonQuery();
+
+                // Unloads the full buckets into the object
                 base.Initialize(database.Command);
-
-
 
 
             }
@@ -180,100 +126,105 @@ namespace BusinessObjects
                 result = false;
                 throw;
             }
+
+            System.IO.File.Delete(_FilePath);
             return result;
         }
-
-        private bool Update(Database database)
+        private Boolean Update(Database database)
         {
-            bool result = true;
+            Boolean result = true;
+
             try
             {
                 database.Command.Parameters.Clear();
-                database.Command.CommandType = System.Data.CommandType.StoredProcedure;
-                database.Command.CommandText = "tblProductUPDATE";
-                database.Command.Parameters.Add("@CategoryId", SqlDbType.UniqueIdentifier).Value = _CategoryId;
-                database.Command.Parameters.Add("@Name", SqlDbType.VarChar).Value = _Name;
-                database.Command.Parameters.Add("@Price", SqlDbType.Decimal).Value = _Price;
-                database.Command.Parameters.Add("@Image", SqlDbType.Image).Value = _Image;
+                database.Command.CommandType = CommandType.StoredProcedure;
+                database.Command.CommandText = "tblPostUPDATE";
+                database.Command.Parameters.Add("@UserId", SqlDbType.UniqueIdentifier).Value = _UserId;
+                database.Command.Parameters.Add("@Title", SqlDbType.VarChar).Value = _Title;
                 database.Command.Parameters.Add("@Description", SqlDbType.VarChar).Value = _Description;
-                database.ExecuteNonQuery();
-                base.Initialize(database.Command);
+                database.Command.Parameters.Add("@Photo", SqlDbType.Image).Value = _Photo;
 
+                // Provides the empty buckets
+                base.Initialize(database, base.Id);
+                database.ExecuteNonQuery();
+
+                // Unloads the full buckets into the object
+                base.Initialize(database.Command);
             }
             catch (Exception e)
             {
                 result = false;
                 throw;
             }
+
             return result;
         }
-
-        private bool Delete(Database database)
+        private Boolean Delete(Database database)
         {
-            bool result = true;
+            Boolean result = true;
+
             try
             {
                 database.Command.Parameters.Clear();
-                database.Command.CommandType = System.Data.CommandType.StoredProcedure;
-                database.Command.CommandText = "tblProductDELETE";
-                base.Initialize(database, base.Id);
-                database.ExecuteNonQueryWithTransaction();
-                base.Initialize(database.Command);
+                database.Command.CommandType = CommandType.StoredProcedure;
+                database.Command.CommandText = "tblPostDELETE";
 
+                // Provides the empty buckets
+                base.Initialize(database, base.Id);
+                database.ExecuteNonQuery();
+
+                // Unloads the full buckets into the object
+                base.Initialize(database.Command);
             }
             catch (Exception e)
             {
                 result = false;
                 throw;
             }
+
             return result;
         }
-
-        private bool IsValid()
+        private Boolean IsValid()
         {
+            Boolean result = true;
+
             _BrokenRules.List.Clear();
-            bool result = true;
 
-            if (_Name.Trim() == string.Empty)
+            if (_UserId == Guid.Empty)
             {
                 result = false;
-                BrokenRule rule = new BrokenRule("Invalid Name; cannot be empty.");
+                BrokenRule rule = new BrokenRule("Invalid ID. ID cannot be empty");
                 _BrokenRules.List.Add(rule);
             }
-            if (_Description.Trim() == string.Empty)
+            if (_Title == null || _Title.Trim() == String.Empty)
             {
                 result = false;
-                BrokenRule rule = new BrokenRule("Invalid Description; cannot be empty.");
+                BrokenRule rule = new BrokenRule("Invalid. Title cannot be empty.");
                 _BrokenRules.List.Add(rule);
             }
-            if (_Name.Length > 20)
+            if (_Title == null || _Title.Length > 20)
             {
                 result = false;
-                BrokenRule rule = new BrokenRule("Invalid Name; cannot be more than 20 characters.");
+                BrokenRule rule = new BrokenRule("Invalid. Title cannot be greater than 20 characters.");
                 _BrokenRules.List.Add(rule);
             }
-
-            return result;
-        }
-
-        public bool IsStrongPassword(string password)
-        {
-            HashSet<char> specialCharacters = new HashSet<char>() { '%', '$', '#' };
-            bool result = false;
-
-            int conditionsCount = 0;
-            if (password.Any(char.IsLower))
-                conditionsCount++;
-            if (password.Any(char.IsUpper))
-                conditionsCount++;
-            if (password.Any(char.IsDigit))
-                conditionsCount++;
-            if (password.Any(specialCharacters.Contains))
-                conditionsCount++;
-
-            if (conditionsCount >= 3)
+            if (_Description == null || _Description.Trim() == String.Empty)
             {
-                result = true;
+                result = false;
+                BrokenRule rule = new BrokenRule("Invalid Description. Description cannot be empty.");
+                _BrokenRules.List.Add(rule);
+            }
+            if (_Description == null || _Description.Length > 20)
+            {
+                result = false;
+                BrokenRule rule = new BrokenRule("Invalid Description. Description cannot be grater than 20 characters");
+                _BrokenRules.List.Add(rule);
+            }
+            if (_Photo == null)
+            {
+                result = false;
+                BrokenRule rule = new BrokenRule("Invalid. Photo cannot be null.");
+                _BrokenRules.List.Add(rule);
             }
 
             return result;
@@ -281,13 +232,12 @@ namespace BusinessObjects
         #endregion
 
         #region Public Methods
-
-        public Product GetById(Guid id)
+        private Post GetById(Guid id)
         {
-            Database database = new Database("Customer");
+            Database database = new Database("LooksGoodDatabase");
             DataTable dt = new DataTable();
-            database.Command.CommandType = CommandType.StoredProcedure;
-            database.Command.CommandText = "tblProductGetById";
+            database.Command.CommandType = System.Data.CommandType.StoredProcedure;
+            database.Command.CommandText = "tblPostGetById";
             base.Initialize(database, base.Id);
             dt = database.ExecuteQuery();
             if (dt != null && dt.Rows.Count == 1)
@@ -298,65 +248,53 @@ namespace BusinessObjects
                 base.IsNew = false;
                 base.IsDirty = false;
             }
+
             return this;
         }
-
         public void InitializeBusinessData(DataRow dr)
         {
-            _CategoryId = (Guid)dr["CategoryId"];
-            _Name = dr["Name"].ToString();
-            _Price = (Decimal)dr["Price"];
+            _UserId = (Guid)dr["UserId"];
+            _Title = dr["Title"].ToString();
             _Description = dr["Description"].ToString();
-            _Image = (byte[])dr["Image"];
-            string filepath = System.IO.Path.Combine(_FilePath, Id + ".jpg");
-            _RelativeFileName = System.IO.Path.Combine("UploadedImages", Id + ".jpg");
-            Photo.ByteArrayToFile(_Image, filepath);
-
+            _Photo = (Byte[])dr["Photo"];
+            String filepath = System.IO.Path.Combine(_FilePath, Id.ToString() + ".jpg");
+            _RelativeFileName = System.IO.Path.Combine("UploadedImages", Id.ToString() + ".jpg");
+            Photo.ByteArrayToFile(_Photo, filepath);
         }
-
-        public bool IsSavable()
+        public Boolean IsSavable()
         {
-            bool result = false;
-            if (base.IsDirty == true && IsValid() == true)
+            Boolean result = false;
+
+            if ((base.IsDirty == true) && (IsValid() == true))
             {
                 result = true;
             }
 
             return result;
         }
-
-        public Product Save()
+        public Post Save()
         {
-            bool result = true;
-            Database database = new Database("Customer");
-            //database.BeginTransaction();
+            Boolean result = true;
+            Database database = new Database("LooksGoodDatabase");
 
-            if (base.IsNew == true && IsDirty == true && IsValid() == true)
+            if (base.IsNew == true && IsSavable() == true)
             {
                 result = Insert(database);
             }
-            else if (base.Deleted == true && base.IsDirty == true)
+            else if (base.Deleted == true && base.IsDirty)
             {
                 result = Delete(database);
             }
-            else if (base.IsNew == false && IsDirty == true && IsValid() == true)
+            else if (base.IsNew == false && IsSavable() == true)
             {
                 result = Update(database);
             }
+
             if (result == true)
             {
                 base.IsDirty = false;
                 base.IsNew = false;
             }
-
-            //if (result == true)
-            //{
-            //    database.EndTransaction();
-            //}
-            //else
-            //{
-            //    database.RollBack();
-            //}
 
             return this;
         }
@@ -373,10 +311,5 @@ namespace BusinessObjects
         #region Construction
 
         #endregion
-
-        #region Dispose
-
-        #endregion
-
     }
 }
