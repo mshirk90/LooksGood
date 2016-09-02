@@ -265,7 +265,7 @@ namespace BusinessObjects
             Database database = new Database("User");
             DataTable dt = new DataTable();
             database.Command.CommandType = System.Data.CommandType.StoredProcedure;
-            database.Command.CommandText = "tblCustomerGetById";
+            database.Command.CommandText = "tblUserGetById";
             base.Initialize(database, base.Id);
             dt = database.ExecuteQuery();
             if (dt != null && dt.Rows.Count == 1)
@@ -299,7 +299,7 @@ namespace BusinessObjects
         public User Save()
         {
             Boolean result = true;
-            Database database = new Database("Customer");
+            Database database = new Database("LooksGoodDatabase");
 
             // begin transaction
 
@@ -339,10 +339,10 @@ namespace BusinessObjects
         }
         public User Login(String email, String password)
         {
-            Database database = new Database("Customer");
+            Database database = new Database("LooksGoodDatabase");
             DataTable dt = new DataTable();
             database.Command.CommandType = System.Data.CommandType.StoredProcedure;
-            database.Command.CommandText = "tblCustomerLogin";
+            database.Command.CommandText = "tblUserLogin";
             database.Command.Parameters.Add("@Email", SqlDbType.VarChar).Value = email;
             database.Command.Parameters.Add("@Password", SqlDbType.VarChar).Value = password;
 
@@ -367,7 +367,7 @@ namespace BusinessObjects
             String password = Membership.GeneratePassword(12, 1);
             try
             {
-                Database database = new Database("Customer");
+                Database database = new Database("LooksGoodDatabase");
                 database.Command.Parameters.Clear();
                 database.Command.CommandType = CommandType.StoredProcedure;
                 database.Command.CommandText = "tblUserINSERT";
@@ -406,7 +406,7 @@ namespace BusinessObjects
         public User Exists(string email)
         {
             bool result = false;
-            Database database = new Database("Customer");
+            Database database = new Database("LooksGoodDatabase");
             DataTable dt = new DataTable();
             database.Command.CommandType = System.Data.CommandType.StoredProcedure;
             database.Command.CommandText = "tblUserExists";
