@@ -8,6 +8,7 @@ namespace ConfigurationHelper
         {
             string result = string.Empty;
             result = ConfigurationManager.ConnectionStrings[name].ConnectionString;
+
             return result;
         }
     }

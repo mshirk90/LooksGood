@@ -380,7 +380,13 @@
     <Compile Include="App_Start\IdentityConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
-    <Compile Include="BusinessObjects\Post.cs" />
+    <Compile Include="BusinessObjects\BrokenRule.cs" />
+    <Compile Include="BusinessObjects\BrokenRuleList.cs" />
+    <Compile Include="BusinessObjects\Comments.cs" />
+    <Compile Include="BusinessObjects\Event.cs" />
+    <Compile Include="BusinessObjects\HeaderData.cs" />
+    <Compile Include="BusinessObjects\User.cs" />
+    <Compile Include="BusinessObjects\SavableEventArgs.cs" />
     <Compile Include="ConfigurationHelper\Configuration.cs" />
     <Compile Include="Contact.aspx.cs">
       <DependentUpon>Contact.aspx</DependentUpon>
@@ -400,6 +406,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="PhotoHelper\Photos.cs" />
     <Compile Include="Site.Master.cs">
       <DependentUpon>Site.Master</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

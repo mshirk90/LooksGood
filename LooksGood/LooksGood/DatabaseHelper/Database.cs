@@ -10,47 +10,33 @@ using ConfigurationHelper;
 namespace DatabaseHelper
 {
     public class Database
-
     {
-
-        #region  Private Members 
-        private string _connectionName = string.Empty;
+        #region Private Members
+        private String _connectionName = String.Empty;
         private SqlConnection _cn = null;
         private SqlCommand _cmd = null;
         private SqlDataAdapter _da = null;
         private DataTable _dt = null;
         #endregion
 
-        #region  Public Properties
+        #region Public Properties
         public SqlCommand Command
         {
-            get
-            {
-                return _cmd;
-            }
+            get { return _cmd; }
         }
-
         #endregion
 
-        #region  Private Methods 
+        #region Private Methods
 
         #endregion
 
         #region Public Methods
-
         public void BeginTransaction()
         {
             _cn.ConnectionString = Configuration.GetConnectionString(_connectionName);
-
             _cmd.Connection = _cn;
             _cn.Open();
             _cmd.Transaction = _cn.BeginTransaction();
-        }
-
-        public SqlCommand ExecuteNonQueryWithTransaction()
-        {
-            _cmd.ExecuteNonQuery();
-            return _cmd;
         }
 
         public void EndTransaction()
@@ -65,27 +51,36 @@ namespace DatabaseHelper
             _cn.Close();
         }
 
+        public SqlCommand ExecuteNonQueryWithTransaction()
+        {
+            _cmd.ExecuteNonQuery();
+
+            return _cmd;
+        }
 
         public SqlCommand ExecuteNonQuery()
         {
             _cn.ConnectionString = Configuration.GetConnectionString(_connectionName);
-            _cn.Open();
             _cmd.Connection = _cn;
+            _cn.Open();
+
             _cmd.ExecuteNonQuery();
             _cn.Close();
+
             return _cmd;
         }
+
         public DataTable ExecuteQuery()
         {
             _cn.ConnectionString = Configuration.GetConnectionString(_connectionName);
-            _cn.Open();
             _cmd.Connection = _cn;
+            _cn.Open();
+
             _da.SelectCommand = _cmd;
             _dt = new DataTable();
             _da.Fill(_dt);
+
             return _dt;
-
-
         }
         #endregion
 
@@ -98,7 +93,7 @@ namespace DatabaseHelper
         #endregion
 
         #region Construction
-        public Database(string connectionName)
+        public Database(String connectionName)
         {
             _connectionName = connectionName;
             _cn = new SqlConnection();
