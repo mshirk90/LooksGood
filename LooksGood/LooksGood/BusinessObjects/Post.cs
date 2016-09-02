@@ -15,7 +15,7 @@ namespace BusinessObjects
     {
         #region Private Members
         private Guid _UserId = Guid.Empty;
-        private Byte[] _Photo = null;
+        private Byte[] _Image = null;
         private String _Title = String.Empty;
         private String _Description = String.Empty;
         private BrokenRuleList _BrokenRules = new BrokenRuleList();
@@ -65,14 +65,14 @@ namespace BusinessObjects
             }
         }
 
-        public Byte[] Photo
+        public Byte[] Image
         {
-            get { return _Photo; }
+            get { return _Image; }
             set
             {
-                if (_Photo != value)
+                if (_Image != value)
                 {
-                    _Photo = value;
+                    _Image = value;
                     base.IsDirty = true;
                     Boolean Savable = IsSavable();
                     SavableEventArgs e = new SavableEventArgs(Savable);
@@ -110,7 +110,7 @@ namespace BusinessObjects
                 database.Command.Parameters.Add("@UserId", SqlDbType.UniqueIdentifier).Value = _UserId;
                 database.Command.Parameters.Add("@Title", SqlDbType.VarChar).Value = _Title;
                 database.Command.Parameters.Add("@Description", SqlDbType.VarChar).Value = _Description;
-                database.Command.Parameters.Add("@Photo", SqlDbType.Image).Value = Photo.ImageToByteArray(_FilePath);
+                database.Command.Parameters.Add("@Image", SqlDbType.Image).Value = Photo.ImageToByteArray(_FilePath);
 
                 // Provides the empty buckets
                 base.Initialize(database, Guid.Empty);
@@ -142,7 +142,7 @@ namespace BusinessObjects
                 database.Command.Parameters.Add("@UserId", SqlDbType.UniqueIdentifier).Value = _UserId;
                 database.Command.Parameters.Add("@Title", SqlDbType.VarChar).Value = _Title;
                 database.Command.Parameters.Add("@Description", SqlDbType.VarChar).Value = _Description;
-                database.Command.Parameters.Add("@Photo", SqlDbType.Image).Value = _Photo;
+                database.Command.Parameters.Add("@Image", SqlDbType.Image).Value = _Image;
 
                 // Provides the empty buckets
                 base.Initialize(database, base.Id);
@@ -220,7 +220,7 @@ namespace BusinessObjects
                 BrokenRule rule = new BrokenRule("Invalid Description. Description cannot be grater than 20 characters");
                 _BrokenRules.List.Add(rule);
             }
-            if (_Photo == null)
+            if (_Image == null)
             {
                 result = false;
                 BrokenRule rule = new BrokenRule("Invalid. Photo cannot be null.");
@@ -256,10 +256,10 @@ namespace BusinessObjects
             _UserId = (Guid)dr["UserId"];
             _Title = dr["Title"].ToString();
             _Description = dr["Description"].ToString();
-            _Photo = (Byte[])dr["Photo"];
+            _Image = (Byte[])dr["Image"];
             String filepath = System.IO.Path.Combine(_FilePath, Id.ToString() + ".jpg");
             _RelativeFileName = System.IO.Path.Combine("UploadedImages", Id.ToString() + ".jpg");
-            Photo.ByteArrayToFile(_Photo, filepath);
+            Photo.ByteArrayToFile(_Image, filepath);
         }
         public Boolean IsSavable()
         {
