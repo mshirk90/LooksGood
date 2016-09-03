@@ -383,6 +383,7 @@
     <Compile Include="BusinessObjects\BrokenRule.cs" />
     <Compile Include="BusinessObjects\BrokenRuleList.cs" />
     <Compile Include="BusinessObjects\Comments.cs" />
+    <Compile Include="BusinessObjects\EmailConfiguration.cs" />
     <Compile Include="BusinessObjects\Event.cs" />
     <Compile Include="BusinessObjects\HeaderData.cs" />
     <Compile Include="BusinessObjects\Post.cs" />
