@@ -36,6 +36,22 @@
                 </button>
                 <a class="navbar-brand" href="#">Start Bootstrap</a>
             </div>
+                            <div id="ddlPreferences" runat="server" class="dropdown pull-left" visible="true">
+                    <button class="btn btn-default dropdown-toggle" type="button" id="menu1" data-toggle="dropdown">
+                        Tutorials
+                        <span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu" role="menu" aria-labelledby="menu1">
+                        <li role="presentation"><a role="menuitem" tabindex="-1" href="/Acct/Login.aspx">Change Password</a></li>
+                        <li role="presentation"><a role="menuitem" tabindex="-1" href="/Acct/Logout.aspx">Change Password</a></li>
+                        <li role="presentation"><a role="menuitem" tabindex="-1" href="/Acct/Register.aspx">Change Password</a></li>
+                        <li role="presentation"><a role="menuitem" tabindex="-1" href="/Acct/ChangePassword.aspx">Change Password</a></li>
+                        <li role="presentation"><a role="menuitem" tabindex="-1" href="/Admin/Administration.aspx">Administration</a></li>
+                        <li role="presentation"><a role="menuitem" tabindex="-1" href="#">JavaScript</a></li>
+                        <li role="presentation" class="divider"></li>
+                        <li role="presentation"><a role="menuitem" tabindex="-1" href="#">About Us</a></li>
+                    </ul>
+                </div>
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
