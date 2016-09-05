@@ -11,7 +11,9 @@ namespace LooksGood.Acct
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            Session["User"] = null;
+            Session.Abandon(); // same as previous, but eliminates everything else in the Session as well
+            Response.Cookies["LooksGoodCookies"]["RememberMe"] = "false";
         }
     }
 }
