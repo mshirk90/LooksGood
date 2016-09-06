@@ -1,47 +1,32 @@
 ﻿using System;
 using System.Collections.Generic;
-using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Data;
 using DatabaseHelper;
-using PhotoHelper;
-
+using System.Web.Security;
 
 namespace BusinessObjects
 {
-    public class Post : HeaderData
+    public class EmailConfiguration : HeaderData
     {
         #region Private Members
-        private Guid _UserId = Guid.Empty;
-        private Byte[] _Image = null;
-        private String _Title = String.Empty;
-        private String _Description = String.Empty;
-        private BrokenRuleList _BrokenRules = new BrokenRuleList();
-        private String _FilePath = String.Empty;
-        private String _RelativeFileName = String.Empty;
+        private String _Email = String.Empty;
+        private String _DisplayName = String.Empty;
+        private String _Password = String.Empty;
+        private String _Host = String.Empty;
+        private Int32 _Port = 0;
         #endregion
 
         #region Public Properties
-        public String FilePath
+        public String Email
         {
-            get { return _FilePath; }
-            set { _FilePath = value; }
-        }
-        public String RelativeFileName
-        {
-            get { return _RelativeFileName; }
-            set { _RelativeFileName = value; }
-        }
-        public String Title
-        {
-            get { return _Title; }
+            get { return _Email; }
             set
             {
-                if (_Title != value)
+                if (_Email != value)
                 {
-                    _Title = value;
+                    _Email = value;
                     base.IsDirty = true;
                     Boolean Savable = IsSavable();
                     SavableEventArgs e = new SavableEventArgs(Savable);
@@ -49,14 +34,14 @@ namespace BusinessObjects
                 }
             }
         }
-        public String Description
+        public String DisplayName
         {
-            get { return _Description; }
+            get { return _DisplayName; }
             set
             {
-                if (_Description != value)
+                if (_DisplayName != value)
                 {
-                    _Description = value;
+                    _DisplayName = value;
                     base.IsDirty = true;
                     Boolean Savable = IsSavable();
                     SavableEventArgs e = new SavableEventArgs(Savable);
@@ -64,15 +49,14 @@ namespace BusinessObjects
                 }
             }
         }
-
-        public Byte[] Image
+        public String Password
         {
-            get { return _Image; }
+            get { return _Password; }
             set
             {
-                if (_Image != value)
+                if (_Password != value)
                 {
-                    _Image = value;
+                    _Password = value;
                     base.IsDirty = true;
                     Boolean Savable = IsSavable();
                     SavableEventArgs e = new SavableEventArgs(Savable);
@@ -80,14 +64,29 @@ namespace BusinessObjects
                 }
             }
         }
-        public Guid UserId
+        public String Host
         {
-            get { return _UserId; }
+            get { return _Host; }
             set
             {
-                if (_UserId != value)
+                if (_Host != value)
                 {
-                    _UserId = value;
+                    _Host = value;
+                    base.IsDirty = true;
+                    Boolean Savable = IsSavable();
+                    SavableEventArgs e = new SavableEventArgs(Savable);
+                    RaiseEvent(e);
+                }
+            }
+        }
+        public Int32 Port
+        {
+            get { return _Port; }
+            set
+            {
+                if (_Port != value)
+                {
+                    _Port = value;
                     base.IsDirty = true;
                     Boolean Savable = IsSavable();
                     SavableEventArgs e = new SavableEventArgs(Savable);
@@ -106,20 +105,19 @@ namespace BusinessObjects
             {
                 database.Command.Parameters.Clear();
                 database.Command.CommandType = CommandType.StoredProcedure;
-                database.Command.CommandText = "tblPostINSERT";
-                database.Command.Parameters.Add("@UserId", SqlDbType.UniqueIdentifier).Value = _UserId;
-                database.Command.Parameters.Add("@Title", SqlDbType.VarChar).Value = _Title;
-                database.Command.Parameters.Add("@Description", SqlDbType.VarChar).Value = _Description;
-                database.Command.Parameters.Add("@Image", SqlDbType.Image).Value = Photo.ImageToByteArray(_FilePath);
+                database.Command.CommandText = "tblEmailConfigINSERT";
+                database.Command.Parameters.Add("@Email", SqlDbType.VarChar).Value = _Email;
+                database.Command.Parameters.Add("@DisplayName", SqlDbType.VarChar).Value = _DisplayName;
+                database.Command.Parameters.Add("@Password", SqlDbType.VarChar).Value = _Password;
+                database.Command.Parameters.Add("@Host", SqlDbType.VarChar).Value = _Host;
+                database.Command.Parameters.Add("@Port", SqlDbType.Int).Value = _Port;
 
                 // Provides the empty buckets
                 base.Initialize(database, Guid.Empty);
-                database.ExecuteNonQuery();
+                database.ExecuteNonQueryWithTransaction();
 
                 // Unloads the full buckets into the object
                 base.Initialize(database.Command);
-
-
             }
             catch (Exception e)
             {
@@ -127,7 +125,6 @@ namespace BusinessObjects
                 throw;
             }
 
-            System.IO.File.Delete(_FilePath);
             return result;
         }
         private Boolean Update(Database database)
@@ -138,15 +135,16 @@ namespace BusinessObjects
             {
                 database.Command.Parameters.Clear();
                 database.Command.CommandType = CommandType.StoredProcedure;
-                database.Command.CommandText = "tblPostUPDATE";
-                database.Command.Parameters.Add("@UserId", SqlDbType.UniqueIdentifier).Value = _UserId;
-                database.Command.Parameters.Add("@Title", SqlDbType.VarChar).Value = _Title;
-                database.Command.Parameters.Add("@Description", SqlDbType.VarChar).Value = _Description;
-                database.Command.Parameters.Add("@Image", SqlDbType.Image).Value = _Image;
+                database.Command.CommandText = "tblEmailConfigUPDATE";
+                database.Command.Parameters.Add("@Email", SqlDbType.VarChar).Value = _Email;
+                database.Command.Parameters.Add("@DisplayName", SqlDbType.VarChar).Value = _DisplayName;
+                database.Command.Parameters.Add("@Password", SqlDbType.VarChar).Value = _Password;
+                database.Command.Parameters.Add("@Host", SqlDbType.VarChar).Value = _Host;
+                database.Command.Parameters.Add("@Port", SqlDbType.Int).Value = _Port;
 
                 // Provides the empty buckets
                 base.Initialize(database, base.Id);
-                database.ExecuteNonQuery();
+                database.ExecuteNonQueryWithTransaction();
 
                 // Unloads the full buckets into the object
                 base.Initialize(database.Command);
@@ -167,11 +165,11 @@ namespace BusinessObjects
             {
                 database.Command.Parameters.Clear();
                 database.Command.CommandType = CommandType.StoredProcedure;
-                database.Command.CommandText = "tblPostDELETE";
+                database.Command.CommandText = "tblEmailConfigDELETE";
 
                 // Provides the empty buckets
                 base.Initialize(database, base.Id);
-                database.ExecuteNonQuery();
+                database.ExecuteNonQueryWithTransaction();
 
                 // Unloads the full buckets into the object
                 base.Initialize(database.Command);
@@ -188,43 +186,43 @@ namespace BusinessObjects
         {
             Boolean result = true;
 
-            _BrokenRules.List.Clear();
+            if (_Email == null || _Email.Trim() == String.Empty)
+            {
+                result = false;
+            }
+            if (_DisplayName == null || _DisplayName.Trim() == String.Empty)
+            {
+                result = false;
+            }
+            if (_Password == null || _Password.Trim() == String.Empty)
+            {
+                result = false;
+            }
+            if (_Host == null || _Host.Trim() == String.Empty)
+            {
+                result = false;
+            }
+            if (_Port == 0)
+            {
+                result = false;
+            }
 
-            if (_UserId == Guid.Empty)
+
+            if (_Email == null || _Email.Length > 20)
             {
                 result = false;
-                BrokenRule rule = new BrokenRule("Invalid ID. ID cannot be empty");
-                _BrokenRules.List.Add(rule);
             }
-            if (_Title == null || _Title.Trim() == String.Empty)
+            if (_DisplayName == null || _DisplayName.Length > 20)
             {
                 result = false;
-                BrokenRule rule = new BrokenRule("Invalid. Title cannot be empty.");
-                _BrokenRules.List.Add(rule);
             }
-            if (_Title == null || _Title.Length > 20)
+            if (_Host == null || _Host.Length > 20)
             {
                 result = false;
-                BrokenRule rule = new BrokenRule("Invalid. Title cannot be greater than 20 characters.");
-                _BrokenRules.List.Add(rule);
             }
-            if (_Description == null || _Description.Trim() == String.Empty)
+            if (_Port == 0 || _Port > 65535)
             {
                 result = false;
-                BrokenRule rule = new BrokenRule("Invalid Description. Description cannot be empty.");
-                _BrokenRules.List.Add(rule);
-            }
-            if (_Description == null || _Description.Length > 20)
-            {
-                result = false;
-                BrokenRule rule = new BrokenRule("Invalid Description. Description cannot be grater than 20 characters");
-                _BrokenRules.List.Add(rule);
-            }
-            if (_Image == null)
-            {
-                result = false;
-                BrokenRule rule = new BrokenRule("Invalid. Photo cannot be null.");
-                _BrokenRules.List.Add(rule);
             }
 
             return result;
@@ -232,13 +230,32 @@ namespace BusinessObjects
         #endregion
 
         #region Public Methods
-        private Post GetById(Guid id)
+        public EmailConfiguration GetById(Guid id)
         {
             Database database = new Database("LooksGoodDatabase");
             DataTable dt = new DataTable();
             database.Command.CommandType = System.Data.CommandType.StoredProcedure;
-            database.Command.CommandText = "tblPostGetById";
+            database.Command.CommandText = "tblEmailConfigGetById";
             base.Initialize(database, base.Id);
+            dt = database.ExecuteQuery();
+            if (dt != null && dt.Rows.Count == 1)
+            {
+                DataRow dr = dt.Rows[0];
+                base.Initialize(dr);
+                InitializeBusinessData(dr);
+                base.IsNew = false;
+                base.IsDirty = false;
+            }
+
+            return this;
+        }
+        public EmailConfiguration GetByDisplayName(String displayName)
+        {
+            Database database = new Database("LooksGoodDatabase");
+            DataTable dt = new DataTable();
+            database.Command.CommandType = CommandType.StoredProcedure;
+            database.Command.CommandText = "tblEmailConfigGetByDisplayName";
+            database.Command.Parameters.Add("@DisplayName", SqlDbType.VarChar).Value = displayName;
             dt = database.ExecuteQuery();
             if (dt != null && dt.Rows.Count == 1)
             {
@@ -253,13 +270,11 @@ namespace BusinessObjects
         }
         public void InitializeBusinessData(DataRow dr)
         {
-            _UserId = (Guid)dr["UserId"];
-            _Title = dr["Title"].ToString();
-            _Description = dr["Description"].ToString();
-            _Image = (Byte[])dr["Image"];
-            String filepath = System.IO.Path.Combine(_FilePath, Id.ToString() + ".jpg");
-            _RelativeFileName = System.IO.Path.Combine("UploadedImages", Id.ToString() + ".jpg");
-            Photo.ByteArrayToFile(_Image, filepath);
+            _Email = dr["Email"].ToString();
+            _DisplayName = dr["DisplayName"].ToString();
+            _Password = dr["Password"].ToString();
+            _Host = dr["Host"].ToString();
+            _Port = (Int32)dr["Port"];
         }
         public Boolean IsSavable()
         {
@@ -272,10 +287,11 @@ namespace BusinessObjects
 
             return result;
         }
-        public Post Save()
+        public EmailConfiguration Save()
         {
             Boolean result = true;
             Database database = new Database("LooksGoodDatabase");
+            database.BeginTransaction();
 
             if (base.IsNew == true && IsSavable() == true)
             {
@@ -285,7 +301,7 @@ namespace BusinessObjects
             {
                 result = Delete(database);
             }
-            else if (base.IsNew == false && IsSavable() == true)
+            else if ((base.IsNew == false) && (IsValid() == true) && (IsDirty == true))
             {
                 result = Update(database);
             }
@@ -295,6 +311,24 @@ namespace BusinessObjects
                 base.IsDirty = false;
                 base.IsNew = false;
             }
+
+            // save the children
+            // save the child
+
+            // save the child
+            // save the child
+            // save the child
+
+            // close connection
+            if (result == true)
+            {
+                database.EndTransaction();
+            }
+            else
+            {
+                database.RollBack();
+            }
+
 
             return this;
         }

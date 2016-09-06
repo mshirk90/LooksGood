@@ -84,9 +84,9 @@ namespace BusinessObjects
             {
                 database.Command.Parameters.Clear();
                 database.Command.CommandType = System.Data.CommandType.StoredProcedure;
-                database.Command.CommandText = "tblEmployeeHobbyINSERT";
-                database.Command.Parameters.Add("@EmployeeId", SqlDbType.UniqueIdentifier).Value = _UserId;
-                database.Command.Parameters.Add("@HobbyId", SqlDbType.UniqueIdentifier).Value = _PostId;
+                database.Command.CommandText = "tblCommentsINSERT";
+                database.Command.Parameters.Add("@UserId", SqlDbType.UniqueIdentifier).Value = _UserId;
+                database.Command.Parameters.Add("@PostId", SqlDbType.UniqueIdentifier).Value = _PostId;
                 //PROVIDES THE EMPTY BUCKETS
                 base.Initialize(database, Guid.Empty);
                 database.ExecuteNonQueryWithTransaction();
@@ -108,10 +108,9 @@ namespace BusinessObjects
             {
                 database.Command.Parameters.Clear();
                 database.Command.CommandType = System.Data.CommandType.StoredProcedure;
-                database.Command.CommandText = "tblEmployeeHobbyUPDATE";
-                database.Command.Parameters.Add("@EmployeeId", SqlDbType.UniqueIdentifier).Value = _UserId;
-                database.Command.Parameters.Add("@EmployeeId", SqlDbType.UniqueIdentifier).Value = _UserId;
-                database.Command.Parameters.Add("@HobbyId", SqlDbType.UniqueIdentifier).Value = _PostId;
+                database.Command.CommandText = "tblCommentsUPDATE";
+                database.Command.Parameters.Add("@UserId", SqlDbType.UniqueIdentifier).Value = _UserId;
+                database.Command.Parameters.Add("@PostId", SqlDbType.UniqueIdentifier).Value = _PostId;
                 //PROVIDES THE EMPTY BUCKETS
                 base.Initialize(database, base.Id);
                 database.ExecuteNonQueryWithTransaction();
@@ -134,7 +133,7 @@ namespace BusinessObjects
             {
                 database.Command.Parameters.Clear();
                 database.Command.CommandType = System.Data.CommandType.StoredProcedure;
-                database.Command.CommandText = "tblEmployeeHobbyDELETE";
+                database.Command.CommandText = "tblCommentsDELETE";
                 //PROVIDES THE EMPTY BUCKETS
                 base.Initialize(database, base.Id);
                 database.ExecuteNonQueryWithTransaction();
@@ -169,7 +168,7 @@ namespace BusinessObjects
         public Comments GetById(Guid id)
         {
 
-            Database database = new Database("LooksGood");
+            Database database = new Database("LooksGoodDatabase");
             DataTable dt = new DataTable();
             database.Command.CommandType = CommandType.StoredProcedure;
             database.Command.CommandText = "tblCommentsGetById";
@@ -188,8 +187,8 @@ namespace BusinessObjects
 
         public void InitializeBusinessData(DataRow dr)
         {
-            _UserId = (Guid)dr["EmployeeId"];
-            _PostId = (Guid)dr["HobbyId"];
+            _UserId = (Guid)dr["UserId"];
+            _PostId = (Guid)dr["PostId"];
         }
 
         public bool IsSavable()
