@@ -27,7 +27,7 @@ namespace EmailHelper
                 {
                     Host = smtpHost,
                     Port = smtpPort,
-                    EnableSsl = true,
+                    EnableSsl = false,
                     DeliveryMethod = SmtpDeliveryMethod.Network,
                     UseDefaultCredentials = false,
                     Credentials = new NetworkCredential(fromAddress.Address, fromPassword)
