@@ -33,7 +33,7 @@ namespace LooksGood.Acct
             {
                 if (user.EmailSent == false)
                 {
-                    user.Register(txtFirstName.Text, txtLastName.Text, txtEmail.Text);
+                    user.Register(txtUserName.Text, txtEmail.Text);
                     Session.Add("User", user);
                 }
             }
