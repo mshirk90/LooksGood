@@ -57,7 +57,8 @@ namespace LooksGood.Account
                 {
                     if (user.EmailSent == false)
                     {
-                        Email.SendEmail(user.Email, "Registration Password", "Your password is: " + user.Password);
+                       
+                        EmailHelper.Email.SendEmail(user.Email, "Registration Password", "Your password is: " + user.Password);
                         lblStatus.Text = "Please check your email for creditials.";
                         user.EmailSent = true;
                         user.Save();
