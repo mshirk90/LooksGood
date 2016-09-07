@@ -7,7 +7,7 @@ using System.Web.UI.WebControls;
 using BusinessObjects;
 using EmailHelper;
 
-namespace LooksGood.Acct
+namespace LooksGood.Account
 {
     public partial class Register : System.Web.UI.Page
     {
