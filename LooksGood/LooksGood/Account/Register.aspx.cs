@@ -7,7 +7,7 @@ using System.Web.UI.WebControls;
 using BusinessObjects;
 using EmailHelper;
 
-namespace LooksGood.Acct
+namespace LooksGood.Account
 {
     public partial class Register : System.Web.UI.Page
     {
@@ -33,7 +33,7 @@ namespace LooksGood.Acct
             {
                 if (user.EmailSent == false)
                 {
-                    user.Register(txtFirstName.Text, txtLastName.Text, txtEmail.Text);
+                    user.Register(txtUserName.Text, txtEmail.Text);
                     Session.Add("User", user);
                 }
             }
@@ -57,7 +57,8 @@ namespace LooksGood.Acct
                 {
                     if (user.EmailSent == false)
                     {
-                        Email.SendEmail(user.Email, "Registration Password", "Your password is: " + user.Password);
+                       
+                        EmailHelper.Email.SendEmail(user.Email, "Registration Password", "Your password is: " + user.Password);
                         lblStatus.Text = "Please check your email for creditials.";
                         user.EmailSent = true;
                         user.Save();

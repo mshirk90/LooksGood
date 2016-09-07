@@ -361,7 +361,7 @@ namespace BusinessObjects
                 return null; // typically a good idea to have only one entry and one exit per method
             }
         }
-        public User Register(String firstName, String lastName, String email)
+        public User Register(String UserName, String email)
         {
             // Generate a new 12-character password with 1 non-alphanumeric character
             String password = Membership.GeneratePassword(12, 1);
@@ -371,7 +371,7 @@ namespace BusinessObjects
                 database.Command.Parameters.Clear();
                 database.Command.CommandType = CommandType.StoredProcedure;
                 database.Command.CommandText = "tblUserINSERT";
-                database.Command.Parameters.Add("@UserName", SqlDbType.VarChar).Value = firstName;
+                database.Command.Parameters.Add("@UserName", SqlDbType.VarChar).Value = UserName;
                 database.Command.Parameters.Add("@Email", SqlDbType.VarChar).Value = email;
                 database.Command.Parameters.Add("@Password", SqlDbType.VarChar).Value = password;
 
