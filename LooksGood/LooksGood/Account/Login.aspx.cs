@@ -1,61 +1,60 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Web;
 using System.Web.UI;
-using Microsoft.AspNet.Identity;
-using Microsoft.AspNet.Identity.Owin;
-using Owin;
-using LooksGood.Models;
+using System.Web.UI.WebControls;
+using BusinessObjects;
+using System.Web.UI.HtmlControls;
 
 namespace LooksGood.Account
 {
-    public partial class Login : Page
+    public partial class Login : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            RegisterHyperLink.NavigateUrl = "Register";
-            // Enable this once you have account confirmation enabled for password reset functionality
-            //ForgotPasswordHyperLink.NavigateUrl = "Forgot";
-            OpenAuthLogin.ReturnUrl = Request.QueryString["ReturnUrl"];
-            var returnUrl = HttpUtility.UrlEncode(Request.QueryString["ReturnUrl"]);
-            if (!String.IsNullOrEmpty(returnUrl))
+            // READ THE COOKIE
+            if (Request.Cookies["LooksGoodCookies"] != null && Convert.ToBoolean(Request.Cookies["LooksGoodCookies"]["RememberMe"]) == true)
             {
-                RegisterHyperLink.NavigateUrl += "?ReturnUrl=" + returnUrl;
+                txtEmail.Text = Request.Cookies["LooksGoodCookies"]["UserName"];
+                txtPassword.Text = Request.Cookies["LooksGoodCookies"]["Password"];
+                UserLogin();
             }
         }
 
-        protected void LogIn(object sender, EventArgs e)
+        private void UserLogin()
         {
-            if (IsValid)
+            User user = new User();
+            user = user.Login(txtEmail.Text, txtPassword.Text);
+
+            if (user == null)
             {
-                // Validate the user password
-                var manager = Context.GetOwinContext().GetUserManager<ApplicationUserManager>();
-                var signinManager = Context.GetOwinContext().GetUserManager<ApplicationSignInManager>();
-
-                // This doen't count login failures towards account lockout
-                // To enable password failures to trigger lockout, change to shouldLockout: true
-                var result = signinManager.PasswordSignIn(Email.Text, Password.Text, RememberMe.Checked, shouldLockout: false);
-
-                switch (result)
-                {
-                    case SignInStatus.Success:
-                        IdentityHelper.RedirectToReturnUrl(Request.QueryString["ReturnUrl"], Response);
-                        break;
-                    case SignInStatus.LockedOut:
-                        Response.Redirect("/Account/Lockout");
-                        break;
-                    case SignInStatus.RequiresVerification:
-                        Response.Redirect(String.Format("/Account/TwoFactorAuthenticationSignIn?ReturnUrl={0}&RememberMe={1}", 
-                                                        Request.QueryString["ReturnUrl"],
-                                                        RememberMe.Checked),
-                                          true);
-                        break;
-                    case SignInStatus.Failure:
-                    default:
-                        FailureText.Text = "Invalid login attempt";
-                        ErrorMessage.Visible = true;
-                        break;
-                }
+                lblStatus.Text = "Invalid Username or Password";
             }
+            else if (user.Version == 0 || user.IsPasswordPending == true)
+            {
+                Session.Add("User", user);
+                Response.Redirect("ChangePassword.aspx");
+            }
+            else
+            {
+                if (this.RememberMe.Checked == true)
+                {
+                    Response.Cookies["LooksGoodCookies"]["UserName"] = txtEmail.Text;
+                    Response.Cookies["LooksGoodCookies"]["Password"] = txtPassword.Text;
+                    Response.Cookies["LooksGoodCookies"]["RememberMe"] = "true";
+
+                    Response.Cookies["LooksGoodCookies"]["LastVisited"] = DateTime.Now.ToLongDateString();
+                    Response.Cookies["LooksGoodCookies"].Expires = DateTime.MaxValue;
+                }
+                ((HtmlGenericControl)this.Master.FindControl("ddlPreferences")).Visible = false;
+                Session.Add("LooksGoodCookies", user);
+                Response.Redirect("~/Default.aspx");
+            }
+        }
+        protected void btnLogin_Click(object sender, EventArgs e)
+        {
+            UserLogin();
         }
     }
 }

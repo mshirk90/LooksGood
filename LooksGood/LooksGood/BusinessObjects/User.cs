@@ -17,7 +17,7 @@ namespace BusinessObjects
         private String _Email = String.Empty;
         private String _Password = String.Empty;
         private Boolean _EmailSent = false;
-        private bool _IsPasswordPending = false;
+        private bool _IsPasswordPending = true;
         private BrokenRuleList _BrokenRules = new BrokenRuleList();
         #endregion
 
@@ -110,6 +110,7 @@ namespace BusinessObjects
                 database.Command.Parameters.Add("@UserName", SqlDbType.VarChar).Value = _UserName;
                 database.Command.Parameters.Add("@Email", SqlDbType.VarChar).Value = _Email;
                 database.Command.Parameters.Add("@Password", SqlDbType.VarChar).Value = _Password;
+                database.Command.Parameters.Add("@IsPasswordPending", SqlDbType.Bit).Value = _IsPasswordPending;
 
                 // Provides the empty buckets
                 base.Initialize(database, Guid.Empty);
@@ -139,6 +140,7 @@ namespace BusinessObjects
                 database.Command.Parameters.Add("@Email", SqlDbType.VarChar).Value = _Email;
                 database.Command.Parameters.Add("@Password", SqlDbType.VarChar).Value = _Password;
                 database.Command.Parameters.Add("@IsPasswordPending", SqlDbType.Bit).Value = _IsPasswordPending;
+
 
 
                 // Provides the empty buckets
@@ -262,7 +264,7 @@ namespace BusinessObjects
         #region Public Methods
         public User GetById(Guid id)
         {
-            Database database = new Database("User");
+            Database database = new Database("LooksGoodDatabase");
             DataTable dt = new DataTable();
             database.Command.CommandType = System.Data.CommandType.StoredProcedure;
             database.Command.CommandText = "tblUserGetById";
@@ -281,7 +283,7 @@ namespace BusinessObjects
         }
         public void InitializeBusinessData(DataRow dr)
         {
-            _UserName = dr["FirstName"].ToString();
+            _UserName = dr["UserName"].ToString();
             _Email = dr["Email"].ToString();
             _Password = dr["Password"].ToString();
         }
@@ -361,7 +363,7 @@ namespace BusinessObjects
                 return null; // typically a good idea to have only one entry and one exit per method
             }
         }
-        public User Register(String firstName, String lastName, String email)
+        public User Register(String UserName, String email)
         {
             // Generate a new 12-character password with 1 non-alphanumeric character
             String password = Membership.GeneratePassword(12, 1);
@@ -371,7 +373,7 @@ namespace BusinessObjects
                 database.Command.Parameters.Clear();
                 database.Command.CommandType = CommandType.StoredProcedure;
                 database.Command.CommandText = "tblUserINSERT";
-                database.Command.Parameters.Add("@UserName", SqlDbType.VarChar).Value = firstName;
+                database.Command.Parameters.Add("@UserName", SqlDbType.VarChar).Value = UserName;
                 database.Command.Parameters.Add("@Email", SqlDbType.VarChar).Value = email;
                 database.Command.Parameters.Add("@Password", SqlDbType.VarChar).Value = password;
 

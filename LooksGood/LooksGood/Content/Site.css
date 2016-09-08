@@ -36,3 +36,12 @@ input[type="select"] {
         padding: 0;
     }
 }
+
+.div-margin
+{
+    margin-top: 8px;
+}
+
+.div-margin-left {
+    margin-left: 10px
+}

@@ -7,46 +7,46 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace LooksGood.Acct {
+namespace LooksGood.Account {
     
     
     public partial class Login {
         
         /// <summary>
-        /// txtEmail control.
+        /// ErrorMessage control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtEmail;
+        protected global::System.Web.UI.WebControls.PlaceHolder ErrorMessage;
         
         /// <summary>
-        /// txtPassword control.
+        /// FailureText control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtPassword;
+        protected global::System.Web.UI.WebControls.Literal FailureText;
         
         /// <summary>
-        /// btnLogin control.
+        /// Email control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnLogin;
+        protected global::System.Web.UI.WebControls.TextBox Email;
         
         /// <summary>
-        /// RegisterHyperLink control.
+        /// Password control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HyperLink RegisterHyperLink;
+        protected global::System.Web.UI.WebControls.TextBox Password;
         
         /// <summary>
         /// RememberMe control.
@@ -58,21 +58,21 @@ namespace LooksGood.Acct {
         protected global::System.Web.UI.WebControls.CheckBox RememberMe;
         
         /// <summary>
-        /// ForgotPasswordHyperLink control.
+        /// RegisterHyperLink control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HyperLink ForgotPasswordHyperLink;
+        protected global::System.Web.UI.WebControls.HyperLink RegisterHyperLink;
         
         /// <summary>
-        /// lblStatus control.
+        /// OpenAuthLogin control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblStatus;
+        protected global::LooksGood.Account.OpenAuthProviders OpenAuthLogin;
     }
 }
