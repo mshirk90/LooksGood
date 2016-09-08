@@ -15,15 +15,13 @@
         </div>
     </div>
     <div class="form-group">
-        <div class="col-md-offset-2 col-md-10">
+        <div class="col-md-10">
             <asp:Button runat="server" ID="btnLogin" Text="Log in" CssClass="btn btn-default" OnClick="btnLogin_Click"/>
+            <asp:HyperLink NavigateUrl="~/Account/Register.aspx" runat="server" ID="RegisterHyperLink" Visible="true" ViewStateMode="Disabled">Register</asp:HyperLink>
         </div>
     </div>
-    <p>
-        <asp:HyperLink NavigateUrl="~/Acct/Register.aspx" runat="server" ID="RegisterHyperLink" Visible="true" ViewStateMode="Disabled">Register</asp:HyperLink>
-    </p>
     <div class="form-group">
-        <div class="col-md-offset-2 col-md-10">
+        <div class="col-md-10" style="padding-left:36px">
             <div class="checkbox">
                 <asp:CheckBox runat="server" ID="RememberMe" />
                 <asp:Label runat="server" AssociatedControlID="RememberMe">Remember me?</asp:Label>
@@ -31,7 +29,7 @@
         </div>
     </div>
     <div class="form-group">
-        <div class="col-md-offset-2 col-md-10">
+        <div class="col-md-10">
             <%--Enable this once you have account confirmation enabled for password reset functionality--%>
             <asp:HyperLink NavigateUrl="~/Acct/ForgotPassword.aspx" runat="server" ID="ForgotPasswordHyperLink" ViewStateMode="Disabled">Forgot your password?</asp:HyperLink>
         </div>
