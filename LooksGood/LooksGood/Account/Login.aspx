@@ -31,7 +31,7 @@
     <div class="form-group">
         <div class="col-md-10">
             <%--Enable this once you have account confirmation enabled for password reset functionality--%>
-            <asp:HyperLink NavigateUrl="~/Acct/ForgotPassword.aspx" runat="server" ID="ForgotPasswordHyperLink" ViewStateMode="Disabled">Forgot your password?</asp:HyperLink>
+            <asp:HyperLink NavigateUrl="~/Account/ForgotPassword.aspx" runat="server" ID="ForgotPasswordHyperLink" ViewStateMode="Disabled">Forgot your password?</asp:HyperLink>
         </div>
         <hr />
         <asp:Label ID="lblStatus" runat="server"></asp:Label>
