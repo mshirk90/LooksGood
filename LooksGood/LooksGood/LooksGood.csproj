@@ -188,13 +188,11 @@
     <Content Include="Account\Confirm.aspx" />
     <Content Include="Account\Forgot.aspx" />
     <Content Include="Account\Lockout.aspx" />
-    <Content Include="Account\Login1.aspx" />
     <Content Include="Account\Manage.aspx" />
     <Content Include="Account\ManageLogins.aspx" />
     <Content Include="Account\ManagePassword.aspx" />
     <Content Include="Account\OpenAuthProviders.ascx" />
     <Content Include="Account\Profile.aspx" />
-    <Content Include="Account\Register1.aspx" />
     <Content Include="Account\RegisterExternalLogin.aspx" />
     <Content Include="Account\ResetPassword.aspx" />
     <Content Include="Account\ResetPasswordConfirmation.aspx" />
@@ -305,13 +303,6 @@
     <Compile Include="Account\Lockout.aspx.designer.cs">
       <DependentUpon>Lockout.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Account\Login1.aspx.cs">
-      <DependentUpon>Login1.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Account\Login1.aspx.designer.cs">
-      <DependentUpon>Login1.aspx</DependentUpon>
-    </Compile>
     <Compile Include="Account\Manage.aspx.cs">
       <DependentUpon>Manage.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -346,13 +337,6 @@
     </Compile>
     <Compile Include="Account\Profile.aspx.designer.cs">
       <DependentUpon>Profile.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Account\Register1.aspx.cs">
-      <DependentUpon>Register1.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Account\Register1.aspx.designer.cs">
-      <DependentUpon>Register1.aspx</DependentUpon>
     </Compile>
     <Compile Include="Account\RegisterExternalLogin.aspx.cs">
       <DependentUpon>RegisterExternalLogin.aspx</DependentUpon>
