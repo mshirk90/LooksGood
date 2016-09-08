@@ -7,7 +7,7 @@ using System.Web.UI.WebControls;
 using BusinessObjects;
 using System.Web.UI.HtmlControls;
 
-namespace LooksGood.Acct
+namespace LooksGood.Account
 {
     public partial class Login : System.Web.UI.Page
     {

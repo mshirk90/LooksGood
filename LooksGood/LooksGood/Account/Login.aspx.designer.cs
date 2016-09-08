@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace LooksGood.Acct {
+namespace LooksGood.Account {
     
     
     public partial class Login {
