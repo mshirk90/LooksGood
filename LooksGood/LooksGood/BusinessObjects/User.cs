@@ -139,7 +139,8 @@ namespace BusinessObjects
                 database.Command.Parameters.Add("@UserName", SqlDbType.VarChar).Value = _UserName;
                 database.Command.Parameters.Add("@Email", SqlDbType.VarChar).Value = _Email;
                 database.Command.Parameters.Add("@Password", SqlDbType.VarChar).Value = _Password;
-                
+                database.Command.Parameters.Add("@IsPasswordPending", SqlDbType.Bit).Value = _IsPasswordPending;
+
 
 
                 // Provides the empty buckets
