@@ -281,7 +281,7 @@ namespace BusinessObjects
         }
         public void InitializeBusinessData(DataRow dr)
         {
-            _UserName = dr["FirstName"].ToString();
+            _UserName = dr["UserName"].ToString();
             _Email = dr["Email"].ToString();
             _Password = dr["Password"].ToString();
         }
