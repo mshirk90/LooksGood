@@ -29,6 +29,7 @@ namespace LooksGood.Account
                     if (user.IsSavable() == true)
                     {
                         user.Save();
+                        user.IsPasswordPending = false;
                         Response.Redirect("Default.aspx");
                     }
                     else

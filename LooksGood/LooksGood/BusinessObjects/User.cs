@@ -17,7 +17,7 @@ namespace BusinessObjects
         private String _Email = String.Empty;
         private String _Password = String.Empty;
         private Boolean _EmailSent = false;
-        private bool _IsPasswordPending = false;
+        private bool _IsPasswordPending = true;
         private BrokenRuleList _BrokenRules = new BrokenRuleList();
         #endregion
 
@@ -110,6 +110,7 @@ namespace BusinessObjects
                 database.Command.Parameters.Add("@UserName", SqlDbType.VarChar).Value = _UserName;
                 database.Command.Parameters.Add("@Email", SqlDbType.VarChar).Value = _Email;
                 database.Command.Parameters.Add("@Password", SqlDbType.VarChar).Value = _Password;
+                database.Command.Parameters.Add("@IsPasswordPending", SqlDbType.Bit).Value = _IsPasswordPending;
 
                 // Provides the empty buckets
                 base.Initialize(database, Guid.Empty);
@@ -138,7 +139,7 @@ namespace BusinessObjects
                 database.Command.Parameters.Add("@UserName", SqlDbType.VarChar).Value = _UserName;
                 database.Command.Parameters.Add("@Email", SqlDbType.VarChar).Value = _Email;
                 database.Command.Parameters.Add("@Password", SqlDbType.VarChar).Value = _Password;
-                database.Command.Parameters.Add("@IsPasswordPending", SqlDbType.Bit).Value = _IsPasswordPending;
+                
 
 
                 // Provides the empty buckets
