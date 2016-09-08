@@ -262,7 +262,7 @@ namespace BusinessObjects
         #region Public Methods
         public User GetById(Guid id)
         {
-            Database database = new Database("User");
+            Database database = new Database("LooksGoodDatabase");
             DataTable dt = new DataTable();
             database.Command.CommandType = System.Data.CommandType.StoredProcedure;
             database.Command.CommandText = "tblUserGetById";
