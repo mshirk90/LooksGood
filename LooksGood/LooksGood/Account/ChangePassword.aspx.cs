@@ -31,7 +31,9 @@ namespace LooksGood.Account
                         user.Save();
                         user.IsPasswordPending = false;
                         Response.Redirect("Default.aspx");
+                        System.Windows.Forms.MessageBox.Show("Login Success");
                     }
+                    
                     else
                     {
                         //Show broken Rules
