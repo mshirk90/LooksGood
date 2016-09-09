@@ -1,4 +1,4 @@
-﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Site.Master.cs" Inherits="LooksGood.LooksGood" %>
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Site.Master.cs" Inherits="Site" %>
 
 <!DOCTYPE html>
 
@@ -53,22 +53,20 @@
                                 <a href="/Account/Login.aspx">Login</a>
                             </li>
                         </ul>
-
-                        <div id="ddlPreferences" runat="server" class="dropdown pull-right div-margin" visible="true">
-                            <button class="btn btn-default dropdown-toggle" type="button" id="menu1" data-toggle="dropdown">
-                                UserName
+                    </div>
+                    <div id="ddlPreferences" runat="server" class="dropdown pull-right div-margin" visible="true">
+                        <button class="btn btn-default dropdown-toggle" type="button" id="menu1" data-toggle="dropdown">
+                            UserName
                         <span class="caret"></span>
-                            </button>
-                            <ul class="dropdown-menu" role="menu" aria-labelledby="menu1">
-                                <li role="presentation"><a role="menuitem" tabindex="-1" href="/Account/Profile.aspx">Profile</a></li>
-                                <li role="presentation"><a role="menuitem" tabindex="-1" href="/Account/Logout.aspx">Logout</a></li>
-                                <li role="presentation"><a role="menuitem" tabindex="-1" href="/Account/ChangePassword.aspx">Change Password</a></li>
-                                <li role="presentation"><a role="menuitem" tabindex="-1" href="/Account/Upload.aspx">Upload Post</a></li>
-                                <li role="presentation"><a role="menuitem" tabindex="-1" href="/Account/Administration.aspx">Account Management</a></li>
-                                <li role="presentation" class="divider"></li>
-                            </ul>
-                        </div>
-
+                        </button>
+                        <ul class="dropdown-menu" role="menu" aria-labelledby="menu1">
+                            <li role="presentation"><a role="menuitem" tabindex="-1" href="/Account/Profile.aspx">Profile</a></li>
+                            <li role="presentation"><a role="menuitem" tabindex="-1" href="/Account/Logout.aspx">Logout</a></li>
+                            <li role="presentation"><a role="menuitem" tabindex="-1" href="/Account/ChangePassword.aspx">Change Password</a></li>
+                            <li role="presentation"><a role="menuitem" tabindex="-1" href="/Account/Upload.aspx">Upload Post</a></li>
+                            <li role="presentation"><a role="menuitem" tabindex="-1" href="/Account/Administration.aspx">Account Management</a></li>
+                            <li role="presentation" class="divider"></li>
+                        </ul>
                     </div>
 
                     <!-- /.navbar-collapse -->

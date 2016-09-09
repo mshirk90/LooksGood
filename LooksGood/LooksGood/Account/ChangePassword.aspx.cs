@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using BusinessObjects;
+using DatabaseHelper;
 
 namespace LooksGood.Account
 {
@@ -28,9 +29,9 @@ namespace LooksGood.Account
                     user.Password = txtNewPassword.Text;
                     if (user.IsSavable() == true)
                     {
-                        user.Save();
                         user.IsPasswordPending = false;
-                        Response.Redirect("Default.aspx");
+                        user.Save();                       
+                        Response.Redirect("~/Default.aspx");
                         System.Windows.Forms.MessageBox.Show("Login Success");
                     }
                     
