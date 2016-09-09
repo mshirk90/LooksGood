@@ -127,7 +127,7 @@ namespace BusinessObjects
 
             return result;
         }
-        private Boolean Update(Database database)
+        public Boolean Update(Database database)
         {
             Boolean result = true;
 
