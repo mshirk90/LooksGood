@@ -1,4 +1,4 @@
-﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Site.Master.cs" Inherits="Site" %>
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Site.Master.cs" Inherits="LooksGood.LooksGood" %>
 
 <!DOCTYPE html>
 
@@ -38,7 +38,7 @@
                     </div>
 
                     <!-- Collect the nav links, forms, and other content for toggling -->
-                    <div id="bsTop" class="collapse navbar-collapse">
+                    <div id="bsTop" class="collapse navbar-collapse pull-left">
                         <ul class="nav navbar-nav">
                             <li>
                                 <a href="/default.aspx">Home</a>
@@ -52,9 +52,14 @@
                             <li>
                                 <a href="/Account/Login.aspx">Login</a>
                             </li>
+                            <li>
+                                <a href="/Account/Forgot.aspx">Forgot Password</a>
+                            </li>
                         </ul>
                         <div id="ddlPreferences" runat="server" class="dropdown pull-left div-margin" visible="true">
-                            <button class="btn btn-default dropdown-toggle" type="button" id="btnUser" data-toggle="dropdown">Account                          
+                            <button class="btn btn-default dropdown-toggle" type="button" id="btnUser" data-toggle="dropdown">
+                             <asp:Label runat="server" ID="idUser">
+                             </asp:Label>
                         <span class="caret"></span>
                             </button>
                             <ul class="dropdown-menu" role="menu" aria-labelledby="menu1">
