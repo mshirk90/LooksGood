@@ -31,7 +31,7 @@ namespace LooksGood.Account
             {
                 lblStatus.Text = "Invalid Username or Password";
             }
-            else if (user.Version == 0 || user.IsPasswordPending == true)
+            else if (user.Version == 0 && user.IsPasswordPending == true)
             {
                 Session.Add("User", user);
                 Response.Redirect("ChangePassword.aspx");
