@@ -40,13 +40,13 @@ namespace LooksGood.Account {
         protected global::System.Web.UI.WebControls.Literal FailureText;
         
         /// <summary>
-        /// forEmail control.
+        /// rvEmail control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox forEmail;
+        protected global::System.Web.UI.WebControls.TextBox rvEmail;
         
         /// <summary>
         /// lblEmail control.
@@ -65,6 +65,15 @@ namespace LooksGood.Account {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox Email;
+        
+        /// <summary>
+        /// EmailVal control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator EmailVal;
         
         /// <summary>
         /// revealEmail control.

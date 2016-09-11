@@ -14,19 +14,19 @@
                             <asp:Literal runat="server" ID="FailureText" />
                         </p>
                     </asp:PlaceHolder>  
-                    <asp:TextBox runat="server" ID="forEmail" CssClass="form-control" Width="700px"/>                  
+                    <asp:TextBox runat="server" ID="rvEmail" CssClass="form-control" Width="700px" Text="Password Revealed HERE"/>                  
                     <div class="form-group pull-left" style="padding-left:25px">
                         <asp:Label runat="server" AssociatedControlID="Email" CssClass="col-md-2 control-label" ID="lblEmail">Email</asp:Label>
                         <div class="col-md-10" style="padding-left:10px">                          
                             <asp:TextBox runat="server" ID="Email" CssClass="form-control" TextMode="Email" Width="700px"/>                         
                             <asp:RequiredFieldValidator runat="server" ControlToValidate="Email"
-                                CssClass="text-danger" ErrorMessage="The email field is required."/>                            
+                                CssClass="text-danger" ErrorMessage="The email field is required." ID="EmailVal"/>                            
                         </div>
                     </div>
-                    <div class="form-group">
-                        <div class="col-md-10" style="padding-left:40px">                           
-                            <asp:Button runat="server" OnClick="Reveal" Text="Reveal Password" CssClass="btn btn-default" ID="revealEmail" />
-                            <asp:Button runat="server" OnClick="Forgot" Text="Email Link" CssClass="btn btn-default" ID="forgotEmail" />
+                    <div class="form-group pull-left">
+                        <div class="col-md-10 pull-left">                           
+                            <asp:Button runat="server" OnClick="Reveal" Text="Reveal Password" CssClass="btn btn-default pull-left div-margin" ID="revealEmail"/>
+                            <asp:Button runat="server" OnClick="EmailCheck" Text="Email Link" CssClass="btn btn-default" ID="forgotEmail" />
                         </div>
                     </div>
                 </div>

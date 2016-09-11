@@ -266,7 +266,7 @@ namespace BusinessObjects
         {
             Database database = new Database("LooksGoodDatabase");
             DataTable dt = new DataTable();
-            database.Command.CommandType = System.Data.CommandType.StoredProcedure;
+            database.Command.CommandType = CommandType.StoredProcedure;
             database.Command.CommandText = "tblUserGetById";
             base.Initialize(database, base.Id);
             dt = database.ExecuteQuery();
@@ -410,7 +410,7 @@ namespace BusinessObjects
             bool result = false;
             Database database = new Database("LooksGoodDatabase");
             DataTable dt = new DataTable();
-            database.Command.CommandType = System.Data.CommandType.StoredProcedure;
+            database.Command.CommandType = CommandType.StoredProcedure;
             database.Command.CommandText = "tblUserExists";
             database.Command.Parameters.Add("@Email", SqlDbType.VarChar).Value = email;
 
