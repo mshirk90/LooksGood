@@ -10,6 +10,8 @@ using System.Web.UI.WebControls.WebParts;
 using System.Web.UI.HtmlControls;
 using BusinessObjects;
 
+
+
 namespace LooksGood
 {
     public partial class LooksGood : System.Web.UI.MasterPage
@@ -33,8 +35,8 @@ namespace LooksGood
                 Label label = (Label)masterpage.FindControl("idUser");
                 label.Text = user.UserName;
 
-
-
+                ListItem liLogin = ListItem.FromString("liLogin");
+                liLogin.Value = null;        
 
                 //RemoveMenuItem("LOGIN");
                 //ChangeMenuItem("WELCOME", String.Format("[Welcome {0}]", user.UserName));
