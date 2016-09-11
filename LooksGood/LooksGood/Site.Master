@@ -50,7 +50,7 @@
                                 <a href="#">About</a>
                             </li>
                             <li>
-                                <a href="/Account/Login.aspx">Login</a>
+                                <a id="liLogin" hidden="hidden" href="/Account/Login.aspx">Login</a>
                             </li>
                             <li>
                                 <a href="/Account/Forgot.aspx">Forgot Password</a>
@@ -64,7 +64,7 @@
                             </button>
                             <ul class="dropdown-menu" role="menu" aria-labelledby="menu1">
                                 <li role="presentation"><a role="menuItem" tabindex="-1" href="/Account/Profile.aspx">Profile</a></li>
-                                <li role="presentation"><a role="menuItem" tabindex="-1" href="/Account/Logout.aspx">Logout</a></li>
+                                <li role="presentation"><a role="menuItem" tabindex="-1" id="liLogout" href="/Account/Logout.aspx">Logout</a></li>
                                 <li role="presentation"><a role="menuItem" tabindex="-1" href="/Account/ChangePassword.aspx">Change Password</a></li>
                                 <li role="presentation"><a role="menuItem" tabindex="-1" href="/Account/Upload.aspx">Upload Post</a></li>
                                 <li role="presentation"><a role="menuItem" tabindex="-1" href="/Account/Administration.aspx">Account Management</a></li>
