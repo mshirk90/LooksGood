@@ -9,7 +9,8 @@ using BusinessObjects;
 using ConfigurationHelper;
 using System.Data.SqlClient;
 using System.Data;
-using DatabaseHelper;
+using EmailHelper;
+
 
 
 namespace LooksGood.Account
@@ -33,7 +34,7 @@ namespace LooksGood.Account
                 rvEmail.Enabled = false;
                 rvEmail.Visible = false;
                 revealEmail.Enabled = false;
-                revealEmail.Visible = false;                             
+                revealEmail.Visible = false;
             }
         }
 
@@ -47,37 +48,38 @@ namespace LooksGood.Account
         protected void Forgot(object sender, EventArgs e)
         {
             if (IsValid)
-            {                                        
-                // Validate the user's email address
-                var manager = Context.GetOwinContext().GetUserManager<ApplicationUserManager>();
-                ApplicationUser user = manager.FindByName(Email.Text);
-                if (user == null || !manager.IsEmailConfirmed(user.Id))
-                {
-                    FailureText.Text = "The user either does not exist or is not confirmed.";
-                    ErrorMessage.Visible = true;
-                    return;
-                }
-                // For more information on how to enable account confirmation and password reset please visit http://go.microsoft.com/fwlink/?LinkID=320771
-                // Send email with the code and the redirect to reset password page
-                //string code = manager.GeneratePasswordResetToken(user.Id);
-                //string callbackUrl = IdentityHelper.GetResetPasswordRedirectUrl(code, Request);
-                //manager.SendEmail(user.Id, "Reset Password", "Please reset your password by clicking <a href=\"" + callbackUrl + "\">here</a>.");
-                loginForm.Visible = false;
-                DisplayEmail.Visible = true;
-            }
-        }
-        public void EmailCheck(object sender, EventArgs e)
-        {
-            string conString = Configuration.GetConnectionString("LooksGoodDatabase");
-            SqlConnection con = new SqlConnection(conString);
-            SqlCommand cmd = new SqlCommand("Select * from pmartone.tblUser where Email=@Email",con);
-            cmd.Parameters.AddWithValue("@Email", this.Email.Text);
-            con.Open();
-            SqlDataReader dr = cmd.ExecuteReader();
-            if (dr.HasRows == true)
             {
-                
+                //^^ Validate the user's email address
+                DataTable dt = new DataTable();
+                string conString = Configuration.GetConnectionString("LooksGoodDatabase");
+                SqlConnection con = new SqlConnection(conString);
+                SqlCommand cmd = new SqlCommand("Select * from pmartone.tblUser where Email=@Email", con);
+                cmd.Parameters.AddWithValue("@Email", this.Email.Text);
+                con.Open();
+                SqlDataReader dr = cmd.ExecuteReader();
+                //^^ builds database stuff needed to retrieve the information and builds the query 
+                if (dr.HasRows == false)
+                {
+                    FailureText.Text = "The email either does not exist or is not confirmed.";
+                    ErrorMessage.Visible = true;
+                    Email.Text = "Password not found";
+                    //^^ if e-mail is not found error message handling
+                }
+                if (dr.HasRows == true)
+                {
+                    while (dr.Read())
+                    {
+                        string eMail = dr[5].ToString();
+                        string pWord = dr[6].ToString();
+                        EmailHelper.Email.SendEmail(eMail, "New Password", "Your password = " + pWord);
+                        FailureText.Text = "Email found sending password to registered e-mail";
+                        //^^ reads the data base rows equivalent to user e-mail and password from the user table and e-mails to the e-mail
+                    }
+                }               
+                con.Close();
             }
         }
     }
 }
+
+

@@ -10,7 +10,7 @@
                     <h4>Forgot your password?</h4>
                     <hr />
                     <asp:PlaceHolder runat="server" ID="ErrorMessage" Visible="false">
-                        <p class="text-danger">
+                        <p class="text-danger" style="padding-left:25px">
                             <asp:Literal runat="server" ID="FailureText" />
                         </p>
                     </asp:PlaceHolder>  
@@ -26,7 +26,7 @@
                     <div class="form-group pull-left">
                         <div class="col-md-10 pull-left">                           
                             <asp:Button runat="server" OnClick="Reveal" Text="Reveal Password" CssClass="btn btn-default pull-left div-margin" ID="revealEmail"/>
-                            <asp:Button runat="server" OnClick="EmailCheck" Text="Email Link" CssClass="btn btn-default" ID="forgotEmail" />
+                            <asp:Button runat="server" OnClick="Forgot" Text="Reset Password" CssClass="btn btn-default" ID="forgotEmail" />
                         </div>
                     </div>
                 </div>
