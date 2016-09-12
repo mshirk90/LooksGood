@@ -35,8 +35,7 @@ namespace LooksGood
                 Label label = (Label)masterpage.FindControl("idUser");
                 label.Text = user.UserName;
 
-                ListItem liLogin = ListItem.FromString("liLogin");
-                liLogin.Value = null;        
+                lblLogin.Visible = false;      
 
                 //RemoveMenuItem("LOGIN");
                 //ChangeMenuItem("WELCOME", String.Format("[Welcome {0}]", user.UserName));
