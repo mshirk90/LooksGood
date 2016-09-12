@@ -16,10 +16,10 @@
                     </asp:PlaceHolder>  
                     <asp:TextBox runat="server" ID="rvEmail" CssClass="form-control" Width="700px" Text="Password Revealed HERE"/>                  
                     <div class="form-group pull-left" style="padding-left:25px">
-                        <asp:Label runat="server" AssociatedControlID="Email" CssClass="col-md-2 control-label" ID="lblEmail">Email</asp:Label>
+                        <asp:Label runat="server" AssociatedControlID="txtEmail" CssClass="col-md-2 control-label" ID="lblEmail">Email</asp:Label>
                         <div class="col-md-10" style="padding-left:10px">                          
-                            <asp:TextBox runat="server" ID="Email" CssClass="form-control" TextMode="Email" Width="700px"/>                         
-                            <asp:RequiredFieldValidator runat="server" ControlToValidate="Email"
+                            <asp:TextBox runat="server" ID="txtEmail" CssClass="form-control" TextMode="Email" Width="700px"/>                         
+                            <asp:RequiredFieldValidator runat="server" ControlToValidate="txtEmail"
                                 CssClass="text-danger" ErrorMessage="The email field is required." ID="EmailVal"/>                            
                         </div>
                     </div>
