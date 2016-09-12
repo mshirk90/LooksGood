@@ -25,23 +25,22 @@ namespace LooksGood.Account
             User user = (User)Session["User"];            
             Post post = new Post();
            
-            if (txtTitle.Text != null)
+            if (txtTitle.Text != null && txtDesription.Text != null && this.fuUpload.HasFile)
             {
-                if (this.fuUpload.HasFile)
-                {
+             
                  this.fuUpload.SaveAs("C:/Users/mshirk011938/LooksGood/LooksGood/LooksGood/UploadedImages" + this.fuUpload.FileName);
                     String iPath = ("C:/Users/mshirk011938/LooksGood/LooksGood/LooksGood/UploadedImages/" + this.fuUpload.FileName).ToString();
 
                     if (Session["User"] != null)
                     {
                         post.ImagePath = iPath;
-                        post.Title = txtTitle.ToString();
-                        post.Description = txtDesription.ToString();
+                        post.Title = txtTitle.Text.ToString();
+                        post.Description = txtDesription.Text.ToString();
                         post.UserId = user.Id;
                         post.Save();
                         Response.Redirect("~/Default.aspx");
                     }
-                }
+                
 
 
                 //else

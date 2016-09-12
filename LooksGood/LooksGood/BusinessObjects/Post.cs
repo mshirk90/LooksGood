@@ -127,7 +127,7 @@ namespace BusinessObjects
                 throw;
             }
 
-            System.IO.File.Delete(_FilePath);
+            //System.IO.File.Delete(_FilePath);
             return result;
         }
         private Boolean Update(Database database)
@@ -265,7 +265,7 @@ namespace BusinessObjects
         {
             Boolean result = false;
 
-            if ((base.IsDirty == true) && (IsValid() == true))
+            if ((base.IsDirty == true) || (IsValid() == true))
             {
                 result = true;
             }
