@@ -74,6 +74,8 @@ namespace LooksGood.Account
                         EmailHelper.Email.SendEmail(eMail, "New Password", "Your password = " + pWord);
                         FailureText.Text = "Email found sending password to registered e-mail";
                         //^^ reads the data base rows equivalent to user e-mail and password from the user table and e-mails to the e-mail
+                        Response.Redirect("~/Account/PassWordConfirmation.aspx");
+                        break;
                     }
                 }               
                 con.Close();
