@@ -1,4 +1,4 @@
-﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Site.Master.cs" Inherits="Site" %>
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Site.Master.cs" Inherits="LooksGood.LooksGood" %>
 
 <!DOCTYPE html>
 
@@ -38,35 +38,63 @@
                     </div>
 
                     <!-- Collect the nav links, forms, and other content for toggling -->
-                    <div class="collapse navbar-collapse" id="bsTop">
+                    <div id="bsTop" class="collapse navbar-collapse pull-left">
                         <ul class="nav navbar-nav">
                             <li>
                                 <a href="/default.aspx">Home</a>
                             </li>
                             <li>
-                                <a href="/Account/Register.aspx">Register</a>
-                            </li>
-                            <li>
                                 <a href="#">About</a>
                             </li>
                             <li>
-                                <a href="/Account/Login.aspx">Login</a>
+                               <asp:Label runat="server" ID="lblRegister" Visible="true">  
+                                <ul class="nav navbar-nav">
+                                    <li>
+                                <a href="/Account/Register.aspx">Register</a>
+                                    </li>
+                                </ul>
+                                </asp:Label>
+                            </li>
+
+                            <li>
+                                <asp:Label runat="server" ID="lblLogin" Visible="true">  
+                                <ul class="nav navbar-nav">
+                                    <li>                                        
+                                        <a href="/Account/Login.aspx">Login</a>
+                                    </li>
+                                </ul>
+                                </asp:Label>
+                            </li>
+                            <li>
+                                <asp:Label runat="server" ID="lblForgotPassword" Visible="false">  
+                                <ul class="nav navbar-nav">
+                                    <li>                                        
+                                        <a href="/Account/Forgot.aspx">Forgot Password</a>
+                                    </li>
+                                </ul>
+                                </asp:Label>
                             </li>
                         </ul>
-                    </div>
-                    <div id="ddlPreferences" runat="server" class="dropdown pull-right div-margin" visible="true">
-                        <button class="btn btn-default dropdown-toggle" type="button" id="menu1" data-toggle="dropdown">
-                            UserName
-                        <span class="caret"></span>
-                        </button>
-                        <ul class="dropdown-menu" role="menu" aria-labelledby="menu1">
-                            <li role="presentation"><a role="menuitem" tabindex="-1" href="/Account/Profile.aspx">Profile</a></li>
-                            <li role="presentation"><a role="menuitem" tabindex="-1" href="/Account/Logout.aspx">Logout</a></li>
-                            <li role="presentation"><a role="menuitem" tabindex="-1" href="/Account/ChangePassword.aspx">Change Password</a></li>
-                            <li role="presentation"><a role="menuitem" tabindex="-1" href="/Account/Upload.aspx">Upload Post</a></li>
-                            <li role="presentation"><a role="menuitem" tabindex="-1" href="/Account/Administration.aspx">Account Management</a></li>
-                            <li role="presentation" class="divider"></li>
-                        </ul>
+
+
+
+
+
+                        <div id="ddlPreferences" runat="server" class="dropdown pull-left div-margin" visible="true">
+                            <button class="btn btn-default dropdown-toggle" type="button" id="btnUser" data-toggle="dropdown">
+                                <asp:Label runat="server" ID="idUser">
+                                </asp:Label>
+                                <span class="caret"></span>
+                            </button>
+                            <ul class="dropdown-menu" role="menu" aria-labelledby="menu1">
+                                <li role="presentation"><a role="menuItem" tabindex="-1" href="/Account/Profile.aspx">Profile</a></li>
+                                <li role="presentation"><a role="menuItem" tabindex="-1" id="liLogout" href="/Account/Logout.aspx">Logout</a></li>
+                                <li role="presentation"><a role="menuItem" tabindex="-1" href="/Account/ChangePassword.aspx">Change Password</a></li>
+                                <li role="presentation"><a role="menuItem" tabindex="-1" href="/Account/Upload.aspx">Upload Post</a></li>
+                                <li role="presentation"><a role="menuItem" tabindex="-1" href="/Account/Administration.aspx">Account Management</a></li>
+                                <li role="presentation" class="divider"></li>
+                            </ul>
+                        </div>
                     </div>
 
                     <!-- /.navbar-collapse -->
