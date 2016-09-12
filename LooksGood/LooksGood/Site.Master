@@ -44,23 +44,47 @@
                                 <a href="/default.aspx">Home</a>
                             </li>
                             <li>
-                                <a href="/Account/Register.aspx">Register</a>
-                            </li>
-                            <li>
                                 <a href="#">About</a>
                             </li>
                             <li>
-                                <a id="liLogin" hidden="hidden" href="/Account/Login.aspx">Login</a>
+                               <asp:Label runat="server" ID="lblRegister" Visible="true">  
+                                <ul class="nav navbar-nav">
+                                    <li>
+                                <a href="/Account/Register.aspx">Register</a>
+                                    </li>
+                                </ul>
+                                </asp:Label>
+                            </li>
+
+                            <li>
+                                <asp:Label runat="server" ID="lblLogin" Visible="true">  
+                                <ul class="nav navbar-nav">
+                                    <li>                                        
+                                        <a href="/Account/Login.aspx">Login</a>
+                                    </li>
+                                </ul>
+                                </asp:Label>
                             </li>
                             <li>
-                                <a href="/Account/Forgot.aspx">Forgot Password</a>
+                                <asp:Label runat="server" ID="lblForgotPassword" Visible="false">  
+                                <ul class="nav navbar-nav">
+                                    <li>                                        
+                                        <a href="/Account/Forgot.aspx">Forgot Password</a>
+                                    </li>
+                                </ul>
+                                </asp:Label>
                             </li>
                         </ul>
+
+
+
+
+
                         <div id="ddlPreferences" runat="server" class="dropdown pull-left div-margin" visible="true">
                             <button class="btn btn-default dropdown-toggle" type="button" id="btnUser" data-toggle="dropdown">
-                             <asp:Label runat="server" ID="idUser">
-                             </asp:Label>
-                        <span class="caret"></span>
+                                <asp:Label runat="server" ID="idUser">
+                                </asp:Label>
+                                <span class="caret"></span>
                             </button>
                             <ul class="dropdown-menu" role="menu" aria-labelledby="menu1">
                                 <li role="presentation"><a role="menuItem" tabindex="-1" href="/Account/Profile.aspx">Profile</a></li>

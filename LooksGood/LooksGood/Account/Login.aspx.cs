@@ -1,11 +1,14 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+using System.Data;
+using System.Configuration;
+using System.Collections;
 using System.Web;
+using System.Web.Security;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-using BusinessObjects;
+using System.Web.UI.WebControls.WebParts;
 using System.Web.UI.HtmlControls;
+using BusinessObjects;
 
 namespace LooksGood.Account
 {
@@ -13,6 +16,12 @@ namespace LooksGood.Account
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+
+            MasterPage masterpage = Page.Master;
+            Label label = (Label)masterpage.FindControl("lblForgotPassword");
+            label.Visible = true;
+
+
             // READ THE COOKIE
             if (Request.Cookies["LooksGoodCookies"] != null && Convert.ToBoolean(Request.Cookies["LooksGoodCookies"]["RememberMe"]) == true)
             {
@@ -26,6 +35,7 @@ namespace LooksGood.Account
         {
             User user = new User();
             user = user.Login(txtEmail.Text, txtPassword.Text);
+           
 
             if (user == null)
             {
@@ -43,7 +53,6 @@ namespace LooksGood.Account
                     Response.Cookies["LooksGoodCookies"]["UserName"] = txtEmail.Text;
                     Response.Cookies["LooksGoodCookies"]["Password"] = txtPassword.Text;
                     Response.Cookies["LooksGoodCookies"]["RememberMe"] = "true";
-
                     Response.Cookies["LooksGoodCookies"]["LastVisited"] = DateTime.Now.ToLongDateString();
                     Response.Cookies["LooksGoodCookies"].Expires = DateTime.MaxValue;
                 }
@@ -56,5 +65,7 @@ namespace LooksGood.Account
         {
             UserLogin();
         }
-    }
+
+
+}
 }
