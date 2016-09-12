@@ -44,11 +44,12 @@
                                 <a href="/default.aspx">Home</a>
                             </li>
                             <li>
-                                <a href="/Account/Register.aspx">Register</a>
-                            </li>
-                            <li>
                                 <a href="#">About</a>
                             </li>
+                            <li>
+                                <a href="/Account/Register.aspx">Register</a>
+                            </li>
+
                             <li>
                                 <asp:Label runat="server" ID="lblLogin" Visible="true">  
                                 <ul class="nav navbar-nav">
@@ -59,7 +60,13 @@
                                 </asp:Label>
                             </li>
                             <li>
-                                <a href="/Account/Forgot.aspx">Forgot Password</a>
+                                <asp:Label runat="server" ID="lblForgotPassword" Visible="false">  
+                                <ul class="nav navbar-nav">
+                                    <li>                                        
+                                        <a href="/Account/Forgot.aspx">Forgot Password</a>
+                                    </li>
+                                </ul>
+                                </asp:Label>
                             </li>
                         </ul>
 

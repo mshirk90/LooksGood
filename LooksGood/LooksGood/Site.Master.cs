@@ -25,7 +25,7 @@ namespace LooksGood
                 // HyperLink hprCartItems = (HyperLink)masterpage.FindControl("hprCartItems");
                 //hprCartItems.Visible = true;
                 Page.ClientScript.RegisterStartupScript(this.GetType(), "clientscript", "document.getElementById('bsTop').style.visibility = 'visible';", true);
-
+                
 
                 User user = (User)Session["User"];
                 Menu menu = (Menu)this.FindControl("Menu1");
@@ -35,7 +35,9 @@ namespace LooksGood
                 Label label = (Label)masterpage.FindControl("idUser");
                 label.Text = user.UserName;
 
-                lblLogin.Visible = false;      
+
+                lblLogin.Visible = false;
+                lblForgotPassword.Visible = false;      
 
                 //RemoveMenuItem("LOGIN");
                 //ChangeMenuItem("WELCOME", String.Format("[Welcome {0}]", user.UserName));
@@ -48,8 +50,10 @@ namespace LooksGood
                 //RemoveMenuItem("WELCOME");
 
                 MasterPage masterpage = Page.Master;
+
                 // HyperLink hprCartItems = (HyperLink)masterpage.FindControl("hprCartItems");
                 // hprCartItems.Visible = false;
+
             }
         }
 
