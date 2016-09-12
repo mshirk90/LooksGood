@@ -37,6 +37,7 @@ namespace LooksGood
 
 
                 lblLogin.Visible = false;
+                lblRegister.Visible = false;
                 lblForgotPassword.Visible = false;      
 
                 //RemoveMenuItem("LOGIN");

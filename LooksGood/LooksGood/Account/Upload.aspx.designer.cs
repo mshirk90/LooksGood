@@ -22,13 +22,13 @@ namespace LooksGood.Account {
         protected global::System.Web.UI.WebControls.Label lblTitle;
         
         /// <summary>
-        /// TextBox1 control.
+        /// txtTitle control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextBox1;
+        protected global::System.Web.UI.WebControls.TextBox txtTitle;
         
         /// <summary>
         /// lblUpload control.
@@ -40,12 +40,39 @@ namespace LooksGood.Account {
         protected global::System.Web.UI.WebControls.Label lblUpload;
         
         /// <summary>
-        /// lblComments control.
+        /// fuUpload control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblComments;
+        protected global::System.Web.UI.WebControls.FileUpload fuUpload;
+        
+        /// <summary>
+        /// lblDescription control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblDescription;
+        
+        /// <summary>
+        /// txtDesription control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtDesription;
+        
+        /// <summary>
+        /// btnPost control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnPost;
     }
 }

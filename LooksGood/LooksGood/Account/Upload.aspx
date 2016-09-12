@@ -16,7 +16,7 @@
                     <asp:Label ID="lblTitle" runat="server" Font-Names="Cooper Std Black" Text="Title:  "></asp:Label>
                 </td>
                 <td>
-                    <asp:TextBox ID="TextBox1" runat="server" Width="219px"></asp:TextBox>
+                    <asp:TextBox ID="txtTitle" runat="server" Width="219px"></asp:TextBox>
                 </td>
             </tr>
             <tr>
@@ -24,7 +24,7 @@
                     <asp:Label ID="lblUpload" runat="server" Text="Upload:  " Font-Names="Cooper Std Black"></asp:Label>
                 </td>
                 <td>
-                    <%--<asp:FileUpload runat="server" ? />--%>
+                    <asp:FileUpload runat="server" Id="fuUpload" />
                     <td>
                         <script>
                             function ShowImage(filepath) {
@@ -40,10 +40,11 @@
             </tr>
             <tr>
                 <td class="auto-style1">
-                    <asp:Label ID="lblComments" runat="server" Text="Comments:  " Font-Names="Cooper Std Black"></asp:Label>
+                    <asp:Label ID="lblDescription" runat="server" Text="Description:  " Font-Names="Cooper Std Black"></asp:Label>
                 </td>
                 <td>
-                    <textarea id="txtComments" cols="35" name="S1" rows="5"></textarea>
+                    &nbsp;<asp:TextBox ID="txtDesription" runat="server" Rows="3" TextMode="MultiLine" Width="390px"></asp:TextBox>
+                    <asp:Button ID="btnPost" runat="server" Font-Names="Cooper Std Black" OnClick="btnPost_Click" Text="Post" />
                 </td>
             </tr>
         </table>

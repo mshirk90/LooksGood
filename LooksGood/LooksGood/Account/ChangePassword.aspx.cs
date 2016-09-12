@@ -32,7 +32,6 @@ namespace LooksGood.Account
                         user.IsPasswordPending = false;
                         user.Save();                       
                         Response.Redirect("~/Default.aspx");
-                        System.Windows.Forms.MessageBox.Show("Login Success");
                     }
                     
                     else

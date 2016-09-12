@@ -53,7 +53,6 @@ namespace LooksGood.Account
                     Response.Cookies["LooksGoodCookies"]["UserName"] = txtEmail.Text;
                     Response.Cookies["LooksGoodCookies"]["Password"] = txtPassword.Text;
                     Response.Cookies["LooksGoodCookies"]["RememberMe"] = "true";
-
                     Response.Cookies["LooksGoodCookies"]["LastVisited"] = DateTime.Now.ToLongDateString();
                     Response.Cookies["LooksGoodCookies"].Expires = DateTime.MaxValue;
                 }
