@@ -30,7 +30,7 @@
                     <ItemTemplate>
                         <div class="item active">
                             <a href="#">
-                                <img src="<%# DataBinder.Eval(Container.DataItem, "ImagePath")  %>" alt="Chania" width="460" height="345">
+                                <img src="<%# DataBinder.Eval(Container.DataItem, "ImagePath")  %>" alt="LGpics" width="460" height="345">
                             </a>
                             <div class="carousel-caption">
                                 <h3><%# DataBinder.Eval(Container.DataItem, "Title")  %></h3>
@@ -38,8 +38,10 @@
                                 <p><%# DataBinder.Eval(Container.DataItem, "UserName")  %></p>
                             </div>
                         </div>
+                       
                     </ItemTemplate>
                 </asp:Repeater>
+
             </div>
             <!-- Left and right controls -->
             <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
