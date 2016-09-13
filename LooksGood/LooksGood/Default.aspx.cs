@@ -15,11 +15,8 @@ namespace LooksGood
             PostList postList = new PostList();
             postList = postList.GetMostRecent();
             rptImages.DataSource = postList.List;
-            rptImages.DataBind();
-
-            Label lblimg = (Label)this.FindControl("lblImages");
-        }
-        
+            rptImages.DataBind();          
+        }     
 
         
     }
