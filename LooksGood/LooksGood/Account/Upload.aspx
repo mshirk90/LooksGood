@@ -26,7 +26,7 @@
                 <td>
                     <asp:FileUpload runat="server" Id="fuUpload" />
                     <td>
-                        <script>
+<%--                        <script>
                             function ShowImage(filepath) {
                                 var reader = new FileReader(); // File API object
                                 reader.onload = function (event) {
@@ -35,7 +35,7 @@
                                 reader.readAsDataURL(filepath);
 
                             }
-                            </script>
+                            </script>--%>
                 </td>
             </tr>
             <tr>

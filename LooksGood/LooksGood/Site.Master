@@ -6,10 +6,19 @@
 <head runat="server">
     <title></title>
     <!-- Bootstrap Core CSS -->
-    <link href="Content/bootstrap.css" rel="stylesheet" />
-    <link href="Content/Site.css" rel="stylesheet" />
+    <link href="/Content/bootstrap.css" rel="stylesheet" />
+    <link href="/Content/Site.css" rel="stylesheet" />
     <!-- Custom CSS -->
-    <link href="Content/2-col-portfolio.css" rel="stylesheet" />
+    <link href="/Content/2-col-portfolio.css" rel="stylesheet" />
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+        <style>
+            .carousel-inner > .item > img,
+            .carousel-inner > .item > a > img {
+                width: 70%;
+                margin: auto;
+            }
+        </style>
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -75,18 +84,13 @@
                                 </asp:Label>
                             </li>
                         </ul>
-
-
-
-
-
                         <div id="ddlPreferences" runat="server" class="dropdown pull-left div-margin" visible="true">
                             <button class="btn btn-default dropdown-toggle" type="button" id="btnUser" data-toggle="dropdown">
                                 <asp:Label runat="server" ID="idUser">
                                 </asp:Label>
                                 <span class="caret"></span>
                             </button>
-                            <ul class="dropdown-menu" role="menu" aria-labelledby="menu1">
+                            <ul class="dropdown-menu" role="menu" aria-labelledby="ddlPreferences">
                                 <li role="presentation"><a role="menuItem" tabindex="-1" href="/Account/Profile.aspx">Profile</a></li>
                                 <li role="presentation"><a role="menuItem" tabindex="-1" id="liLogout" href="/Account/Logout.aspx">Logout</a></li>
                                 <li role="presentation"><a role="menuItem" tabindex="-1" href="/Account/ChangePassword.aspx">Change Password</a></li>
@@ -119,10 +123,10 @@
         <!-- /.container -->
 
         <!-- jQuery -->
-        <script src="Scripts/jquery.js"></script>
+        <script src="/Scripts/jquery.js"></script>
 
         <!-- Bootstrap Core JavaScript -->
-        <script src="Scripts/bootstrap.js"></script>
+        <script src="/Scripts/bootstrap.js"></script>
     </form>
 </body>
 </html>

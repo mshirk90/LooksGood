@@ -184,7 +184,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="About.aspx" />
-    <Content Include="Account\AddPhoneNumber.aspx" />
     <Content Include="Account\Administration.aspx" />
     <Content Include="Account\ChangePassword.aspx" />
     <Content Include="Account\Confirm.aspx" />
@@ -272,13 +271,6 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Account\AddPhoneNumber.aspx.cs">
-      <DependentUpon>AddPhoneNumber.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Account\AddPhoneNumber.aspx.designer.cs">
-      <DependentUpon>AddPhoneNumber.aspx</DependentUpon>
-    </Compile>
     <Compile Include="Account\Administration.aspx.cs">
       <DependentUpon>Administration.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -437,6 +429,7 @@
     <Compile Include="BusinessObjects\Event.cs" />
     <Compile Include="BusinessObjects\HeaderData.cs" />
     <Compile Include="BusinessObjects\Post.cs" />
+    <Compile Include="BusinessObjects\PostList.cs" />
     <Compile Include="BusinessObjects\User.cs" />
     <Compile Include="BusinessObjects\SavableEventArgs.cs" />
     <Compile Include="ConfigurationHelper\Configuration.cs" />

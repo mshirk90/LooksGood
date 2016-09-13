@@ -21,9 +21,20 @@ namespace BusinessObjects
         private BrokenRuleList _BrokenRules = new BrokenRuleList();
         private String _FilePath = String.Empty;
         private String _RelativeFileName = String.Empty;
+        private string _UserName = string.Empty;
         #endregion
 
         #region Public Properties
+        public string UserName
+        {
+            get
+            {
+                User user = new User();
+                user = user.GetById(_UserId);
+                _UserName = user.UserName;
+                return _UserName;
+            }
+        }
         public String FilePath
         {
             get { return _FilePath; }
@@ -127,7 +138,7 @@ namespace BusinessObjects
                 throw;
             }
 
-            System.IO.File.Delete(_FilePath);
+            //System.IO.File.Delete(_FilePath);
             return result;
         }
         private Boolean Update(Database database)
@@ -254,7 +265,9 @@ namespace BusinessObjects
         public void InitializeBusinessData(DataRow dr)
         {
             _UserId = (Guid)dr["UserId"];
+
             _Title = dr["Title"].ToString();
+            //_UserName = UserName;
             _Description = dr["Description"].ToString();
             _ImagePath = dr["ImagePath"].ToString();
             String filepath = System.IO.Path.Combine(_FilePath, Id.ToString() + ".jpg");
@@ -265,7 +278,7 @@ namespace BusinessObjects
         {
             Boolean result = false;
 
-            if ((base.IsDirty == true) && (IsValid() == true))
+            if ((base.IsDirty == true) || (IsValid() == true))
             {
                 result = true;
             }

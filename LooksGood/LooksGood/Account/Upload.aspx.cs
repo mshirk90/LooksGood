@@ -6,6 +6,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using BusinessObjects;
 using DatabaseHelper;
+using System.IO;
 
 namespace LooksGood.Account
 {
@@ -25,20 +26,24 @@ namespace LooksGood.Account
             User user = (User)Session["User"];            
             Post post = new Post();
            
-            if (txtTitle.Text != null)
+            if (txtTitle.Text != null && txtDesription.Text != null && this.fuUpload.HasFile)
             {
-                if (this.fuUpload.HasFile)
-                {
-                    this.fuUpload.SaveAs("C:Users/Matt/Documents/LooksGood/LooksGood/LooksGood/LooksGood/UploadedImages/" + this.fuUpload.FileName + ".jpg");
-                }
-                if (post.IsSavable() == true)
-                {
-                    post.Title = txtTitle.ToString();
-                    post.Description = txtDesription.ToString();
-                    post.UserId = user.Id;
-                    post.Save();
-                    Response.Redirect("~/Default.aspx");
-                }
+                string path = Server.MapPath("../UploadedImages");
+                path = Path.Combine(path, this.fuUpload.FileName);
+                string relativePath = Path.Combine("UploadedImages", this.fuUpload.FileName);
+                 this.fuUpload.SaveAs(path);
+
+                    if (Session["User"] != null)
+                    {
+                        post.ImagePath = relativePath;
+                        post.Title = txtTitle.Text.ToString();
+                        post.Description = txtDesription.Text.ToString();
+                        post.UserId = user.Id;
+                        post.Save();
+                        Response.Redirect("~/Default.aspx");
+                    }
+                
+
 
                 //else
                 //{

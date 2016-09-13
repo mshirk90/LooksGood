@@ -2250,6 +2250,8 @@ pre code {
 }
 table {
   background-color: transparent;
+    height: 429px;
+    width: 957px;
 }
 caption {
   padding-top: 8px;
