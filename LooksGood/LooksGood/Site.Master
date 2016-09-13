@@ -86,7 +86,7 @@
                                 </asp:Label>
                                 <span class="caret"></span>
                             </button>
-                            <ul class="dropdown-menu" role="menu" aria-labelledby="menu1">
+                            <ul class="dropdown-menu" role="menu" aria-labelledby="ddlPreferences">
                                 <li role="presentation"><a role="menuItem" tabindex="-1" href="/Account/Profile.aspx">Profile</a></li>
                                 <li role="presentation"><a role="menuItem" tabindex="-1" id="liLogout" href="/Account/Logout.aspx">Logout</a></li>
                                 <li role="presentation"><a role="menuItem" tabindex="-1" href="/Account/ChangePassword.aspx">Change Password</a></li>
