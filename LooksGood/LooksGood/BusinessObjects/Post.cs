@@ -21,9 +21,20 @@ namespace BusinessObjects
         private BrokenRuleList _BrokenRules = new BrokenRuleList();
         private String _FilePath = String.Empty;
         private String _RelativeFileName = String.Empty;
+        private string _UserName = string.Empty;
         #endregion
 
         #region Public Properties
+        public string UserName
+        {
+            get
+            {
+                User user = new User();
+                user = user.GetById(_UserId);
+                _UserName = user.UserName;
+                return _UserName;
+            }
+        }
         public String FilePath
         {
             get { return _FilePath; }
