@@ -6,6 +6,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using BusinessObjects;
 using DatabaseHelper;
+using System.IO;
 
 namespace LooksGood.Account
 {
@@ -27,13 +28,14 @@ namespace LooksGood.Account
            
             if (txtTitle.Text != null && txtDesription.Text != null && this.fuUpload.HasFile)
             {
-             
-                 this.fuUpload.SaveAs("C:/Users/mshirk011938/LooksGood/LooksGood/LooksGood/UploadedImages" + this.fuUpload.FileName);
-                    String iPath = ("C:/Users/mshirk011938/LooksGood/LooksGood/LooksGood/UploadedImages/" + this.fuUpload.FileName).ToString();
+                string path = Server.MapPath("../UploadedImages");
+                path = Path.Combine(path, this.fuUpload.FileName);
+                string relativePath = Path.Combine("UploadedImages", this.fuUpload.FileName);
+                 this.fuUpload.SaveAs(path);
 
                     if (Session["User"] != null)
                     {
-                        post.ImagePath = iPath;
+                        post.ImagePath = relativePath;
                         post.Title = txtTitle.Text.ToString();
                         post.Description = txtDesription.Text.ToString();
                         post.UserId = user.Id;

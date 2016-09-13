@@ -268,7 +268,7 @@ namespace BusinessObjects
             DataTable dt = new DataTable();
             database.Command.CommandType = CommandType.StoredProcedure;
             database.Command.CommandText = "tblUserGetById";
-            base.Initialize(database, base.Id);
+            database.Command.Parameters.Add("@Id", SqlDbType.UniqueIdentifier).Value = id;
             dt = database.ExecuteQuery();
             if (dt != null && dt.Rows.Count == 1)
             {

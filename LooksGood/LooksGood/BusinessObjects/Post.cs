@@ -265,7 +265,9 @@ namespace BusinessObjects
         public void InitializeBusinessData(DataRow dr)
         {
             _UserId = (Guid)dr["UserId"];
+
             _Title = dr["Title"].ToString();
+            //_UserName = UserName;
             _Description = dr["Description"].ToString();
             _ImagePath = dr["ImagePath"].ToString();
             String filepath = System.IO.Path.Combine(_FilePath, Id.ToString() + ".jpg");
