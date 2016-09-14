@@ -23,19 +23,21 @@
             <div class="carousel-inner" role="listbox">
                 <asp:Repeater ID="rptImages" runat="server">
                     <ItemTemplate>
-                        <div class="item active">
+                        <div class="item active"> 
                             <a href='<%# "ExpandedPost.aspx?Id=" + DataBinder.Eval(Container.DataItem, "ID")  %>'>
                                 <h3 style="padding-left: 430px"><%# DataBinder.Eval(Container.DataItem, "Title")  %></h3>
                                 <asp:Image ID="imgImage" runat="server" ImageUrl='<%# DataBinder.Eval(Container.DataItem, "ImagePath")  %>' Width="460" Height="345" />
                                 <div>
-                                    <div style="padding-left: 430px ">
+                                    <div style="padding-left: 240px">
                                     <p><%# DataBinder.Eval(Container.DataItem, "Description")  %></p>
-                                    <h6>-<%# DataBinder.Eval(Container.DataItem,"UserName")  %></h6>
+                                    </div>
+                                    <div style="padding-left: 655px">                                        
+                                        <h6 class="h6">-<%# DataBinder.Eval(Container.DataItem,"UserName")  %></h6>
                                     </div>
                                 </div>              
                             </a>
                         </div>                        
-                    <div class="customHr"><hr /></div>
+                    <div class="customHr"><hr class="customHr" /></div>
                     </ItemTemplate>
                 </asp:Repeater>
             </div>

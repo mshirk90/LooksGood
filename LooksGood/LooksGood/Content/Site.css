@@ -57,11 +57,8 @@ input[type="select"] {
     margin-bottom: 10px;
 }
 
-.Description p,
-.Description h6
- {
-    display: block;
-    font-size: .67em;
+#h6 {
+    font-size: 24px;
     margin-top: 1em;
     margin-bottom: 2.33em;
     margin-left: 0;
@@ -69,4 +66,8 @@ input[type="select"] {
     font-weight: bold;    
 }
 
+.innerdi {
+    width: 50%;
+    margin: 0 auto; 
+}
 

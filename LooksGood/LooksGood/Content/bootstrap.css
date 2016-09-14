@@ -1260,7 +1260,7 @@ h5 .small,
 .h5 .small,
 h6 .small,
 .h6 .small {
-  font-size: 75%;
+  font-size: 100%;
 }
 h1,
 .h1 {
@@ -1284,7 +1284,7 @@ h5,
 }
 h6,
 .h6 {
-  font-size: 12px;
+  font-size: 32px;
 }
 p {
   margin: 0 0 10px;
