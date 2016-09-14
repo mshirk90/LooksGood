@@ -22,6 +22,7 @@ namespace BusinessObjects
         private String _FilePath = String.Empty;
         private String _RelativeFileName = String.Empty;
         private string _UserName = string.Empty;
+        private CommentsList _Comments = null;
         #endregion
 
         #region Public Properties
@@ -243,13 +244,13 @@ namespace BusinessObjects
         #endregion
 
         #region Public Methods
-        private Post GetById(Guid id)
+        public Post GetById(Guid id)
         {
             Database database = new Database("LooksGoodDatabase");
             DataTable dt = new DataTable();
             database.Command.CommandType = System.Data.CommandType.StoredProcedure;
             database.Command.CommandText = "tblPostGetById";
-            base.Initialize(database, base.Id);
+            database.Command.Parameters.Add("@Id", SqlDbType.UniqueIdentifier).Value = id;
             dt = database.ExecuteQuery();
             if (dt != null && dt.Rows.Count == 1)
             {
@@ -289,7 +290,7 @@ namespace BusinessObjects
         {
             Boolean result = true;
             Database database = new Database("LooksGoodDatabase");
-
+            database.BeginTransaction();
             if (base.IsNew == true && IsSavable() == true)
             {
                 result = Insert(database);
@@ -309,6 +310,19 @@ namespace BusinessObjects
                 base.IsNew = false;
             }
 
+            if (result == true && _Comments != null && _Comments.IsSavable() == true)
+            {
+                result = _Comments.Save(database, base.Id);
+            }
+
+            if (result == true)
+            {
+                database.EndTransaction();
+            }
+            else
+            {
+                database.RollBack();
+            }
             return this;
         }
         #endregion

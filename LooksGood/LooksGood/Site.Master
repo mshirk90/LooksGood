@@ -6,7 +6,7 @@
 <head runat="server">
     <title></title>
     <!-- Bootstrap Core CSS -->
-    <link href="/Content/bootstrap.css" rel="stylesheet" />
+<%--    <link href="/Content/bootstrap.css" rel="stylesheet" />--%>
     <link href="/Content/Site.css" rel="stylesheet" />
     <!-- Custom CSS -->
     <link href="/Content/2-col-portfolio.css" rel="stylesheet" />

@@ -14,6 +14,7 @@ namespace BusinessObjects
         private Guid _UserId = Guid.Empty;
         private Guid _PostId = Guid.Empty;
         private string _Comment = string.Empty;
+        private string _UserName = string.Empty;
 
         #endregion
 
@@ -34,6 +35,17 @@ namespace BusinessObjects
                     SavableEventArgs e = new SavableEventArgs(Savable);
                     RaiseEvent(e);
                 }
+            }
+        }
+
+        public string UserName
+        {
+            get
+            {
+                User user = new User();
+                user = user.GetById(_UserId);
+                _UserName = user.UserName;
+                return _UserName;
             }
         }
 
@@ -189,6 +201,7 @@ namespace BusinessObjects
         {
             _UserId = (Guid)dr["UserId"];
             _PostId = (Guid)dr["PostId"];
+            _Comment = dr["Comment"].ToString();
         }
 
         public bool IsSavable()
@@ -206,7 +219,7 @@ namespace BusinessObjects
             _UserId = parentId;
 
             bool result = true;
-            //Database database = new Database("Employer");
+
             if (base.IsNew == true && IsSavable() == true)
             {
                 result = Insert(database);

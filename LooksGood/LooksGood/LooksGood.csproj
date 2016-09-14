@@ -209,6 +209,7 @@
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\Site.css" />
+    <Content Include="ExpandedPost.aspx" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />
@@ -424,6 +425,7 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="BusinessObjects\BrokenRule.cs" />
     <Compile Include="BusinessObjects\BrokenRuleList.cs" />
+    <Compile Include="BusinessObjects\CommentList.cs" />
     <Compile Include="BusinessObjects\Comments.cs" />
     <Compile Include="BusinessObjects\EmailConfiguration.cs" />
     <Compile Include="BusinessObjects\Event.cs" />
@@ -449,6 +451,13 @@
       <DependentUpon>Default.aspx</DependentUpon>
     </Compile>
     <Compile Include="EmailHelper\Email.cs" />
+    <Compile Include="ExpandedPost.aspx.cs">
+      <DependentUpon>ExpandedPost.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ExpandedPost.aspx.designer.cs">
+      <DependentUpon>ExpandedPost.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>

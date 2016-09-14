@@ -15,7 +15,10 @@ namespace LooksGood
             PostList postList = new PostList();
             postList = postList.GetMostRecent();
             rptImages.DataSource = postList.List;
-            rptImages.DataBind();
-        }
+            rptImages.DataBind();          
+        }     
+
+        
     }
+
 }
