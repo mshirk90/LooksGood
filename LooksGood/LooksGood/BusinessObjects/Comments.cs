@@ -206,7 +206,7 @@ namespace BusinessObjects
             _UserId = parentId;
 
             bool result = true;
-            //Database database = new Database("Employer");
+
             if (base.IsNew == true && IsSavable() == true)
             {
                 result = Insert(database);
