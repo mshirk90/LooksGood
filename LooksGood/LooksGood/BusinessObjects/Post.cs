@@ -250,7 +250,7 @@ namespace BusinessObjects
             DataTable dt = new DataTable();
             database.Command.CommandType = System.Data.CommandType.StoredProcedure;
             database.Command.CommandText = "tblPostGetById";
-            base.Initialize(database, base.Id);
+            database.Command.Parameters.Add("@Id", SqlDbType.UniqueIdentifier).Value = id;
             dt = database.ExecuteQuery();
             if (dt != null && dt.Rows.Count == 1)
             {
