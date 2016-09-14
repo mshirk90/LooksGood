@@ -45,3 +45,28 @@ input[type="select"] {
 .div-margin-left {
     margin-left: 10px
 }
+
+.customHr {
+    width: 95%;
+    font-size: 5px;
+    color: rgba(0, 0, 0, 0);
+    line-height: 5px;
+
+    background-color: grey;
+    margin-top: -6px;
+    margin-bottom: 10px;
+}
+
+.Description p,
+.Description h6
+ {
+    display: block;
+    font-size: .67em;
+    margin-top: 1em;
+    margin-bottom: 2.33em;
+    margin-left: 0;
+    margin-right: 0;
+    font-weight: bold;    
+}
+
+
