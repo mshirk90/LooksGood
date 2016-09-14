@@ -28,11 +28,11 @@
             <div class="carousel-inner" role="listbox">
                 <asp:Repeater ID="rptImages" runat="server">
                     <ItemTemplate>
-                        <div class="item active">
+                        <div class="item active" style="padding-top:30px">
                             <a href="#">
-                                <img src="<%# DataBinder.Eval(Container.DataItem, "ImagePath")  %>" alt="Chania" width="460" height="345">
+                                <img src="<%# DataBinder.Eval(Container.DataItem, "ImagePath")  %>" width="460" height="345">
                             </a>
-                            <div class="carousel-caption">
+                            <div class="carousel-caption div-margin">
                                 <h3><%# DataBinder.Eval(Container.DataItem, "Title")  %></h3>
                                 <p><%# DataBinder.Eval(Container.DataItem, "Description")  %></p>
                                 <p><%# DataBinder.Eval(Container.DataItem, "UserName")  %></p>
