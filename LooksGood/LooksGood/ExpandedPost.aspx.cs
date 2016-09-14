@@ -23,6 +23,9 @@ namespace LooksGood
                 Post post = new Post();
                 post = post.GetById(postId);
                 imgPost.ImageUrl = post.ImagePath;
+
+                lblHeader.Text = string.Format("Posted by: {0}", post.UserName);
+                lblTitle.Text = string.Format("Title: {0}", post.Title);
             }
         }
     }
