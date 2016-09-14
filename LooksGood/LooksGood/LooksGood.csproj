@@ -425,6 +425,7 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="BusinessObjects\BrokenRule.cs" />
     <Compile Include="BusinessObjects\BrokenRuleList.cs" />
+    <Compile Include="BusinessObjects\CommentList.cs" />
     <Compile Include="BusinessObjects\Comments.cs" />
     <Compile Include="BusinessObjects\EmailConfiguration.cs" />
     <Compile Include="BusinessObjects\Event.cs" />
