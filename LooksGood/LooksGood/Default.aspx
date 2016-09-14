@@ -25,19 +25,17 @@
                     <ItemTemplate>
                         <div class="item active">
                             <a href='<%# "ExpandedPost.aspx?Id=" + DataBinder.Eval(Container.DataItem, "ID")  %>'>
+                                <h3 style="padding-left: 430px"><%# DataBinder.Eval(Container.DataItem, "Title")  %></h3>
                                 <asp:Image ID="imgImage" runat="server" ImageUrl='<%# DataBinder.Eval(Container.DataItem, "ImagePath")  %>' Width="460" Height="345" />
-                                <div style="padding-top: 20px">
-                                    <h3><%# DataBinder.Eval(Container.DataItem, "Title")  %></h3>
+                                <div>
+                                    <div style="padding-left: 430px ">
                                     <p><%# DataBinder.Eval(Container.DataItem, "Description")  %></p>
-                                    <p><%# DataBinder.Eval(Container.DataItem, "UserName")  %></p>
-                                </div>
-                                <div class="carousel-caption">
-   <%--                                 <h3><%# DataBinder.Eval(Container.DataItem, "Title")  %></h3>
-                                    <p><%# DataBinder.Eval(Container.DataItem, "Description")  %></p>
-                                    <p><%# DataBinder.Eval(Container.DataItem, "UserName")  %></p>--%>
-                                </div>
+                                    <h6>-<%# DataBinder.Eval(Container.DataItem,"UserName")  %></h6>
+                                    </div>
+                                </div>              
                             </a>
-                        </div>
+                        </div>                        
+                    <div class="customHr"><hr /></div>
                     </ItemTemplate>
                 </asp:Repeater>
             </div>
