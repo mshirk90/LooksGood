@@ -25,27 +25,32 @@
                     <ItemTemplate>
                         <div class="item active">
                             <a href='<%# "ExpandedPost.aspx?Id=" + DataBinder.Eval(Container.DataItem, "ID")  %>'>
-                               <asp:Image ID="imgImage" runat="server" ImageUrl='<%# DataBinder.Eval(Container.DataItem, "ImagePath")  %>' Width="460" Height="345" />
-                                <div class="carousel-caption">
+                                <asp:Image ID="imgImage" runat="server" ImageUrl='<%# DataBinder.Eval(Container.DataItem, "ImagePath")  %>' Width="460" Height="345" />
+                                <div style="padding-top: 20px">
                                     <h3><%# DataBinder.Eval(Container.DataItem, "Title")  %></h3>
                                     <p><%# DataBinder.Eval(Container.DataItem, "Description")  %></p>
                                     <p><%# DataBinder.Eval(Container.DataItem, "UserName")  %></p>
                                 </div>
-                           </a>
-                        </div>                         
+                                <div class="carousel-caption">
+   <%--                                 <h3><%# DataBinder.Eval(Container.DataItem, "Title")  %></h3>
+                                    <p><%# DataBinder.Eval(Container.DataItem, "Description")  %></p>
+                                    <p><%# DataBinder.Eval(Container.DataItem, "UserName")  %></p>--%>
+                                </div>
+                            </a>
+                        </div>
                     </ItemTemplate>
                 </asp:Repeater>
             </div>
-            
+
             <!-- Left and right controls -->
-            <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
+            <%--            <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
                 <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
                 <span class="sr-only">Previous</span>
             </a>
             <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
                 <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
                 <span class="sr-only">Next</span>
-            </a>
+            </a>--%>
 
 
             <%--            <script>
