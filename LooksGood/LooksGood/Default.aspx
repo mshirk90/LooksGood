@@ -20,14 +20,14 @@
                     <ItemTemplate>
                         <div class="item active"> 
                             <a href='<%# "ExpandedPost.aspx?postId=" + DataBinder.Eval(Container.DataItem, "ID")  %>'>
-                                <h3 style="padding-left: 430px"><%# DataBinder.Eval(Container.DataItem, "Title")  %></h3>
-                                <asp:Image ID="imgImage" runat="server" ImageUrl='<%# DataBinder.Eval(Container.DataItem, "ImagePath")  %>' Width="460" Height="345" />
+                                <h3 class="margincenter"><%# DataBinder.Eval(Container.DataItem, "Title")  %></h3>
+                                <asp:Image ID="imgImage" runat="server" ImageUrl='<%# DataBinder.Eval(Container.DataItem, "ImagePath")  %>' Width="460" Height="345" CssClass="margincenter" />
                                 <div>
-                                    <div style="padding-left: 240px">
+                                    <div class="descript">
                                     <p><%# DataBinder.Eval(Container.DataItem, "Description")  %></p>
                                     </div>
                                     <div style="padding-left: 655px">                                        
-                                        <h6 class="h6">-<%# DataBinder.Eval(Container.DataItem,"UserName")  %></h6>
+                                        <h6 class="uName">-<%# DataBinder.Eval(Container.DataItem,"UserName")  %></h6>
                                     </div>
                                 </div>              
                             </a>
