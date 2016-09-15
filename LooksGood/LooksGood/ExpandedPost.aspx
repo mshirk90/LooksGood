@@ -1,22 +1,22 @@
 ﻿<%@ Page Title="ExpandedPost" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="ExpandedPost.aspx.cs" Inherits="LooksGood.ExpandedPost" %>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
-    <div style="padding-left:25px">
+    <div style="padding-left: 25px">
         <asp:Label ID="lblHeader" runat="server" Font-Bold="true" Font-Size="XX-Large">
         </asp:Label>
     </div>
-    <div style="padding-left:35px">
+    <div style="padding-left: 35px">
         <asp:Label ID="lblTitle" runat="server" Font-Italic="true" Font-Size="X-Large">
         </asp:Label>
     </div>
-    <div style="padding-left:25px">
+    <div style="padding-left: 25px">
         <asp:Image ID="imgPost" runat="server"></asp:Image>
     </div>
     <asp:Repeater ID="rptComments" runat="server">
         <HeaderTemplate>
         </HeaderTemplate>
         <ItemTemplate>
-            <div class="container left" style="border:0px solid black">
+            <div class="container left" style="border: 0px solid black">
                 <div class="dialogbox">
                     <div class="body">
                         <span class="tip tip-up"></span>
@@ -27,9 +27,18 @@
                         </div>
                     </div>
                 </div>
-                </div>
+            </div>
         </ItemTemplate>
         <FooterTemplate>
         </FooterTemplate>
     </asp:Repeater>
+    <div id="comment_form" style="padding-left:25px">
+        <div>
+            <textarea rows="10" name="comment" id="comment" placeholder="Comment"></textarea>
+        </div>
+        <div>
+            <input type="submit" name="submit" value="Add Comment">
+        </div>
+
+    </div>
 </asp:Content>
