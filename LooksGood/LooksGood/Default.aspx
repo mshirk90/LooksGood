@@ -19,7 +19,7 @@
                 <asp:Repeater ID="rptImages" runat="server">
                     <ItemTemplate>
                         <div class="item active"> 
-                            <a href='<%# "ExpandedPost.aspx?Id=" + DataBinder.Eval(Container.DataItem, "ID")  %>'>
+                            <a href='<%# "ExpandedPost.aspx?postId=" + DataBinder.Eval(Container.DataItem, "ID")  %>'>
                                 <h3 style="padding-left: 430px"><%# DataBinder.Eval(Container.DataItem, "Title")  %></h3>
                                 <asp:Image ID="imgImage" runat="server" ImageUrl='<%# DataBinder.Eval(Container.DataItem, "ImagePath")  %>' Width="460" Height="345" />
                                 <div>
