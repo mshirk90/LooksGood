@@ -201,9 +201,9 @@ body {
  }
 
 
-.margincenter{
-    width: 100px;
-    margin: auto;
+.titlecenter{
+    
+    text-align: center;
 }
 
 .descript {
