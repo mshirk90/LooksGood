@@ -471,3 +471,4 @@ C:\Users\pmartone002261\Documents\LooksGood\LooksGood\LooksGood\obj\Debug\LooksG
 C:\Users\pmartone002261\Documents\LooksGood\LooksGood\LooksGood\obj\Debug\LooksGood.pdb
 C:\Users\pmartone002261\Documents\LooksGood\LooksGood\LooksGood\obj\Debug\LooksGood.csprojResolveAssemblyReference.cache
 C:\Users\mshirk011938\LooksGood\LooksGood\LooksGood\obj\Debug\LooksGood.csprojResolveAssemblyReference.cache
+C:\Users\Chase\LooksGood\LooksGood\LooksGood\obj\Debug\LooksGood.csprojResolveAssemblyReference.cache

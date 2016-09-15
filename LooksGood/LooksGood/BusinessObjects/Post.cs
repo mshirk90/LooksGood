@@ -126,7 +126,7 @@ namespace BusinessObjects
 
                 // Provides the empty buckets
                 base.Initialize(database, Guid.Empty);
-                database.ExecuteNonQuery();
+                database.ExecuteNonQueryWithTransaction();
 
                 // Unloads the full buckets into the object
                 base.Initialize(database.Command);
