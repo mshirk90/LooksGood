@@ -1,9 +1,0 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<parameters>
-  <parameter name="DefaultConnection-Web.config Connection String" description="DefaultConnection Connection String used in web.config by the application to access the database." defaultValue="Data Source=(LocalDb)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\aspnet-LooksGood-20160824061745.mdf;Initial Catalog=aspnet-LooksGood-20160824061745;Integrated Security=True" tags="SqlConnectionString">
-    <parameterEntry kind="XmlFile" scope="C:\\Users\\Chase\\LooksGood\\LooksGood\\LooksGood\\obj\\Release\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='DefaultConnection']/@connectionString" />
-  </parameter>
-  <parameter name="LooksGoodDatabase-Web.config Connection String" description="LooksGoodDatabase Connection String used in web.config by the application to access the database." defaultValue="Password=mshirk70815;Persist Security Info=False;User ID=mshirk;Initial Catalog=LooksGoodDatabase;Data Source=dallaswin200.arvixeshared.com&#xD;&#xA;" tags="SqlConnectionString">
-    <parameterEntry kind="XmlFile" scope="C:\\Users\\Chase\\LooksGood\\LooksGood\\LooksGood\\obj\\Release\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='LooksGoodDatabase']/@connectionString" />
-  </parameter>
-</parameters>

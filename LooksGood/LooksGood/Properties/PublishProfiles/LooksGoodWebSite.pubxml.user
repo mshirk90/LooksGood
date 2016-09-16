@@ -7,7 +7,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
   <PropertyGroup>
     <TimeStampOfAssociatedLegacyPublishXmlFile />
     <EncryptedPassword />
-    <_PublishTargetUrl>ftp://ftp.asesoftware.net/asesoftware.net/wwwroot</_PublishTargetUrl>
+    <_PublishTargetUrl>ftp://www.asesoftware.net/asesoftware.net/wwwroot</_PublishTargetUrl>
   </PropertyGroup>
   <ItemGroup>
     <File Include="About.aspx">

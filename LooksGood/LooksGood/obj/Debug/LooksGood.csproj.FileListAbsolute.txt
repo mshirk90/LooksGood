@@ -391,6 +391,8 @@ C:\Users\mshirk011938\LooksGood\LooksGood\LooksGood\bin\Microsoft.Owin.Security.
 C:\Users\mshirk011938\LooksGood\LooksGood\LooksGood\bin\Microsoft.Owin.Security.OAuth.xml
 C:\Users\mshirk011938\LooksGood\LooksGood\LooksGood\obj\Debug\LooksGood.dll
 C:\Users\mshirk011938\LooksGood\LooksGood\LooksGood\obj\Debug\LooksGood.pdb
+C:\Users\mshirk011938\LooksGood\LooksGood\LooksGood\obj\Debug\LooksGood.csprojResolveAssemblyReference.cache
+C:\Users\Chase\LooksGood\LooksGood\LooksGood\obj\Debug\LooksGood.csprojResolveAssemblyReference.cache
 C:\Users\pmartone002261\Documents\LooksGood\LooksGood\LooksGood\bin\ApplicationInsights.config
 C:\Users\pmartone002261\Documents\LooksGood\LooksGood\LooksGood\bin\roslyn\csc.exe
 C:\Users\pmartone002261\Documents\LooksGood\LooksGood\LooksGood\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
@@ -467,8 +469,6 @@ C:\Users\pmartone002261\Documents\LooksGood\LooksGood\LooksGood\bin\Microsoft.Ow
 C:\Users\pmartone002261\Documents\LooksGood\LooksGood\LooksGood\bin\Microsoft.Owin.Security.Twitter.xml
 C:\Users\pmartone002261\Documents\LooksGood\LooksGood\LooksGood\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
 C:\Users\pmartone002261\Documents\LooksGood\LooksGood\LooksGood\bin\Microsoft.Owin.Security.OAuth.xml
+C:\Users\pmartone002261\Documents\LooksGood\LooksGood\LooksGood\obj\Debug\LooksGood.csprojResolveAssemblyReference.cache
 C:\Users\pmartone002261\Documents\LooksGood\LooksGood\LooksGood\obj\Debug\LooksGood.dll
 C:\Users\pmartone002261\Documents\LooksGood\LooksGood\LooksGood\obj\Debug\LooksGood.pdb
-C:\Users\pmartone002261\Documents\LooksGood\LooksGood\LooksGood\obj\Debug\LooksGood.csprojResolveAssemblyReference.cache
-C:\Users\mshirk011938\LooksGood\LooksGood\LooksGood\obj\Debug\LooksGood.csprojResolveAssemblyReference.cache
-C:\Users\Chase\LooksGood\LooksGood\LooksGood\obj\Debug\LooksGood.csprojResolveAssemblyReference.cache

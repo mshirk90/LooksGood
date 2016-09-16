@@ -223,6 +223,7 @@
     <Content Include="Site.Master" />
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
     <None Include="Properties\PublishProfiles\LooksGoodWebSite.pubxml" />
+    <None Include="Properties\PublishProfiles\LooksGoodWebSite2.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\ai.0.15.0-build58334.js" />
     <Content Include="Scripts\ai.0.15.0-build58334.min.js" />
