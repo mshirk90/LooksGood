@@ -34,10 +34,10 @@
     </asp:Repeater>
     <div id="comment_form" style="padding-left:25px" class="div-margin">
         <div>
-            <textarea rows="10" name="comment" id="comment" placeholder="Comment"></textarea>
+            <asp:TextBox rows="10" name="comment" id="cmtComment" placeholder="Comment" runat="server"></asp:TextBox>
         </div>
         <div>
-            <input type="submit" name="submit" value="Add Comment">
+            <asp:Button type="submit" name="submit" text="Submit Comment" onclick="comSubmit" runat="server" ID="btnSubmit" />
         </div>
 
     </div>

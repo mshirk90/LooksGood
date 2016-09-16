@@ -56,14 +56,14 @@ namespace BusinessObjects
             return this;
         }
 
-        public bool Save(Database database, Guid parentId)
+        public bool Save()
         {
             bool result = false;
             foreach (Comments comment in _List)
             {
                 if (comment.IsSavable() == true)
                 {
-                    comment.Save(database, parentId);
+                    comment.Save();
                     if (comment.IsNew == false)
                     {
                         result = true;

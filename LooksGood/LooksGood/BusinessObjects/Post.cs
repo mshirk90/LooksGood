@@ -124,7 +124,7 @@ namespace BusinessObjects
 
                 // Provides the empty buckets
                 base.Initialize(database, Guid.Empty);
-                database.ExecuteNonQueryWithTransaction();
+                database.ExecuteNonQuery();
 
                 // Unloads the full buckets into the object
                 base.Initialize(database.Command);
@@ -288,7 +288,6 @@ namespace BusinessObjects
         {
             Boolean result = true;
             Database database = new Database("LooksGoodDatabase");
-            database.BeginTransaction();
             if (base.IsNew == true && IsSavable() == true)
             {
                 result = Insert(database);
@@ -306,20 +305,6 @@ namespace BusinessObjects
             {
                 base.IsDirty = false;
                 base.IsNew = false;
-            }
-
-            if (result == true && _Comments != null && _Comments.IsSavable() == true)
-            {
-                result = _Comments.Save(database, base.Id);
-            }
-
-            if (result == true)
-            {
-                database.EndTransaction();
-            }
-            else
-            {
-                database.RollBack();
             }
             return this;
         }

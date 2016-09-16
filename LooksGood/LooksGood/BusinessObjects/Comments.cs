@@ -99,9 +99,10 @@ namespace BusinessObjects
                 database.Command.CommandText = "tblCommentsINSERT";
                 database.Command.Parameters.Add("@UserId", SqlDbType.UniqueIdentifier).Value = _UserId;
                 database.Command.Parameters.Add("@PostId", SqlDbType.UniqueIdentifier).Value = _PostId;
+                database.Command.Parameters.Add("@Comment", SqlDbType.VarChar).Value = _Comment;
                 //PROVIDES THE EMPTY BUCKETS
                 base.Initialize(database, Guid.Empty);
-                database.ExecuteNonQueryWithTransaction();
+                database.ExecuteNonQuery();
                 //UNLOADS THE FULL BUCKETS INTO THE OBJECT
                 base.Initialize(database.Command);
             }
@@ -125,7 +126,7 @@ namespace BusinessObjects
                 database.Command.Parameters.Add("@PostId", SqlDbType.UniqueIdentifier).Value = _PostId;
                 //PROVIDES THE EMPTY BUCKETS
                 base.Initialize(database, base.Id);
-                database.ExecuteNonQueryWithTransaction();
+                database.ExecuteNonQuery();
                 //UNLOADS THE FULL BUCKETS INTO THE OBJECT
                 base.Initialize(database.Command);
             }
@@ -148,7 +149,7 @@ namespace BusinessObjects
                 database.Command.CommandText = "tblCommentsDELETE";
                 //PROVIDES THE EMPTY BUCKETS
                 base.Initialize(database, base.Id);
-                database.ExecuteNonQueryWithTransaction();
+                database.ExecuteNonQuery();
                 //UNLOADS THE FULL BUCKETS INTO THE OBJECT
                 base.Initialize(database.Command);
             }
@@ -214,10 +215,9 @@ namespace BusinessObjects
             return result;
         }
 
-        public Comments Save(Database database, Guid parentId)
+        public Comments Save()
         {
-            _UserId = parentId;
-
+            Database database = new Database("LooksGoodDatabase");
             bool result = true;
 
             if (base.IsNew == true && IsSavable() == true)
