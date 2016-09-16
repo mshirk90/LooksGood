@@ -166,6 +166,7 @@ namespace BusinessObjects
                 database.Command.Parameters.Add("@Email", SqlDbType.VarChar).Value = _Email;
                 database.Command.Parameters.Add("@Password", SqlDbType.VarChar).Value = _Password;
                 database.Command.Parameters.Add("@IsPasswordPending", SqlDbType.Bit).Value = _IsPasswordPending;
+                database.Command.Parameters.Add("@ProfilePic", SqlDbType.VarChar).Value = _ProfilePic;
 
 
 

@@ -10,6 +10,9 @@
 
         <div class="padding-left: 25px">
             <asp:Image ID="imgProfile" runat="server"></asp:Image>
+            <asp:FileUpload ID="fuChangeProfileImage" runat="server" />
+            <asp:Button ID="btnChangePicture" runat="server" OnClick="btnChangePicture_Click" Text="Change Profile Picture" />
+            <br />
         </div>
     </div>
 </asp:Content>
