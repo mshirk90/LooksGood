@@ -218,6 +218,7 @@
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="ProfilePics\default-avatar.jpg" />
     <Content Include="Scripts\jquery.js" />
     <Content Include="Site.Master" />
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
