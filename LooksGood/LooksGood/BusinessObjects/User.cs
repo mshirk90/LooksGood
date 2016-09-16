@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using System.Data;
 using DatabaseHelper;
 using System.Web.Security;
+using System.ComponentModel;
 
 namespace BusinessObjects
 {
@@ -18,7 +19,10 @@ namespace BusinessObjects
         private String _Password = String.Empty;
         private Boolean _EmailSent = false;
         private bool _IsPasswordPending = true;
+        private string _ProfilePic = string.Empty;
         private BrokenRuleList _BrokenRules = new BrokenRuleList();
+        private String _FilePath = String.Empty;
+
         #endregion
 
         #region Public Properties
@@ -68,6 +72,22 @@ namespace BusinessObjects
                 }
             }
         }
+
+        public String ProfilePic
+        {
+            get { return _ProfilePic; }
+            set
+            {
+                if (_ProfilePic != value)
+                {
+                    _ProfilePic = value;
+                    base.IsDirty = true;
+                    Boolean Savable = IsSavable();
+                    SavableEventArgs e = new SavableEventArgs(Savable);
+                    RaiseEvent(e);
+                }
+            }
+        }
         public Boolean EmailSent
         {
             get { return _EmailSent; }
@@ -94,6 +114,12 @@ namespace BusinessObjects
         public BrokenRuleList BrokenRules
         {
             get { return _BrokenRules; }
+        }
+
+        public String FilePath
+        {
+            get { return _FilePath; }
+            set { _FilePath = value; }
         }
         #endregion
 
@@ -286,6 +312,9 @@ namespace BusinessObjects
             _UserName = dr["UserName"].ToString();
             _Email = dr["Email"].ToString();
             _Password = dr["Password"].ToString();
+            _ProfilePic = dr["ProfilePic"].ToString();
+            String filepath = System.IO.Path.Combine(_FilePath, Id.ToString() + ".jpg");
+
         }
         public Boolean IsSavable()
         {
@@ -429,6 +458,7 @@ namespace BusinessObjects
                 return null; // typically a good idea to have only one entry and one exit per method
             }
         }
+     
         #endregion
 
         #region Public Events
