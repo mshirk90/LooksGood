@@ -205,10 +205,6 @@
     <Content Include="Account\Logout.aspx" />
     <Content Include="Account\Register.aspx" />
     <Content Include="Contact.aspx" />
-    <Content Include="Content\2-col-portfolio.css" />
-    <Content Include="Content\bootstrap.css" />
-    <Content Include="Content\bootstrap.min.css" />
-    <Content Include="Content\Site.css" />
     <Content Include="ExpandedPost.aspx" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
@@ -218,10 +214,27 @@
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="images\black_bl.gif" />
+    <Content Include="images\black_br.gif" />
+    <Content Include="images\black_tl.gif" />
+    <Content Include="images\black_tr.gif" />
+    <Content Include="images\body_left.jpg" />
+    <Content Include="images\btn_footer.gif" />
+    <Content Include="images\btn_header.gif" />
+    <Content Include="images\header_bg.jpg" />
+    <Content Include="images\header_left.jpg" />
+    <Content Include="images\nav_bg.gif" />
+    <Content Include="images\nav_left.gif" />
+    <Content Include="images\nav_right.gif" />
+    <Content Include="images\pic_1.jpg" />
+    <Content Include="images\pic_2.jpg" />
+    <Content Include="images\pic_3.jpg" />
+    <Content Include="images\search.gif" />
+    <Content Include="index.html" />
     <Content Include="ProfilePics\default-avatar.jpg" />
     <Content Include="Scripts\jquery.js" />
-    <Content Include="Site.Master" />
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
+    <Content Include="Site.Master" />
     <None Include="Properties\PublishProfiles\LooksGoodWebSite.pubxml" />
     <None Include="Properties\PublishProfiles\LooksGoodWebSite2.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
@@ -259,6 +272,7 @@
     <Content Include="Default.aspx" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
+    <Content Include="style.css" />
     <Content Include="ViewSwitcher.ascx" />
     <Content Include="Web.config" />
     <Content Include="Bundle.config" />
@@ -463,7 +477,6 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="PhotoHelper\Photos.cs" />
     <Compile Include="Site.Master.cs">
       <DependentUpon>Site.Master</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -471,6 +484,7 @@
     <Compile Include="Site.Master.designer.cs">
       <DependentUpon>Site.Master</DependentUpon>
     </Compile>
+    <Compile Include="PhotoHelper\Photos.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Site.Mobile.Master.cs">
@@ -491,6 +505,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="App_Themes\" />
     <Folder Include="UploadedImages\" />
   </ItemGroup>
   <PropertyGroup>
