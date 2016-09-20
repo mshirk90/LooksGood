@@ -39,7 +39,7 @@ body {
 }
 
 #header {
-	position: absolute;
+	position: relative;
 	top: 0;
 	left: 0;
 	width: 200%;
@@ -49,7 +49,7 @@ body {
 #header h1 {
 	background: 0px 0px url(images/header_left.jpg) no-repeat;
 	height: 184px;
-	width: 1350px;
+	width: 100%;
 	margin: 0;
 	padding: 0;
 	color: #fff;
@@ -73,7 +73,7 @@ body {
 }
 
 #uppers {
-	position: absolute;
+	position: relative;
 	top: 17px;
 	left: 270px;
 	background: top left url(images/search.gif) no-repeat;
@@ -81,7 +81,7 @@ body {
 	z-index: 15;
 }
 #nav-top {
-	position: absolute;
+	position: relative;
 	top: 10px;
 	left: 330px;
 	width: 200px;
@@ -92,13 +92,19 @@ body {
 
 #nav {
 	background: top left url(images/nav_left.gif) no-repeat;
-	position: absolute;
+	position: relative;
 	top: 66px;
 	left: 270px;
-	width: 1510px;
+	width: 100%;
 	text-align: center;
 	z-index: 15;
 }
+
+.vw, vh {
+   h
+}
+
+
 #nav div {
 	background: top right url(images/nav_right.gif) no-repeat;
 	padding: 0 10px;
@@ -128,7 +134,7 @@ body {
 	z-index: 10;
 	margin-left: 320px;
 	padding-top: 130px;
-	width: 1450px;
+	width: 100%;
 }
 
 #body h2 {
@@ -148,7 +154,7 @@ body {
 #black-tl {
 	margin-left: 300px;
 	margin-top: 10px;
-	width: 1480px;
+	width: 100%;
 	position: relative;
 }
 #black-bl {
@@ -159,7 +165,7 @@ body {
 .black-box {
 	float: none;
 	margin: auto;
-    	width: 1480px;
+    	width: 100%;
 
 	margin-right: 20px;
 	margin-left: 20px;
@@ -400,4 +406,8 @@ body {
 }
 .navbar-toggle .icon-bar + .icon-bar {
   margin-top: 4px;
+}
+
+.container{
+    width: 100%;
 }

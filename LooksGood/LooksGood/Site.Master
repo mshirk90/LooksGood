@@ -9,6 +9,7 @@
     <asp:ContentPlaceHolder ID="head" runat="server">
     </asp:ContentPlaceHolder>
 </head>
+
 <body>
     <div id="header">
         <h1><em>Looks Good</em><strong>placeholder</strong></h1>
@@ -31,67 +32,71 @@
             </ul>
         </div>
     </div>
-    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-        <div class="container">
-            <!-- Brand and toggle get grouped for better mobile display -->
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-            </div>
-            <div id="nav" class="nav">
-                <div>
-                    <ul>
-                        <li>
-                            <a href="/default.aspx">Home</a>
-                        </li>
-                        <li>
-                            <a href="#">About</a>
-                        </li>
-                        <li>
-                            <asp:Label runat="server" ID="lblRegister" Visible="true">                                
+    <div class="container">
+
+        <div id="nav" class="nav">
+            <div>
+                <ul>
+                    <li>
+                        <a href="/default.aspx">Home</a>
+                    </li>
+                    <li>
+                        <a href="#">About</a>
+                    </li>
+                    <li>
+                        <asp:Label runat="server" ID="lblRegister" Visible="true">                                
                                 <a href="/Account/Register.aspx">Register</a>                                 
-                            </asp:Label>
-                        </li>
+                        </asp:Label>
+                    </li>
 
-                        <li>
-                            <asp:Label runat="server" ID="lblLogin" Visible="true">                                                                        
+                    <li>
+                        <asp:Label runat="server" ID="lblLogin" Visible="true">                                                                        
                                         <a href="/Account/Login.aspx">Login</a>                                    
-                            </asp:Label>
-                        </li>
+                        </asp:Label>
+                    </li>
 
-                        <li>
-                            <asp:Label runat="server" ID="lblForgotPassword" Visible="false"> 
+                    <li>
+                        <asp:Label runat="server" ID="lblForgotPassword" Visible="false"> 
                                         <a href="/Account/Forgot.aspx">Forgot Password</a>
-                            </asp:Label>
-                        </li>
+                        </asp:Label>
+                    </li>
+                </ul>
+            </div>
+
+
+            <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+
+                <!-- Brand and toggle get grouped for better mobile display -->
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                </div>
+ </nav>
+                <div id="ddlPreferences" runat="server" class="dropdown pull-left div-margin" visible="true">
+                    <button class="btn btn-default dropdown-toggle" type="button" id="btnUser" data-toggle="dropdown">
+                        <asp:Label runat="server" ID="idUser">
+                        </asp:Label>
+                        <span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu" role="menu" aria-labelledby="ddlPreferences">
+                        <li role="presentation"><a role="menuItem" tabindex="-1" href="/Account/Profile.aspx">Profile</a></li>
+                        <li role="presentation"><a role="menuItem" tabindex="-1" id="liLogout" href="/Account/Logout.aspx">Logout</a></li>
+                        <li role="presentation"><a role="menuItem" tabindex="-1" href="/Account/ChangePassword.aspx">Change Password</a></li>
+                        <li role="presentation"><a role="menuItem" tabindex="-1" href="/Account/Upload.aspx">Upload Post</a></li>
+                        <li role="presentation"><a role="menuItem" tabindex="-1" href="/Account/Administration.aspx">Account Management</a></li>
+                        <li role="presentation" class="divider"></li>
                     </ul>
                 </div>
-              
-
-
-                    <div id="ddlPreferences" runat="server" class="dropdown pull-left div-margin" visible="true">
-                        <button class="btn btn-default dropdown-toggle" type="button" id="btnUser" data-toggle="dropdown">
-                            <asp:Label runat="server" ID="idUser">
-                            </asp:Label>
-                            <span class="caret"></span>
-                        </button>
-                        <ul class="dropdown-menu" role="menu" aria-labelledby="ddlPreferences">
-                            <li role="presentation"><a role="menuItem" tabindex="-1" href="/Account/Profile.aspx">Profile</a></li>
-                            <li role="presentation"><a role="menuItem" tabindex="-1" id="liLogout" href="/Account/Logout.aspx">Logout</a></li>
-                            <li role="presentation"><a role="menuItem" tabindex="-1" href="/Account/ChangePassword.aspx">Change Password</a></li>
-                            <li role="presentation"><a role="menuItem" tabindex="-1" href="/Account/Upload.aspx">Upload Post</a></li>
-                            <li role="presentation"><a role="menuItem" tabindex="-1" href="/Account/Administration.aspx">Account Management</a></li>
-                            <li role="presentation" class="divider"></li>
-                        </ul>
-                    </div>
-                </div>          
         </div>
-    </nav>
-    <div id="body">
+    </div>
+   
+
+
+    <div id="body" class="container">
         <h2><em>Welcome</em> to Looks Good</h2>
         <p>This is a template designed by <a href="http://www.freewebsitetemplates.com">free website templates</a> for you for free you can replace all the text by your own text. This is just a place holder so you can see how the site would look like.</p>
         <p>You can remove any link to our websites from this template you're free to use the template without linking back to us.</p>
