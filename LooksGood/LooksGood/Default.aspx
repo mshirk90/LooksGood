@@ -20,8 +20,8 @@
                                     <div class="descript">
                                         <p><%# DataBinder.Eval(Container.DataItem, "Description")  %></p>
                                     </div>
-                                    <div style="padding-left: 655px">
-                                        <h6 class="uName">-<%# DataBinder.Eval(Container.DataItem,"UserName")  %></h6>
+                                    <div style="padding-left: 60%">
+                                        <h6 class="">-<%# DataBinder.Eval(Container.DataItem,"UserName")  %></h6>
                                     </div>
                                 </div>
                             </a>

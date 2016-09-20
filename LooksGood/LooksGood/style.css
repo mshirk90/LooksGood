@@ -42,7 +42,7 @@ body {
 	position: relative;
 	top: 0;
 	left: 0;
-	width: 200%;
+	width: 100%;
 	background: -8px 0px url(images/header_bg.jpg) repeat-x;
 	height: 284px;
 }
@@ -95,7 +95,7 @@ body {
 	position: relative;
 	top: 66px;
 	left: 270px;
-	width: 100%;
+	width: 70%;
 	text-align: center;
 	z-index: 15;
 }
@@ -134,7 +134,7 @@ body {
 	z-index: 10;
 	margin-left: 320px;
 	padding-top: 130px;
-	width: 100%;
+	width: 70%;
 }
 
 #body h2 {
@@ -152,9 +152,9 @@ body {
 #black-br { width: 100%; background: bottom right url(images/black_br.gif) no-repeat; }
 
 #black-tl {
-	margin-left: 300px;
+	margin-left: 275px;
 	margin-top: 10px;
-	width: 100%;
+	width: 70%;
 	position: relative;
 }
 #black-bl {
@@ -224,7 +224,7 @@ body {
     color: rgba(0, 0, 0, 0);
     line-height: 5px;
 
-    background-color: grey;
+    background-color: black;
     margin-top: -6px;
     margin-bottom: 10px;
 }
@@ -366,13 +366,13 @@ body {
 .titlecenter{
     
     text-align: center;
-    width: 1480px;
-    margin-right:
+    width: 100%;
+    margin-right: 0;
 }
 
 .margincenter{
     margin: auto;
-    width: 1480px;
+    width: 100%;
 }
 
 
