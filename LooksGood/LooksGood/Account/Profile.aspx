@@ -18,24 +18,22 @@
             <label>User Posts</label>
         </div>
         <asp:Repeater ID="rptPost" runat="server">
-            <HeaderTemplate>
-            </HeaderTemplate>
             <ItemTemplate>
-                <div class="container left" style="border: 0px solid black">
-                    <div class="dialogbox">
-                        <div class="body">
-                            <span class="tip tip-up"></span>
-                            <div class="message">
-                                <span><%# DataBinder.Eval(Container.DataItem, "Title")  %></span>
-                                <hr />
-                                <span><%# "Post Description: " + DataBinder.Eval(Container.DataItem, "Description")  %></span>
+                <a href='<%# "../ExpandedPost.aspx?postId=" + DataBinder.Eval(Container.DataItem, "ID")  %>'>
+                    <div class="container left" style="border: 0px solid black">
+                        <div class="dialogbox">
+                            <div class="body">
+                                <span class="tip tip-up"></span>
+                                <div class="message">
+                                    <span><%# DataBinder.Eval(Container.DataItem, "Title")  %></span>
+                                    <hr />
+                                    <span><%# "Post Description: " + DataBinder.Eval(Container.DataItem, "Description")  %></span>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
+                </a>
             </ItemTemplate>
-            <FooterTemplate>
-            </FooterTemplate>
         </asp:Repeater>
         <div>
             <label>User Comments</label>
