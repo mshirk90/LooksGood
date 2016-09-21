@@ -19,7 +19,7 @@
         </div>
         <asp:Repeater ID="rptPost" runat="server">
             <ItemTemplate>
-                <a href='<%# "ExpandedPost.aspx?postId=" + DataBinder.Eval(Container.DataItem, "ID")  %>'>
+                <a href='<%# "../ExpandedPost.aspx?postId=" + DataBinder.Eval(Container.DataItem, "ID")  %>'>
                     <div class="container left" style="border: 0px solid black">
                         <div class="dialogbox">
                             <div class="body">
