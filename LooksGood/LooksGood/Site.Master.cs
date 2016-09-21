@@ -22,67 +22,28 @@ namespace LooksGood
             {
                 Page.ClientScript.RegisterStartupScript(this.GetType(), "clientscript", "document.getElementById('ddlPreferences').style.visibility = 'visible';", true);
                 MasterPage masterpage = Page.Master;
-                // HyperLink hprCartItems = (HyperLink)masterpage.FindControl("hprCartItems");
-                //hprCartItems.Visible = true;
-                Page.ClientScript.RegisterStartupScript(this.GetType(), "clientscript", "document.getElementById('bsTop').style.visibility = 'visible';", true);
-                
+                Page.ClientScript.RegisterStartupScript(this.GetType(), "clientscript", "document.getElementById('lblnav').style.visibility = 'visible';", true);
+
 
                 User user = (User)Session["User"];
                 Menu menu = (Menu)this.FindControl("Menu1");
-                //Button btn = (Button)masterpage.FindControl("btnUser");
-                //btn.Text = user.UserName;
-                //idUser.Text = user.UserName;
                 Label label = (Label)masterpage.FindControl("idUser");
-                label.Text = user.UserName;
 
 
+                lblUpload.Visible = true;
+                lblProfile.Visible = true;
+                lblChangePassword.Visible = true;
+                lblLogout.Visible = true;               
                 lblLogin.Visible = false;
                 lblRegister.Visible = false;
-                lblForgotPassword.Visible = false;      
-
-                //RemoveMenuItem("LOGIN");
-                //ChangeMenuItem("WELCOME", String.Format("[Welcome {0}]", user.UserName));
-
+                lblForgotPassword.Visible = false;
             }
             else
             {
                 Page.ClientScript.RegisterStartupScript(this.GetType(), "clientscript", "document.getElementById('ddlPreferences').style.visibility = 'hidden';", true);
-                //RemoveMenuItem("LOGOUT");
-                //RemoveMenuItem("WELCOME");
-
                 MasterPage masterpage = Page.Master;
-
-                // HyperLink hprCartItems = (HyperLink)masterpage.FindControl("hprCartItems");
-                // hprCartItems.Visible = false;
-
             }
         }
-
-        //private void RemoveMenuItem(String text)
-        //{
-        //    Menu mnu = (Menu)this.FindControl("Menu1");
-        //    MenuItem itemRemove = new MenuItem();
-        //    foreach (MenuItem menuItem in mnu.Items)
-        //    {
-        //        if (menuItem.Value == text)
-        //        {
-        //            itemRemove = menuItem;
-        //        }
-        //    }
-        //    mnu.Items.Remove(itemRemove);
-        //}
-
-        //private void ChangeMenuItem(String value, String text)
-        //{
-        //    Menu mnu = (Menu)this.FindControl("Menu1");
-        //    foreach (MenuItem menuItem in mnu.Items)
-        //    {
-        //        if (menuItem.Value == value)
-        //        {
-        //            menuItem.Text = text;
-        //        }
-        //    }
-        //}
     }
 }
 

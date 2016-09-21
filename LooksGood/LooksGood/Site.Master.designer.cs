@@ -13,22 +13,40 @@ namespace LooksGood {
     public partial class LooksGood {
         
         /// <summary>
-        /// head control.
+        /// lblForgotPassword control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ContentPlaceHolder head;
+        protected global::System.Web.UI.WebControls.Label lblForgotPassword;
         
         /// <summary>
-        /// form1 control.
+        /// lblProfile control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlForm form1;
+        protected global::System.Web.UI.WebControls.Label lblProfile;
+        
+        /// <summary>
+        /// lblChangePassword control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblChangePassword;
+        
+        /// <summary>
+        /// lblUpload control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblUpload;
         
         /// <summary>
         /// lblRegister control.
@@ -49,31 +67,22 @@ namespace LooksGood {
         protected global::System.Web.UI.WebControls.Label lblLogin;
         
         /// <summary>
-        /// lblForgotPassword control.
+        /// lblLogout control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblForgotPassword;
+        protected global::System.Web.UI.WebControls.Label lblLogout;
         
         /// <summary>
-        /// ddlPreferences control.
+        /// mContent control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl ddlPreferences;
-        
-        /// <summary>
-        /// idUser control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label idUser;
+        protected global::System.Web.UI.HtmlControls.HtmlForm mContent;
         
         /// <summary>
         /// MainContent control.

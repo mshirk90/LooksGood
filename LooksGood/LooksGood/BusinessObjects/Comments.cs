@@ -177,7 +177,27 @@ namespace BusinessObjects
 
         #endregion
 
-        #region  Public Methods 
+        #region  Public Methods
+        public Comments GetByUserId(Guid id)
+        {
+
+            Database database = new Database("LooksGoodDatabase");
+            DataTable dt = new DataTable();
+            database.Command.CommandType = CommandType.StoredProcedure;
+            database.Command.CommandText = "tblCommentsGetById";
+            base.Initialize(database, base.Id);
+            dt = database.ExecuteQuery();
+            if (dt != null && dt.Rows.Count == 1)
+            {
+                DataRow dr = dt.Rows[0];
+                base.Initialize(dr);
+                InitializeBusinessData(dr);
+                base.IsNew = false;
+                base.IsDirty = false;
+            }
+            return this;
+        }
+
         public Comments GetById(Guid id)
         {
 
