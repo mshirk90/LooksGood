@@ -47,7 +47,7 @@ body {
 	height: 284px;
 }
 #header h1 {
-	background: 0px 0px url(images/header_left.jpg) no-repeat;
+	background: 0px 0px url(images/header_left.jpg) repeat-x;
 	height: 184px;
 	width: 100%;
 	margin: 0;
@@ -57,16 +57,21 @@ body {
 }
 #header h1 em {
 	display: block;
-	padding: 23px 0 0 70px;
-	margin: 0;
+        text-align: center;
+    padding-top: 20px;
+    padding-right: 40px;
+	margin: auto;
+    left: 50%;
+    right: 50%;
 	font-weight: normal;
 	font-size: 28px;
 	font-family: "Times new roman", serif;
 }
 #header h1 strong {
 	display: block;
+    text-align: center;
 	margin: 0px;
-	padding: 0px 0px 0px 90px;
+	padding: -100px 0px 0px 90px;
 	font-weight: normal;
 	font-size: 15px;
 	font-family: verdana, arial, sans-serif;
@@ -80,12 +85,12 @@ body {
 	padding-left: 25px;
 	z-index: 15;
 }
-#nav-top {
+/*#nav-top {
 	position: relative;
 	top: 10px;
 	left: 330px;
 	width: 200px;
-}
+}*/
 #nav-top li {
 	display: inline;
 }
@@ -97,7 +102,7 @@ body {
 	left: 270px;
 	width: 70%;
 	text-align: center;
-	z-index: 15;
+	z-index: 5;
 }
 
 .vw, vh {
@@ -133,7 +138,7 @@ body {
 	position: relative;
 	z-index: 10;
 	margin-left: 320px;
-	padding-top: 130px;
+	padding-top: 10px;
 	width: 70%;
 }
 
@@ -145,6 +150,11 @@ body {
 	font-size: 25px;
 	font-family: serif;
 }
+#body h2 am {
+	font-size: 20px;
+	font-family: 'Lucida Grande', 'Helvetica Neue', sans-serif;
+}
+
 
 #black-tl { width: 100%; background: black top left url(images/black_tl.gif) no-repeat; }
 #black-tr { width: 100%; background: top right url(images/black_tr.gif) no-repeat; }
@@ -159,7 +169,7 @@ body {
 }
 #black-bl {
 	padding: 20px 20px 10px 20px;
-	position: relative;
+	position: ht: norm;
 }
 
 .black-box {
@@ -354,11 +364,7 @@ body {
      display: block;
      font-size: .67em;
      margin-top: 1em;
-     margin-bottom: 2.33em;
-   margin-left: 0;
-   margin-right: 0;
-    margin-left: 105px;
-    margin-right: 235px;
+     margin-bottom: 2.33em; 
      font-weight: bold;    
  }
 
@@ -379,8 +385,7 @@ body {
 .descript {
     margin: auto;
     width: 100px;
-   margin-left: 340px;
-   margin-right: 235px;
+  
 }
 
 .navbar-toggle {
@@ -409,5 +414,5 @@ body {
 }
 
 .container{
-    width: 100%;
+    /*width: 100%;*/
 }

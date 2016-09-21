@@ -6,8 +6,6 @@
 
     <div class="container">
 
-        <div>
-            <div>
                 <asp:Repeater ID="rptImages" runat="server">
                     <ItemTemplate>
                         <div class="margincenter">
@@ -21,7 +19,7 @@
                                         <p><%# DataBinder.Eval(Container.DataItem, "Description")  %></p>
                                     </div>
                                     <div style="padding-left: 60%">
-                                        <h6 class="">-<%# DataBinder.Eval(Container.DataItem,"UserName")  %></h6>
+                                        <h6 class="uName">-<%# DataBinder.Eval(Container.DataItem,"UserName")  %></h6>
                                     </div>
                                 </div>
                             </a>
@@ -32,6 +30,5 @@
                     </ItemTemplate>
                 </asp:Repeater>
             </div>
-        </div>
-    </div>
+
 </asp:Content>
