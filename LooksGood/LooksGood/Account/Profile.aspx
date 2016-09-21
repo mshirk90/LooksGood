@@ -14,6 +14,49 @@
             <asp:Button ID="btnChangePicture" runat="server" OnClick="btnChangePicture_Click" Text="Change Profile Picture" />
             <br />
         </div>
+        <div>
+            <label>User Posts</label>
+        </div>
+        <asp:Repeater ID="rptPost" runat="server">
+            <HeaderTemplate>
+            </HeaderTemplate>
+            <ItemTemplate>
+                <div class="container left" style="border: 0px solid black">
+                    <div class="dialogbox">
+                        <div class="body">
+                            <span class="tip tip-up"></span>
+                            <div class="message">
+                                <span><%# DataBinder.Eval(Container.DataItem, "Title")  %></span>
+                                <hr />
+                                <span><%# "Post Description: " + DataBinder.Eval(Container.DataItem, "Description")  %></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </ItemTemplate>
+            <FooterTemplate>
+            </FooterTemplate>
+        </asp:Repeater>
+        <div>
+            <label>User Comments</label>
+        </div>
+
+        <asp:Repeater ID="rptComments" runat="server">
+            <ItemTemplate>
+                <div class="container left" style="border: 0px solid black">
+                    <div class="dialogbox">
+                        <div class="body">
+                            <span class="tip tip-up"></span>
+                            <div class="message">
+                                <span><%# DataBinder.Eval(Container.DataItem, "Comment")  %></span>
+                                <hr />
+                                <span><%# "Commented by: " + DataBinder.Eval(Container.DataItem, "UserName")  %></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </ItemTemplate>
+        </asp:Repeater>
     </div>
 </asp:Content>
 
