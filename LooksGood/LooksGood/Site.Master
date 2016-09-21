@@ -15,23 +15,7 @@
         <h1><em>Looks Good</em><strong>...and stuff</strong></h1>
 
         <div id="left-person"></div>
-        <%-- <div id="uppers">
-        <form action="#">
-            <select name="gender">
-                <option value="w">woman</option>
-                <option value="w">man</option>
-            </select>
-            <input type="text" name="q" value="Enter product code" id="q" />
-            <input type="image" name="s" src="images/btn_header.gif" id="s" />
-        </form>
-        <div id="nav-top">
-            <ul>
-                <li><a href="#">Site map</a> |</li>
-                <li><a href="#">Advertisement</a> |</li>
-                <li><a href="#">Contact us</a></li>
-            </ul>
-        </div>
-    </div>--%>
+       
 
         <div id="nav" class="nav">
             <ul>
@@ -83,6 +67,7 @@
                     </asp:Label>
                 </li>
             </ul>
+        </div>
         </div>
 
 
