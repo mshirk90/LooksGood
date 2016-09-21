@@ -56,7 +56,6 @@ namespace LooksGood.Account
                     Response.Cookies["LooksGoodCookies"]["LastVisited"] = DateTime.Now.ToLongDateString();
                     Response.Cookies["LooksGoodCookies"].Expires = DateTime.MaxValue;
                 }
-                ((HtmlGenericControl)this.Master.FindControl("ddlPreferences")).Visible = true;
                 Session.Add("User", user);
                 Response.Redirect("~/Default.aspx");
             }

@@ -28,7 +28,6 @@ namespace LooksGood
                 User user = (User)Session["User"];
                 Menu menu = (Menu)this.FindControl("Menu1");
                 Label label = (Label)masterpage.FindControl("idUser");
-                label.Text = user.UserName;
 
 
                 lblUpload.Visible = true;
