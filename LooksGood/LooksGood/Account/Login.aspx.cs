@@ -35,7 +35,7 @@ namespace LooksGood.Account
         {
             User user = new User();
             user = user.Login(txtEmail.Text, txtPassword.Text);
-           
+
 
             if (user == null)
             {
@@ -64,7 +64,5 @@ namespace LooksGood.Account
         {
             UserLogin();
         }
-
-
-}
+    }
 }
