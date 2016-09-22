@@ -44,7 +44,7 @@
             var value = $('#<%=txtEmail.ClientID %>').val();
             EmailChecker(value);
         });
-        $('#<%=txtEmail.ClientID %>').blur(function () {
+        $('#<%=txtEmail.ClientID %>').change(function () {
             var value = $('#<%=txtEmail.ClientID %>').val();
             EmailChecker(value);
         });
