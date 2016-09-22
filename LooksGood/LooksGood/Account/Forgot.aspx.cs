@@ -20,6 +20,7 @@ namespace LooksGood.Account
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            txtEmail.Attributes.Add("autocomplete", "off");
             if (Session["User"] != null)
             {
                 EmailVal.Enabled = false;

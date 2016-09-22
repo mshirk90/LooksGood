@@ -4,7 +4,6 @@
     <asp:PlaceHolder ID="registerForm" runat="server">
         <div class="form-horizontal">
             <h2>Register new account</h2>
-            <hr />
             <asp:PlaceHolder runat="server" ID="ErrorMessage" Visible="false">
                 <p class="text-danger">
                     <asp:Literal runat="server" ID="FailureText" />
@@ -28,34 +27,6 @@
             </div>
         </div>
     </asp:PlaceHolder>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
     <script>
         $('#<%=txtEmail.ClientID %>').keyup(function () {
