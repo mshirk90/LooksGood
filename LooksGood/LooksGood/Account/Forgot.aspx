@@ -38,4 +38,50 @@
             </asp:PlaceHolder>
         </div>
     </div>
+
+    <script>
+        $('#<%=txtEmail.ClientID %>').keyup(function () {
+            var value = $('#<%=txtEmail.ClientID %>').val();
+            EmailChecker(value);
+        });
+        $('#<%=txtEmail.ClientID %>').blur(function () {
+            var value = $('#<%=txtEmail.ClientID %>').val();
+            EmailChecker(value);
+        });
+
+        function EmailChecker(value) {
+            $.ajax({
+                type: 'POST',
+                url: '../LooksGoodWS.asmx/DoesEmailExist',
+                data: "{'email': '" + value + "'}",
+                contentType: 'application/json; charset=utf-8',
+                dataType: 'json',
+                success: OnSuccess,
+                error: function (response) {
+                    alert(response.responseText);
+                }
+            });
+        }
+        function OnSuccess(response) {
+            var txtEmail = document.getElementById('<%=txtEmail.ClientID %>');
+            var lblStatus = document.getElementById('<%=lblEmail.ClientID %>');
+            var btnRegister = document.getElementById('<%=forgotEmail.ClientID%>');
+            switch (response.d) {
+                case true:
+                    txtEmail.style.color = "green";
+                    lblStatus.innerText = "Email Address Found";
+                    btnRegister.disabled = false;
+                    break;
+
+                case false:
+                    txtEmail.style.color = "red";
+                    lblStatus.innerText = "Valid e-mail not found";
+                    btnRegister.disabled = true;
+                    break;
+
+            }
+        }
+
+</script>
+
 </asp:Content>
