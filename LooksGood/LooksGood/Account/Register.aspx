@@ -7,7 +7,7 @@
             <asp:PlaceHolder runat="server" ID="ErrorMessage" Visible="false">
                 <p class="text-danger">
                     <asp:Literal runat="server" ID="FailureText" />
-                </p>
+                </p> 
             </asp:PlaceHolder>
             <div class="form-group pull-left">
                 <div class="col-md-10" style="padding-left: 10px">

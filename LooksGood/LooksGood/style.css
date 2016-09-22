@@ -29,6 +29,7 @@ a:hover {
 }
 .more {
 	text-align: right;
+    padding-right: 65px;
 }
 .clear {
 	clear: both;
@@ -44,17 +45,17 @@ body {
 	left: 0;
 	width: 100%;
 	background: -8px 0px url(images/header_bg.jpg) repeat-x;
-	height: 284px;
+	height: 225px;
 }
-#header h1 {
+/*#header h1 {
 	background: 0px 0px url(images/header_left.jpg) repeat-x;
 	height: 184px;
-	width: 100%;
-	margin: 0;
+	width: 70%;
+    margin-left: 270px;
 	padding: 0;
 	color: #fff;
 	line-height: 1;
-}
+}*/
 #header h1 em {
 	display: block;
         text-align: center;
@@ -98,8 +99,8 @@ body {
 #nav {
 	background: top left url(images/nav_left.gif) no-repeat;
 	position: relative;
-	top: 66px;
-	left: 270px;
+	top: 65px;
+	left: 200px;
 	width: 70%;
 	text-align: center;
 	z-index: 5;
@@ -116,10 +117,11 @@ body {
 }
 #nav ul {
 	background: top left url(images/nav_bg.gif) repeat-x;
-	padding: 10px 0 10px 0px;
+	padding:  0px -10px 0 -10px;
+   
 }
 #nav li {
-	display: inline;
+	display: inline;mar
 }
 #nav a {
 	font-weight: normal;
@@ -127,7 +129,7 @@ body {
 
 #left-person {
 	position: absolute;
-	top: 184px;
+	top: 155px;
 	left: 0px;
 	width: 282px;
 	height: 575px;
@@ -138,7 +140,7 @@ body {
 	position: relative;
 	z-index: 10;
 	margin-left: 320px;
-	padding-top: 10px;
+	padding-top: 0px;
 	width: 70%;
 }
 
@@ -162,8 +164,7 @@ body {
 #black-br { width: 100%; background: bottom right url(images/black_br.gif) no-repeat; }
 
 #black-tl {
-	margin-left: 275px;
-	margin-top: 10px;
+	margin: auto;
 	width: 70%;
 	position: relative;
 }
@@ -234,7 +235,7 @@ body {
     color: rgba(0, 0, 0, 0);
     line-height: 5px;
 
-    background-color: black;
+    background-color: lightgray;
     margin-top: -6px;
     margin-bottom: 10px;
 }
