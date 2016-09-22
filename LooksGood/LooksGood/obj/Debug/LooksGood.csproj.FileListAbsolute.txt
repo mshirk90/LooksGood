@@ -471,3 +471,4 @@ C:\Users\Chase\LooksGood\LooksGood\LooksGood\bin\Microsoft.Owin.Security.OAuth.x
 C:\Users\Chase\LooksGood\LooksGood\LooksGood\obj\Debug\LooksGood.csprojResolveAssemblyReference.cache
 C:\Users\Chase\LooksGood\LooksGood\LooksGood\obj\Debug\LooksGood.dll
 C:\Users\Chase\LooksGood\LooksGood\LooksGood\obj\Debug\LooksGood.pdb
+C:\Users\Matt\Documents\LooksGood\LooksGood\LooksGood\LooksGood\obj\Debug\LooksGood.csprojResolveAssemblyReference.cache
