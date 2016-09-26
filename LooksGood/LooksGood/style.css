@@ -12,6 +12,7 @@ img {
 }
 p {
 	margin: 0.5em 0px;
+    width: 600px;
 }
 a {
 	color: white;
@@ -29,7 +30,7 @@ a:hover {
 }
 .more {
 	text-align: right;
-    padding-right: 65px;
+    padding-right: 185px;
 }
 .clear {
 	clear: both;
@@ -377,9 +378,10 @@ body {
     margin-right: 0;
 }
 
-.margincenter{
-    margin: auto;
-    width: 100%;
+#margincenter{
+    margin: 100%;
+    width: 100%
+    
 }
 
 
