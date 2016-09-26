@@ -375,8 +375,15 @@ body {
     
     text-align: center;
     width: 100%;
-    margin-right: 0;
 }
+
+#image{
+    
+    text-align: center;
+    width: 100%;
+    padding-right: 1000px;
+}
+
 
 #margincenter{
     margin: 100%;
