@@ -148,14 +148,26 @@ body {
 #body h2 {
 	font-weight: normal;
 	font-size: 15px;
+    margin-bottom: 25px;
+    padding-bottom: 25px:
 }
 #body h2 em {
 	font-size: 25px;
 	font-family: serif;
+    margin-bottom: 25px;
+     padding-bottom: 25px:
 }
+
+#lowerTitle{
+        margin-bottom: 25px;
+    padding-bottom: 25px:
+}
+
 #body h2 am {
 	font-size: 20px;
 	font-family: 'Lucida Grande', 'Helvetica Neue', sans-serif;
+    margin-bottom: 25px;
+     padding-bottom: 25px:
 }
 
 
@@ -373,15 +385,15 @@ body {
 
 .titlecenter{
     
-    text-align: center;
+    text-align: justify;
     width: 100%;
+   
 }
 
-#image{
+.image{
     
     text-align: center;
-    width: 100%;
-    padding-right: 1000px;
+    width: 90%; 
 }
 
 
