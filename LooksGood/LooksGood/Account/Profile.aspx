@@ -9,7 +9,7 @@
         </asp:Label>
 
         <div class="padding-left: 25px">
-            <asp:Image ID="imgProfile" runat="server"></asp:Image>
+            <asp:Image ID="imgProfile" runat="server" BorderStyle="Solid" BorderColor="Red" BorderWidth="3px"></asp:Image>
             <asp:FileUpload ID="fuChangeProfileImage" runat="server" />
             <asp:Button ID="btnChangePicture" runat="server" OnClick="btnChangePicture_Click" Text="Change Profile Picture" />
             <br />
@@ -17,10 +17,11 @@
         <div>
             <label>User Posts</label>
         </div>
+        <hr style="display:inline-block; width:90%"/>
         <asp:Repeater ID="rptPost" runat="server">
             <ItemTemplate>
                 <a href='<%# "../ExpandedPost.aspx?postId=" + DataBinder.Eval(Container.DataItem, "ID")  %>'>
-                    <div class="container left" style="border: 0px solid black">
+                    <div class="container left" style="border: 0px solid black; display:inline">
                         <div class="dialogbox">
                             <div class="body">
                                 <span class="tip tip-up"></span>
@@ -35,6 +36,7 @@
                 </a>
             </ItemTemplate>
         </asp:Repeater>
+        <hr style="display:inline-block; width:90%"/>
         <div>
             <label>User Comments</label>
         </div>
@@ -55,6 +57,7 @@
                 </div>
             </ItemTemplate>
         </asp:Repeater>
+        <hr style="display:inline-block; width:90%"/>
     </div>
 </asp:Content>
 

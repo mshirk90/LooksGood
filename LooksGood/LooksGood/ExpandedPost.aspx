@@ -9,8 +9,13 @@
         <asp:Label ID="lblTitle" runat="server" Font-Italic="true" Font-Size="X-Large">
         </asp:Label>
     </div>
+    <div>
+        <asp:Label ID="lblDescription" runat="server" Font-Size="Larger"></asp:Label>
+        <hr style="display:inline-block; width:90%"/>
+    </div>
     <div style="padding-left: 25px">
         <asp:Image ID="imgPost" runat="server"></asp:Image>
+        <hr style="display:inline-block; width:90%"/>
     </div>
     <div id="comment_form" style="padding-left: 25px" class="div-margin">
         <div>
