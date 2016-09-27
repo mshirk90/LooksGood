@@ -9,8 +9,8 @@
         <asp:Label ID="lblTitle" runat="server" Font-Italic="true" Font-Size="X-Large">
         </asp:Label>
     </div>
-    <div style="padding-left: 25px">
-        <asp:Image ID="imgPost" runat="server"></asp:Image>
+    <div style="padding-left: 25px" >
+        <asp:Image ID="imgPost" runat="server" Width="88%" Height="445"></asp:Image>
     </div>
     <div id="comment_form" style="padding-left: 25px" class="div-margin">
         <div>
