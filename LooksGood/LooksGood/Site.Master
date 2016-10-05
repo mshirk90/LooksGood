@@ -6,6 +6,7 @@
     <title>Looks Good</title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <link rel="stylesheet" href="style.css" type="text/css" charset="utf-8" ch />
+    <link href="style.css" rel="stylesheet" />
     <script src="Scripts/jquery-3.1.0.js"></script>
     <asp:ContentPlaceHolder ID="head" runat="server">
     </asp:ContentPlaceHolder>
@@ -102,22 +103,7 @@
         </div>
     </div>
     <div id="footer">
-        <div id="tips">
-            <h2><em>Fasion</em> tips</h2>
-            <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Suspendisse metus. Nunc at velit a erat dapibus ullamcorper. Mauris posuere lacus et libero. Fusce pretium</p>
-            <p class="more"><a href="#">more</a></p>
-        </div>
-        <div id="choose">
-            <h2><em>Choose</em> a designer</h2>
-            <p>vestibulum. Aliquam erat volutpat. Sed pede erat </p>
-            <p>Choose a Designer</p>
-            <form action="#">
-                <select name="q">
-                    <option value="">Designer</option>
-                </select>
-                <input type="image" name="submit" src="images/btn_footer.gif" id="submit" />
-            </form>
-        </div>
+       
     </div>
 
 

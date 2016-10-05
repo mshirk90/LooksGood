@@ -31,8 +31,8 @@ namespace LooksGood.Account
             CommentsList comments = new CommentsList();
             comments = comments.GetByUserId(user.Id);
             rptPost.DataSource = post.List;
-            rptPost.DataBind();
-            rptComments.DataSource = comments.List;
+            rptPost.DataBind();               
+            rptComments.DataSource = comments.List;            
             rptComments.DataBind();
             
         }

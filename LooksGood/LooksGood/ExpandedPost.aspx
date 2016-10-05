@@ -14,7 +14,7 @@
         <hr style="display:inline-block; width:90%"/>
     </div>
     <div style="padding-left: 25px">
-        <asp:Image ID="imgPost" runat="server"></asp:Image>
+        <asp:Image ID="imgPost" runat="server" ></asp:Image>
         <hr style="display:inline-block; width:90%"/>
     </div>
     <div id="comment_form" style="padding-left: 25px" class="div-margin">
@@ -24,8 +24,8 @@
         <div>
             <asp:Button type="submit" name="submit" Text="Submit Comment" OnClick="comSubmit" runat="server" ID="btnSubmit" />
         </div>
-
     </div>
+
     <asp:Repeater ID="rptComments" runat="server">
         <HeaderTemplate>
         </HeaderTemplate>
