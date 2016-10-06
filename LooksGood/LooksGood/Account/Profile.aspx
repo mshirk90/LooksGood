@@ -40,29 +40,31 @@
         <div>
             <label>User Comments</label>
             <div>
-</div>
-<div>
-        <asp:Repeater ID="rptComments" runat="server" >
-            <ItemTemplate>
-                <div class="container left" style="border: 0px solid black">
-                    <div class="dialogbox">
-                        <div class="body">
-                            <span class="tip tip-up"></span> 
-                            <div class="message">
-                                <a runat="server"  itemid="imgProfile"></a>
-                                <span><%# DataBinder.Eval(Container.DataItem, "Comment")  %></span>
-                                <hr />
-                                <span ><%# "Commented by: " + DataBinder.Eval(Container.DataItem, "UserName")  %></span>                               
+            </div>
+            <div>
+                <asp:Repeater ID="rptComments" runat="server">
+                    <ItemTemplate>
+                        <div class="container left" style="border: 0px solid black">
+                            <div class="dialogbox">
+                                <div class="body">
+                                    <span class="tip tip-up"></span>
+                                    <div class="message">
+                                        <a runat="server" itemid="imgProfile"></a>
+                                        <span><%# DataBinder.Eval(Container.DataItem, "Comment")  %></span>
+                                        <hr />
+                                        <a class="a2" href='<%# "../ExpandedPost.aspx?postId=" + DataBinder.Eval(Container.DataItem, "PostId")  %>'>
+                                <span ><%# "Commented by: " + DataBinder.Eval(Container.DataItem, "UserName")  %></span>    
+                                                           </a>
+                                    </div>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                </div>
-            </ItemTemplate>
-        </asp:Repeater>
-        <hr style="display: inline-block; width: 90%" />
-    </div>
+                    </ItemTemplate>
+                </asp:Repeater>
+                <hr style="display: inline-block; width: 90%" />
+            </div>
 
         </div>
-        </div>
+    </div>
 </asp:Content>
 

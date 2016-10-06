@@ -4,14 +4,15 @@
     <div style="padding-left: 25px">
         <asp:Label ID="lblHeader" runat="server" Font-Bold="true" Font-Size="XX-Large">
         </asp:Label>
-    </div>
-    <div style="padding-left: 35px">
-        <asp:Label ID="lblTitle" runat="server" Font-Italic="true" Font-Size="X-Large">
-        </asp:Label>
-    </div>
     <div>
+    
+        <asp:Label ID="lblTitle" runat="server" Font-Italic="false" Font-Size="X-Large">
+        </asp:Label>
+   <div>
         <asp:Label ID="lblDescription" runat="server" Font-Size="Larger"></asp:Label>
         <hr style="display:inline-block; width:90%"/>
+</div>
+</div>
     </div>
     <div style="padding-left: 25px">
         <asp:Image ID="imgPost" runat="server" ></asp:Image>
@@ -37,7 +38,9 @@
                         <div class="message">
                             <span><%# DataBinder.Eval(Container.DataItem, "Comment")  %></span>
                             <hr />
+                              <a class="a2" href='<%# "../Profile.aspx?userId=" + DataBinder.Eval(Container.DataItem, "UserId")  %>'>
                             <span><%# "Commented by: " + DataBinder.Eval(Container.DataItem, "UserName")  %></span>
+                                  </a>
                         </div>
                     </div>
                 </div>

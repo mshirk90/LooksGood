@@ -21,20 +21,48 @@ namespace LooksGood.Account
                 Response.Redirect("Login.aspx");
             }
 
-            User user = (User)Session["User"];
-            user = user.GetById(user.Id);
-            imgProfile.ImageUrl = ("~/") + user.ProfilePic;
-            lblUserName.Text = string.Format(user.UserName);
 
-            PostList post = new PostList();
-            post = post.GetByUserId(user.Id);
-            CommentsList comments = new CommentsList();
-            comments = comments.GetByUserId(user.Id);
-            rptPost.DataSource = post.List;
-            rptPost.DataBind();               
-            rptComments.DataSource = comments.List;            
-            rptComments.DataBind();
-            
+
+
+
+
+            if (Request.QueryString["userId"] != null)
+            {
+                User user = new User["userId"];
+                user = user.GetById(user.Id);
+                imgProfile.ImageUrl = ("~/") + user.ProfilePic;
+                lblUserName.Text = string.Format(user.UserName);
+
+                PostList post = new PostList();
+                post = post.GetByUserId(user.Id);
+                CommentsList comments = new CommentsList();
+                comments = comments.GetByUserId(user.Id);
+                rptPost.DataSource = post.List;
+                rptPost.DataBind();
+                rptComments.DataSource = comments.List;
+                rptComments.DataBind();
+            }
+            else
+            {
+                User user = (User)Session["User"];
+                user = user.GetById(user.Id);
+                imgProfile.ImageUrl = ("~/") + user.ProfilePic;
+                lblUserName.Text = string.Format(user.UserName);
+
+                PostList post = new PostList();
+                post = post.GetByUserId(user.Id);
+                CommentsList comments = new CommentsList();
+                comments = comments.GetByUserId(user.Id);
+                rptPost.DataSource = post.List;
+                rptPost.DataBind();
+                rptComments.DataSource = comments.List;
+                rptComments.DataBind();
+
+            }
+
+
+            //*******************************************************************************************************************88
+
         }
 
 
