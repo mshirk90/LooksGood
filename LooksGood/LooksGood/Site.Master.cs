@@ -22,15 +22,18 @@ namespace LooksGood
             {
                 Page.ClientScript.RegisterStartupScript(this.GetType(), "clientscript", "document.getElementById('ddlPreferences').style.visibility = 'visible';", true);
                 MasterPage masterpage = Page.Master;
-                Page.ClientScript.RegisterStartupScript(this.GetType(), "clientscript", "document.getElementById('nav').style.visibility = 'visible';", true);
+                Page.ClientScript.RegisterStartupScript(this.GetType(), "clientscript", "document.getElementById('lblnav').style.visibility = 'visible';", true);
 
 
                 User user = (User)Session["User"];
                 Menu menu = (Menu)this.FindControl("Menu1");
                 Label label = (Label)masterpage.FindControl("idUser");
-                label.Text = user.UserName;
 
 
+                lblUpload.Visible = true;
+                lblProfile.Visible = true;
+                lblChangePassword.Visible = true;
+                lblLogout.Visible = true;               
                 lblLogin.Visible = false;
                 lblRegister.Visible = false;
                 lblForgotPassword.Visible = false;

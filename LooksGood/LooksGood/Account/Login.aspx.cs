@@ -35,7 +35,7 @@ namespace LooksGood.Account
         {
             User user = new User();
             user = user.Login(txtEmail.Text, txtPassword.Text);
-           
+
 
             if (user == null)
             {
@@ -56,7 +56,6 @@ namespace LooksGood.Account
                     Response.Cookies["LooksGoodCookies"]["LastVisited"] = DateTime.Now.ToLongDateString();
                     Response.Cookies["LooksGoodCookies"].Expires = DateTime.MaxValue;
                 }
-                ((HtmlGenericControl)this.Master.FindControl("ddlPreferences")).Visible = true;
                 Session.Add("User", user);
                 Response.Redirect("~/Default.aspx");
             }
@@ -65,7 +64,5 @@ namespace LooksGood.Account
         {
             UserLogin();
         }
-
-
-}
+    }
 }

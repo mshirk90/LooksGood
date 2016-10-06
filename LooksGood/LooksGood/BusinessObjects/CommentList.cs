@@ -32,6 +32,25 @@ namespace BusinessObjects
         #endregion
 
         #region Public Methods
+        public CommentsList GetByUserId(Guid userId)
+        {
+
+            Database database = new Database("LooksGoodDatabase");
+            DataTable dt = new DataTable();
+            database.Command.CommandType = CommandType.StoredProcedure;
+            database.Command.CommandText = "tblCommentsGetByUserId";
+            database.Command.Parameters.Add("@UserId", SqlDbType.UniqueIdentifier).Value = userId;
+            dt = database.ExecuteQuery();
+            foreach (DataRow dr in dt.Rows)
+            {
+                Comments comments = new Comments();
+                comments.Initialize(dr);
+                comments.InitializeBusinessData(dr);
+                _List.Add(comments);
+            }
+            return this;
+        }
+
         public CommentsList GetByPostId(Guid postId)
         {
             Database database = new Database("LooksGoodDatabase");

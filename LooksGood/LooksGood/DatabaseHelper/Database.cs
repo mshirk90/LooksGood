@@ -79,6 +79,7 @@ namespace DatabaseHelper
             _da.SelectCommand = _cmd;
             _dt = new DataTable();
             _da.Fill(_dt);
+            _cn.Close();
 
             return _dt;
         }
