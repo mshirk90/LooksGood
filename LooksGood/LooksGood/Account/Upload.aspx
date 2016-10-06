@@ -9,46 +9,34 @@
     </style>
 
     <div>
-         </div>
-        <table style="width: 605px">
-            <tr>
-                <td class="auto-style1">
-                    <asp:Label ID="lblTitle" runat="server" Font-Names="Cooper Std Black" Text="Title:  "></asp:Label>
-                </td>
-                <td>
-                    <asp:TextBox ID="txtTitle" runat="server" Width="219px"></asp:TextBox>
-                </td>
-            </tr>
-            <tr>
-                <td class="auto-style1">
-                    <asp:Label ID="lblUpload" runat="server" Text="Upload:  " Font-Names="Cooper Std Black"></asp:Label>
-                </td>
-                <td>
-                    <asp:FileUpload runat="server" Id="fuUpload" />
-                    <td>
-<%--                        <script>
-                            function ShowImage(filepath) {
-                                var reader = new FileReader(); // File API object
-                                reader.onload = function (event) {
-                                    document.getElementById('myimage').src = event.target.result;
-                                }
-                                reader.readAsDataURL(filepath);
+    </div>
+    <table style="width: 605px">
+        <tr>
+            <td class="auto-style1">
+                <asp:Label ID="lblTitle" runat="server" Font-Names="Cooper Std Black" Text="Title:  "></asp:Label>
+            </td>
+            <td>
+                <asp:TextBox ID="txtTitle" runat="server" Width="219px"></asp:TextBox>
+            </td>
+        </tr>
+        <tr>
+            <td class="auto-style1">
+                <asp:Label ID="lblUpload" runat="server" Text="Upload:  " Font-Names="Cooper Std Black"></asp:Label>
+            </td>
+            <td>
+                <asp:FileUpload runat="server" ID="fuUpload" />
+            </td>
+        </tr>
+        <tr>
+            <td class="auto-style1">
+                <asp:Label ID="lblDescription" runat="server" Text="Description:  " Font-Names="Cooper Std Black"></asp:Label>
+            </td>
+            <td>&nbsp;<asp:TextBox ID="txtDesription" runat="server" Rows="3" TextMode="MultiLine" Width="390px"></asp:TextBox>
+                <asp:Button ID="btnPost" runat="server" Font-Names="Cooper Std Black" OnClick="btnPost_Click" Text="Post" />
+            </td>
+        </tr>
+    </table>
 
-                            }
-                            </script>--%>
-                </td>
-            </tr>
-            <tr>
-                <td class="auto-style1">
-                    <asp:Label ID="lblDescription" runat="server" Text="Description:  " Font-Names="Cooper Std Black"></asp:Label>
-                </td>
-                <td>
-                    &nbsp;<asp:TextBox ID="txtDesription" runat="server" Rows="3" TextMode="MultiLine" Width="390px"></asp:TextBox>
-                    <asp:Button ID="btnPost" runat="server" Font-Names="Cooper Std Black" OnClick="btnPost_Click" Text="Post" />
-                </td>
-            </tr>
-        </table>
-   
 
 </asp:Content>
 
