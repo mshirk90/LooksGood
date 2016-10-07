@@ -19,7 +19,9 @@ namespace BusinessObjects
         private BrokenRuleList _BrokenRules = new BrokenRuleList();
         private String _FilePath = String.Empty;
         private String _RelativeFileName = String.Empty;
-        private string _UserName = string.Empty;
+        private String _UserName = string.Empty;
+        private String _UpVotes = string.Empty;
+        private String _DownVotes = string.Empty;
         private CommentsList _Comments = null;
         #endregion
 
@@ -90,6 +92,39 @@ namespace BusinessObjects
                 }
             }
         }
+
+        public String UpVotes
+        {
+            get { return _UpVotes; }
+            set
+            {
+                if (_UpVotes != value)
+                {
+                    _UpVotes = value;
+                    base.IsDirty = true;
+                    Boolean Savable = IsSavable();
+                    SavableEventArgs e = new SavableEventArgs(Savable);
+                    RaiseEvent(e);
+                }
+            }
+        }
+
+        public String DownVotes
+        {
+            get { return _DownVotes; }
+            set
+            {
+                if (_DownVotes != value)
+                {
+                    _DownVotes = value;
+                    base.IsDirty = true;
+                    Boolean Savable = IsSavable();
+                    SavableEventArgs e = new SavableEventArgs(Savable);
+                    RaiseEvent(e);
+                }
+            }
+        }
+
         public Guid UserId
         {
             get { return _UserId; }
@@ -153,6 +188,9 @@ namespace BusinessObjects
                 database.Command.Parameters.Add("@Title", SqlDbType.VarChar).Value = _Title;
                 database.Command.Parameters.Add("@Description", SqlDbType.VarChar).Value = _Description;
                 database.Command.Parameters.Add("@ImagePath", SqlDbType.VarChar).Value = _ImagePath;
+                database.Command.Parameters.Add("@UpVotes", SqlDbType.VarChar).Value = _UpVotes;
+                database.Command.Parameters.Add("@DownVotes", SqlDbType.VarChar).Value = _DownVotes;
+
 
                 // Provides the empty buckets
                 base.Initialize(database, base.Id);

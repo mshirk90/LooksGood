@@ -43,6 +43,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="AspNet.ScriptManager.bootstrap, Version=3.3.6.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\AspNet.ScriptManager.bootstrap.3.3.7\lib\net45\AspNet.ScriptManager.bootstrap.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="AspNet.ScriptManager.jQuery, Version=3.1.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\AspNet.ScriptManager.jQuery.3.1.0\lib\net45\AspNet.ScriptManager.jQuery.dll</HintPath>
       <Private>True</Private>
@@ -100,9 +104,6 @@
     <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <Private>True</Private>
       <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
-    </Reference>
-    <Reference Include="AspNet.ScriptManager.bootstrap">
-      <HintPath>..\packages\AspNet.ScriptManager.bootstrap.3.0.0\lib\net45\AspNet.ScriptManager.bootstrap.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.ScriptManager.MSAjax">
       <HintPath>..\packages\Microsoft.AspNet.ScriptManager.MSAjax.5.0.0\lib\net45\Microsoft.ScriptManager.MSAjax.dll</HintPath>
@@ -206,6 +207,12 @@
     <Content Include="Account\Logout.aspx" />
     <Content Include="Account\Register.aspx" />
     <Content Include="Contact.aspx" />
+    <Content Include="Content\2-col-portfolio.css" />
+    <Content Include="Content\bootstrap-theme.css" />
+    <Content Include="Content\bootstrap-theme.min.css" />
+    <Content Include="Content\bootstrap.css" />
+    <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\Site.css" />
     <Content Include="ExpandedPost.aspx" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
@@ -215,6 +222,7 @@
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="images\animalskinbackground.jpg" />
     <Content Include="images\black_bl.gif" />
     <Content Include="images\black_br.gif" />
     <Content Include="images\black_tl.gif" />
@@ -224,16 +232,29 @@
     <Content Include="images\btn_header.gif" />
     <Content Include="images\header_bg.jpg" />
     <Content Include="images\header_left.jpg" />
+    <Content Include="images\line.png" />
     <Content Include="images\nav_bg.gif" />
     <Content Include="images\nav_left.gif" />
     <Content Include="images\nav_right.gif" />
     <Content Include="images\pic_1.jpg" />
     <Content Include="images\pic_2.jpg" />
     <Content Include="images\pic_3.jpg" />
+    <Content Include="images\pic_4.jpg" />
+    <Content Include="images\pic_5.jpg" />
+    <Content Include="images\red banner images.jpg" />
+    <Content Include="images\red banner.jpg" />
+    <Content Include="images\Red-Background-Popular-Picture-E0.jpg" />
+    <Content Include="images\redbackground.jpg" />
+    <Content Include="images\repeatablebg.jpg" />
+    <Content Include="images\roses.jpg" />
     <Content Include="images\search.gif" />
     <Content Include="index.html" />
     <Content Include="LooksGoodWS.asmx" />
     <Content Include="ProfilePics\default-avatar.jpg" />
+    <Content Include="Content\bootstrap.min.css.map" />
+    <Content Include="Content\bootstrap.css.map" />
+    <Content Include="Content\bootstrap-theme.min.css.map" />
+    <Content Include="Content\bootstrap-theme.css.map" />
     <None Include="Scripts\jquery-3.1.0.intellisense.js" />
     <Content Include="Scripts\jquery-3.1.0.js" />
     <Content Include="Scripts\jquery-3.1.0.min.js" />

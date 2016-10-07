@@ -11,8 +11,18 @@ namespace LooksGood
 {
     public partial class ExpandedPost : System.Web.UI.Page
     {
+        Post post = new Post();
+        string UpVotes = string.Empty;
+        string DownVotes = string.Empty;
+
+
+
+
         protected void Page_Load(object sender, EventArgs e)
         {
+            post.UpVotes = UpVotes.ToString();
+            post.DownVotes = DownVotes.ToString();
+
             if (Session["User"] == null)
             {
                 cmtComment.Text = "Please login to comment";
@@ -25,7 +35,7 @@ namespace LooksGood
                 comments = comments.GetByPostId(postId);
                 rptComments.DataSource = comments.List;
                 rptComments.DataBind();
-
+                
                 Post post = new Post();
                 post = post.GetById(postId);
                 imgPost.ImageUrl = post.ImagePath;
@@ -33,9 +43,11 @@ namespace LooksGood
                 lblHeader.Text = string.Format("Posted by: {0}", post.UserName);
                 lblTitle.Text = string.Format("Title: {0}", post.Title);
                 lblDescription.Text = string.Format("Description: {0}", post.Description);
+
+                
             }
         }
-
+       
         public void comSubmit(object sender, EventArgs e)
         {
             Guid postId = new Guid(Request.QueryString["postId"]);
@@ -54,5 +66,12 @@ namespace LooksGood
                 Page.ClientScript.RegisterStartupScript(this.GetType(), "clientscript", "<script>alert('Comment did not save');</script>", true);
             }
         }
+
+        protected void btnincreaseButton_onClick(object sender, EventArgs e)
+        {
+
+        }
+
+
     }
 }

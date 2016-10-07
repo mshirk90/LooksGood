@@ -16,35 +16,48 @@ namespace LooksGood.Account
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (Session["User"] == null)
+            fuChangeProfileImage.Enabled = false;
+            btnChangePicture.Enabled = false;
+            fuChangeProfileImage.Visible = false;
+            btnChangePicture.Visible = false;
+
+            if (Request.QueryString["userId"] != null)
             {
-                Response.Redirect("Login.aspx");
+                Guid userId = new Guid(Request.QueryString["userId"]);
+                User user = new User();
+                user = user.GetById(userId);
+                lblUserName.Text = user.UserName;          
+                imgProfile.ImageUrl = "~/" + user.ProfilePic;
+
+                PostList posts = new PostList();
+                posts = posts.GetByUserId(userId);
+                CommentsList comments = new CommentsList();
+                comments = comments.GetByUserId(userId);
+                rptPost.DataSource = posts.List;
+                rptPost.DataBind();
+                rptComments.DataSource = comments.List;
+                rptComments.DataBind();
+                if (((User)Session["User"]).Id == userId )
+                {
+                    btnChangePicture.Enabled = true;
+                    fuChangeProfileImage.Enabled = true;
+                    fuChangeProfileImage.Visible = true;
+                    btnChangePicture.Visible = true;
+                }
             }
 
-            User user = (User)Session["User"];
-            user = user.GetById(user.Id);
-            imgProfile.ImageUrl = ("~/") + user.ProfilePic;
-            lblUserName.Text = string.Format(user.UserName);
+            else
+            {
+                Response.Redirect("Default.aspx");
+            }            
 
-            PostList post = new PostList();
-            post = post.GetByUserId(user.Id);
-            CommentsList comments = new CommentsList();
-            comments = comments.GetByUserId(user.Id);
-            rptPost.DataSource = post.List;
-            rptPost.DataBind();
-            rptComments.DataSource = comments.List;
-            rptComments.DataBind();
-            
         }
-
-
-
 
         protected void btnChangePicture_Click(object sender, EventArgs e)
         {
             User user = (User)Session["User"];
 
-            if ( this.fuChangeProfileImage.HasFile)
+            if (this.fuChangeProfileImage.HasFile)
             {
                 string path = Server.MapPath("../ProfilePics");
                 path = Path.Combine(path, this.fuChangeProfileImage.FileName);

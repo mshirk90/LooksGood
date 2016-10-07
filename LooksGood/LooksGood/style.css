@@ -23,6 +23,11 @@ a {
     text-decoration: none;
 }
 
+.a2 {
+    color: black;
+    text-decoration: none;
+}
+
     a:hover {
         color: #eee;
         text-decoration: underline;
@@ -46,7 +51,8 @@ a {
 }
 
 body {
-    background: #580000;
+    /*background: #580000;*/
+    background-image: url('images/animalskinbackground.jpg');
     font: 11px arial, sans-serif;
 }
 
@@ -56,7 +62,7 @@ body {
     left: 0;
     width: 100%;
     background: -8px 0px url(images/header_bg.jpg) repeat-x;
-    height: 225px;
+    height: 110px;
 }
     /*#header h1 {
 	background: 0px 0px url(images/header_left.jpg) repeat-x;
@@ -110,8 +116,9 @@ body {
 
 #nav {
     background: top center url(images/nav_left.gif) no-repeat;
+    
     position: relative;
-    top: 65px;
+    top: 25px;
     /*left: 200px;*/
     width: 70%;
     margin: auto;
@@ -155,9 +162,10 @@ body {
 #body {
     position: relative;
     z-index: 10;
-    margin-left: 320px;
-    padding-top: 0px;
+    margin-left: 355px;
+    padding-top: 20px;
     width: 70%;
+
 }
 
     #body h2 {
@@ -171,7 +179,7 @@ body {
             font-size: 25px;
             font-family: serif;
             margin-bottom: 25px;
-            padding-bottom: 25px:;
+            padding-bottom: 25px;
         }
 
 #lowerTitle {
@@ -195,6 +203,7 @@ body {
 #black-tr {
     width: 100%;
     background: top right url(images/black_tr.gif) no-repeat;
+
 }
 
 #black-bl {
@@ -287,8 +296,8 @@ body {
     color: rgba(0, 0, 0, 0);
     line-height: 5px;
     background-color: lightgray;
-    margin-top: -6px;
-    margin-bottom: 10px;
+    margin-top: 6px;
+    margin-bottom: 6px;
 }
 
 
@@ -440,11 +449,7 @@ body {
 .descript {
     text-align: justify;
     width: 100px;
-    display:  normal;
-    background-color: #580000;
-    padding: 2% 43%;
-    box-decoration-break: clone;
-    
+    display:  normal;    
 }
 
 .navbar-toggle {
@@ -475,6 +480,10 @@ body {
             margin-top: 4px;
         }
 
-.container {
-    /*width: 100%;*/
+.bannerimage {
+    background-image: url('images/line.png');
+}
+
+#bannerimage {
+          background-image: url('images/line.png');
 }
