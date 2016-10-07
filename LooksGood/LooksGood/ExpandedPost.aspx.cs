@@ -32,6 +32,7 @@ namespace LooksGood
 
                 lblHeader.Text = string.Format("Posted by: {0}", post.UserName);
                 lblTitle.Text = string.Format("Title: {0}", post.Title);
+                lblDescription.Text = string.Format("Description: {0}", post.Description);
             }
         }
 
