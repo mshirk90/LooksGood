@@ -11,8 +11,18 @@ namespace LooksGood
 {
     public partial class ExpandedPost : System.Web.UI.Page
     {
+        Post post = new Post();
+        string UpVotes = string.Empty;
+        string DownVotes = string.Empty;
+
+
+
+
         protected void Page_Load(object sender, EventArgs e)
         {
+            post.UpVotes = UpVotes.ToString();
+            post.DownVotes = DownVotes.ToString();
+
             if (Session["User"] == null)
             {
                 cmtComment.Text = "Please login to comment";
@@ -35,7 +45,7 @@ namespace LooksGood
                 lblDescription.Text = string.Format("Description: {0}", post.Description);
             }
         }
-
+       
         public void comSubmit(object sender, EventArgs e)
         {
             Guid postId = new Guid(Request.QueryString["postId"]);
@@ -54,5 +64,12 @@ namespace LooksGood
                 Page.ClientScript.RegisterStartupScript(this.GetType(), "clientscript", "<script>alert('Comment did not save');</script>", true);
             }
         }
+
+        protected void btnincreaseButton_onClick(object sender, EventArgs e)
+        {
+
+        }
+
+
     }
 }
