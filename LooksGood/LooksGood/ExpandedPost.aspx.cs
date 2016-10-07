@@ -25,7 +25,7 @@ namespace LooksGood
                 comments = comments.GetByPostId(postId);
                 rptComments.DataSource = comments.List;
                 rptComments.DataBind();
-
+                
                 Post post = new Post();
                 post = post.GetById(postId);
                 imgPost.ImageUrl = post.ImagePath;
@@ -33,6 +33,8 @@ namespace LooksGood
                 lblHeader.Text = string.Format("Posted by: {0}", post.UserName);
                 lblTitle.Text = string.Format("Title: {0}", post.Title);
                 lblDescription.Text = string.Format("Description: {0}", post.Description);
+
+                
             }
         }
 

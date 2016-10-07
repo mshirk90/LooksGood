@@ -29,6 +29,7 @@ namespace LooksGood
                 Menu menu = (Menu)this.FindControl("Menu1");
                 Label label = (Label)masterpage.FindControl("idUser");
 
+                hrefProfile.HRef = "/Account/Profile.aspx?userId=" + user.Id;
 
                 lblUpload.Visible = true;
                 lblProfile.Visible = true;
