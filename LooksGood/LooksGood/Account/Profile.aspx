@@ -53,8 +53,8 @@
                                         <span><%# DataBinder.Eval(Container.DataItem, "Comment")  %></span>
                                         <hr />
                                         <a class="a2" href='<%# "../ExpandedPost.aspx?postId=" + DataBinder.Eval(Container.DataItem, "PostId")  %>'>
-                                <span ><%# "Commented by: " + DataBinder.Eval(Container.DataItem, "UserName")  %></span>    
-                                                           </a>
+                                            <span><%# "Commented by: " + DataBinder.Eval(Container.DataItem, "UserName")  %></span>
+                                        </a>
                                     </div>
                                 </div>
                             </div>
@@ -63,7 +63,6 @@
                 </asp:Repeater>
                 <hr style="display: inline-block; width: 90%" />
             </div>
-
         </div>
     </div>
 </asp:Content>

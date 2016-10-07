@@ -22,7 +22,8 @@ namespace BusinessObjects
         private string _ProfilePic = string.Empty;
         private BrokenRuleList _BrokenRules = new BrokenRuleList();
         private String _FilePath = String.Empty;
-
+        BrokenRule br;
+        
         #endregion
 
         #region Public Properties
@@ -127,7 +128,6 @@ namespace BusinessObjects
         private Boolean Insert(Database database)
         {
             Boolean result = true;
-
             try
             {
                 database.Command.Parameters.Clear();
