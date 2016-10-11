@@ -264,6 +264,17 @@ namespace BusinessObjects
         #endregion
 
         #region Public Methods
+        //public Post GetVotes(Guid id)
+        //{
+        //    Database database = new Database("LooksGoodDatabase");
+        //    DataTable dt = new DataTable();
+        //    database.Command.CommandType = System.Data.CommandType.StoredProcedure;
+        //    database.Command.CommandText = "tblPostGetVotes";
+        //    database.Command.Parameters.Add("@Id", SqlDbType.UniqueIdentifier).Value = id;
+        //    database.Parameter parm = new database.Parameter();
+            
+        //}
+
         public Post GetById(Guid id)
         {
             Database database = new Database("LooksGoodDatabase");
