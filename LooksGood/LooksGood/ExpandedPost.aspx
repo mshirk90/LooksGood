@@ -4,11 +4,7 @@
 
 
 <asp:Content ID="header" ContentPlaceHolderID="head" runat="server">
-    <style type="text/css">
-        #vote {
-            width: 50px;
-        }
-    </style>
+    
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
@@ -40,13 +36,28 @@
 
 
 
+    <div class="well">           
+        <div class="row">                   
+            <div class="col-sm-3 col-md-3 col-lg-3">                          
+                <div class="input-group">                                  
+                    <button type="button" id="decreaseButton" class="btn btn-danger" style="background-color: #FF0000; width: 32px; font-weight: bold;">-</button>&nbsp;
+               
+                    <input type="text" class="form-control"  id="vote" placeholder="Vote" postId='<%=Request.QueryString["postId"] %>' />
+                                  
+                    <button type="button" id="increaseButton" class="btn btn-success" style="background-color: #00CC00; font-weight: bold;">+</button>
+                                        
+                </div>                       
+            </div>               
+        </div>        
+    </div>
 
+           
 
-
+    
     <script>
-        $scope.posts = [];
+        //$scope.posts = [];
          
-            function GetVotes(id,change) {
+            function GetVotes(id, change) {
                 $.ajax({
                     type: 'POST',
                     url: 'LooksGoodWS.asmx/GetVotesByPostId',
@@ -55,86 +66,34 @@
                     data: "{'id': '" + id + "', 'change': " + change + "}",
                     contentType: 'application/json; charset=utf-8',
                     success: function (response) {
-                        var txtVote = document.getElementById("vote");
-                        alert(response.d);
-                        //txtVote.innerText = response.d;
+                        var txtVote = document.getElementById('vote');
+                        //alert(response.d);
+                        txtVote.innerHTML = response;
                     },
                     error: function (response) {
                         alert(response.responseText);
                     }
                 });
             }
-        
+
+
+
+
+
+            $("#vote").text(GetVotes());
+            // Create a click handler for your increment button
+            $("#increaseButton").click(function () {
+                var postId = $("#vote").attr("postId").toString();
+                $("#vote").text(GetVotes(postId, 1));
+            });
+            // .. and your decrement button
+            $("#decreaseButton").click(function () {
+                var postId = $("#vote").attr("postId").toString();
+                $("#vote").text(GetVotes(postId, -1));
+            });
     </script>
 
-
-
-
-
-
-
-
-
-    <div class="well">
-           
-        <div class="row">
-                   
-            <div class="col-sm-3 col-md-3 col-lg-3">
-                          
-                <div class="input-group">
-                                  
-                    <button type="button" id="decreaseButton" class="btn btn-danger" style="background-color: #FF0000; width: 32px; font-weight: bold;">-</button>&nbsp;
-               
-                    <input type="text" class="form-control" id="vote" placeholder="Vote" postId='<%=Request.QueryString["postId"] %>' />
-                                  
-                    <button type="button" id="increaseButton" class="btn btn-success" style="background-color: #00CC00; font-weight: bold;">+</button>
-                                   
-           
-                </div>
-                       
-            </div>
-               
-        </div>
-        
-    </div>
-
-           
-    <script>
-                   // $("#vote").val('0');
-                    // Create a click handler for your increment button
-                    $("#increaseButton").click(function () {
-                        var postId = $("#vote").attr("postId").toString();
-                        $("#vote").text(GetVotes(postId, 1));
-                      });
-                    // .. and your decrement button
-                    $("#decreaseButton").click(function () {
-                        var postId = $("#vote").attr("postId").toString();
-                        $("#vote").text(GetVotes(postId, -1));
-                        });
-                </script>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    
 
 
 
