@@ -4,6 +4,8 @@ using System.Linq;
 using System.Web;
 using System.Web.Services;
 using BusinessObjects;
+using System.ComponentModel;
+using System.Web.Script.Services;
 
 namespace LooksGood
 {
@@ -30,5 +32,18 @@ namespace LooksGood
             }
             return result;
         }
+
+        [WebMethod]
+        [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
+        public Post GetVotesByPostId(string id, int change)
+        {
+            Post post = new Post();
+            post = post.GetById(new Guid(id));
+
+            post.Votes += change;
+            post.Save();
+            return post;
+        }
+
     }
 }

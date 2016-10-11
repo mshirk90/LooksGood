@@ -50,6 +50,26 @@ namespace BusinessObjects
             return this;
         }
 
+
+        public PostList GetVotesByPostId(Guid id)
+        {
+            Database database = new Database("LooksGoodDatabase");
+            DataTable dt = new DataTable();
+            database.Command.CommandType = CommandType.StoredProcedure;
+            database.Command.CommandText = "tblPostGetVotesByPostId";
+            database.Command.Parameters.Add("@Id", SqlDbType.UniqueIdentifier).Value = id;
+
+            dt = database.ExecuteQuery();
+            foreach (DataRow dr in dt.Rows)
+            {
+                Post post = new Post();
+                post.Initialize(dr);
+                post.InitializeBusinessData(dr);
+                _List.Add(post);
+            }
+            return this;
+        }
+
         public PostList GetMostRecent()
         {
             Database database = new Database("LooksGoodDatabase");

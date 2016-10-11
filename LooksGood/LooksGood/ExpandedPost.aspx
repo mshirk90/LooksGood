@@ -12,27 +12,134 @@
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
-    
+
 
     <div style="padding-left: 25px">
         <asp:Label ID="lblHeader" runat="server" Font-Bold="true" Font-Size="XX-Large">
         </asp:Label>
-    <div>
-    
-        <asp:Label ID="lblTitle" runat="server" Font-Italic="false" Font-Size="X-Large">
-        </asp:Label>
-   <div>
+        <div>
 
-        <asp:Label ID="lblDescription" runat="server" Font-Size="Larger"></asp:Label>
+            <asp:Label ID="lblTitle" runat="server" Font-Italic="false" Font-Size="X-Large">
+            </asp:Label>
+            <div>
+
+                <asp:Label ID="lblDescription" runat="server" Font-Size="Larger"></asp:Label>
                 <hr style="display: inline-block; width: 90%" />
-</div>
-</div>
+            </div>
+        </div>
     </div>
     <div style="padding-left: 25px">
-        <asp:Image ID="imgPost" runat="server" ></asp:Image>
-        <hr style="display:inline-block; width:90%"/>
+        <asp:Image ID="imgPost" runat="server" Width="760px" Height="600px"></asp:Image>+
+        <hr style="display: inline-block; width: 90%" />
+    </div>
+<%--    ************************************************************************************************************************************************************************--%>
+
+
+
+
+
+
+
+
+
+
+    <script>
+        $scope.posts = [];
+         
+            function GetVotes(id,change) {
+                $.ajax({
+                    type: 'POST',
+                    url: 'LooksGoodWS.asmx/GetVotesByPostId',
+                    dataType: 'json',
+                    processData: false,
+                    data: "{'id': '" + id + "', 'change': " + change + "}",
+                    contentType: 'application/json; charset=utf-8',
+                    success: function (response) {
+                        var txtVote = document.getElementById("vote");
+                        alert(response.d);
+                        //txtVote.innerText = response.d;
+                    },
+                    error: function (response) {
+                        alert(response.responseText);
+                    }
+                });
+            }
+        
+    </script>
+
+
+
+
+
+
+
+
+
+    <div class="well">
+           
+        <div class="row">
+                   
+            <div class="col-sm-3 col-md-3 col-lg-3">
+                          
+                <div class="input-group">
+                                  
+                    <button type="button" id="decreaseButton" class="btn btn-danger" style="background-color: #FF0000; width: 32px; font-weight: bold;">-</button>&nbsp;
+               
+                    <input type="text" class="form-control" id="vote" placeholder="Vote" postId='<%=Request.QueryString["postId"] %>' />
+                                  
+                    <button type="button" id="increaseButton" class="btn btn-success" style="background-color: #00CC00; font-weight: bold;">+</button>
+                                   
+           
+                </div>
+                       
+            </div>
+               
+        </div>
+        
     </div>
 
+           
+    <script>
+                   // $("#vote").val('0');
+                    // Create a click handler for your increment button
+                    $("#increaseButton").click(function () {
+                        var postId = $("#vote").attr("postId").toString();
+                        $("#vote").text(GetVotes(postId, 1));
+                      });
+                    // .. and your decrement button
+                    $("#decreaseButton").click(function () {
+                        var postId = $("#vote").attr("postId").toString();
+                        $("#vote").text(GetVotes(postId, -1));
+                        });
+                </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <%--    ************************************************************************************************************************************************************************--%>
+    <div></div>
     <div id="comment_form" style="padding-left: 25px" class="div-margin">
         <div>
             <asp:TextBox Rows="10" name="comment" ID="cmtComment" placeholder="Comment" runat="server"></asp:TextBox>
@@ -54,8 +161,8 @@
                             <span><%# DataBinder.Eval(Container.DataItem, "Comment")  %></span>
                             <hr />
                             <a href='<%# "/Account/Profile.aspx?userId=" + DataBinder.Eval(Container.DataItem, "userId")  %>'>
-                            <span><%# "Commented by: " + DataBinder.Eval(Container.DataItem, "UserName")  %></span>
-                                  </a>
+                                <span><%# "Commented by: " + DataBinder.Eval(Container.DataItem, "UserName")  %></span>
+                            </a>
                         </div>
                     </div>
                 </div>
