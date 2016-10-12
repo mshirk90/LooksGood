@@ -35,13 +35,25 @@ namespace LooksGood
 
         [WebMethod]
         [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
-        public Post GetVotesByPostId(string id, int change)
+        public Post ChangeVotesByPostId(string id, int change)
         {
             Post post = new Post();
             post = post.GetById(new Guid(id));
 
             post.Votes += change;
             post.Save();
+            return post;
+        }
+
+
+
+        [WebMethod]
+        [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
+        public Post GetVotesByPostId(string id)
+        {
+            Post post = new Post();
+            post = post.GetById(new Guid(id));
+
             return post;
         }
 

@@ -20,9 +20,7 @@ namespace LooksGood
         {
             if (Session["User"] != null)
             {
-                Page.ClientScript.RegisterStartupScript(this.GetType(), "clientscript", "document.getElementById('ddlPreferences').style.visibility = 'visible';", true);
                 MasterPage masterpage = Page.Master;
-                Page.ClientScript.RegisterStartupScript(this.GetType(), "clientscript", "document.getElementById('lblnav').style.visibility = 'visible';", true);
 
 
                 User user = (User)Session["User"];
@@ -41,7 +39,6 @@ namespace LooksGood
             }
             else
             {
-                Page.ClientScript.RegisterStartupScript(this.GetType(), "clientscript", "document.getElementById('ddlPreferences').style.visibility = 'hidden';", true);
                 MasterPage masterpage = Page.Master;
             }
         }
