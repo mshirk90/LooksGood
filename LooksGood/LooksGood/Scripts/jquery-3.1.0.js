@@ -1,3 +1,4 @@
+/// <reference path="jquery-2.1.0-vsdoc.js" />
 /*eslint-disable no-unused-vars*/
 /*!
  * jQuery JavaScript Library v3.1.0
