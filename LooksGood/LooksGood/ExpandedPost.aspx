@@ -30,8 +30,8 @@
     </div>
     <div style="padding-left: 25px">
         <asp:Image ID="imgPost" runat="server" Width="760px" Height="600px"></asp:Image>
-       
-    <%--    ************************************************************************************************************************************************************************--%>
+
+        <%--    ************************************************************************************************************************************************************************--%>
 
 
 
@@ -148,10 +148,11 @@
                     <div class="body">
                         <span class="tip tip-up"></span>
                         <div class="message">
-                            <span><%# DataBinder.Eval(Container.DataItem, "Comment")  %></span>
+                            <span style="color:black"><%# DataBinder.Eval(Container.DataItem, "Comment")  %></span>
                             <hr />
-                            <a href='<%# "/Account/Profile.aspx?userId=" + DataBinder.Eval(Container.DataItem, "userId")  %>'>
-                                <span><%# "Commented by: " + DataBinder.Eval(Container.DataItem, "UserName")  %></span>
+                            <a class="a2" href='<%# "/Account/Profile.aspx?userId=" + DataBinder.Eval(Container.DataItem, "userId")  %>'>
+                           <span><%# "Commented by: " + DataBinder.Eval(Container.DataItem, "UserName")  %></span>
+
                             </a>
                         </div>
                     </div>

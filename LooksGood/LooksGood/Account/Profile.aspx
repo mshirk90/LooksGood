@@ -26,9 +26,9 @@
                             <div class="body">
                                 <span class="tip tip-up"></span>
                                 <div class="message">
-                                    <span><%# DataBinder.Eval(Container.DataItem, "Title")  %></span>
+                                    <a class="a2"><span><%# DataBinder.Eval(Container.DataItem, "Title")  %></span></a>
                                     <hr />
-                                    <span><%# "Post Description: " + DataBinder.Eval(Container.DataItem, "Description")  %></span>
+                                    <a class="a2"><span><%# "Post Description: " + DataBinder.Eval(Container.DataItem, "Description")  %></span></a>
                                 </div>
                             </div>
                         </div>
@@ -50,11 +50,10 @@
                                     <span class="tip tip-up"></span>
                                     <div class="message">
                                         <a runat="server" itemid="imgProfile"></a>
-                                        <span><%# DataBinder.Eval(Container.DataItem, "Comment")  %></span>
+                                        <span style="color:black"><%# DataBinder.Eval(Container.DataItem, "Comment")  %></span>
                                         <hr />
                                         <a class="a2" href='<%# "../ExpandedPost.aspx?postId=" + DataBinder.Eval(Container.DataItem, "PostId")  %>'>
-                                            <span><%# "Commented by: " + DataBinder.Eval(Container.DataItem, "UserName")  %></span>
-                                        </a>
+                                       <span><%# "Commented by: " + DataBinder.Eval(Container.DataItem, "UserName")  %></span></a>
                                     </div>
                                 </div>
                             </div>

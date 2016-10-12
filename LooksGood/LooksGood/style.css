@@ -308,6 +308,7 @@ body {
     position: absolute;
     background: transparent;
     border: 10px solid #ccc;
+      color: black;
 }
 
 .tip-up {
@@ -316,6 +317,8 @@ body {
     border-right-color: transparent;
     border-left-color: transparent;
     border-top-color: transparent;
+    color: black;
+   
 }
 
 .tip-down {
@@ -324,6 +327,7 @@ body {
     border-right-color: transparent;
     border-left-color: transparent;
     border-bottom-color: transparent;
+      color: black;
 }
 
 .tip-left {
@@ -332,6 +336,7 @@ body {
     border-top-color: transparent;
     border-left-color: transparent;
     border-bottom-color: transparent;
+      color: black;
 }
 
 .tip-right {
@@ -340,6 +345,7 @@ body {
     border-top-color: transparent;
     border-right-color: transparent;
     border-bottom-color: transparent;
+      color: black;
 }
 
 .dialogbox .body {
