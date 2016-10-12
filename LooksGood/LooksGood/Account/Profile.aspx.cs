@@ -26,7 +26,7 @@ namespace LooksGood.Account
                 Guid userId = new Guid(Request.QueryString["userId"]);
                 User user = new User();
                 user = user.GetById(userId);
-                lblUserName.Text = user.UserName;          
+                lblUserName.Text = user.UserName;
                 imgProfile.ImageUrl = "~/" + user.ProfilePic;
 
                 PostList posts = new PostList();
@@ -37,19 +37,25 @@ namespace LooksGood.Account
                 rptPost.DataBind();
                 rptComments.DataSource = comments.List;
                 rptComments.DataBind();
-                if (((User)Session["User"]).Id == userId )
+
+                if (Session["User"] != null)
                 {
-                    btnChangePicture.Enabled = true;
-                    fuChangeProfileImage.Enabled = true;
-                    fuChangeProfileImage.Visible = true;
-                    btnChangePicture.Visible = true;
+                    if (((User)Session["User"]).Id == userId)
+                    {
+
+                        btnChangePicture.Enabled = true;
+                        fuChangeProfileImage.Enabled = true;
+                        fuChangeProfileImage.Visible = true;
+                        btnChangePicture.Visible = true;
+                    }
+
                 }
             }
 
             else
             {
                 Response.Redirect("Default.aspx");
-            }            
+            }
 
         }
 
