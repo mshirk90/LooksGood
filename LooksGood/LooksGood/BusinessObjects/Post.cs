@@ -302,7 +302,7 @@ namespace BusinessObjects
             _ImagePath = dr["ImagePath"].ToString();
             String filepath = System.IO.Path.Combine(_FilePath, Id.ToString() + ".jpg");
             _RelativeFileName = System.IO.Path.Combine("UploadedImages", Id.ToString() + ".jpg");
-            _Votes = (int)dr["Votes"];
+            //_Votes = (int)dr["Votes"];
 
         }
         public Boolean IsSavable()
