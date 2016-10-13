@@ -55,8 +55,8 @@
     <body ng-app="MyApp" ng-controller="myController">
         <table border="1" class="margin">
             <tr ng-repeat="x in comment">
-                <td>{{x}}</td>
-                <td>{{x}}</td>
+                <td>{{Comment}}</td>
+                <td>{{UserName}}</td>
             </tr>
         </table>
     </body>
@@ -88,9 +88,7 @@
         //$scope.posts = [];
         var app = angular.module("MyApp", []);
         app.controller("myController", function ($scope) {
-            $scope.comment = [
-                "jsoncomments"
-            ]
+            
 
             $(document).ready(function () {
                 var id = vote.getAttribute("postid");
@@ -106,7 +104,8 @@
                         contentType: 'application/json; charset=utf-8',
                         success: function (response) {
                             alert(response.d);
-                            jsoncomments(response.d);
+                            $scope = response.d;
+                            $scope.apply();
                         },
                         error: function (response) {
                             alert(response.responseText);
@@ -169,6 +168,7 @@
                     $("#vote").text(ChangeVotes(postId, -1));
                 });
             });
+            $scope.comment = []
         });
     </script>
     <%-- ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- --%>
