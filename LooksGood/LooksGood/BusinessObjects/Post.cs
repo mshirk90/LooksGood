@@ -173,7 +173,7 @@ namespace BusinessObjects
                 database.Command.Parameters.Add("@Title", SqlDbType.VarChar).Value = _Title;
                 database.Command.Parameters.Add("@Description", SqlDbType.VarChar).Value = _Description;
                 database.Command.Parameters.Add("@ImagePath", SqlDbType.VarChar).Value = _ImagePath;
-                database.Command.Parameters.Add("@Votes", SqlDbType.Int).Value = _Votes;
+                //database.Command.Parameters.Add("@Votes", SqlDbType.Int).Value = _Votes;
 
 
                 // Provides the empty buckets
