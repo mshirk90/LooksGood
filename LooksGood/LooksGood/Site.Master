@@ -13,11 +13,9 @@
     <script src="Scripts/jquery-3.1.1.min.js"></script>
     <script src="Scripts/jquery-3.1.1.intellisense.js"></script>
 </head>
-
 <body id="body2" runat="server">
     <div id="header">
         <h1><em>Looks Good</em><strong>...and stuff</strong></h1>
-
         <div id="nav" class="nav">
             <ul>
                 <li>
@@ -26,25 +24,21 @@
                 <li>
                     <a href="#">-About-</a>
                 </li>
-
                 <li>
                     <asp:Label runat="server" ID="lblForgotPassword" Visible="false"> 
                                         <a href="/Account/Forgot.aspx">-Forgot Password-</a>
                     </asp:Label>
                 </li>
-
                 <li>
                     <asp:label runat="server" ID="lblProfile" Visible="false">                       
                             <a id="hrefProfile" runat="server" href="#">-Profile-</a>                       
                     </asp:label>
                 </li>
-
                 <li>
                     <asp:Label runat="server" ID="lblChangePassword" Visible="false"> 
                                         <a href="/Account/ChangePassword.aspx">-Change Password-</a>
                     </asp:Label>
                 </li>
-
                 <li>
                     <asp:Label runat="server" ID="lblUpload" Visible="false"> 
                                         <a href="/Account/Upload.aspx">-Upload-</a>
@@ -61,7 +55,6 @@
                                         <a href="/Account/Login.aspx">-Login-</a>                                    
                     </asp:Label>
                 </li>
-
                 <li>
                     <asp:Label runat="server" ID="lblLogout" Visible="false">                                                                        
                                         <a href="/Account/Logout.aspx">-Logout-</a>                                    
@@ -70,12 +63,8 @@
             </ul>
         </div>
     </div>
-
     <asp:ContentPlaceHolder ID="header2" runat="server">
     </asp:ContentPlaceHolder>
-
-
-
     <div id="black-tl">
         <div id="black-tr">
             <div id="black-br">
@@ -98,8 +87,6 @@
     </div>
     <div id="footer">
     </div>
-
-
     <div class="clear"></div>
     <div id="copyright">Copyright information goes here. All rights reserved | designed by <a href="http://www.freewebsitetemplates.com">free website templates</a></div>
 </body>

@@ -172,7 +172,7 @@ namespace BusinessObjects
                 database.Command.Parameters.Add("@Title", SqlDbType.VarChar).Value = _Title;
                 database.Command.Parameters.Add("@Description", SqlDbType.VarChar).Value = _Description;
                 database.Command.Parameters.Add("@ImagePath", SqlDbType.VarChar).Value = _ImagePath;
-                database.Command.Parameters.Add("@Votes", SqlDbType.Int).Value = _Votes;
+                //database.Command.Parameters.Add("@Votes", SqlDbType.Int).Value = _Votes;
 
 
                 // Provides the empty buckets
@@ -301,7 +301,7 @@ namespace BusinessObjects
             _ImagePath = dr["ImagePath"].ToString();
             String filepath = System.IO.Path.Combine(_FilePath, Id.ToString() + ".jpg");
             _RelativeFileName = System.IO.Path.Combine("UploadedImages", Id.ToString() + ".jpg");
-            _Votes = (int)dr["Votes"];
+            //_Votes = (int)dr["Votes"];
 
         }
         public Boolean IsSavable()

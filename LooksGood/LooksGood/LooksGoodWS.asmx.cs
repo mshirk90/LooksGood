@@ -6,6 +6,7 @@ using System.Web.Services;
 using BusinessObjects;
 using System.ComponentModel;
 using System.Web.Script.Services;
+using Newtonsoft.Json;
 
 namespace LooksGood
 {
@@ -57,5 +58,15 @@ namespace LooksGood
             return post;
         }
 
+        [WebMethod]
+        [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
+        public String GetCommentsByPostId(string id)
+        {
+            CommentsList comments = new CommentsList();
+            comments = comments.GetByPostId(new Guid(id));
+            string jsoncomments = JsonConvert.SerializeObject(comments.List);
+
+            return jsoncomments;
+        }
     }
 }
