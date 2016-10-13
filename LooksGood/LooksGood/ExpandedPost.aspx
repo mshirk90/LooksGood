@@ -4,13 +4,13 @@
 
 
 <asp:Content ID="header" ContentPlaceHolderID="head" runat="server">
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
     <style type="text/css">
         #vote {
             width: 42px;
         }
     </style>
 </asp:Content>
-
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
     <div style="padding-left: 25px">
         <asp:Label ID="lblHeader" runat="server" Font-Bold="true" Font-Size="XX-Large">
@@ -52,16 +52,14 @@
             <asp:Button type="submit" name="submit" Text="Submit Comment" OnClick="comSubmit" runat="server" ID="btnSubmit" />
         </div>
     </div>
-
-    <div ng-app="MyApp" ng-controller="myController">
-        <table border="1" class="margintop">
-            <tr ng-repeat="x in comments">
-                <td>{{x.Comment}}</td>
-                <hr />
-                <td>{{x.UserName}}</td>
+    <body ng-app="MyApp" ng-controller="myController">
+        <table border="1" class="margin">
+            <tr ng-repeat="x in comment">
+                <td>{{x}}</td>
+                <td>{{x}}</td>
             </tr>
         </table>
-    </div>
+    </body>
 
     <%--<asp:Repeater ID="rptComments" runat="server">
         <HeaderTemplate>
@@ -90,83 +88,86 @@
         //$scope.posts = [];
         var app = angular.module("MyApp", []);
         app.controller("myController", function ($scope) {
+            $scope.comment = [
+                "jsoncomments"
+            ]
 
             $(document).ready(function () {
                 var id = vote.getAttribute("postid");
                 GetCommentsByPostId(id);
                 GetVotes(id);
-            });
+                function GetCommentsByPostId(id) {
+                    $.ajax({
+                        type: 'POST',
+                        url: 'LooksGoodWS.asmx/GetCommentsByPostId',
+                        dataType: 'json',
+                        processData: false,
+                        data: "{'id': '" + id + "'}",
+                        contentType: 'application/json; charset=utf-8',
+                        success: function (response) {
+                            alert(response.d);
+                            jsoncomments(response.d);
+                        },
+                        error: function (response) {
+                            alert(response.responseText);
+                        }
+                    });
+                }
 
-            function GetCommentsByPostId(id) {
-                $.ajax({
-                    type: 'POST',
-                    url: 'LooksGoodWS.asmx/GetCommentsByPostId',
-                    dataType: 'json',
-                    processData: false,
-                    data: "{'id': '" + id + "'}",
-                    contentType: 'application/json; charset=utf-8',
-                    success: function (response) {
-                        alert(response.d);
-                    },
-                    error: function (response) {
-                        alert(response.responseText);
-                    }
+                //$(document).ready(function () {
+                //    var id = vote.getAttribute("postid");
+                //    GetVotes(id);
+                //});
+
+                function GetVotes(id) {
+                    $.ajax({
+                        type: 'POST',
+                        url: 'LooksGoodWS.asmx/GetVotesByPostId',
+                        dataType: 'json',
+                        processData: false,
+                        data: "{'id': '" + id + "'}",
+                        contentType: 'application/json; charset=utf-8',
+                        success: function (response) {
+                            var txtVote = document.getElementById('vote');
+                            //alert(response.d);
+                            txtVote.value = response.d.Votes;
+                        },
+                        error: function (response) {
+                            alert(response.responseText);
+                        },
+
+                    });
+                }
+
+                function ChangeVotes(id, change) {
+                    $.ajax({
+                        type: 'POST',
+                        url: 'LooksGoodWS.asmx/ChangeVotesByPostId',
+                        dataType: 'json',
+                        processData: false,
+                        data: "{'id': '" + id + "', 'change': " + change + "}",
+                        contentType: 'application/json; charset=utf-8',
+                        success: function (response) {
+                            var txtVote = document.getElementById('vote');
+                            //alert(response.d);
+                            txtVote.value = response.d.Votes;
+                        },
+                        error: function (response) {
+                            alert(response.responseText);
+                        }
+                    });
+                }
+
+                // Create a click handler for your increment button
+                $("#increaseButton").click(function () {
+                    var postId = $("#vote").attr("postId").toString();
+                    $("#vote").text(ChangeVotes(postId, 1));
                 });
-            }
-
-            //$(document).ready(function () {
-            //    var id = vote.getAttribute("postid");
-            //    GetVotes(id);
-            //});
-
-            function GetVotes(id) {
-                $.ajax({
-                    type: 'POST',
-                    url: 'LooksGoodWS.asmx/GetVotesByPostId',
-                    dataType: 'json',
-                    processData: false,
-                    data: "{'id': '" + id + "'}",
-                    contentType: 'application/json; charset=utf-8',
-                    success: function (response) {
-                        var txtVote = document.getElementById('vote');
-                        //alert(response.d);
-                        txtVote.value = response.d.Votes;
-                    },
-                    error: function (response) {
-                        alert(response.responseText);
-                    },
-
+                // .. and your decrement button
+                $("#decreaseButton").click(function () {
+                    var postId = $("#vote").attr("postId").toString();
+                    $("#vote").text(ChangeVotes(postId, -1));
                 });
-            }
-
-            function ChangeVotes(id, change) {
-                $.ajax({
-                    type: 'POST',
-                    url: 'LooksGoodWS.asmx/ChangeVotesByPostId',
-                    dataType: 'json',
-                    processData: false,
-                    data: "{'id': '" + id + "', 'change': " + change + "}",
-                    contentType: 'application/json; charset=utf-8',
-                    success: function (response) {
-                        var txtVote = document.getElementById('vote');
-                        //alert(response.d);
-                        txtVote.value = response.d.Votes;
-                    },
-                    error: function (response) {
-                        alert(response.responseText);
-                    }
-                });
-            }
-
-            // Create a click handler for your increment button
-            $("#increaseButton").click(function () {
-                var postId = $("#vote").attr("postId").toString();
-                $("#vote").text(ChangeVotes(postId, 1));
-            });
-            // .. and your decrement button
-            $("#decreaseButton").click(function () {
-                var postId = $("#vote").attr("postId").toString();
-                $("#vote").text(ChangeVotes(postId, -1));
             });
         });
     </script>
