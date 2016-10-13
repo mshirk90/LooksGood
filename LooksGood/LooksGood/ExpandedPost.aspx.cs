@@ -28,8 +28,8 @@ namespace LooksGood
                 Guid postId = new Guid(Request.QueryString["postId"]);
                 CommentsList comments = new CommentsList();
                 comments = comments.GetByPostId(postId);
-                rptComments.DataSource = comments.List;
-                rptComments.DataBind();
+                //rptComments.DataSource = comments.List;
+                //rptComments.DataBind();
                 
                 Post post = new Post();
                 post = post.GetById(postId);

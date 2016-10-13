@@ -12,17 +12,13 @@
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
-
-
     <div style="padding-left: 25px">
         <asp:Label ID="lblHeader" runat="server" Font-Bold="true" Font-Size="XX-Large">
         </asp:Label>
         <div>
-
             <asp:Label ID="lblTitle" runat="server" Font-Italic="false" Font-Size="X-Large">
             </asp:Label>
             <div>
-
                 <asp:Label ID="lblDescription" runat="server" Font-Size="Larger"></asp:Label>
                 <hr style="display: inline-block; width: 90%" />
             </div>
@@ -30,20 +26,12 @@
     </div>
     <div style="padding-left: 25px">
         <asp:Image ID="imgPost" runat="server" Width="760px" Height="600px"></asp:Image>
-
-        <%--    ************************************************************************************************************************************************************************--%>
-
-
-
-
-
-
-
         <div class="well">
             <div class="row">
                 <div class="col-sm-3 col-md-3 col-lg-3">
                     <div class="input-group">
-                        <button type="button" id="decreaseButton" class="btn btn-danger" style="background-color: #FF0000; width: 24px; font-weight: bold;">-</button>&nbsp;<input type="text" readonly="true" class="form-control" id="vote" placeholder="Vote" postid='<%=Request.QueryString["postId"] %>' />
+                        <button type="button" id="decreaseButton" class="btn btn-danger" style="background-color: #FF0000; width: 24px; font-weight: bold;">-</button>&nbsp;
+                        <input type="text" readonly="true" class="form-control" id="vote" placeholder="Vote" postid='<%=Request.QueryString["postId"] %>' />
 
                         <button type="button" id="increaseButton" class="btn btn-success" style="background-color: #00CC00; font-weight: bold;">+</button>
 
@@ -51,17 +39,85 @@
                 </div>
             </div>
         </div>
+        <hr style="display: inline-block; width: 90%" />
+    </div>
+    <div>
+        <div></div>
+    </div>
+    <div id="comment_form" style="padding-left: 25px" class="div-margin">
+        <div>
+            <asp:TextBox Rows="10" name="comment" ID="cmtComment" placeholder="Comment" runat="server"></asp:TextBox>
+        </div>
+        <div>
+            <asp:Button type="submit" name="submit" Text="Submit Comment" OnClick="comSubmit" runat="server" ID="btnSubmit" />
+        </div>
+    </div>
 
+    <div ng-app="MyApp" ng-controller="myController">
+        <table border="1" class="margintop">
+            <tr ng-repeat="x in comments">
+                <td>{{x.Comment}}</td>
+                <hr />
+                <td>{{x.UserName}}</td>
+            </tr>
+        </table>
+    </div>
 
-
-
-        <script>
-            //$scope.posts = [];
+    <%--<asp:Repeater ID="rptComments" runat="server">
+        <HeaderTemplate>
+        </HeaderTemplate>
+        <ItemTemplate>
+            <div class="container left" style="border: 0px solid black">
+                <div class="dialogbox">
+                    <div class="body">
+                        <span class="tip tip-up"></span>
+                        <div class="message">
+                            <span style="color: black"><%# DataBinder.Eval(Container.DataItem, "Comment")  %></span>
+                            <hr />
+                            <a class="a2" href='<%# "/Account/Profile.aspx?userId=" + DataBinder.Eval(Container.DataItem, "UserId") %>'>
+                                <span><%# "Commented by: " + DataBinder.Eval(Container.DataItem, "UserName")  %></span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </ItemTemplate>
+        <FooterTemplate>
+        </FooterTemplate>
+    </asp:Repeater>--%>
+    <%-- ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- --%>
+    <script>
+        //$scope.posts = [];
+        var app = angular.module("MyApp", []);
+        app.controller("myController", function ($scope) {
 
             $(document).ready(function () {
                 var id = vote.getAttribute("postid");
+                GetCommentsByPostId(id);
                 GetVotes(id);
             });
+
+            function GetCommentsByPostId(id) {
+                $.ajax({
+                    type: 'POST',
+                    url: 'LooksGoodWS.asmx/GetCommentsByPostId',
+                    dataType: 'json',
+                    processData: false,
+                    data: "{'id': '" + id + "'}",
+                    contentType: 'application/json; charset=utf-8',
+                    success: function (response) {
+                        alert(response.d);
+                    },
+                    error: function (response) {
+                        alert(response.responseText);
+                    }
+                });
+            }
+
+            //$(document).ready(function () {
+            //    var id = vote.getAttribute("postid");
+            //    GetVotes(id);
+            //});
 
             function GetVotes(id) {
                 $.ajax({
@@ -83,11 +139,6 @@
                 });
             }
 
-
-
-
-
-
             function ChangeVotes(id, change) {
                 $.ajax({
                     type: 'POST',
@@ -107,10 +158,6 @@
                 });
             }
 
-
-
-
-
             // Create a click handler for your increment button
             $("#increaseButton").click(function () {
                 var postId = $("#vote").attr("postId").toString();
@@ -121,47 +168,11 @@
                 var postId = $("#vote").attr("postId").toString();
                 $("#vote").text(ChangeVotes(postId, -1));
             });
-        </script>
-
-        <%--    ************************************************************************************************************************************************************************--%>
-
-        <hr style="display: inline-block; width: 90%" />
-    </div>
-    <div>
-        <div></div>
-    </div>
-    <div id="comment_form" style="padding-left: 25px" class="div-margin">
-        <div>
-            <asp:TextBox Rows="10" name="comment" ID="cmtComment" placeholder="Comment" runat="server"></asp:TextBox>
-        </div>
-        <div>
-            <asp:Button type="submit" name="submit" Text="Submit Comment" OnClick="comSubmit" runat="server" ID="btnSubmit" />
-        </div>
-    </div>
-
-    <asp:Repeater ID="rptComments" runat="server">
-        <HeaderTemplate>
-        </HeaderTemplate>
-        <ItemTemplate>
-            <div class="container left" style="border: 0px solid black">
-                <div class="dialogbox">
-                    <div class="body">
-                        <span class="tip tip-up"></span>
-                        <div class="message">
-                            <span style="color:black"><%# DataBinder.Eval(Container.DataItem, "Comment")  %></span>
-                            <hr />
-                            <a class="a2" href='<%# "/Account/Profile.aspx?userId=" + DataBinder.Eval(Container.DataItem, "userId")  %>'>
-                           <span><%# "Commented by: " + DataBinder.Eval(Container.DataItem, "UserName")  %></span>
-
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </ItemTemplate>
-        <FooterTemplate>
-        </FooterTemplate>
-    </asp:Repeater>
-
+        });
+    </script>
+    <%-- ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- --%>
 </asp:Content>
+
+
+
 
