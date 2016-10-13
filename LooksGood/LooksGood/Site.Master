@@ -3,20 +3,19 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head runat="server">
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
     <title>Looks Good</title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <link rel="stylesheet" href="style.css" type="text/css" charset="utf-8" ch />
     <link href="style.css" rel="stylesheet" />
     <script src="Scripts/bootstrap.min.js"></script>
-   <script src="Scripts/jquery-3.1.0.min.js"></script>
-    <asp:ContentPlaceHolder ID="head" runat="server">
-    </asp:ContentPlaceHolder>
+    <script src="Scripts/jquery-3.1.1.min.js"></script>
+    <script src="Scripts/jquery-3.1.1.intellisense.js"></script>
 </head>
-
 <body id="body2" runat="server">
     <div id="header">
         <h1><em>Looks Good</em><strong>...and stuff</strong></h1>
-
         <div id="nav" class="nav">
             <ul>
                 <li>
@@ -25,25 +24,21 @@
                 <li>
                     <a href="#">-About-</a>
                 </li>
-
                 <li>
                     <asp:Label runat="server" ID="lblForgotPassword" Visible="false"> 
                                         <a href="/Account/Forgot.aspx">-Forgot Password-</a>
                     </asp:Label>
                 </li>
-
                 <li>
                     <asp:label runat="server" ID="lblProfile" Visible="false">                       
                             <a id="hrefProfile" runat="server" href="#">-Profile-</a>                       
                     </asp:label>
                 </li>
-
                 <li>
                     <asp:Label runat="server" ID="lblChangePassword" Visible="false"> 
                                         <a href="/Account/ChangePassword.aspx">-Change Password-</a>
                     </asp:Label>
                 </li>
-
                 <li>
                     <asp:Label runat="server" ID="lblUpload" Visible="false"> 
                                         <a href="/Account/Upload.aspx">-Upload-</a>
@@ -60,7 +55,6 @@
                                         <a href="/Account/Login.aspx">-Login-</a>                                    
                     </asp:Label>
                 </li>
-
                 <li>
                     <asp:Label runat="server" ID="lblLogout" Visible="false">                                                                        
                                         <a href="/Account/Logout.aspx">-Logout-</a>                                    
@@ -69,12 +63,8 @@
             </ul>
         </div>
     </div>
-
     <asp:ContentPlaceHolder ID="header2" runat="server">
     </asp:ContentPlaceHolder>
-
-
-
     <div id="black-tl">
         <div id="black-tr">
             <div id="black-br">
@@ -97,8 +87,6 @@
     </div>
     <div id="footer">
     </div>
-
-
     <div class="clear"></div>
     <div id="copyright">Copyright information goes here. All rights reserved | designed by <a href="http://www.freewebsitetemplates.com">free website templates</a></div>
 </body>

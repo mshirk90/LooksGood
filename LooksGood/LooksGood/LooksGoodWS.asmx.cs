@@ -4,6 +4,9 @@ using System.Linq;
 using System.Web;
 using System.Web.Services;
 using BusinessObjects;
+using System.ComponentModel;
+using System.Web.Script.Services;
+using Newtonsoft.Json;
 
 namespace LooksGood
 {
@@ -29,6 +32,41 @@ namespace LooksGood
                 result = false;
             }
             return result;
+        }
+
+        [WebMethod]
+        [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
+        public Post ChangeVotesByPostId(string id, int change)
+        {
+            Post post = new Post();
+            post = post.GetById(new Guid(id));
+
+            post.Votes += change;
+            post.Save();
+            return post;
+        }
+
+
+
+        [WebMethod]
+        [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
+        public Post GetVotesByPostId(string id)
+        {
+            Post post = new Post();
+            post = post.GetById(new Guid(id));
+
+            return post;
+        }
+
+        [WebMethod]
+        [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
+        public String GetCommentsByPostId(string id)
+        {
+            CommentsList comments = new CommentsList();
+            comments = comments.GetByPostId(new Guid(id));
+            string jsoncomments = JsonConvert.SerializeObject(comments.List);
+
+            return jsoncomments;
         }
     }
 }

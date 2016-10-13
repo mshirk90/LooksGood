@@ -20,8 +20,7 @@ namespace BusinessObjects
         private String _FilePath = String.Empty;
         private String _RelativeFileName = String.Empty;
         private String _UserName = string.Empty;
-        private String _UpVotes = string.Empty;
-        private String _DownVotes = string.Empty;
+        private int _Votes = 0;
         private CommentsList _Comments = null;
         #endregion
 
@@ -93,14 +92,14 @@ namespace BusinessObjects
             }
         }
 
-        public String UpVotes
+        public int Votes
         {
-            get { return _UpVotes; }
+            get { return _Votes; }
             set
             {
-                if (_UpVotes != value)
+                if (_Votes != value)
                 {
-                    _UpVotes = value;
+                    _Votes = value;
                     base.IsDirty = true;
                     Boolean Savable = IsSavable();
                     SavableEventArgs e = new SavableEventArgs(Savable);
@@ -109,28 +108,14 @@ namespace BusinessObjects
             }
         }
 
-        public String DownVotes
-        {
-            get { return _DownVotes; }
-            set
-            {
-                if (_DownVotes != value)
-                {
-                    _DownVotes = value;
-                    base.IsDirty = true;
-                    Boolean Savable = IsSavable();
-                    SavableEventArgs e = new SavableEventArgs(Savable);
-                    RaiseEvent(e);
-                }
-            }
-        }
+
 
         public Guid UserId
         {
             get { return _UserId; }
             set
             {
-                if (_UserId != value)
+                if (UserId != value)
                 {
                     _UserId = value;
                     base.IsDirty = true;
@@ -188,8 +173,7 @@ namespace BusinessObjects
                 database.Command.Parameters.Add("@Title", SqlDbType.VarChar).Value = _Title;
                 database.Command.Parameters.Add("@Description", SqlDbType.VarChar).Value = _Description;
                 database.Command.Parameters.Add("@ImagePath", SqlDbType.VarChar).Value = _ImagePath;
-                database.Command.Parameters.Add("@UpVotes", SqlDbType.VarChar).Value = _UpVotes;
-                database.Command.Parameters.Add("@DownVotes", SqlDbType.VarChar).Value = _DownVotes;
+                database.Command.Parameters.Add("@Votes", SqlDbType.Int).Value = _Votes;
 
 
                 // Provides the empty buckets
@@ -280,6 +264,17 @@ namespace BusinessObjects
         #endregion
 
         #region Public Methods
+        //public Post GetVotes(Guid id)
+        //{
+        //    Database database = new Database("LooksGoodDatabase");
+        //    DataTable dt = new DataTable();
+        //    database.Command.CommandType = System.Data.CommandType.StoredProcedure;
+        //    database.Command.CommandText = "tblPostGetVotes";
+        //    database.Command.Parameters.Add("@Id", SqlDbType.UniqueIdentifier).Value = id;
+        //    database.Parameter parm = new database.Parameter();
+            
+        //}
+
         public Post GetById(Guid id)
         {
             Database database = new Database("LooksGoodDatabase");
@@ -302,13 +297,12 @@ namespace BusinessObjects
         public void InitializeBusinessData(DataRow dr)
         {
             _UserId = (Guid)dr["UserId"];
-
             _Title = dr["Title"].ToString();
-            //_UserName = UserName;
             _Description = dr["Description"].ToString();
             _ImagePath = dr["ImagePath"].ToString();
             String filepath = System.IO.Path.Combine(_FilePath, Id.ToString() + ".jpg");
             _RelativeFileName = System.IO.Path.Combine("UploadedImages", Id.ToString() + ".jpg");
+            //_Votes = (int)dr["Votes"];
 
         }
         public Boolean IsSavable()

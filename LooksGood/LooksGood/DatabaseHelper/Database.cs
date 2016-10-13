@@ -17,12 +17,18 @@ namespace DatabaseHelper
         private SqlCommand _cmd = null;
         private SqlDataAdapter _da = null;
         private DataTable _dt = null;
+        private SqlParameter _param = null;
         #endregion
 
         #region Public Properties
         public SqlCommand Command
         {
             get { return _cmd; }
+        }
+
+        public SqlParameter Parameter
+        {
+            get { return _param; }
         }
         #endregion
 
@@ -100,6 +106,7 @@ namespace DatabaseHelper
             _cn = new SqlConnection();
             _cmd = new SqlCommand();
             _da = new SqlDataAdapter();
+            _param = new SqlParameter();
         }
         #endregion
 
