@@ -17,8 +17,8 @@
                             <asp:Image ID="imgImage" runat="server" ImageUrl='<%# DataBinder.Eval(Container.DataItem, "ImagePath")  %>' Width="560" Height="445" />
                         </div>
                         <div>
-                            <div class="triangle-isosceles">
-                                <p class="top" >Description: <%# DataBinder.Eval(Container.DataItem, "Description")  %></p>
+                            <div class="triangle-isosceles" >
+                                <p>Description: <%# DataBinder.Eval(Container.DataItem, "Description")  %></p>
                                 <h6>-<%# DataBinder.Eval(Container.DataItem,"UserName")  %></h6>
                             </div>
                         </div>
