@@ -212,12 +212,10 @@ body {
     width: 100%;
     background: top right url(images/blacktr.gif) no-repeat;
 }
-
 #black-bl {
     width: 100%;
     background: bottom left url(images/blackbl.gif) no-repeat;
 }
-
 #black-br {
     width: 100%;
     background: bottom right url(images/blackbr.gif) no-repeat;
