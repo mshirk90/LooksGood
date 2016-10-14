@@ -29,5 +29,39 @@
                 </div>
             </ItemTemplate>
         </asp:Repeater>
-    </div>
+    </div>   
+<%-- ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- --%>
+    <%--<script>
+        var app = angular.module("MyApp", []);
+        app.controller("MyController", function ($scope) {
+            $scope.post = [];
+
+            angular.element(document).ready(function () {
+                WebServiceRequest("GetMostRecentPosts", "", OnSuccessRecentPosts, OnErrorRecentPosts);
+            });    
+           
+            function OnSuccessRecentPosts(response){
+                // do stuff
+                alert(response.d);
+                $scope.post = JSON.parse(response.d);
+                $scope.$apply();
+            }
+            function OnErrorRecentPosts(response){
+                // do stuff again
+                alert(response.responseText);
+            }
+
+            function WebServiceRequest(strMethod, jsonData, cbSuccess, cbError) {
+                $.ajax({
+                    type: 'POST',
+                    url: 'LooksGoodWS.asmx/' + strMethod,
+                    data: jsonData,
+                    contentType: 'application/json; charset=utf-8',
+                    dataType: 'json',
+                    success: cbSuccess,
+                    error: cbError
+                });
+            }
+        })
+    </script>--%>
 </asp:Content>

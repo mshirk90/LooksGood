@@ -2,9 +2,8 @@
 
 
 
-
+   
 <asp:Content ID="header" ContentPlaceHolderID="head" runat="server">
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
     <style type="text/css">
         #vote {
             width: 42px;
@@ -52,124 +51,107 @@
             <asp:Button type="submit" name="submit" Text="Submit Comment" OnClick="comSubmit" runat="server" ID="btnSubmit" />
         </div>
     </div>
-    <body ng-app="MyApp" ng-controller="myController">
-        <table border="1" class="margin">
-            <tr ng-repeat="x in comment">
-                <td>{{Comment}}</td>
-                <td>{{UserName}}</td>
-            </tr>
-        </table>
-    </body>
 
-    <%--<asp:Repeater ID="rptComments" runat="server">
-        <HeaderTemplate>
-        </HeaderTemplate>
-        <ItemTemplate>
-            <div class="container left" style="border: 0px solid black">
+    <div ng-app="MyApp" ng-controller="MyController">
+         <div ng-repeat="x in comments" class="container left" style="border: 0px solid black">
                 <div class="dialogbox">
                     <div class="body">
                         <span class="tip tip-up"></span>
                         <div class="message">
-                            <span style="color: black"><%# DataBinder.Eval(Container.DataItem, "Comment")  %></span>
+                            <span style="color: black">{{x.Comment}}</span>
                             <hr />
-                            <a class="a2" href='<%# "/Account/Profile.aspx?userId=" + DataBinder.Eval(Container.DataItem, "UserId") %>'>
-                                <span><%# "Commented by: " + DataBinder.Eval(Container.DataItem, "UserName")  %></span>
+                            <a class="a2" href="/Account/Profile.aspx?userId={{x.UserId}}"
+                                <span>Commented by: {{x.UserName}}</span>
                             </a>
                         </div>
                     </div>
                 </div>
             </div>
-        </ItemTemplate>
-        <FooterTemplate>
-        </FooterTemplate>
-    </asp:Repeater>--%>
+    </div>
     <%-- ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- --%>
     <script>
         //$scope.posts = [];
         var app = angular.module("MyApp", []);
-        app.controller("myController", function ($scope) {
-            
+        app.controller("MyController", function ($scope) {
+            $scope.comments = [];
 
-            $(document).ready(function () {
+            angular.element(document).ready(function () {
                 var id = vote.getAttribute("postid");
                 GetCommentsByPostId(id);
-                GetVotes(id);
-                function GetCommentsByPostId(id) {
-                    $.ajax({
-                        type: 'POST',
-                        url: 'LooksGoodWS.asmx/GetCommentsByPostId',
-                        dataType: 'json',
-                        processData: false,
-                        data: "{'id': '" + id + "'}",
-                        contentType: 'application/json; charset=utf-8',
-                        success: function (response) {
-                            alert(response.d);
-                            $scope = response.d;
-                            $scope.apply();
-                        },
-                        error: function (response) {
-                            alert(response.responseText);
-                        }
-                    });
-                }
-
-                //$(document).ready(function () {
-                //    var id = vote.getAttribute("postid");
-                //    GetVotes(id);
-                //});
-
-                function GetVotes(id) {
-                    $.ajax({
-                        type: 'POST',
-                        url: 'LooksGoodWS.asmx/GetVotesByPostId',
-                        dataType: 'json',
-                        processData: false,
-                        data: "{'id': '" + id + "'}",
-                        contentType: 'application/json; charset=utf-8',
-                        success: function (response) {
-                            var txtVote = document.getElementById('vote');
-                            //alert(response.d);
-                            txtVote.value = response.d.Votes;
-                        },
-                        error: function (response) {
-                            alert(response.responseText);
-                        },
-
-                    });
-                }
-
-                function ChangeVotes(id, change) {
-                    $.ajax({
-                        type: 'POST',
-                        url: 'LooksGoodWS.asmx/ChangeVotesByPostId',
-                        dataType: 'json',
-                        processData: false,
-                        data: "{'id': '" + id + "', 'change': " + change + "}",
-                        contentType: 'application/json; charset=utf-8',
-                        success: function (response) {
-                            var txtVote = document.getElementById('vote');
-                            //alert(response.d);
-                            txtVote.value = response.d.Votes;
-                        },
-                        error: function (response) {
-                            alert(response.responseText);
-                        }
-                    });
-                }
-
-                // Create a click handler for your increment button
-                $("#increaseButton").click(function () {
-                    var postId = $("#vote").attr("postId").toString();
-                    $("#vote").text(ChangeVotes(postId, 1));
-                });
-                // .. and your decrement button
-                $("#decreaseButton").click(function () {
-                    var postId = $("#vote").attr("postId").toString();
-                    $("#vote").text(ChangeVotes(postId, -1));
-                });
+                //GetVotes(id);
             });
-            $scope.comment = []
+
+            function GetCommentsByPostId(id) {
+                $.ajax({
+                    type: 'POST',
+                    url: 'LooksGoodWS.asmx/GetCommentsByPostId',
+                    dataType: 'json',
+                    processData: false,
+                    data: "{'id': '" + id + "'}",
+                    contentType: 'application/json; charset=utf-8',
+                    success: function (response) {
+                        //alert(response.d);
+                        $scope.comments = JSON.parse(response.d);
+                        $scope.$apply();
+                    },
+                    error: function (response) {
+                        alert(response.responseText);
+                    }
+                });
+            }
+
+            function GetVotes(id) {
+                $.ajax({
+                    type: 'POST',
+                    url: 'LooksGoodWS.asmx/GetVotesByPostId',
+                    dataType: 'json',
+                    processData: false,
+                    data: "{'id': '" + id + "'}",
+                    contentType: 'application/json; charset=utf-8',
+                    success: function (response) {
+                        var txtVote = document.getElementById('vote');
+                        //alert(response.d);
+                        txtVote.value = response.d.Votes;
+                    },
+                    error: function (response) {
+                        alert(response.responseText);
+                    },
+
+                });
+            }
+
+            function ChangeVotes(id, change) {
+                $.ajax({
+                    type: 'POST',
+                    url: 'LooksGoodWS.asmx/ChangeVotesByPostId',
+                    dataType: 'json',
+                    processData: false,
+                    data: "{'id': '" + id + "', 'change': " + change + "}",
+                    contentType: 'application/json; charset=utf-8',
+                    success: function (response) {
+                        var txtVote = document.getElementById('vote');
+                        //alert(response.d);
+                        txtVote.value = response.d.Votes;
+                    },
+                    error: function (response) {
+                        alert(response.responseText);
+                    }
+                });
+            }
+
+            // Create a click handler for your increment button
+            $("#increaseButton").click(function () {
+                var postId = $("#vote").attr("postId").toString();
+                $("#vote").text(ChangeVotes(postId, 1));
+            });
+            // .. and your decrement button
+            $("#decreaseButton").click(function () {
+                var postId = $("#vote").attr("postId").toString();
+                $("#vote").text(ChangeVotes(postId, -1));
+            });
         });
+
+ 
     </script>
     <%-- ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- --%>
 </asp:Content>

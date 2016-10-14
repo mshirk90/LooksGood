@@ -6,6 +6,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using BusinessObjects;
 using DatabaseHelper;
+using System.Web.UI.HtmlControls;
 
 namespace LooksGood
 {
@@ -17,7 +18,7 @@ namespace LooksGood
 
         protected void Page_Load(object sender, EventArgs e)
         {
-      
+            
             if (Session["User"] == null)
             {
                 cmtComment.Text = "Please login to comment";
@@ -28,8 +29,6 @@ namespace LooksGood
                 Guid postId = new Guid(Request.QueryString["postId"]);
                 CommentsList comments = new CommentsList();
                 comments = comments.GetByPostId(postId);
-                //rptComments.DataSource = comments.List;
-                //rptComments.DataBind();
                 
                 Post post = new Post();
                 post = post.GetById(postId);
@@ -37,7 +36,11 @@ namespace LooksGood
 
                 lblHeader.Text = string.Format("Posted by: {0}", post.UserName);
                 lblTitle.Text = string.Format("Title: {0}", post.Title);
-                lblDescription.Text = string.Format("Description: {0}", post.Description);                
+                lblDescription.Text = string.Format("Description: {0}", post.Description);
+
+                MasterPage masterpage = Page.Master;
+                HtmlAnchor anchor = (HtmlAnchor)masterpage.FindControl("ancLogin");
+                anchor.HRef = "/Account/Login.aspx?returnURL=/ExpandedPost.aspx?postId=" + postId;
             }
         }
        
@@ -52,7 +55,7 @@ namespace LooksGood
             if (comment.IsSavable() == true)
             {
                 comment.Save();
-                Server.Transfer("ExpandedPost.aspx");
+                //Server.Transfer("ExpandedPost.aspx");
             }
             else
             {
