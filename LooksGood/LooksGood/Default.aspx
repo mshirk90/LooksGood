@@ -29,28 +29,9 @@
                 </div>
             </ItemTemplate>
         </asp:Repeater>
-    </div>
-    <%--<div ng-app="MyApp" ng-controller="MyController">
-        <div ng-repeat="x in post">
-        <a href="ExpandedPost.aspx?postId={{x.Id}}">
-            <h3 class="titlecenter">{{x.Title}}</h3>
-            <div id="image" class="image">
-                <img src="{{x.ImagePath}}" />
-            </div>
-            <div>
-                <div class="descript">
-                    <p>Description: {{x.Description}}</p>
-                    <h6 class="uName">-{{x.UserName}}</h6>
-                </div>
-            </div>
-        </a>
-    </div>
-    <div class="customHr">
-        <hr class="customHr" />
-        </div>
-    </div>--%>
+    </div>   
 <%-- ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- --%>
-    <script>
+    <%--<script>
         var app = angular.module("MyApp", []);
         app.controller("MyController", function ($scope) {
             $scope.post = [];
@@ -82,5 +63,5 @@
                 });
             }
         })
-    </script>
+    </script>--%>
 </asp:Content>
