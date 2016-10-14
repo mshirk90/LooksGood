@@ -18,7 +18,7 @@
                         </div>
                         <div>
                             <div class="triangle-isosceles">
-                                <p>Description: <%# DataBinder.Eval(Container.DataItem, "Description")  %></p>
+                                <p class="top" >Description: <%# DataBinder.Eval(Container.DataItem, "Description")  %></p>
                                 <h6>-<%# DataBinder.Eval(Container.DataItem,"UserName")  %></h6>
                             </div>
                         </div>
