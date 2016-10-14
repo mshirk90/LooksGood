@@ -2,8 +2,6 @@
 
 
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
-
-
     <div class="container">
         <asp:Label ID="lblUserName" runat="server" Font-Italic="true" Font-Size="X-Large">
         </asp:Label>
