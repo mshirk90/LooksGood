@@ -12,6 +12,8 @@
     <script src="Scripts/bootstrap.min.js"></script>
     <script src="Scripts/jquery-3.1.1.min.js"></script>
     <script src="Scripts/jquery-3.1.1.intellisense.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.7/angular.min.js"></script>
+
 </head>
 <body id="body2" runat="server">
     <div id="header">
@@ -52,7 +54,7 @@
 
                 <li>
                     <asp:Label runat="server" ID="lblLogin" Visible="true">                                                                        
-                                        <a href="/Account/Login.aspx">-Login-</a>                                    
+                                        <a id="ancLogin" runat="server" href="/Account/Login.aspx">-Login-</a>                                    
                     </asp:Label>
                 </li>
                 <li>

@@ -57,7 +57,14 @@ namespace LooksGood.Account
                     Response.Cookies["LooksGoodCookies"].Expires = DateTime.MaxValue;
                 }
                 Session.Add("User", user);
-                Response.Redirect("~/Default.aspx");
+                if (Request.QueryString["returnURL"] != null)
+                {
+                    Response.Redirect(Request.QueryString["returnURL"]);
+                }
+                else
+                {
+                    Response.Redirect("~/Default.aspx");
+                }
             }
         }
         protected void btnLogin_Click(object sender, EventArgs e)
