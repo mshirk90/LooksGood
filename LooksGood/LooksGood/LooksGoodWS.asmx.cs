@@ -68,5 +68,17 @@ namespace LooksGood
 
             return jsoncomments;
         }
+
+        [WebMethod]
+        [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
+        public String GetMostRecentPosts()
+        {
+            PostList postList = new PostList();
+            postList = postList.GetMostRecent();
+
+            string pList = JsonConvert.SerializeObject(postList.List);
+
+            return pList;
+        }
     }
 }

@@ -319,7 +319,6 @@ C:\Users\pmartone002261\Documents\LooksGood\LooksGood\LooksGood\bin\roslyn\Micro
 C:\Users\pmartone002261\Documents\LooksGood\LooksGood\LooksGood\bin\roslyn\System.Reflection.Metadata.dll
 C:\Users\pmartone002261\Documents\LooksGood\LooksGood\LooksGood\bin\roslyn\VBCSCompiler.exe
 C:\Users\pmartone002261\Documents\LooksGood\LooksGood\LooksGood\bin\Microsoft.Owin.Security.Cookies.dll
-C:\Users\Matt\Documents\LooksGood\LooksGood\LooksGood\LooksGood\obj\Debug\LooksGood.csprojResolveAssemblyReference.cache
 C:\Users\pmartone002261\Documents\LooksGood\LooksGood\LooksGood\bin\ApplicationInsights.config
 C:\Users\pmartone002261\Documents\LooksGood\LooksGood\LooksGood\bin\roslyn\csc.exe
 C:\Users\pmartone002261\Documents\LooksGood\LooksGood\LooksGood\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
@@ -471,3 +470,4 @@ C:\Users\Matt\Documents\LooksGood\LooksGood\LooksGood\LooksGood\bin\Microsoft.Ow
 C:\Users\Matt\Documents\LooksGood\LooksGood\LooksGood\LooksGood\bin\Microsoft.Owin.Security.OAuth.xml
 C:\Users\Matt\Documents\LooksGood\LooksGood\LooksGood\LooksGood\obj\Debug\LooksGood.dll
 C:\Users\Matt\Documents\LooksGood\LooksGood\LooksGood\LooksGood\obj\Debug\LooksGood.pdb
+C:\Users\Matt\Documents\LooksGood\LooksGood\LooksGood\LooksGood\obj\Debug\LooksGood.csprojResolveAssemblyReference.cache

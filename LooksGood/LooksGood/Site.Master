@@ -7,11 +7,12 @@
     </asp:ContentPlaceHolder>
     <title>Looks Good</title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <link rel="stylesheet" href="style.css" type="text/css" charset="utf-8" ch />
     <link href="style.css" rel="stylesheet" />
     <script src="Scripts/bootstrap.min.js"></script>
     <script src="Scripts/jquery-3.1.1.min.js"></script>
     <script src="Scripts/jquery-3.1.1.intellisense.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.7/angular.min.js"></script>
+
 </head>
 <body id="body2" runat="server">
     <div id="header">
@@ -52,7 +53,7 @@
 
                 <li>
                     <asp:Label runat="server" ID="lblLogin" Visible="true">                                                                        
-                                        <a href="/Account/Login.aspx">-Login-</a>                                    
+                                        <a id="ancLogin" runat="server" href="/Account/Login.aspx">-Login-</a>                                    
                     </asp:Label>
                 </li>
                 <li>
@@ -65,13 +66,10 @@
     </div>
     <asp:ContentPlaceHolder ID="header2" runat="server">
     </asp:ContentPlaceHolder>
-    <div id="black-tl">
-        <div id="black-tr">
-            <div id="black-br">
-                <div id="black-bl">
+    <div id="black-tl"> 
                     <form id="mContent" runat="server">
                         <div class="black-box">
-                            <h2 id="lowerTitle"><em>Looks</em><am> Good</am></h2>
+                            <h2 id="lowerTitle"><em>Looks</em><b> Good</b></h2>
                             <div class="customHr">
                                 <hr class="customHr" />
                             </div>
@@ -79,12 +77,8 @@
                             </asp:ContentPlaceHolder>
                         </div>
                     </form>
-
                     <div class="clear"></div>
                 </div>
-            </div>
-        </div>
-    </div>
     <div id="footer">
     </div>
     <div class="clear"></div>
