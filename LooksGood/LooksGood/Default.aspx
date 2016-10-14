@@ -7,7 +7,7 @@
 
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
 
-    <div class="container">
+    <div>
         <asp:Repeater ID="rptImages" runat="server">
             <ItemTemplate>
                 <div>
@@ -17,9 +17,9 @@
                             <asp:Image ID="imgImage" runat="server" ImageUrl='<%# DataBinder.Eval(Container.DataItem, "ImagePath")  %>' Width="560" Height="445" />
                         </div>
                         <div>
-                            <div class="descript">
+                            <div class="triangle-isosceles">
                                 <p>Description: <%# DataBinder.Eval(Container.DataItem, "Description")  %></p>
-                                <h6 class="uName">-<%# DataBinder.Eval(Container.DataItem,"UserName")  %></h6>
+                                <h6>-<%# DataBinder.Eval(Container.DataItem,"UserName")  %></h6>
                             </div>
                         </div>
                     </a>

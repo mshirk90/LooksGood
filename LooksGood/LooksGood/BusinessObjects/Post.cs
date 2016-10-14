@@ -4,7 +4,6 @@ using System.Linq;
 using System.Web;
 using System.Data;
 using DatabaseHelper;
-using PhotoHelper;
 
 
 namespace BusinessObjects
