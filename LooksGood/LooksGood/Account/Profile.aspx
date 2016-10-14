@@ -26,9 +26,10 @@
                             <div class="body">
                                 <span class="tip tip-up"></span>
                                 <div class="message">
-                                    <a class="a2"><span><%# DataBinder.Eval(Container.DataItem, "Title")  %></span></a>
+                                    <span style="color:black"><%# DataBinder.Eval(Container.DataItem, "Title")  %></span>
                                     <hr />
-                                    <a class="a2"><span><%# "Post Description: " + DataBinder.Eval(Container.DataItem, "Description")  %></span></a>
+                                    <a class="a2" href='<%# "../ExpandedPost.aspx?postId=" + DataBinder.Eval(Container.DataItem, "Id")  %>'>
+                                    <span style="color:black"><%# "Post Description: " + DataBinder.Eval(Container.DataItem, "Description")  %></span>
                                 </div>
                             </div>
                         </div>
