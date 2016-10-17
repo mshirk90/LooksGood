@@ -31,9 +31,7 @@
                     <div class="input-group">
                         <button type="button" id="decreaseButton" class="btn btn-danger" style="background-color: #FF0000; width: 24px; font-weight: bold;">-</button>&nbsp;
                         <input type="text" readonly="true" class="form-control" id="vote" placeholder="Vote" postid='<%=Request.QueryString["postId"] %>' />
-
                         <button type="button" id="increaseButton" class="btn btn-success" style="background-color: #00CC00; font-weight: bold;">+</button>
-
                     </div>
                 </div>
             </div>
@@ -48,10 +46,10 @@
             <asp:TextBox Rows="10" name="comment" ID="cmtComment" placeholder="Comment" runat="server"></asp:TextBox>
         </div>
         <div>
-            <asp:Button type="submit" name="submit" Text="Submit Comment" OnClick="comSubmit" runat="server" ID="btnSubmit" />
+            <input type="submit" id="btnSubmit" value="Submit Comment" onclick="comSubmit" />
+            <%--<asp:button type="submit" name="submit" Text="Submit Comment" OnClick="comSubmit" runat="server" ID="btnSubmit" />--%>
         </div>
     </div>
-
     <div ng-app="MyApp" ng-controller="MyController">
          <div ng-repeat="x in comments" class="container left" style="border: 0px solid black">
                 <div class="dialogbox">
