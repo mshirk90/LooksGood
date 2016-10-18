@@ -17,7 +17,13 @@ namespace LooksGood
 
 
         protected void Page_Load(object sender, EventArgs e)
-        {          
+        {
+            
+            if (Session["User"] == null)
+            {
+                cmtComment.Text = "Please login to comment";
+                btnSubmit.Visible = false;
+            }
             if (Request.QueryString["postId"] != null)
             {
                 Guid postId = new Guid(Request.QueryString["postId"]);
@@ -35,8 +41,8 @@ namespace LooksGood
                 MasterPage masterpage = Page.Master;
                 HtmlAnchor anchor = (HtmlAnchor)masterpage.FindControl("ancLogin");
                 anchor.HRef = "/Account/Login.aspx?returnURL=/ExpandedPost.aspx?postId=" + postId;
-
+       
             }
-        }      
+        }
     }
 }

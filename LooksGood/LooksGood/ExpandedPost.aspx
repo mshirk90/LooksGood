@@ -30,9 +30,9 @@
                 <div class="col-sm-3 col-md-3 col-lg-3">
                     <div class="input-group">
                         <button type="button" id="decreaseButton" class="btn btn-danger" style="background-color: #FF0000; width: 24px; font-weight: bold;">-</button>&nbsp;
-                        <input type="text" readonly="true" class="form-control" id="vote" placeholder="Vote" postid='<%=Request.QueryString["postId"] %>' userid='<%=Request.QueryString["userId"] %>' />
-                        <button type="button" id="increaseButton" class="btn btn-success" style="background-color: #00CC00; font-weight: bold;">+</button>
+                        <input type="text" readonly="true" class="form-control" id="vote" placeholder="Vote" postid='<%=Request.QueryString["postId"] %>' />
 
+                        <button type="button" id="increaseButton" class="btn btn-success" style="background-color: #00CC00; font-weight: bold;">+</button>
                     </div>
                 </div>
             </div>
@@ -47,10 +47,9 @@
             <textarea cols="5" rows="5" name="comment" ID="cmtComment" placeholder="Comment"></textarea>
         </div>
         <div>
-            <input type="submit" name="submit" Value="Submit Comment" ID="btnSubmit" />
+            <asp:Button type="submit" name="submit" Text="Submit Comment" OnClick="comSubmit" runat="server" ID="btnSubmit" />
         </div>
     </div>
-
     <div ng-app="MyApp" ng-controller="MyController">
          <div ng-repeat="x in comments" class="container left" style="border: 0px solid black">
                 <div class="dialogbox">
