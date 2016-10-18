@@ -21,7 +21,7 @@ namespace LooksGood
             
             if (Session["User"] == null)
             {
-                cmtComment.Text = "Please login to comment";
+                //cmtComment.Text = "Please login to comment";
                 //btnSubmit.Visible = false;
             }
             if (Request.QueryString["postId"] != null)
@@ -41,25 +41,7 @@ namespace LooksGood
                 MasterPage masterpage = Page.Master;
                 HtmlAnchor anchor = (HtmlAnchor)masterpage.FindControl("ancLogin");
                 anchor.HRef = "/Account/Login.aspx?returnURL=/ExpandedPost.aspx?postId=" + postId;
-            }
-        }
        
-        public void comSubmit(object sender, EventArgs e)
-        {
-            Guid postId = new Guid(Request.QueryString["postId"]);
-            Comments comment = new Comments();
-            User user = (User)Session["User"];
-            comment.Comment = cmtComment.Text;
-            comment.UserId = user.Id;
-            comment.PostId = postId;
-            if (comment.IsSavable() == true)
-            {
-                comment.Save();
-                //Server.Transfer("ExpandedPost.aspx");
-            }
-            else
-            {
-                Page.ClientScript.RegisterStartupScript(this.GetType(), "clientscript", "<script>alert('Comment did not save');</script>", true);
             }
         }
     }

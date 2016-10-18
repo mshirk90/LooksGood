@@ -71,14 +71,26 @@ namespace LooksGood
 
         [WebMethod]
         [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
-        public String GetMostRecentPosts()
+        public string SubmitComment(string postid, string commentText, string userid)
         {
-            PostList postList = new PostList();
-            postList = postList.GetMostRecent();
-
-            string pList = JsonConvert.SerializeObject(postList.List);
-
-            return pList;
+            Comments comment = new Comments();
+            comment.PostId = new Guid(postid);
+            comment.UserId = new Guid(userid);
+            comment.Comment = commentText;
+            comment.Save();
+            return GetCommentsByPostId(postid);
         }
+
+        //[WebMethod]
+        //[ScriptMethod(ResponseFormat = ResponseFormat.Json)]
+        //public String GetMostRecentPosts()
+        //{
+        //    PostList postList = new PostList();
+        //    postList = postList.GetMostRecent();
+
+        //    string pList = JsonConvert.SerializeObject(postList.List);
+
+        //    return pList;
+        //}
     }
 }
