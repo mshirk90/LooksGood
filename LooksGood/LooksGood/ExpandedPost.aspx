@@ -30,8 +30,7 @@
                 <div class="col-sm-3 col-md-3 col-lg-3">
                     <div class="input-group">
                         <button type="button" id="decreaseButton" class="btn btn-danger" style="background-color: #FF0000; width: 24px; font-weight: bold;">-</button>&nbsp;
-                        <input type="text" readonly="true" class="form-control" id="vote" placeholder="Vote" postid='<%=Request.QueryString["postId"] %>' />
-
+                        <input type="text" readonly="true" class="form-control" id="vote" placeholder="Vote" postid='<%=Request.QueryString["postId"] %>' userid='<%=Request.QueryString["userId"] %>' />
                         <button type="button" id="increaseButton" class="btn btn-success" style="background-color: #00CC00; font-weight: bold;">+</button>
 
                     </div>
@@ -45,10 +44,10 @@
     </div>
     <div id="comment_form" style="padding-left: 25px" class="div-margin">
         <div>
-            <asp:TextBox Rows="10" name="comment" ID="cmtComment" placeholder="Comment" runat="server"></asp:TextBox>
+            <textarea cols="5" rows="5" name="comment" ID="cmtComment" placeholder="Comment"></textarea>
         </div>
         <div>
-            <asp:Button type="submit" name="submit" Text="Submit Comment" OnClick="comSubmit" runat="server" ID="btnSubmit" />
+            <input type="submit" name="submit" Value="Submit Comment" ID="btnSubmit" />
         </div>
     </div>
 
@@ -77,9 +76,49 @@
 
             angular.element(document).ready(function () {
                 var id = vote.getAttribute("postid");
+                var userid = vote.getAttribute("userId");
+                if (userid === "") {
+                    $("#cmtComment").val('Please Login to comment');
+                    $("#btnSubmit").val('Please login to comment');
+                    $("#cmtComment").prop("disabled", true);
+                    $("#btnSubmit").prop("disabled", true);
+                } else {
+                    $("#cmtComment").prop("disabled", false);
+                    $("#btnSumbit").prop("disabled", false);
+                    $("#cmtComment").val('');
+                }
                 GetCommentsByPostId(id);
                 //GetVotes(id);
             });
+
+            function WebServiceRequest(strMethod, jsonData, cbSuccess, cbError) {
+                $.ajax({
+                    type: 'POST',
+                    url: 'LooksGoodWS.asmx/' + strMethod,
+                    data: jsonData,
+                    contentType: 'application/json; charset=utf-8',
+                    dataType: 'json',
+                    success: cbSuccess,
+                    error: cbError
+                });
+            }
+
+            function commentSuccess(response) {
+                $scope.comments = JSON.parse(response.d);
+                $scope.$apply();
+            }
+            function commentFailure(response) {
+                alert(response.d.responseText);
+            }
+
+            $("#btnSubmit").click(function () {
+                var postid = $("#vote").attr("postId").toString();
+                var commentText = $("#cmtComment").val();
+                var userid = $("#vote").attr("userid").toString();
+                WebServiceRequest("SubmitComment", "{'postid': '" + postid + "', 'commentText': '" + commentText + "', 'userid': '" + userid + "'}", commentSuccess, commentFailure )
+            });
+
+            
 
             function GetCommentsByPostId(id) {
                 $.ajax({

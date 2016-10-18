@@ -7,6 +7,7 @@ using System.Web.UI.WebControls;
 using BusinessObjects;
 using DatabaseHelper;
 using System.IO;
+using System.Web.UI.HtmlControls;
 
 
 namespace LooksGood.Account
@@ -37,6 +38,10 @@ namespace LooksGood.Account
                 rptPost.DataBind();
                 rptComments.DataSource = comments.List;
                 rptComments.DataBind();
+
+                MasterPage masterpage = Page.Master;
+                HtmlAnchor anchor = (HtmlAnchor)masterpage.FindControl("ancLogin");
+                anchor.HRef = "/Account/Login.aspx?returnURL=/Account/Profile.aspx?userId=" + Request.QueryString["userId"];
 
                 if (Session["User"] != null)
                 {

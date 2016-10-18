@@ -11,7 +11,8 @@
         <asp:Repeater ID="rptImages" runat="server">
             <ItemTemplate>
                 <div>
-                    <a href='<%# "ExpandedPost.aspx?postId=" + DataBinder.Eval(Container.DataItem, "ID")  %>'>
+                    <a href='<%# 
+                        Session["User"] != null ? "ExpandedPost.aspx?postId=" + DataBinder.Eval(Container.DataItem, "ID") + "&userId=" + ((BusinessObjects.User)Session["User"]).Id : "ExpandedPost.aspx?postId=" + DataBinder.Eval(Container.DataItem, "ID") %>'>
                         <h3 class="titlecenter"><%# DataBinder.Eval(Container.DataItem, "Title")  %></h3>
                         <div id="image" class="image">
                             <asp:Image ID="imgImage" runat="server" ImageUrl='<%# DataBinder.Eval(Container.DataItem, "ImagePath")  %>' Width="560" Height="445" />

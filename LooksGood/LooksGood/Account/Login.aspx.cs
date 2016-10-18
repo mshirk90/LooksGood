@@ -59,7 +59,8 @@ namespace LooksGood.Account
                 Session.Add("User", user);
                 if (Request.QueryString["returnURL"] != null)
                 {
-                    Response.Redirect(Request.QueryString["returnURL"]);
+                    string URL = Request.QueryString["returnURL"] + "&userId=" + user.Id;
+                    Response.Redirect(URL);
                 }
                 else
                 {

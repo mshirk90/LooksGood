@@ -22,7 +22,6 @@ namespace LooksGood
             {
                 MasterPage masterpage = Page.Master;
 
-
                 User user = (User)Session["User"];
                 Menu menu = (Menu)this.FindControl("Menu1");
                 Label label = (Label)masterpage.FindControl("idUser");
@@ -32,10 +31,10 @@ namespace LooksGood
                 lblUpload.Visible = true;
                 lblProfile.Visible = true;
                 lblChangePassword.Visible = true;
-                lblLogout.Visible = true;               
+                lblLogout.Visible = true;
                 lblLogin.Visible = false;
                 lblRegister.Visible = false;
-                lblForgotPassword.Visible = false;
+                lblForgotPassword.Visible = false;                
             }
             else
             {
