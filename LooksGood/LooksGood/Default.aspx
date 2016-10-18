@@ -1,8 +1,7 @@
 ﻿<%@ Page Title="Home Page" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Default.aspx.cs" Inherits="LooksGood._Default" %>
 
 
-<asp:Content ID="header2" ContentPlaceHolderID="header2" runat="server">
-</asp:Content>
+
 
 
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
@@ -14,9 +13,17 @@
                     <a href='<%# 
                         Session["User"] != null ? "ExpandedPost.aspx?postId=" + DataBinder.Eval(Container.DataItem, "ID") + "&userId=" + ((BusinessObjects.User)Session["User"]).Id : "ExpandedPost.aspx?postId=" + DataBinder.Eval(Container.DataItem, "ID") %>'>
                         <h3 class="titlecenter"><%# DataBinder.Eval(Container.DataItem, "Title")  %></h3>
-                        <div id="image" class="image">
-                            <asp:Image ID="imgImage" runat="server" ImageUrl='<%# DataBinder.Eval(Container.DataItem, "ImagePath")  %>' Width="560" Height="445" />
+                        <div>
+                            <asp:Image ID="imgImage" runat="server" ImageUrl='<%# DataBinder.Eval(Container.DataItem, "ImagePath")  %>' Width="90%" Height="80%" />
                         </div>
+                                        <p class="intro-text">
+                            <%--text--%>
+                            <br>
+                            Get Started Now!
+                        </p>
+                        <a href="#about" class="btn btn-circle page-scroll">
+                            <i class="fa fa-angle-double-down animated"></i>
+                        </a>
                         <div>
                             <div class="triangle-isosceles" >
                                 <p>Description: <%# DataBinder.Eval(Container.DataItem, "Description")  %></p>

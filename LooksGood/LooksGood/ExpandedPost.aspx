@@ -37,7 +37,7 @@
                 </div>
             </div>
         </div>
-        <hr style="display: inline-block; width: 90%" />
+       <hr class="customHr" />
     </div>
     <div>
         <div></div>
@@ -57,7 +57,7 @@
                         <span class="tip tip-up"></span>
                         <div class="message">
                             <span style="color: black">{{x.Comment}}</span>
-                            <hr />
+                            <hr class="customHr" />
                             <a class="a2" href="/Account/Profile.aspx?userId={{x.UserId}}"
                                 <span>Commented by: {{x.UserName}}</span>
                             </a>
@@ -192,6 +192,7 @@
 
  
     </script>
+    <div> <hr class="ghostHr" /></div>
     <%-- ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- --%>
 </asp:Content>
 
