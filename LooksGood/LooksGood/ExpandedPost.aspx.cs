@@ -21,8 +21,8 @@ namespace LooksGood
             
             if (Session["User"] == null)
             {
-                cmtComment.Text = "Please login to comment";
-                btnSubmit.Visible = false;
+                //cmtComment.Text = "Please login to comment";
+                //btnSubmit.Visible = false;
             }
             if (Request.QueryString["postId"] != null)
             {

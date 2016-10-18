@@ -24,6 +24,9 @@ namespace LooksGood.Account
 
             if (Request.QueryString["userId"] != null)
             {
+                MasterPage masterpage = Page.Master;
+                HtmlAnchor anchor = (HtmlAnchor)masterpage.FindControl("ancLogin");               
+                
                 Guid userId = new Guid(Request.QueryString["userId"]);
                 User user = new User();
                 user = user.GetById(userId);
@@ -38,10 +41,8 @@ namespace LooksGood.Account
                 rptPost.DataBind();
                 rptComments.DataSource = comments.List;
                 rptComments.DataBind();
+                anchor.HRef = "/Account/Login.aspx?returnURL=/Account/Profile.aspx?userId=" + userId;
 
-                MasterPage masterpage = Page.Master;
-                HtmlAnchor anchor = (HtmlAnchor)masterpage.FindControl("ancLogin");
-                anchor.HRef = "/Account/Login.aspx?returnURL=/Account/Profile.aspx?userId=" + Request.QueryString["userId"];
 
                 if (Session["User"] != null)
                 {
@@ -59,7 +60,7 @@ namespace LooksGood.Account
 
             else
             {
-                Response.Redirect("Default.aspx");
+                Response.Redirect("/Default.aspx");
             }
 
         }

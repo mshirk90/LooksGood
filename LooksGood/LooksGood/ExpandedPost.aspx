@@ -30,7 +30,7 @@
                 <div class="col-sm-3 col-md-3 col-lg-3">
                     <div class="input-group">
                         <button type="button" id="decreaseButton" class="btn btn-danger" style="background-color: #FF0000; width: 24px; font-weight: bold;">-</button>&nbsp;
-                        <input type="text" readonly="true" class="form-control" id="vote" placeholder="Vote" postid='<%=Request.QueryString["postId"] %>' />
+                        <input type="text" readonly="true" class="form-control" id="vote" placeholder="Vote" postid='<%=Request.QueryString["postId"] %>' userid='<%=Request.QueryString["userId"] %>'/>
 
                         <button type="button" id="increaseButton" class="btn btn-success" style="background-color: #00CC00; font-weight: bold;">+</button>
                     </div>
@@ -47,7 +47,7 @@
             <textarea cols="5" rows="5" name="comment" ID="cmtComment" placeholder="Comment"></textarea>
         </div>
         <div>
-            <asp:Button type="submit" name="submit" Text="Submit Comment" OnClick="comSubmit" runat="server" ID="btnSubmit" />
+            <input type="submit" name="submit" value="Submit Comment" ID="btnSubmit" />
         </div>
     </div>
     <div ng-app="MyApp" ng-controller="MyController">
@@ -105,6 +105,8 @@
             function commentSuccess(response) {
                 $scope.comments = JSON.parse(response.d);
                 $scope.$apply();
+                alert(response.d);
+
             }
             function commentFailure(response) {
                 alert(response.d.responseText);
