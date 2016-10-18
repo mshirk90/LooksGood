@@ -13,22 +13,13 @@ namespace LooksGood {
     public partial class LooksGood {
         
         /// <summary>
-        /// head control.
+        /// Head control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ContentPlaceHolder head;
-        
-        /// <summary>
-        /// body2 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl body2;
+        protected global::System.Web.UI.WebControls.ContentPlaceHolder Head;
         
         /// <summary>
         /// lblForgotPassword control.
@@ -112,22 +103,13 @@ namespace LooksGood {
         protected global::System.Web.UI.WebControls.Label lblLogout;
         
         /// <summary>
-        /// header2 control.
+        /// Form1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ContentPlaceHolder header2;
-        
-        /// <summary>
-        /// mContent control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlForm mContent;
+        protected global::System.Web.UI.HtmlControls.HtmlForm Form1;
         
         /// <summary>
         /// MainContent control.

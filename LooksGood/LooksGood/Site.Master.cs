@@ -32,7 +32,7 @@ namespace LooksGood
                 lblUpload.Visible = true;
                 lblProfile.Visible = true;
                 lblChangePassword.Visible = true;
-                lblLogout.Visible = true;               
+                lblLogout.Visible = true;
                 lblLogin.Visible = false;
                 lblRegister.Visible = false;
                 lblForgotPassword.Visible = false;

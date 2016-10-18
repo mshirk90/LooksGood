@@ -21,3 +21,72 @@
     </form>
 </body>
 </html>
+
+
+
+
+<body id="body2" runat="server">
+    <div id="header">
+        <h1><em>Looks Good</em><strong>...and stuff</strong></h1>
+        <div id="nav" class="nav">
+            <ul>
+                <li>
+                    <a href="/default.aspx">-Home-</a>
+                </li>
+                <li>
+                    <a href="#">-About-</a>
+                </li>
+                <li>
+                    <asp:Label runat="server" ID="lblForgotPassword" Visible="false"> 
+                                        <a href="/Account/Forgot.aspx">-Forgot Password-</a>
+                    </asp:Label>
+                </li>
+                <li>
+                    <asp:label runat="server" ID="lblProfile" Visible="false">                       
+                            <a id="hrefProfile" runat="server" href="#">-Profile-</a>                       
+                    </asp:label>
+                </li>
+                <li>
+                    <asp:Label runat="server" ID="lblChangePassword" Visible="false"> 
+                                        <a href="/Account/ChangePassword.aspx">-Change Password-</a>
+                    </asp:Label>
+                </li>
+                <li>
+                    <asp:Label runat="server" ID="lblUpload" Visible="false"> 
+                                        <a href="/Account/Upload.aspx">-Upload-</a>
+                    </asp:Label>
+                </li>
+                <li>
+                    <asp:Label runat="server" ID="lblRegister" Visible="true">                                
+                                <a href="/Account/Register.aspx">-Register-</a>                                 
+                    </asp:Label>
+                </li>
+
+                <li>
+                    <asp:Label runat="server" ID="lblLogin" Visible="true">                                                                        
+                                        <a id="ancLogin" runat="server" href="/Account/Login.aspx">-Login-</a>                                    
+                    </asp:Label>
+                </li>
+                <li>
+                    <asp:Label runat="server" ID="lblLogout" Visible="false">                                                                        
+                                        <a href="/Account/Logout.aspx">-Logout-</a>                                    
+                    </asp:Label>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <asp:ContentPlaceHolder ID="header2" runat="server">
+    </asp:ContentPlaceHolder>
+    <div id="black-tl"> 
+                    <form id="mContent" runat="server">
+                        <div class="black-box">
+                            <h2 id="lowerTitle"><em>Looks</em><b> Good</b></h2>
+                            <div class="customHr">
+                                <hr class="customHr" />
+                            </div>
+                            <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+                            </asp:ContentPlaceHolder>
+                        </div>
+                    </form>
+                    <div class="clear"></div>
+                </div>

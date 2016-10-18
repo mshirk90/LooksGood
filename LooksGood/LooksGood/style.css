@@ -28,10 +28,10 @@ a {
     text-decoration: none;
 }
 
-    a:hover {
-        color: #eee;
-        text-decoration: underline;
-    }
+a:hover {
+    color: #eee;
+    text-decoration: underline;
+}
 
 .left {
     float: left;
@@ -56,14 +56,13 @@ body {
     font: 11px arial, sans-serif;
 }
 
-#header {
-    position: relative;
-    top: 0;
-    left: 0;
+#header {    
     width: 70.75%;
+    /*background: -8px 0px url(images/header_bg.jpg) repeat-x;*/
+    background: url('images/moon.jpg') no-repeat;
+    background-position: center;
     margin: auto;
-    background: -8px 0px url(images/header_bg.jpg) repeat-x;
-    height: 170px;
+    height: 129px;
 }
     /*#header h1 {
 	background: 0px 0px url(images/header_left.jpg) repeat-x;
@@ -77,13 +76,13 @@ body {
     #header h1 em {
         display: block;
         text-align: center;
-        padding-top: 20px;
-        padding-right: 40px;
+        padding-top: 25px;
+        padding-right: 10px;
         margin: auto;
         left: 50%;
         right: 50%;
         font-weight: normal;
-        font-size: 28px;
+        font-size: 34px;
         font-family: "Times new roman", serif;
     }
 
@@ -117,14 +116,13 @@ body {
 
 #nav {
     background: top center url(images/nav_left.gif) no-repeat;
-    
     position: relative;
     top: 25px;
     /*left: 200px;*/
-    width: 70%;
+    width: 90%;
     margin: auto;
     text-align: center;
-    z-index: 5;  
+    z-index: 5;
 }
 
 .vw, vh {
@@ -144,7 +142,9 @@ body {
 
 #nav li {
     display: inline;
-    mar;
+    font-size: 18px;
+    font-family: 'King-Basil-Lite';
+    word-spacing: 15px;
 }
 
 #nav a {
@@ -166,7 +166,6 @@ body {
     margin-left: 355px;
     padding-top: 20px;
     width: 70%;
-
 }
 
     #body h2 {
@@ -178,13 +177,14 @@ body {
 
         #body h2 em {
             font-size: 25px;
-            font-family:'King-Basil-Lite';          
+            font-family: 'King-Basil-Lite';
         }
-           h2 b {
-            font-size: 21px;
-            font-family:'King-Basil-Lite'; 
-            font-style: italic;        
-        }
+
+h2 b {
+    font-size: 21px;
+    font-family: 'King-Basil-Lite';
+    font-style: italic;
+}
 
 @font-face {
     src: url('fonts/King-Basil-Lite.otf') format('opentype');
@@ -223,9 +223,8 @@ body {
 
 #black-tl {
     margin: auto;
-    width: 70%;
+    width: 100%;
     background: black;
-   
 }
 
 #black-bl {
@@ -234,13 +233,11 @@ body {
 }
 
 .black-box {
-   
     margin: auto;
     width: 100%;
     margin-left: -5px;
     border: 5px solid white;
-    
-border-style: inset;
+    border-style: inset;
 }
 
     .black-box h2 {
@@ -257,7 +254,7 @@ border-style: inset;
         color: red;
     }
 
- 
+
 #footer {
     margin-left: 320px;
     margin-top: 10px;
@@ -309,6 +306,14 @@ border-style: inset;
     margin-bottom: 6px;
 }
 
+.ghostHr {
+    width: 95%;
+    font-size: 0px;
+    margin: auto;
+    line-height: 0px;
+    background-color: transparent;
+}
+
 
 
 .tip {
@@ -317,7 +322,7 @@ border-style: inset;
     position: absolute;
     background: transparent;
     border: 10px solid #ccc;
-      color: black;
+    color: black;
 }
 
 .tip-up {
@@ -327,7 +332,6 @@ border-style: inset;
     border-left-color: transparent;
     border-top-color: transparent;
     color: black;
-   
 }
 
 .tip-down {
@@ -336,7 +340,7 @@ border-style: inset;
     border-right-color: transparent;
     border-left-color: transparent;
     border-bottom-color: transparent;
-      color: black;
+    color: black;
 }
 
 .tip-left {
@@ -345,7 +349,7 @@ border-style: inset;
     border-top-color: transparent;
     border-left-color: transparent;
     border-bottom-color: transparent;
-      color: black;
+    color: black;
 }
 
 .tip-right {
@@ -354,7 +358,7 @@ border-style: inset;
     border-top-color: transparent;
     border-right-color: transparent;
     border-bottom-color: transparent;
-      color: black;
+    color: black;
 }
 
 .dialogbox .body {
@@ -443,19 +447,19 @@ body {
     font-weight: bold;
 }
 
-.descriptionText{
-    text-align:justify;
-    font-size:300%;
-    padding-left:50px;
+.descriptionText {
+    text-align: justify;
+    font-size: 300%;
+    padding-left: 50px;
 }
 
 .titlecenter {
     text-align: center;
     width: 70%;
     height: 50px;
-    margin:auto;
-    font-family:'King-Basil-Lite';
-    font-size:300%;
+    margin: auto;
+    font-family: 'King-Basil-Lite';
+    font-size: 300%;
 }
 
 .image {
@@ -473,8 +477,8 @@ body {
 .descript {
     text-align: left;
     width: 70%;
-    display:  normal; 
-    padding-left: 190px;   
+    display: normal;
+    padding-left: 190px;
 }
 
 .navbar-toggle {
@@ -510,28 +514,27 @@ body {
 }
 
 #bannerimage {
-          background-image: url('images/line.png');
+    background-image: url('images/line.png');
 }
 
 
 .triangle-isosceles {
-  position:relative;
-  padding:5px;
-  color:#DADADA;
-  background:#f3961c; /* default background for browsers without gradient support */
-  /* css3 */
-  background:-webkit-gradient(linear, 0 0, 0 100%, from(#580000), to(#000000));
-  background:-moz-linear-gradient(#580000, #000000);
-  background:-o-linear-gradient(#580000, #000000);
-  background:linear-gradient(#580000, #000000);
-  -webkit-border-radius:10px;
-  -moz-border-radius:10px;
-  border-radius:10px;
-  width: 59%;
-  margin-top: 20px;
-  margin-bottom: 5px;
-  margin-left: 20%;
-
+    position: relative;
+    padding: 5px;
+    color: #DADADA;
+    background: #f3961c; /* default background for browsers without gradient support */
+    /* css3 */
+    background: -webkit-gradient(linear, 0 0, 0 100%, from(#580000), to(#000000));
+    background: -moz-linear-gradient(#580000, #000000);
+    background: -o-linear-gradient(#580000, #000000);
+    background: linear-gradient(#580000, #000000);
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    border-radius: 10px;
+    width: 59%;
+    margin-top: 20px;
+    margin-bottom: 5px;
+    margin-left: 20%;
 }
 
 /*.triangle-isosceles.top {
@@ -544,17 +547,17 @@ body {
 
 /* creates triangle */
 .triangle-isosceles:after {
-  content:"";
-  position:absolute;
-  top:-15px; /* value = - border-top-width - border-bottom-width */
-  left:50px; /* controls horizontal position */
-  bottom:auto;
-  border-width:0 15px 15px; /* vary these values to change the angle of the vertex */
-  border-style:solid;
-  border-color:#580000 transparent;
-  /* reduce the damage in FF3.0 */
-  display:block;
-  width:0;
+    content: "";
+    position: absolute;
+    top: -15px; /* value = - border-top-width - border-bottom-width */
+    left: 50px; /* controls horizontal position */
+    bottom: auto;
+    border-width: 0 15px 15px; /* vary these values to change the angle of the vertex */
+    border-style: solid;
+    border-color: #580000 transparent;
+    /* reduce the damage in FF3.0 */
+    display: block;
+    width: 0;
 }
 
 /*.triangle-isosceles.top:after {
@@ -565,3 +568,7 @@ body {
   border-width:0 15px 15px;  vary these values to change the angle of the vertex 
   border-color:#f3961c transparent;
 }*/
+
+.paddingleft {
+    padding-left: 20px;
+}
