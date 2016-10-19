@@ -5,27 +5,22 @@
 
 
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
-
     <div ng-app="MyApp" ng-controller="MyController" ID="rptImages" >
         <section ng-repeat="x in post" id="{{}}">            
-                <div>
-                    <%--<a href='<%#--%> 
-                        
-                        <h3 class="titlecenter"></h3>
+                <div>                                          
+                        <h3 class="titlecenter">{{x.Title}}</h3>
                         <div>
-                            <img ID="imgImage" src="{{x.ImagePath}}" height="100%" width="80%"/>
-                        </div>                                                                   
-                            <p>{{x.Title}}</p>                       
-                        <a href="#about" class="btn btn-circle page-scroll">
-                            <i class="fa fa-angle-double-down animated"></i>
-                        </a>
-                        <div>
+                            <a ng-href="http://localhost:49982/ExpandedPost?postId={{x.Id}}">Click to comment, discuss, and vote!
+                            <img  ID="imgImage" src="{{x.ImagePath}}" height="75%" width="110%"/>
+                            </a>
                             <div class="triangle-isosceles" >
                                 <p>Description: {{x.Description}}</p>
                                 <h6>-Posted By: {{x.UserName}}</h6>
+                                <a href="#about" class="btn btn-circle page-scroll">
+                                    <i class="fa fa-angle-double-down animated"></i>
+                                </a>
                             </div>
                         </div>
-                    </a>
                 </div>
                 <div class="customHr">
                     <hr class="customHr" />

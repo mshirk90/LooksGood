@@ -46,7 +46,7 @@
         <div>
             <textarea cols="5" rows="5" name="comment" ID="cmtComment" placeholder="Comment"></textarea>
         </div>
-        <div>
+        <div class="textarea">
             <input type="submit" name="submit" value="Submit Comment" ID="btnSubmit" />
         </div>
     </div>
