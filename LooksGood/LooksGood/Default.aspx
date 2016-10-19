@@ -6,28 +6,23 @@
 
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
 
-    <div>
-        <asp:Repeater ID="rptImages" runat="server">
-            <ItemTemplate>
+    <div ng-app="MyApp" ng-controller="MyController" ID="rptImages" >
+        <section ng-repeat="x in post" id="{{}}">            
                 <div>
-                    <a href='<%# 
-                        Session["User"] != null ? "ExpandedPost.aspx?postId=" + DataBinder.Eval(Container.DataItem, "ID") + "&userId=" + ((BusinessObjects.User)Session["User"]).Id : "ExpandedPost.aspx?postId=" + DataBinder.Eval(Container.DataItem, "ID") %>'>
-                        <h3 class="titlecenter"><%# DataBinder.Eval(Container.DataItem, "Title")  %></h3>
+                    <%--<a href='<%#--%> 
+                        
+                        <h3 class="titlecenter"></h3>
                         <div>
-                            <asp:Image ID="imgImage" runat="server" ImageUrl='<%# DataBinder.Eval(Container.DataItem, "ImagePath")  %>' Width="90%" Height="80%" />
-                        </div>
-                                        <p class="intro-text">
-                            <%--text--%>
-                            <br>
-                            Get Started Now!
-                        </p>
+                            <img ID="imgImage" src="{{x.ImagePath}}" height="100%" width="80%"/>
+                        </div>                                                                   
+                            <p>{{x.Title}}</p>                       
                         <a href="#about" class="btn btn-circle page-scroll">
                             <i class="fa fa-angle-double-down animated"></i>
                         </a>
                         <div>
                             <div class="triangle-isosceles" >
-                                <p>Description: <%# DataBinder.Eval(Container.DataItem, "Description")  %></p>
-                                <h6>-<%# DataBinder.Eval(Container.DataItem,"UserName")  %></h6>
+                                <p>Description: {{x.Description}}</p>
+                                <h6>-Posted By: {{x.UserName}}</h6>
                             </div>
                         </div>
                     </a>
@@ -35,11 +30,10 @@
                 <div class="customHr">
                     <hr class="customHr" />
                 </div>
-            </ItemTemplate>
-        </asp:Repeater>
+        </section>
     </div>   
 <%-- ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- --%>
-    <%--<script>
+    <script>
         var app = angular.module("MyApp", []);
         app.controller("MyController", function ($scope) {
             $scope.post = [];
@@ -71,5 +65,5 @@
                 });
             }
         })
-    </script>--%>
+    </script>
 </asp:Content>
