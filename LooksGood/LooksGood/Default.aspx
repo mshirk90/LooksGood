@@ -7,10 +7,10 @@
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
     <div ng-app="MyApp" ng-controller="MyController" ID="rptImages" >
         <section ng-repeat="x in post" id="{{}}">            
-                <div>                                          
-                        <h3 class="titlecenter">{{x.Title}}</h3>
+                <div>
+                    <h3 class="titlecenter">{{x.Title}}</h3>
                         <div>
-                            <a ng-href="http://localhost:49982/ExpandedPost?postId={{x.Id}}">Click to comment, discuss, and vote!
+                            <a ng-href="/ExpandedPost?postId={{x.Id}}">Click to comment, discuss, and vote!
                             <img  ID="imgImage" src="{{x.ImagePath}}" height="75%" width="110%"/>
                             </a>
                             <div class="triangle-isosceles" >
