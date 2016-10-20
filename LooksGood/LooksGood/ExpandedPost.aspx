@@ -56,26 +56,43 @@
     </div>
     <br />
     <br />
-    <div ng-app="MyApp" ng-controller="MyController">
-         <div ng-repeat="x in comments">
-                <div class="dialogbox" style="text-align:center ; padding-left:30%" >
-                    <div class="body ; row" style="text-align:center">                      
-                        <span style="color:#00b7fc">{{x.Comment}}</span>
-                        <div class="message">                           
+    <div>
+        <div ng-app="MyApp" ng-controller="MyController">
+            <div ng-app="" ng-controller="index" ng-repeat="x in comments" class="{'new-row': startNewRow($index, columnBreak) }">
+                <div class="dialogbox" style="text-align: center; padding-left: 30%">
+                    <div class="body ; row" style="text-align: center">
+                        <span style="color: #00b7fc">{{x.Comment}}{{$index+1}}</span>
+                        <div class="message">
                             <a class="a2" href="/Account/Profile.aspx?userId={{x.UserId}}"
                                 <span>Commented by: {{x.UserName}}</span>
-                                <div>
-                                <span>at: {{x.LastUpdated | date : "short"}}</span>
-                                </div>
                             </a>
+                            <div>
+                                <span>at: {{x.LastUpdated | date : "short"}}</span>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
+        </div>
     </div>
     <%-- ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- --%>
     <script>
         var app = angular.module("MyApp", []);
+        app.controller("index", ['$scope', function (scope) {
+            scope.items = (function () {
+                var cells = [];
+                for (var i = 0; i < 50; i++) {
+                    cells.push({ name: 'cell ' + i });
+                }
+                return cells;
+            })();
+
+            scope.columnBreak = 5;//max number of cols
+
+            scope.startNewRow = function (index, count) {
+                return ((index) % count) === 0;
+            };
+        }]);
         app.controller("MyController", function ($scope) {
             $scope.comments = [];
 
