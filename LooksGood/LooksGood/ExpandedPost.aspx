@@ -19,47 +19,54 @@
             </asp:Label>
             <div>
                 <asp:Label ID="lblDescription" runat="server" Font-Size="Larger"></asp:Label>
-                <hr style="display: inline-block; width: 90%" />
+                <%--<hr style="display: inline-block; width: 90%" />--%>
             </div>
         </div>
     </div>
     <div style="padding-left: 25px">
         <asp:Image ID="imgPost" runat="server" Width="760px" Height="600px"></asp:Image>
-        <div class="well">
+        <br />
+        <br />
+        <%--<div class="well">
             <div class="row">
                 <div class="col-sm-3 col-md-3 col-lg-3">
                     <div class="input-group">
-                        <button type="button" id="decreaseButton" class="btn btn-danger" style="background-color: #FF0000; width: 24px; font-weight: bold;">-</button>&nbsp;
-                        <input type="text" readonly="true" class="form-control" id="vote" placeholder="Vote" postid='<%=Request.QueryString["postId"] %>' userid='<%=Request.QueryString["userId"] %>'/>
+                        <button type="button" id="decreaseButton" class="btn btn-danger" style="background-color: #FF0000; width: 24px; font-weight: bold;">-</button>&nbsp;--%>
+                        <input type="hidden" class="form-control" id="vote" postid='<%=Request.QueryString["postId"] %>' userid='<%=Request.QueryString["userId"] %>'/>
 
-                        <button type="button" id="increaseButton" class="btn btn-success" style="background-color: #00CC00; font-weight: bold;">+</button>
-                    </div>
+                        <%--<button type="button" id="increaseButton" class="btn btn-success" style="background-color: #00CC00; font-weight: bold;">+</button>--%>
+                    <%--</div>
                 </div>
             </div>
         </div>
        <hr class="customHr" />
-    </div>
+    </div>--%>
+        </div>
     <div>
         <div></div>
     </div>
     <div id="comment_form" style="padding-left: 25px" class="div-margin">
         <div>
-            <textarea cols="5" rows="5" name="comment" ID="cmtComment" placeholder="Comment"></textarea>
+            <textarea class="textarea" style="color:#00b7fc" cols="50" rows="3" name="comment" ID="cmtComment" placeholder="Comment"></textarea>
         </div>
+        <br />
         <div>
-            <input type="submit" name="submit" value="Submit Comment" ID="btnSubmit" />
+            <input type="submit" name="submit" value="Submit Comment" ID="btnSubmit" style="background-color:#a8a9a9 ; color:#00b7fc" />
         </div>
     </div>
+    <br />
+    <br />
     <div ng-app="MyApp" ng-controller="MyController">
-         <div ng-repeat="x in comments" class="container left" style="border: 0px solid black">
-                <div class="dialogbox">
-                    <div class="body">
-                        <span class="tip tip-up"></span>
-                        <div class="message">
-                            <span style="color: black">{{x.Comment}}</span>
-                            <hr class="customHr" />
+         <div ng-repeat="x in comments">
+                <div class="dialogbox" style="text-align:center ; padding-left:30%" >
+                    <div class="body ; row" style="text-align:center">                      
+                        <span style="color:#00b7fc">{{x.Comment}}</span>
+                        <div class="message">                           
                             <a class="a2" href="/Account/Profile.aspx?userId={{x.UserId}}"
                                 <span>Commented by: {{x.UserName}}</span>
+                                <div>
+                                <span>at: {{x.LastUpdated | date : "short"}}</span>
+                                </div>
                             </a>
                         </div>
                     </div>
@@ -68,7 +75,6 @@
     </div>
     <%-- ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- --%>
     <script>
-        //$scope.posts = [];
         var app = angular.module("MyApp", []);
         app.controller("MyController", function ($scope) {
             $scope.comments = [];
@@ -130,7 +136,7 @@
                     data: "{'id': '" + id + "'}",
                     contentType: 'application/json; charset=utf-8',
                     success: function (response) {
-                        //alert(response.d);
+                        alert(response.d);
                         $scope.comments = JSON.parse(response.d);
                         $scope.$apply();
                     },
@@ -193,7 +199,7 @@
 
  
     </script>
-    <div> <hr class="ghostHr" /></div>
+    <%--<div> <hr class="ghostHr" /></div>--%>
     <%-- ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- --%>
 </asp:Content>
 

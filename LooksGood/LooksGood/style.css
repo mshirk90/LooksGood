@@ -314,7 +314,10 @@ h2 b {
     background-color: transparent;
 }
 
-
+.textarea {
+  background: url(images/benice.png) center center no-repeat; /* This ruins default border */
+  border: 1px solid #888; 
+}
 
 .tip {
     width: 0px;
