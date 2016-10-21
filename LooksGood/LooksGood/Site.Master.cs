@@ -41,6 +41,8 @@ namespace LooksGood
                 MasterPage masterpage = Page.Master;
             }
         }
+
+       
     }
 }
 
