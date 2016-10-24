@@ -71,3 +71,18 @@
   background: url(images/benice.png) center center no-repeat; /* This ruins default border */
   border: 1px solid #888; 
 }
+
+div.separated {
+  -webkit-column-count: 2;
+  -moz-column-count: 2;
+  -ms-column-count: 2;
+  -o-column-count: 2;
+  column-count: 2;
+  -webkit-column-gap: 20px;
+  -moz-column-gap: 20px;
+  -ms-column-gap: 20px;
+  -o-column-gap: 20px;
+  column-gap: 20px;
+  list-style: inside none;
+  padding: 0;
+}
