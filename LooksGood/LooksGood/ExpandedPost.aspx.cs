@@ -29,7 +29,7 @@ namespace LooksGood
                 Guid postId = new Guid(Request.QueryString["postId"]);
                 CommentsList comments = new CommentsList();
                 comments = comments.GetByPostId(postId);
-                
+
                 Post post = new Post();
                 post = post.GetById(postId);
                 imgPost.ImageUrl = post.ImagePath;
