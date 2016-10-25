@@ -46,7 +46,7 @@
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-main-collapse">
                     Menu <i class="fa fa-bars"></i>
                 </button>
-                <a class="navbar-brand page-scroll" href="Default.aspx">
+                <a class="navbar-brand page-scroll" href="~/Default.aspx">
                     <i class="fa fa-play-circle"></i><span class="light">Looks</span> Good
                 </a>
             </div>
@@ -122,22 +122,32 @@
 
     <form id="Form1" runat="server">
         <!-- Content Section -->
-  <section id="content1" class="repeatersecs">  
-      <div class="space">
-          <br />
-      </div>
-            <asp:ContentPlaceHolder ID="MainContent" runat="server">
-            </asp:ContentPlaceHolder>
-    
-            <a href="#contact" class="btn btn-circle page-scroll">
-                <i class="fa fa-angle-double-down animated"></i>
-            </a>
+        <section id="content1" class="repeatersecs">
+            <div class="space">
+                <br />
+            </div>
+            <div>
+                <asp:ContentPlaceHolder ID="MainContent" runat="server">
+                </asp:ContentPlaceHolder>
+            </div>
+            <div>
+               <br />
+            </div>
+ <a href="#contact" class="btn btn-circle page-scroll">
+                    <i class="fa fa-angle-double-down animated"></i>
+                </a>
         </section>
     </form>
 
-<div class="space"><br /></div>
-    <div class="space"><br /></div>
-          <div class="space"><br /></div>
+    <div class="space">
+        <br />
+    </div>
+    <div class="space">
+        <br />
+    </div>
+    <div class="space">
+        <br />
+    </div>
     <!-- Contact Section -->
     <section id="contact" class="download-section text-center">
         <div class="row">
@@ -148,30 +158,30 @@
             </div>
         </div>
         <br />
- </section>
+    </section>
 
-        <div class="text-center">
+    <div class="text-center">
+        <div>
             <div>
-                <div>
-                    <h2>Contact Us</h2>
-                    <p>
-                        <a href="mailto:feedback@startbootstrap.com">feedback@startbootstrap.com</a>
-                    </p>
-                    <ul class="list-inline banner-social-buttons">
-                        <li>
-                            <a href="https://twitter.com/SBootstrap" class="btn btn-default btn-lg"><i class="fa fa-twitter fa-fw"></i><span class="network-name">Twitter</span></a>
-                        </li>
-                        <li>
-                            <a href="https://github.com/IronSummitMedia/startbootstrap" class="btn btn-default btn-lg"><i class="fa fa-github fa-fw"></i><span class="network-name">Github</span></a>
-                        </li>
-                        <li>
+                <h2>Contact Us</h2>
+                <p>
+                    <a href="mailto:feedback@startbootstrap.com">feedback@startbootstrap.com</a>
+                </p>
+                <ul class="list-inline banner-social-buttons">
+                    <li>
+                        <a href="https://twitter.com/SBootstrap" class="btn btn-default btn-lg"><i class="fa fa-twitter fa-fw"></i><span class="network-name">Twitter</span></a>
+                    </li>
+                    <li>
+                        <a href="https://github.com/IronSummitMedia/startbootstrap" class="btn btn-default btn-lg"><i class="fa fa-github fa-fw"></i><span class="network-name">Github</span></a>
+                    </li>
+                    <li>
                         <a href="https://plus.google.com/+Startbootstrap/posts" class="btn btn-default btn-lg"><i class="fa fa-google-plus fa-fw"></i><span class="network-name">Google+</span></a>
                     </li>
-                    </ul>
-                </div>
+                </ul>
             </div>
         </div>
-   
+    </div>
+
 
 
 
@@ -223,7 +233,8 @@
         padding-bottom: 35px;
         height: 100%;
     }
-    .space{
+
+    .space {
         margin-top: 50px;
         margin-bottom: 50px;
     }
