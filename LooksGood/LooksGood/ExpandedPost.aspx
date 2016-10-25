@@ -76,21 +76,6 @@
     <%-- ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- --%>
     <script>
         var app = angular.module("MyApp", []);
-        app.controller("index", ['$scope', function (scope) {
-            scope.items = (function () {
-                var cells = [];
-                for (var i = 0; i < 50; i++) {
-                    cells.push({ name: 'cell ' + i });
-                }
-                return cells;
-            })();
-
-            scope.columnBreak = 5;//max number of cols
-
-            scope.startNewRow = function (index, count) {
-                return ((index) % count) === 0;
-            };
-        }]);
         app.controller("MyController", function ($scope) {
             $scope.comments = [];
 

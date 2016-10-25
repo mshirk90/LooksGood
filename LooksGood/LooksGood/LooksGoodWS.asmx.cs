@@ -92,5 +92,19 @@ namespace LooksGood
 
             return pList;
         }
+
+        [WebMethod]
+        [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
+        public bool IsUserLoggedIn()
+        {
+            if (Session["User"] != null)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
     }
 }
