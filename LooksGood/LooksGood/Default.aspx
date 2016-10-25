@@ -1,27 +1,37 @@
 ﻿<%@ Page Title="Home Page" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Default.aspx.cs" Inherits="LooksGood._Default" %>
 
 <asp:Content ID="MainContent" ContentPlaceHolderID="MainContent" runat="server">
-    <script src="https://ajax.aspnetcdn.com/ajax/jquery/jquery-2.1.4.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.1/angular-animate.js"></script>
 
     <div>
         <div ng-app="MyApp" ng-controller="MyController">
-            <section id="{{x.Index}}">
-                <div ng-repeat="x in post">
-                    <div><span>{{x.Title}} </span></div>
-                    <br />
-                    <a id="EPhref" href="ExpandedPost.aspx?postId={{x.Id}}">
-                        <img src="{{x.ImagePath}}" width="75%" height="80%" />
-                    </a>
-                    <div><span>Description: {{x.Description}}</span></div>
-                    <br />
-                    <div>Posted By: {{x.UserName}}</div>
-                    <br />                  
-                    <hr />
-                </div>
-            </section>
+            <div >
+                <section id="{{x.Index}}">
+                    <div class="carousel-inner">
+                        <div class="item"><span>{{x.Title}} </span></div>
+                        <br />
+                        <a id="EPhref" href="ExpandedPost.aspx?postId={{x.Id}}">
+                            <img src="{{x.ImagePath}}" width="75%" height="80%" />
+                        </a>
+                        <div><span>Description: {{x.Description}}</span></div>
+                        <br />
+                        <div>Posted By: {{x.UserName}}</div>
+                        <br />
+                        <hr />
+                    </div>
+                </section>
+            </div>
         </div>
     </div>
+
+    <%--<a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
+        <span class="glyphicon glyphicon-chevron-left"></span>
+        <span class="sr-only">Previous</span>
+    </a>
+    <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
+        <span class="glyphicon glyphicon-chevron-right"></span>
+        <span class="sr-only">Next</span>
+    </a>--%>
+
     <%--<div id="myCarousel" class="carousel slide" data-ride="carousel">
         <div class="carousel-inner" role="listbox">
             <asp:Repeater ID="rptImages" runat="server">
@@ -81,7 +91,7 @@
 
             angular.element(document).ready(function () {
                 WebServiceRequest("GetMostRecentPosts", "", OnSuccessRecentPosts, OnErrorRecentPosts);
-            });           
+            });
 
             function OnSuccessRecentPosts(response) {
                 alert(response.d);
