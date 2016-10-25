@@ -84,7 +84,7 @@
             });           
 
             function OnSuccessRecentPosts(response) {
-                //alert(response.d);
+                alert(response.d);
                 $scope.post = JSON.parse(response.d);
                 $scope.$apply();
             }
