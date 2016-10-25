@@ -18,11 +18,15 @@ namespace LooksGood
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            
-            if (Session["User"] == null)
+            if (Session["User"] != null)
             {
                 //cmtComment.Text = "Please login to comment";
                 //btnSubmit.Visible = false;
+                User user = (User)Session["User"];
+            }
+            if (Session["User"] == null)
+            {
+
             }
             if (Request.QueryString["postId"] != null)
             {

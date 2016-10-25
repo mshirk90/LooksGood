@@ -10,7 +10,7 @@
                 <div ng-repeat="x in post">
                     <div><span>{{x.Title}} </span></div>
                     <br />
-                    <a href="ExpandedPost.aspx?postId={{x.Id}}">
+                    <a id="EPhref" href="ExpandedPost.aspx?postId={{x.Id}}">
                         <img src="{{x.ImagePath}}" width="75%" height="80%" />
                     </a>
                     <div><span>Description: {{x.Description}}</span></div>
@@ -81,7 +81,8 @@
 
             angular.element(document).ready(function () {
                 WebServiceRequest("GetMostRecentPosts", "", OnSuccessRecentPosts, OnErrorRecentPosts);
-            });
+            });           
+
             function OnSuccessRecentPosts(response) {
                 //alert(response.d);
                 $scope.post = JSON.parse(response.d);

@@ -67,9 +67,14 @@ namespace LooksGood.Account
                     string URL = Request.QueryString["returnURL"];
                     Response.Redirect(URL);
                 }
+                if (Request.QueryString["returnURL"] != null && Request.QueryString["returnURL"].Contains("Default"))
+                {
+                    string URL = Request.QueryString["returnURL"];
+                    Response.Redirect(URL);
+                }
                 else
                 {
-                    Response.Redirect("../Default.aspx");
+                    Response.Redirect("../Default.aspx?userId=" + user.Id);
                 }
             }
         }
