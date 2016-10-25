@@ -9,29 +9,32 @@
     <div id="myCarousel" class="carousel slide" data-ride="carousel">
         <div class="carousel-inner" role="listbox">
             <asp:Repeater ID="rptImages" runat="server">
+                <ItemTemplate>
+                    <div class="item <%# (Container.ItemIndex == 0 ? "active" : "") %>">
+
+  <a><h3><%# DataBinder.Eval(Container.DataItem, "Title")  %></h3></a>
+                        <a  href='<%# 
+                        Session["User"] != null ? "ExpandedPost.aspx?postId=" + DataBinder.Eval(Container.DataItem, "ID") + "&userId=" + ((BusinessObjects.User)Session["User"]).Id : "ExpandedPost.aspx?postId=" + DataBinder.Eval(Container.DataItem, "ID") %>'>
+                            <asp:Image ID="imgImage" CssClass="center-block" runat="server" ImageUrl='<%# DataBinder.Eval(Container.DataItem, "ImagePath")  %>' Width="75%" Height="70%" />
+                        </a>
+                      <a><pstyle="padding-top:-12px; padding-bottom:-12px">Description: <%# DataBinder.Eval(Container.DataItem, "Description")  %></pstyle="padding-top:-12px;>
+                          <h6>-<%# DataBinder.Eval(Container.DataItem,"UserName")  %></h6></a>
+                    </div>
+                </ItemTemplate>
+
                 <AlternatingItemTemplate>
                     <div class="item">
-                        <a><h3><%# DataBinder.Eval(Container.DataItem, "Title")  %></h3></a>
+                         <a><h3><%# DataBinder.Eval(Container.DataItem, "Title")  %></h3></a>
                         <a href='<%# 
                         Session["User"] != null ? "ExpandedPost.aspx?postId=" + DataBinder.Eval(Container.DataItem, "ID") + "&userId=" + ((BusinessObjects.User)Session["User"]).Id : "ExpandedPost.aspx?postId=" + DataBinder.Eval(Container.DataItem, "ID") %>'>
                             <asp:Image ID="imgImage" CssClass="center-block" runat="server" ImageUrl='<%# DataBinder.Eval(Container.DataItem, "ImagePath")  %>' Width="75%" Height="70%" />
                         </a>
-                      <a><p>Description: <%# DataBinder.Eval(Container.DataItem, "Description")  %></p>
-                        <h6>-<%# DataBinder.Eval(Container.DataItem,"UserName")  %></h6></a>
+                      <a><pstyle="padding-top:-12px; padding-bottom:-12px">Description: <%# DataBinder.Eval(Container.DataItem, "Description")  %></pstyle="padding-top:-12px;>
+                          <h6>-<%# DataBinder.Eval(Container.DataItem,"UserName")  %></h6></a>
                     </div>
                 </AlternatingItemTemplate>
 
-                <ItemTemplate>
-                    <div class="item <%# (Container.ItemIndex == 0 ? "active" : "") %>">
-                        <a><h3><%# DataBinder.Eval(Container.DataItem, "Title")  %></h3></a>
-                        <a href='<%# 
-                        Session["User"] != null ? "ExpandedPost.aspx?postId=" + DataBinder.Eval(Container.DataItem, "ID") + "&userId=" + ((BusinessObjects.User)Session["User"]).Id : "ExpandedPost.aspx?postId=" + DataBinder.Eval(Container.DataItem, "ID") %>'>
-                            <asp:Image ID="imgImage" CssClass="center-block" runat="server" ImageUrl='<%# DataBinder.Eval(Container.DataItem, "ImagePath")  %>' Width="75%" Height="70%" />
-                        </a>
-                      <a><p>Description: <%# DataBinder.Eval(Container.DataItem, "Description")  %></p>
-                        <h6>-<%# DataBinder.Eval(Container.DataItem,"UserName")  %></h6></a>
-                    </div>
-                </ItemTemplate>
+
             </asp:Repeater>
 
             <!-- Left and right controls -->
@@ -51,12 +54,15 @@
 
 
     <style>
-        .h6{
+        .h6 {
             margin-bottom: -20px;
             padding-bottom: -20px;
         }
-
-</style>
+        .textfix{
+            padding-top:-12px; 
+            padding-bottom:-12px
+        }
+    </style>
 </asp:Content>
 
 
