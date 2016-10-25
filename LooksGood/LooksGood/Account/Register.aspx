@@ -1,28 +1,40 @@
 ﻿<%@ Page Title="Register" Language="C#" MasterPageFile="~/Site.master" AutoEventWireup="true" CodeBehind="Register.aspx.cs" Inherits="LooksGood.Account.Register" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
+
+    <div class="space">
+        <br />
+    </div>
+    <div class="space">
+        <br />
+    </div>
+    <div class="space">
+        <br />
+    </div>
     <asp:PlaceHolder ID="registerForm" runat="server">
-        <div class="form-horizontal">
+        <div>
             <h2>Register new account</h2>
             <asp:PlaceHolder runat="server" ID="ErrorMessage" Visible="false">
                 <p class="text-danger">
                     <asp:Literal runat="server" ID="FailureText" />
-                </p> 
+                </p>
             </asp:PlaceHolder>
-            <div class="form-group pull-left">
-                <div class="col-md-10" style="padding-left: 10px">
-                    <asp:TextBox runat="server" ID="txtEmail" CssClass="form-control" TextMode="Email" Placeholder="Email" />
+        </div>
+        <div class="contain">
+            <div>
+                <div>
+                    <asp:TextBox runat="server" ID="txtEmail" CssClass="form-control" TextMode="Email" Placeholder="Email" Width="70%" />
                     <asp:RequiredFieldValidator runat="server" ControlToValidate="txtEmail"
                         CssClass="text-danger" ErrorMessage="The email field is required." ID="EmailVal" />
                 </div>
             </div>
-            <div class="form-group">
-                <div class="col-md-10" style="padding-left: 10px">
-                    <asp:TextBox runat="server" ID="txtUserName" CssClass="form-control" PlaceHolder="UserName" />
+            <div>
+                <div>
+                    <asp:TextBox runat="server" ID="txtUserName" CssClass="form-control" PlaceHolder="UserName" Width="70%" />
                     <asp:RequiredFieldValidator runat="server" ControlToValidate="txtUserName" CssClass="text-danger"
                         ErrorMessage="The first name field is required." ID="rvFirstName" ValidationGroup="vgRegister">*</asp:RequiredFieldValidator>
                     <asp:Label ID="lblStatus" runat="server" BorderStyle="None" ForeColor="White"></asp:Label>
-                    <asp:Button ID="btnRegister" runat="server" Text="Register" OnClick="btnRegister_Click" CssClass=" div-margin" />
+                    <asp:Button ID="btnRegister" runat="server" Text="Register" OnClick="btnRegister_Click" Style="color: black;" />
                 </div>
             </div>
         </div>
