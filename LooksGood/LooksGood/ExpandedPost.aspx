@@ -15,7 +15,7 @@
     <div class="contain" ng-app="MyApp">
         <div ng-controller="MyController">
             <div>
-                <div class="item" ng-model="post" id="{{x.Index}}">
+                <div class="item" ng-model="post">
                     <a>
                         <h3 class="textfix"><span>{{post.Title}} </span></h3>
                     </a>
@@ -42,7 +42,6 @@
         </div>
         <br />
         <br />
-
         <div ng-controller="commentController" class="row">
             <div ng-repeat="x in comments">
                 <div class="clearfix" ng-if="$index % 3 == 0"></div>
@@ -60,19 +59,7 @@
                             </div>
                         </div>
                     </div>
-                </div>
-                <%-- class="separated" style="text-align: center; padding-left: 30%; column-count: 2; display: inline-block">--%>               
-                <%--<div class="dialogbox">
-                    <div class="body ; row" style="text-align: center">
-                        <span style="color: #00b7fc">{{x.Comment}}</span>
-                        <div class="message">
-                            <a class="a2" href="/Account/Profile.aspx?userId={{x.UserId}}">
-                                <span>Commented by: {{x.UserName}}</span>
-                                <span>at: {{x.LastUpdated | date : "short"}}</span>
-                            </a>
-                        </div>
-                    </div>
-                </div>--%>
+                </div>              
             </div>
         </div>
     </div>
