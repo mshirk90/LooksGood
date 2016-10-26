@@ -37,10 +37,6 @@
         <asp:Label ID="lblStatus" runat="server"></asp:Label>
     </div>
 
-    <style>
-
-    </style>
-
 
 </asp:Content>
 
