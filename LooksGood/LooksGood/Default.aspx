@@ -1,8 +1,6 @@
 ﻿<%@ Page Title="Home Page" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Default.aspx.cs" Inherits="LooksGood._Default" %>
 
 <asp:Content ID="MainContent" ContentPlaceHolderID="MainContent" runat="server">
-    <script src="https://ajax.aspnetcdn.com/ajax/jquery/jquery-2.1.4.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.1/angular-animate.js"></script>
 
     <div class="contain">
         <div ng-app="MyApp" ng-controller="MyController" id="myCarousel" class="carousel slide" data-ride="carousel">
@@ -32,7 +30,8 @@
             </div>
         </div>
     </div>
-   
+    
+
     <style>
         .h6 {
             margin-bottom: -20px;
@@ -60,7 +59,7 @@
             });
 
             function OnSuccessRecentPosts(response) {
-                alert(response.d);
+                //alert(response.d);
                 $scope.post = JSON.parse(response.d);
                 $scope.$apply();
             }
@@ -82,7 +81,6 @@
             }
 
         });
-       
     </script>
 </asp:Content>
 

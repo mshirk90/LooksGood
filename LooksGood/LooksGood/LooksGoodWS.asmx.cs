@@ -60,10 +60,10 @@ namespace LooksGood
 
         [WebMethod]
         [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
-        public String GetCommentsByPostId(string id)
+        public String GetCommentsByPostId(string postId)
         {
             CommentsList comments = new CommentsList();
-            comments = comments.GetByPostId(new Guid(id));
+            comments = comments.GetByPostId(new Guid(postId));
             string jsoncomments = JsonConvert.SerializeObject(comments.List);
 
             return jsoncomments;
@@ -95,16 +95,12 @@ namespace LooksGood
 
         [WebMethod]
         [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
-        public bool IsUserLoggedIn()
+        public string GetPostById(string postId)
         {
-            if (Session["User"] != null)
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
+            Post post = new Post();
+            post = post.GetById(new Guid(postId));
+
+            return JsonConvert.SerializeObject(post);
         }
     }
 }
