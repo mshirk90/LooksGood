@@ -2,10 +2,8 @@
 
 <asp:Content ID="MainContent" ContentPlaceHolderID="MainContent" runat="server">
 
-    <div>
         <div ng-app="MyApp" ng-controller="MyController">
-            <div >
-                <section id="{{x.Index}}">
+            <div ng-repeat="x in post" >
                     <div class="carousel-inner">
                         <div class="item"><span>{{x.Title}} </span></div>
                         <br />
@@ -18,10 +16,9 @@
                         <br />
                         <hr />
                     </div>
-                </section>
             </div>
         </div>
-    </div>
+
 
     <%--<a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
         <span class="glyphicon glyphicon-chevron-left"></span>

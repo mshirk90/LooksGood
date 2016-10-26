@@ -58,7 +58,7 @@
     <br />
     <br />
     <div ng-app="MyApp" ng-controller="MyController">
-         <div ng-repeat="x in comments" class="separated" <%--style="text-align:center ; padding-left:30% ; column-count:2 ; display: inline-block"--%>>
+         <div ng-repeat="x in comments" class="separated" style="text-align:center ; padding-left:30% ; column-count:2 ; display: inline-block">
                 <div class="dialogbox">
                     <div class="body ; row" style="text-align:center">                      
                         <span style="color:#00b7fc">{{x.Comment}}</span>
@@ -92,8 +92,7 @@
                     $("#btnSumbit").prop("disabled", false);
                     $("#cmtComment").val('');
                 }
-                GetCommentsByPostId(id);
-                //GetVotes(id);
+                WebServiceRequest("GetCommentsByPostId", "{'id': '" + id + "'}", commentSuccess, commentFailure)
             });
 
             function WebServiceRequest(strMethod, jsonData, cbSuccess, cbError) {
@@ -123,78 +122,7 @@
                 var commentText = $("#cmtComment").val();
                 var userid = $("#vote").attr("userid").toString();
                 WebServiceRequest("SubmitComment", "{'postid': '" + postid + "', 'commentText': '" + commentText + "', 'userid': '" + userid + "'}", commentSuccess, commentFailure)
-            });
-
-            
-
-            function GetCommentsByPostId(id) {
-                $.ajax({
-                    type: 'POST',
-                    url: 'LooksGoodWS.asmx/GetCommentsByPostId',
-                    dataType: 'json',
-                    processData: false,
-                    data: "{'id': '" + id + "'}",
-                    contentType: 'application/json; charset=utf-8',
-                    success: function (response) {
-                        alert(response.d);
-                        $scope.comments = JSON.parse(response.d);
-                        $scope.$apply();
-                    },
-                    error: function (response) {
-                        alert(response.responseText);
-                    }
-                });
-            }
-
-            function GetVotes(id) {
-                $.ajax({
-                    type: 'POST',
-                    url: 'LooksGoodWS.asmx/GetVotesByPostId',
-                    dataType: 'json',
-                    processData: false,
-                    data: "{'id': '" + id + "'}",
-                    contentType: 'application/json; charset=utf-8',
-                    success: function (response) {
-                        var txtVote = document.getElementById('vote');
-                        //alert(response.d);
-                        txtVote.value = response.d.Votes;
-                    },
-                    error: function (response) {
-                        alert(response.responseText);
-                    },
-
-                });
-            }
-
-            function ChangeVotes(id, change) {
-                $.ajax({
-                    type: 'POST',
-                    url: 'LooksGoodWS.asmx/ChangeVotesByPostId',
-                    dataType: 'json',
-                    processData: false,
-                    data: "{'id': '" + id + "', 'change': " + change + "}",
-                    contentType: 'application/json; charset=utf-8',
-                    success: function (response) {
-                        var txtVote = document.getElementById('vote');
-                        //alert(response.d);
-                        txtVote.value = response.d.Votes;
-                    },
-                    error: function (response) {
-                        alert(response.responseText);
-                    }
-                });
-            }
-
-            // Create a click handler for your increment button
-            $("#increaseButton").click(function () {
-                var postId = $("#vote").attr("postId").toString();
-                $("#vote").text(ChangeVotes(postId, 1));
-            });
-            // .. and your decrement button
-            $("#decreaseButton").click(function () {
-                var postId = $("#vote").attr("postId").toString();
-                $("#vote").text(ChangeVotes(postId, -1));
-            });
+            });                     
         });
     </script>
     <%-- ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- --%>

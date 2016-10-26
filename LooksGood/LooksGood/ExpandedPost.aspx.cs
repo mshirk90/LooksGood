@@ -24,10 +24,6 @@ namespace LooksGood
                 //btnSubmit.Visible = false;
                 User user = (User)Session["User"];
             }
-            if (Session["User"] == null)
-            {
-
-            }
             if (Request.QueryString["postId"] != null)
             {
                 Guid postId = new Guid(Request.QueryString["postId"]);
