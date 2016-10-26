@@ -1,34 +1,37 @@
 ﻿<%@ Page Title="Home Page" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Default.aspx.cs" Inherits="LooksGood._Default" %>
 
 <asp:Content ID="MainContent" ContentPlaceHolderID="MainContent" runat="server">
+    <script src="https://ajax.aspnetcdn.com/ajax/jquery/jquery-2.1.4.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.1/angular-animate.js"></script>
 
-        <div ng-app="MyApp" ng-controller="MyController">
-            <div ng-repeat="x in post" >
-                    <div class="carousel-inner">
-                        <div class="item"><span>{{x.Title}} </span></div>
-                        <br />
-                        <a id="EPhref" href="ExpandedPost.aspx?postId={{x.Id}}">
-                            <img src="{{x.ImagePath}}" width="75%" height="80%" />
-                        </a>
-                        <div><span>Description: {{x.Description}}</span></div>
-                        <br />
-                        <div>Posted By: {{x.UserName}}</div>
-                        <br />
-                        <hr />
-                    </div>
+    <div class="contain">
+        <div ng-app="MyApp" ng-controller="MyController" id="myCarousel" class="carousel slide" data-ride="carousel">
+            <div class="carousel-inner" role="listbox">
+
+                <div id="{{x.Index}}" class="item" ng-class="{active:!$index}" ng-repeat="x in post">
+
+                    <a><h3 class="textfix"><span>{{x.Title}} </span></h3></a>
+                    <a id="EPhref" href="ExpandedPost.aspx?postId={{x.Id}}">
+                        <div>
+                            <img src="{{x.ImagePath}}" width="85%" height="75%" class="imagefix" />
+                        </div>
+                    </a>
+                   <a><h4 class="textfix"><span>Description: {{x.Description}}</span></h4></a> 
+                   <a><div>Posted By: {{x.UserName}}</div></a> 
+                </div>
+                <!-- Left and right controls -->
+                <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
+                    <span class="glyphicon glyphicon-chevron-left"></span>
+                    <span class="sr-only">Previous</span>
+                </a>
+                <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
+                    <span class="glyphicon glyphicon-chevron-right"></span>
+                    <span class="sr-only">Next</span>
+                </a>
+
             </div>
         </div>
-
-
-    <%--<a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
-        <span class="glyphicon glyphicon-chevron-left"></span>
-        <span class="sr-only">Previous</span>
-    </a>
-    <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
-        <span class="glyphicon glyphicon-chevron-right"></span>
-        <span class="sr-only">Next</span>
-    </a>--%>
-
+    </div>
     <%--<div id="myCarousel" class="carousel slide" data-ride="carousel">
         <div class="carousel-inner" role="listbox">
             <asp:Repeater ID="rptImages" runat="server">
@@ -77,6 +80,15 @@
         .h6 {
             margin-bottom: -20px;
             padding-bottom: -20px;
+        }
+
+        .imagefix {
+            text-align: center;
+            margin:auto;
+        }
+        .textfix{
+            margin-bottom: 5px;
+            margin-top: 7px;
         }
     </style>
 
