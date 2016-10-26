@@ -97,11 +97,10 @@ namespace LooksGood
         [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
         public string GetPostById(string postId)
         {
-            Post ExPost = new Post();
-            ExPost = ExPost.GetById(new Guid(postId));
-            string jsonExPost = JsonConvert.SerializeObject(ExPost);
+            Post post = new Post();
+            post = post.GetById(new Guid(postId));
 
-            return jsonExPost;
+            return JsonConvert.SerializeObject(post);
         }
     }
 }
