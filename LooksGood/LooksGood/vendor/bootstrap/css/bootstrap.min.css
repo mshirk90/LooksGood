@@ -6,7 +6,14 @@
 /*# sourceMappingURL=bootstrap.min.css.map */
 
         .contain {
-            width: 75%;
+            width:90%;
             margin: auto;
             text-align: center;
+        }
+
+        .imagefix{
+            width: 75%;
+            height: 65%;
+            text-align: center;
+            margin: auto;
         }
