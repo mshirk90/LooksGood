@@ -143,6 +143,22 @@ namespace BusinessObjects
 
             return this;
         }
+
+        public PostList GetById(Guid id)
+        {
+            Database database = new Database("LooksGoodDatabase");
+            DataTable dt = new DataTable();
+            database.Command.CommandType = System.Data.CommandType.StoredProcedure;
+            database.Command.CommandText = "tblPostGetById";
+            database.Command.Parameters.Add("@Id", SqlDbType.UniqueIdentifier).Value = id;
+            dt = database.ExecuteQuery();
+            if (dt != null && dt.Rows.Count == 1)
+            {
+                DataRow dr = dt.Rows[0];
+            }
+
+            return this;
+        }
         #endregion
 
         #region Public Events

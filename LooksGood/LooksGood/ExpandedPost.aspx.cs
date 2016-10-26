@@ -32,11 +32,11 @@ namespace LooksGood
 
                 Post post = new Post();
                 post = post.GetById(postId);
-                imgPost.ImageUrl = post.ImagePath;
+                //imgPost.ImageUrl = post.ImagePath;
 
                 //lblHeader.Text = string.Format("Posted by: {0}", post.UserName);
-                lblTitle.Text = string.Format("Title: {0}", post.Title);
-                lblDescription.Text = string.Format("Description: {0}", post.Description);
+                //lblTitle.Text = string.Format("Title: {0}", post.Title);
+                //lblDescription.Text = string.Format("Description: {0}", post.Description);
 
                 MasterPage masterpage = Page.Master;
                 HtmlAnchor anchor = (HtmlAnchor)masterpage.FindControl("ancLogin");
