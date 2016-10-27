@@ -30,45 +30,56 @@
                     </a>
                 </div>
             </div>
-        </div>        
-        <div id="comment_form" style="padding-left: 25px" class="div-margin">
-            <div>
-                <textarea class="textarea" style="color: #00b7fc" cols="50" rows="3" name="comment" id="cmtComment" placeholder="Comment"></textarea>
+            <div id="comment_form" style="padding-left: 25px" class="div-margin">
+                <div>
+                    <textarea class="textarea" style="color: #00b7fc" cols="50" rows="3" name="comment" id="cmtComment" placeholder="Comment"></textarea>
+                </div>
+                <br />
+                <div>
+                    <input type="submit" name="submit" value="Submit Comment" id="btnSubmit" style="background-color: #a8a9a9; color: #00b7fc" />
+                </div>
             </div>
             <br />
-            <div>
-                <input type="submit" name="submit" value="Submit Comment" id="btnSubmit" style="background-color: #a8a9a9; color: #00b7fc" />
-            </div>
-        </div>
-        <br />
-        <br />
-        <div ng-controller="commentController" class="row">
-            <div ng-repeat="x in comments">
-                <div class="clearfix" ng-if="$index % 3 == 0"></div>
-                <div class="col-sm-4" style="padding-left:8%">
-                    <div class="dialogbox">
-                        <div class="body">
-                            <span style="color: #00b7fc">{{x.UserName}} Says</span>
-                            <div class="message">
-                                <a class="a2" href="/Account/Profile.aspx?userId={{x.UserId}}">
-                                    <span style="color: #00b7fc">{{x.Comment}}</span>
-                                    <div>
-                                    <span style="color: #00b7fc">at: {{x.LastUpdated | date : "short"}}</span>
+            <br />
+            <div ng-controller="commentController" class="row">
+                <div ng-repeat="x in comments">
+                    <div class="clearfix" ng-if="$index % 3 == 0"></div>
+                    <div class="col-sm-4" style="padding-left: 8%">
+                        <div class="dialogbox">
+                            <div class="body">
+                                <span style="color: #00b7fc">{{x.UserName}} Says</span>
+                                <div class="message">
+                                    <a class="a2" href="/Account/Profile.aspx?userId={{x.UserId}}">
+                                        <span style="color: #00b7fc">{{x.Comment}}</span>
+                                        <div>
+                                            <span style="color: #00b7fc">at: {{x.LastUpdated | date : "short"}}</span>
                                         </div>
-                                </a>
+                                    </a>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>              
+                </div>
             </div>
         </div>
     </div>
 
     <%-- ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- --%>
     <script>
+        function WebServiceRequest(strMethod, jsonData, cbSuccess, cbError) {
+            $.ajax({
+                type: 'POST',
+                url: 'LooksGoodWS.asmx/' + strMethod,
+                data: jsonData,
+                contentType: 'application/json; charset=utf-8',
+                dataType: 'json',
+                success: cbSuccess,
+                error: cbError
+            });
+        }
         var app = angular.module("MyApp", []);
         app.controller("MyController", function ($scope) {
-            $scope.post = {}
+            $scope.post = {};
 
             angular.element(document).ready(function () {
                 var postId = vote.getAttribute("postid");
@@ -86,18 +97,6 @@
                 WebServiceRequest("GetPostById", "{'postId': '" + postId + "'}", postLoadSuccess, postLoadFailure)
             });
 
-            function WebServiceRequest(strMethod, jsonData, cbSuccess, cbError) {
-                $.ajax({
-                    type: 'POST',
-                    url: 'LooksGoodWS.asmx/' + strMethod,
-                    data: jsonData,
-                    contentType: 'application/json; charset=utf-8',
-                    dataType: 'json',
-                    success: cbSuccess,
-                    error: cbError
-                });
-            }
-
             function postLoadSuccess(response) {
                 $scope.post = JSON.parse(response.d);
                 $scope.$apply;
@@ -105,7 +104,7 @@
             }
             function postLoadFailure(response) {
                 alert(response.d.responseText);
-            }           
+            }
         });
 
         app.controller("commentController", function ($scope) {
@@ -118,23 +117,10 @@
                 WebServiceRequest("GetCommentsByPostId", "{'postId': '" + postId + "'}", commentSuccess, commentFailure)
             });
 
-            function WebServiceRequest(strMethod, jsonData, cbSuccess, cbError) {
-                $.ajax({
-                    type: 'POST',
-                    url: 'LooksGoodWS.asmx/' + strMethod,
-                    data: jsonData,
-                    contentType: 'application/json; charset=utf-8',
-                    dataType: 'json',
-                    success: cbSuccess,
-                    error: cbError
-                });
-            }
-
             function commentSuccess(response) {
                 $scope.comments = JSON.parse(response.d);
                 $scope.$apply();
                 //alert(response.d);
-
             }
             function commentFailure(response) {
                 alert(response.d.responseText);

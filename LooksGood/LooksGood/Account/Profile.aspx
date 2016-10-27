@@ -2,7 +2,8 @@
 
 
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
-    <div>
+    <input type="hidden" class="form-control" id="vote" postid='<%=Request.QueryString["postId"] %>' userid='<%=Request.QueryString["userId"] %>' />
+    <div ng-app="profileApp">
         <asp:Label ID="lblUserName" runat="server" Font-Italic="true" Font-Size="X-Large" class="paddingleft">
         </asp:Label>
 
@@ -20,55 +21,121 @@
             <label class="paddingleft">User Posts</label>
             <hr class="customHr" />
         </div>
-        <asp:Repeater ID="rptPost" runat="server">
-            <ItemTemplate>
-                <a href='<%# "../ExpandedPost.aspx?postId=" + DataBinder.Eval(Container.DataItem, "ID")  %>'>
-                    <div class="container left" style="border: 0px solid black; display: inline">
-                        <div class="dialogbox">
-                            <div class="body">
-                                <span class="tip tip-up"></span>
-                                <div class="message">
-                                    <span style="color: black"><%# DataBinder.Eval(Container.DataItem, "Title")  %></span>
-                                    <hr class="customHr" />
-                                    <a class="a2" href='<%# "../ExpandedPost.aspx?postId=" + DataBinder.Eval(Container.DataItem, "Id")  %>'>
-                                        <span style="color: black"><%# "Post Description: " + DataBinder.Eval(Container.DataItem, "Description")  %></span>
+
+        <div ng-controller="UserPost">
+            <div ng-repeat="x in userPost">
+                <div class="clearfix" ng-if="$index % 3 == 0"></div>
+                <div class="col-sm-4" style="padding-left: 8%">
+                    <div class="dialogbox">
+                        <div class="body">
+                            <span style="color: #00b7fc">Post Title: {{x.Title}}</span>
+                            <div class="message">
+                                <span style="color: #00b7fc">{{x.Description}}</span>
+                                <div>
+                                    <span style="color: #00b7fc">Uploaded on: {{x.LastUpdated | date : "short"}}</span>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </a>
-            </ItemTemplate>
-        </asp:Repeater>
-
-
+                </div>
+            </div>
+        </div>
 
 
         <hr class="customHr" />
 
-
         <div>
+            <hr class="customHr" />
             <label class="paddingleft">User Comments</label>
             <hr class="customHr" />
         </div>
-        <asp:Repeater ID="rptComments" runat="server">
-            <ItemTemplate>
-                <div class="container left" style="border: 0px solid black">
+
+        <div ng-controller="UserComments">
+            <div ng-repeat="x in userComments">
+                <div class="clearfix" ng-if="$index % 3 == 0"></div>
+                <div class="col-sm-4" style="padding-left: 8%">
                     <div class="dialogbox">
                         <div class="body">
-                            <span class="tip tip-up"></span>
+                            <a class="a2" href="/ExpandedPost?postId={{x.PostId}}">
+                                <span style="color: #00b7fc">Comment: {{x.Comment}}</span>
+                            </a>
                             <div class="message">
-                                <a runat="server" itemid="imgProfile"></a>
-                                <span style="color: black"><%# DataBinder.Eval(Container.DataItem, "Comment")  %></span>
-                                <hr class="customHr" />
-                                <a class="a2" href='<%# "../ExpandedPost.aspx?postId=" + DataBinder.Eval(Container.DataItem, "PostId")  %>'>
-                                    <span><%# "Commented by: " + DataBinder.Eval(Container.DataItem, "UserName")  %></span></a>
+                                <div ng-repeat="y in commentPost">
+                                    <span style="color: #00b7fc">Commented on Post: {{y.Title}}</span>
+                                </div>
+                            </div>
+                            <div>
+                                <span style="color: #00b7fc">Uploaded on: {{x.LastUpdated | date : "short"}}</span>
                             </div>
                         </div>
                     </div>
                 </div>
-            </ItemTemplate>
-        </asp:Repeater>
-        <hr class="ghostHr" />
+            </div>
+        </div>
     </div>
+
+    <script>
+        function WebServiceRequest(strMethod, jsonData, cbSuccess, cbError) {
+            $.ajax({
+                type: 'POST',
+                url: '/LooksGoodWS.asmx/' + strMethod,
+                data: jsonData,
+                contentType: 'application/json; charset=utf-8',
+                dataType: 'json',
+                success: cbSuccess,
+                error: cbError
+            });
+        }
+
+        var app = angular.module("profileApp", []);
+        app.controller("UserPost", function ($scope) {
+            $scope.userPost = [];
+            angular.element(document).ready(function () {
+                var postId = vote.getAttribute("postid");
+                var userId = vote.getAttribute("userId");
+                WebServiceRequest("GetUserPostById", "{'userId': '" + userId + "'}", userPostSuccess, userPostFailure);
+            });
+
+            function userPostSuccess(response) {
+                $scope.userPost = JSON.parse(response.d);
+                $scope.$apply();
+                //alert(response.d)
+            }
+            function userPostFailure(response) {
+                alert(response.responseText);
+            }
+
+        });
+
+        app.controller("UserComments", function ($scope) {
+            $scope.userComments = [];
+            $scope.commentPost = [];
+            angular.element(document).ready(function () {
+                var postId = vote.getAttribute("postid");
+                var userId = vote.getAttribute("userId");
+                WebServiceRequest("GetUserCommentsById", "{'userId': '" + userId + "'}", userCommentSuccess, userCommentFailure);
+                WebServiceRequest("GetUserPostById", "{'userId': '" + userId + "'}", userPostSuccess1, userPostFailure1);
+            });
+
+            function userPostSuccess1(response) {
+                $scope.commentPost = JSON.parse(response.d);
+                $scope.$apply();
+                //alert(response.d)
+            }
+            function userPostFailure1(response) {
+                alert(response.responseText);
+            }
+
+            function userCommentSuccess(response) {
+                $scope.userComments = JSON.parse(response.d);
+                $scope.$apply();
+                alert(response.d)
+            }
+            function userCommentFailure(response) {
+                alert(response.responseText);
+            }
+
+        });
+    </script>
 </asp:Content>
 

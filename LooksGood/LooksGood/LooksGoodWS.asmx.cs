@@ -102,5 +102,25 @@ namespace LooksGood
 
             return JsonConvert.SerializeObject(post);
         }
+
+        [WebMethod]
+        [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
+        public string GetUserPostById(string userId)
+        {
+            PostList postList = new PostList();
+            postList = postList.GetByUserId(new Guid(userId));
+
+            return JsonConvert.SerializeObject(postList.List);
+        }
+
+        [WebMethod]
+        [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
+        public string GetUserCommentsById(string userId)
+        {
+            CommentsList commentList = new CommentsList();
+            commentList = commentList.GetByUserId(new Guid(userId));
+
+            return JsonConvert.SerializeObject(commentList.List);
+        }
     }
 }
