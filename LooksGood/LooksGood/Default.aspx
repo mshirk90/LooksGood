@@ -26,7 +26,9 @@
                     <span class="glyphicon glyphicon-chevron-right"></span>
                     <span class="sr-only">Next</span>
                 </a>
-
+                            <a href="#contact" class="btn btn-circle page-scroll">
+                <i class="fa fa-angle-double-down animated"></i>
+            </a>
             </div>
         </div>
     </div>
@@ -84,10 +86,42 @@
     </script>
 </asp:Content>
 
+<asp:Content ID="Footer" runat="server" ContentPlaceHolderID="Footer">
+
+
+        <section id="contact" class="download-section text-center">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2">
+                <a href="#page-top" class="btn btn-circle page-scroll">
+                    <i class="fa fa-angle-double-up animated"></i>
+                </a>
+            </div>
+        </div>
+        <br />
+    </section>
+
+    <div class="text-center">
+        <div>
+            <div>
+                <h2>Contact Us</h2>
+                <p>
+                    <a href="mailto:feedback@startbootstrap.com">feedback@startbootstrap.com</a>
+                </p>
+                <ul class="list-inline banner-social-buttons">
+                    <li>
+                        <a href="https://twitter.com/SBootstrap" class="btn btn-default btn-lg"><i class="fa fa-twitter fa-fw"></i><span class="network-name">Twitter</span></a>
+                    </li>
+                    <li>
+                        <a href="https://github.com/IronSummitMedia/startbootstrap" class="btn btn-default btn-lg"><i class="fa fa-github fa-fw"></i><span class="network-name">Github</span></a>
+                    </li>
+                    <li>
+                        <a href="https://plus.google.com/+Startbootstrap/posts" class="btn btn-default btn-lg"><i class="fa fa-google-plus fa-fw"></i><span class="network-name">Google+</span></a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
 
 
 
-
-
-
-
+</asp:Content>
