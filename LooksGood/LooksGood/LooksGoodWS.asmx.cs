@@ -115,12 +115,25 @@ namespace LooksGood
 
         [WebMethod]
         [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
-        public string GetUserPostByCommentId(string commentId)
+        public string GetUserCommentsById(string userId)
         {
-            PostList postList = new PostList();
-            postList = postList.GetByUserId(new Guid(commentId));
+            CommentsList commentsList = new CommentsList();
+            commentsList = commentsList.GetByUserId(new Guid(userId));
 
-            return JsonConvert.SerializeObject(postList.List);
+            return JsonConvert.SerializeObject(commentsList.List);
+        }
+
+        [WebMethod]
+        [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
+        public string GetPostByCommentID(string commentId)
+        {
+            Comments comments = new Comments();
+            comments = comments.GetById(new Guid(commentId));
+            Post post = new Post();
+            post = post.GetById(comments.PostId);
+
+            return JsonConvert.SerializeObject(post);
+
         }
     }
 }

@@ -126,7 +126,8 @@
                 alert(response.d.responseText);
             }
 
-            $("#btnSubmit").click(function () {
+            $("#btnSubmit").click(function (event) {
+                event.preventDefault();
                 var postid = $("#vote").attr("postId").toString();
                 var commentText = $("#cmtComment").val();
                 var userid = $("#vote").attr("userid").toString();

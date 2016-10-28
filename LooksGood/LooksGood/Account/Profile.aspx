@@ -11,8 +11,8 @@
             <asp:Image ID="imgProfile" runat="server" BorderStyle="Solid" BorderColor="Red" BorderWidth="3px"></asp:Image>
             <asp:FileUpload ID="fuChangeProfileImage" runat="server" />
             <asp:Button ID="btnChangePicture" runat="server" OnClick="btnChangePicture_Click" Text="Change Profile Picture" />
-
         </div>
+
         <div>
             <hr class="customHr" />
         </div>
@@ -41,13 +41,14 @@
             </div>
         </div>
 
-
-        <hr class="customHr" />
-
-        <div>
-            <hr class="customHr" />
-            <label class="paddingleft">User Comments</label>
-            <hr class="customHr" />
+        <div class="clearfix">
+            <div class="row">
+                <hr class="customHr" />
+            </div>
+            <div>
+                <label class="paddingleft">User Comments</label>
+                <hr class="customHr" />
+            </div>
         </div>
 
         <div ng-controller="UserComments">
@@ -58,15 +59,11 @@
                         <div class="body">
                             <a class="a2" href="/ExpandedPost?postId={{x.PostId}}">
                                 <span style="color: #00b7fc">Comment: {{x.Comment}}</span>
-                            </a>
-                            <div class="message">
-                                <div ng-repeat="y in commentPost">
-                                    <span style="color: #00b7fc">Commented on Post: {{y.Title}}</span>
+                                <div class="message">
+                                    <span style="color: #00b7fc">Commented on Post: {{x.PostTitle}}</span>
                                 </div>
-                            </div>
-                            <div>
-                                <span style="color: #00b7fc">Uploaded on: {{x.LastUpdated | date : "short"}}</span>
-                            </div>
+                            </a>
+                            <span style="color: #00b7fc">Uploaded on: {{x.LastUpdated | date : "short"}}</span>
                         </div>
                     </div>
                 </div>
@@ -109,18 +106,18 @@
 
         app.controller("UserComments", function ($scope) {
             $scope.userComments = [];
-            $scope.commentPost = [];
+            $scope.commentPost = {};
             angular.element(document).ready(function () {
                 var postId = vote.getAttribute("postid");
                 var userId = vote.getAttribute("userId");
+                var commentId = $('cmtId').val();
                 WebServiceRequest("GetUserCommentsById", "{'userId': '" + userId + "'}", userCommentSuccess, userCommentFailure);
-                WebServiceRequest("GetUserPostById", "{'userId': '" + userId + "'}", userPostSuccess1, userPostFailure1);
             });
 
             function userPostSuccess1(response) {
                 $scope.commentPost = JSON.parse(response.d);
                 $scope.$apply();
-                //alert(response.d)
+                alert(response.d)
             }
             function userPostFailure1(response) {
                 alert(response.responseText);
@@ -129,7 +126,7 @@
             function userCommentSuccess(response) {
                 $scope.userComments = JSON.parse(response.d);
                 $scope.$apply();
-                alert(response.d)
+                //alert(response.d)
             }
             function userCommentFailure(response) {
                 alert(response.responseText);
