@@ -14,55 +14,84 @@
     <input type="hidden" class="form-control" id="vote" postid='<%=Request.QueryString["postId"] %>' userid='<%=Request.QueryString["userId"] %>' />
     <div class="contain" ng-app="MyApp">
         <div ng-controller="MyController">
-            <div>
-                <div class="item" ng-model="post">
-                    <a>
-                        <h3 class="textfix"><span>{{post.Title}} </span></h3>
-                    </a>
-                    <div>
-                        <img ng-src="{{post.ImagePath}}" width="85%" height="75%" class="imagefix" />
+            <div class="contain">
+                <div>
+                    <div class="item" ng-model="post">
+                        <a>
+                            <h3 class="textfix"><span>{{post.Title}} </span></h3>
+                        </a>
+                        <div>
+                            <img ng-src="{{post.ImagePath}}" width="85%" height="75%" class="imagefix" />
+                        </div>
+                        <a>
+                            <h4 class="textfix"><span>Description: {{post.Description}}</span></h4>
+                        </a>
+                        <a>
+                            <div>Posted By: {{post.UserName}}</div>
+                        </a>
                     </div>
-                    <a>
-                        <h4 class="textfix"><span>Description: {{post.Description}}</span></h4>
-                    </a>
-                    <a>
-                        <div>Posted By: {{post.UserName}}</div>
-                    </a>
+                     <a href="#contact" class="btn btn-circle page-scroll">
+                <i class="fa fa-angle-double-down animated"></i>
+            </a>
                 </div>
             </div>
-        </div>        
-        <div id="comment_form" style="padding-left: 25px" class="div-margin">
+        </div>
+        <%-- ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- --%>
+
+        <div class="space">
+            <br />
+        </div>
+        <div class="space">
+            <br />
+        </div>
+        <div class="space">
+            <br />
+        </div>
+        <%-- ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- --%>
+
+
+        <section id="contact" class="">
+        <div id="comment_form" class="contain">
             <div>
                 <textarea class="textarea" style="color: #00b7fc" cols="50" rows="3" name="comment" id="cmtComment" placeholder="Comment"></textarea>
             </div>
-            <br />
             <div>
-                <input type="submit" name="submit" value="Submit Comment" id="btnSubmit" style="background-color: #a8a9a9; color: #00b7fc" />
+                <input type="submit" name="submit" value="Submit Comment" id="btnSubmit" style="background-color: #000; color: #00b7fc; border: 1px solid #00b7fc" />
             </div>
         </div>
-        <br />
-        <br />
-        <div ng-controller="commentController" class="row">
-            <div ng-repeat="x in comments">
-                <div class="clearfix" ng-if="$index % 3 == 0"></div>
-                <div class="col-sm-4" style="padding-left:8%">
-                    <div class="dialogbox">
-                        <div class="body">
-                            <span style="color: #00b7fc">{{x.UserName}} Says</span>
-                            <div class="message">
-                                <a class="a2" href="/Account/Profile.aspx?userId={{x.UserId}}">
-                                    <span style="color: #00b7fc">{{x.Comment}}</span>
-                                    <div>
-                                    <span style="color: #00b7fc">at: {{x.LastUpdated | date : "short"}}</span>
-                                        </div>
-                                </a>
-                            </div>
-                        </div>
+
+        <div class="detailBox">
+            <div class="titleBox">
+                <label>Comments</label>
+                <hr />
+            </div>
+            <div ng-app="MyApp" ng-controller="commentController">
+                <div class="actionBox">
+                    <div class="scrollbarsupreme">
+                        <ul ng-repeat="x in comments">
+                            <li ng-if="$index % 3 == 0">
+                                <div class="">
+                                    <div class="commenterImage">
+                                        <p>{{x.UserName}} Says</p>
+                                        <a href="/Account/Profile.aspx?userId={{x.UserId}}"></a>
+                                    </div>
+                                    <br />
+                                    <div class="commentText">
+                                        <p class="commentText">{{x.Comment}}</p>
+                                        <span class="date sub-text">on {{x.LastUpdated | date : "short"}}</span>
+                                    </div>
+                                    <hr style="width: 95%" />
+                                </div>
+                            </li>
+                        </ul>
                     </div>
-                </div>              
+                </div>
+
             </div>
         </div>
+</section>
     </div>
+
 
     <%-- ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- --%>
     <script>
@@ -105,7 +134,7 @@
             }
             function postLoadFailure(response) {
                 alert(response.d.responseText);
-            }           
+            }
         });
 
         app.controller("commentController", function ($scope) {
@@ -140,7 +169,8 @@
                 alert(response.d.responseText);
             }
 
-            $("#btnSubmit").click(function () {
+            $("#btnSubmit").click(function (event) {
+                event.preventDefault();
                 var postid = $("#vote").attr("postId").toString();
                 var commentText = $("#cmtComment").val();
                 var userid = $("#vote").attr("userid").toString();
@@ -150,6 +180,99 @@
         });
     </script>
     <%-- ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- --%>
+    <style>
+        .detailBox {
+            width: 60%;
+            border: 1px solid #bbb;
+            margin: auto;
+        }
+
+        .titleBox {
+            background-color: #000;
+            padding: 10px;
+            font-size: 32px;
+        }
+
+            .titleBox label {
+                color: #42DCA3;
+                margin: 0;
+                display: inline-block;
+            }
+
+        /*.commentBox {
+            padding: 10px;
+            border-top: 3px dotted #bbb;             
+        }
+
+        .commentBox .form-group:first-child, .actionBox .form-group:first-child {
+                width: 80%;
+                
+            }
+
+            .commentBox .form-group:nth-child(2), .actionBox .form-group:nth-child(2) {
+                width: 18%;
+            }*/
+
+        .actionBox .form-group * {
+            width: 100%;
+        }
+
+        .taskDescription {
+            margin-top: 10px 0;
+        }
+
+        .commentList {
+            padding: 0;
+            list-style: none;
+            overflow: auto;
+        }
+
+            .commentList li {
+                margin: 0;
+                margin-top: 10px;
+            }
+
+                .commentList li > div {
+                    /*display: table-cell;*/
+                }
+
+        .scrollbarsupreme {
+            max-height: 300px;
+            padding-right: 5px;
+            list-style: none;
+            overflow: auto;
+        }
+
+        .commenterImage {
+            width: 100%;
+            padding-right: 80%;
+            height: 10px;
+        }
+
+            .commenterImage p {
+                width: 100%;
+                /*border-radius: 50%;*/
+            }
+
+        .commentText p {
+            bottom: 0;
+            position: relative;
+            margin: 0;
+            color: #42DCA3;
+        }
+
+        .sub-text {
+            color: #FFF;
+            font-family: verdana;
+            font-size: 11px;
+            float: right;
+        }
+
+        .actionBox {
+            /*border-top: 1px dotted #bbb;*/
+            padding: 10px;
+        }
+    </style>
 </asp:Content>
 
 
