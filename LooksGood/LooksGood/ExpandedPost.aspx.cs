@@ -10,19 +10,20 @@ using System.Web.UI.HtmlControls;
 
 namespace LooksGood
 {
-    public partial class ExpandedPost : System.Web.UI.Page
+    public partial class ExpandedPost : Page
     {
         Post post = new Post();
-
-
-
+        
         protected void Page_Load(object sender, EventArgs e)
         {
+            getUserId();
             if (Session["User"] != null)
             {
                 //cmtComment.Text = "Please login to comment";
                 //btnSubmit.Visible = false;
+
                 User user = (User)Session["User"];
+                ClientScript.RegisterStartupScript(GetType(), "Javascript", "javascript:UserSignedIn(); ", true);                
             }
             if (Request.QueryString["postId"] != null)
             {
@@ -44,5 +45,17 @@ namespace LooksGood
        
             }
         }
-    }
+        public string getUserId()
+        {
+            if (HttpContext.Current != null && HttpContext.Current.Session != null && HttpContext.Current.Session["User"] != null)
+            {
+                User user = (User)HttpContext.Current.Session["User"];
+                return user.Id.ToString();
+            }
+            else
+            {
+                return string.Empty;
+            }
+        }
+    }   
 }

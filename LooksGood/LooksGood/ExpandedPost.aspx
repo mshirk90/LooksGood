@@ -11,7 +11,7 @@
     </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server" style="color: red">
-    <input type="hidden" class="form-control" id="vote" postid='<%=Request.QueryString["postId"] %>' userid='<%=Request.QueryString["userId"] %>' />
+    <input type="hidden" class="form-control" id="vote" postid='<%=Request.QueryString["postId"] %>' />
     <div class="contain" ng-app="MyApp">
         <div ng-controller="MyController">
             <div class="contain">
@@ -95,37 +95,39 @@
 
     <%-- ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- --%>
     <script>
+        $("#cmtComment").val('Please Login to comment');
+        $("#btnSubmit").val('Please login to comment');
+        $("#cmtComment").prop("disabled", true);
+        $("#btnSubmit").prop("disabled", true);
+        function WebServiceRequest(strMethod, jsonData, cbSuccess, cbError) {
+            $.ajax({
+                type: 'POST',
+                url: 'LooksGoodWS.asmx/' + strMethod,
+                data: jsonData,
+                contentType: 'application/json; charset=utf-8',
+                dataType: 'json',
+                success: cbSuccess,
+                error: cbError
+            });
+        }
+
+        function UserSignedIn() {
+            $("#cmtComment").val('Comment Here');
+            $("#btnSubmit").val('Sumbit Comment');
+            $("#cmtComment").prop("disabled", false);
+            $("#btnSubmit").prop("disabled", false);            
+        }
+
         var app = angular.module("MyApp", []);
         app.controller("MyController", function ($scope) {
             $scope.post = {}
 
             angular.element(document).ready(function () {
                 var postId = vote.getAttribute("postid");
-                var userid = vote.getAttribute("userId");
-                if (userid === "") {
-                    $("#cmtComment").val('Please Login to comment');
-                    $("#btnSubmit").val('Please login to comment');
-                    $("#cmtComment").prop("disabled", true);
-                    $("#btnSubmit").prop("disabled", true);
-                } else {
-                    $("#cmtComment").prop("disabled", false);
-                    $("#btnSumbit").prop("disabled", false);
-                    $("#cmtComment").val('');
-                }
+                //var userid = '<%=getUserId()%>';                          
+                
                 WebServiceRequest("GetPostById", "{'postId': '" + postId + "'}", postLoadSuccess, postLoadFailure)
             });
-
-            function WebServiceRequest(strMethod, jsonData, cbSuccess, cbError) {
-                $.ajax({
-                    type: 'POST',
-                    url: 'LooksGoodWS.asmx/' + strMethod,
-                    data: jsonData,
-                    contentType: 'application/json; charset=utf-8',
-                    dataType: 'json',
-                    success: cbSuccess,
-                    error: cbError
-                });
-            }
 
             function postLoadSuccess(response) {
                 $scope.post = JSON.parse(response.d);
@@ -142,22 +144,10 @@
 
             angular.element(document).ready(function () {
                 var postId = vote.getAttribute("postid");
-                var userid = vote.getAttribute("userId");
+                //var userid = '<%=getUserId()%>';
 
                 WebServiceRequest("GetCommentsByPostId", "{'postId': '" + postId + "'}", commentSuccess, commentFailure)
             });
-
-            function WebServiceRequest(strMethod, jsonData, cbSuccess, cbError) {
-                $.ajax({
-                    type: 'POST',
-                    url: 'LooksGoodWS.asmx/' + strMethod,
-                    data: jsonData,
-                    contentType: 'application/json; charset=utf-8',
-                    dataType: 'json',
-                    success: cbSuccess,
-                    error: cbError
-                });
-            }
 
             function commentSuccess(response) {
                 $scope.comments = JSON.parse(response.d);
@@ -171,9 +161,9 @@
 
             $("#btnSubmit").click(function (event) {
                 event.preventDefault();
-                var postid = $("#vote").attr("postId").toString();
+                var postid = vote.getAttribute("postid");
                 var commentText = $("#cmtComment").val();
-                var userid = $("#vote").attr("userid").toString();
+                var userid = '<%=getUserId()%>';
                 WebServiceRequest("SubmitComment", "{'postid': '" + postid + "', 'commentText': '" + commentText + "', 'userid': '" + userid + "'}", commentSuccess, commentFailure)
             });
 
