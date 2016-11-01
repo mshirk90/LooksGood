@@ -2537,7 +2537,7 @@ function publishExternalAPI(angular) {
     'element': jqLite,
     'forEach': forEach,
     'injector': createInjector,
-    'noop': noop,
+    //'noop': noop,
     'bind': bind,
     'toJson': toJson,
     'fromJson': fromJson,

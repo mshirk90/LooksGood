@@ -56,7 +56,7 @@
                 <textarea class="textarea" style="color: #00b7fc" cols="50" rows="3" name="comment" id="cmtComment" placeholder="Comment"></textarea>
             </div>
             <div>
-                <input type="submit" name="submit" value="Submit Comment" id="btnSubmit" style="background-color: #000; color: #00b7fc; border: 1px solid #00b7fc" />
+                <input type="submit" name="submit" value="" id="btnSubmit" style="background-color: #000; color: #00b7fc; border: 1px solid #00b7fc" />
             </div>
         </div>
 
@@ -69,8 +69,8 @@
                 <div class="actionBox">
                     <div class="scrollbarsupreme">
                         <ul ng-repeat="x in comments">
-                            <li ng-if="$index % 3 == 0">
-                                <div class="">
+                            <li>
+                                <div >
                                     <div class="commenterImage">
                                         <p>{{x.UserName}} Says</p>
                                         <a href="/Account/Profile.aspx?userId={{x.UserId}}"></a>
@@ -86,7 +86,6 @@
                         </ul>
                     </div>
                 </div>
-
             </div>
         </div>
 </section>
@@ -112,8 +111,8 @@
         }
 
         function UserSignedIn() {
-            $("#cmtComment").val('Comment Here');
-            $("#btnSubmit").val('Sumbit Comment');
+            $("#cmtComment").val('');
+            $("#btnSubmit").val('Submit Comment');
             $("#cmtComment").prop("disabled", false);
             $("#btnSubmit").prop("disabled", false);            
         }
