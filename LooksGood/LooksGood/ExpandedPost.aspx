@@ -166,7 +166,6 @@
                 var userid = '<%=getUserId()%>';
                 WebServiceRequest("SubmitComment", "{'postid': '" + postid + "', 'commentText': '" + commentText + "', 'userid': '" + userid + "'}", commentSuccess, commentFailure)
             });
-
         });
     </script>
     <%-- ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- --%>
