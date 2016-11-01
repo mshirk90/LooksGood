@@ -44,9 +44,9 @@
         <div class="space">
             <br />
         </div>
-        <div class="space">
+        <%--<div class="space">
             <br />
-        </div>
+        </div>--%>
         <%-- ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- --%>
 
 
@@ -70,10 +70,11 @@
                     <div class="scrollbarsupreme">
                         <ul ng-repeat="x in comments">
                             <li>
-                                <div >
+                                <div>
                                     <div class="commenterImage">
-                                        <p>{{x.UserName}} Says</p>
-                                        <a href="/Account/Profile.aspx?userId={{x.UserId}}"></a>
+                                        <a href="/Account/Profile.aspx?userId={{x.UserId}}">
+                                            <p style="color: white">{{x.UserName}} Says</p>
+                                        </a>
                                     </div>
                                     <br />
                                     <div class="commentText">
