@@ -28,13 +28,15 @@
                 <div class="col-sm-4" style="padding-left: 8%">
                     <div class="dialogbox">
                         <div class="body">
-                            <span style="color: #00b7fc">Post Title: {{x.Title}}</span>
-                            <div class="message">
-                                <span style="color: #00b7fc">{{x.Description}}</span>
-                                <div>
-                                    <span style="color: #00b7fc">Uploaded on: {{x.LastUpdated | date : "short"}}</span>
+                            <a href="../ExpandedPost.aspx?postId={{x.Id}}">
+                                <span style="color: #00b7fc">Post Title: {{x.Title}}</span>
+                                <div class="message">
+                                    <span style="color: #00b7fc">{{x.Description}}</span>
+                                    <div>
+                                        <span style="color: #00b7fc">Uploaded on: {{x.LastUpdated | date : "short"}}</span>
+                                    </div>
                                 </div>
-                            </div>
+                            </a>
                         </div>
                     </div>
                 </div>
