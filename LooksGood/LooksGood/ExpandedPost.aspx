@@ -22,13 +22,11 @@
                         </a>
                         <div>
                             <img ng-src="{{post.ImagePath}}" width="85%" height="75%" class="imagefix" />
-
-
-
                         </div>
                         <a>
                             <h4 class="textfix"><span>Description: {{post.Description}}</span></h4>
                         </a>
+                        <label id="lblLikabilityy">{{post.UpLikeAbility}}%</label>
                         <a>
                             <div>Posted By: {{post.UserName}}</div>
                         </a>
@@ -39,28 +37,25 @@
                 </div>
             </div>
         </div>
-
-                                    <div ng-controller="voteController">
-                                <div class="textfix">
-                                    <input type="submit" name="submit" value="1" id="btnUpVote" style="background-color: #000; color: #00b7fc; border: 1px solid #00b7fc" />
-                                    <label id="lblLikability">%</label>
-                                    <input type="submit" name="submit" value="-1"   id="btnDownVote" style="background-color: #000; color: #00b7fc; border: 1px solid #00b7fc" />
-                                </div>
-                            </div>
-        <%-- ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- --%>
-
-        <div class="space">
-            <br />
-        </div>
-        <div class="space">
-            <br />
-        </div>
-        <div class="space">
-            <br />
+        <%-- --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- --%>
+        <div ng-controller="voteController">
+            <div class="textfix">
+                <input type="submit" name="submit" value="1" id="btnUpVote" style="background-color: #000; color: #00b7fc; border: 1px solid #00b7fc" />
+                <label id="lblLikability">%</label>
+                <input type="submit" name="submit" value="-1" id="btnDownVote" style="background-color: #000; color: #00b7fc; border: 1px solid #00b7fc" />
+            </div>
         </div>
         <%-- ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- --%>
-
-
+        <div class="space">
+            <br />
+        </div>
+        <div class="space">
+            <br />
+        </div>
+        <div class="space">
+            <br />
+        </div>
+        <%-- ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- --%>
         <section id="contact" class="">
             <div id="comment_form" class="contain">
                 <div>
@@ -70,7 +65,6 @@
                     <input type="submit" name="submit" value="" id="btnSubmit" style="background-color: #000; color: #00b7fc; border: 1px solid #00b7fc" />
                 </div>
             </div>
-
             <div class="detailBox">
                 <div class="titleBox">
                     <label>Comments</label>
@@ -101,8 +95,6 @@
             </div>
         </section>
     </div>
-
-
     <%-- ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- --%>
     <script>
         $("#cmtComment").val('Please Login to comment');
@@ -196,7 +188,7 @@
             function VoteSuccess(response) {
                 $scope.postvotes = JSON.parse(response.d);
                 $scope.$apply();
-               // alert(response.d);
+                // alert(response.d);
 
             }
             function VoteFailure(response) {
@@ -209,7 +201,7 @@
                 var votes = $("#btnUpVote").val();
                 var userid = '<%=getUserId()%>';
                 WebServiceRequest("SubmitVote", "{'postid': '" + postid + "', 'vote': '" + votes + "', 'userid': '" + userid + "'}", VoteSuccess, VoteFailure)
-             });
+            });
 
             $("#btnDownVote").click(function (event) {
                 event.preventDefault();
@@ -217,7 +209,7 @@
                 var votes = $("#btnDownVote").val();
                 var userid = '<%=getUserId()%>';
                 WebServiceRequest("SubmitVote", "{'postid': '" + postid + "', 'vote': '" + votes + "', 'userid': '" + userid + "'}", VoteSuccess, VoteFailure)
-             });
+            });
 
         });
 

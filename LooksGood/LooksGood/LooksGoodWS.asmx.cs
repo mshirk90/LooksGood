@@ -41,7 +41,6 @@ namespace LooksGood
             Post post = new Post();
             post = post.GetById(new Guid(id));
 
-            post.Votes += change;
             post.Save();
             return post;
         }
