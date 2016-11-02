@@ -41,22 +41,10 @@ namespace LooksGood
             Post post = new Post();
             post = post.GetById(new Guid(id));
 
-            post.Votes += change;
             post.Save();
             return post;
         }
 
-
-
-        [WebMethod]
-        [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
-        public Post GetVotesByPostId(string id)
-        {
-            Post post = new Post();
-            post = post.GetById(new Guid(id));
-
-            return post;
-        }
 
         [WebMethod]
         [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
@@ -133,7 +121,29 @@ namespace LooksGood
             post = post.GetById(comments.PostId);
 
             return JsonConvert.SerializeObject(post);
+        }
 
+        [WebMethod]
+        [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
+        public String GetVotesByPostId(string postId)
+        {
+            BusinessObjects.PostVotesList postvotes = new BusinessObjects.PostVotesList();
+            postvotes = postvotes.GetPostVotesByPostId(new Guid(postId));
+            string jsoncomments = JsonConvert.SerializeObject(postvotes.List);
+
+            return jsoncomments;
+        }
+
+        [WebMethod]
+        [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
+        public string SubmitVote(string postid, int vote, string userid)
+        {
+            BusinessObjects.PostVotes postvote = new BusinessObjects.PostVotes();
+            postvote.PostId = new Guid(postid);
+            postvote.UserId = new Guid(userid);
+            postvote.Vote = vote;
+            postvote.Save();
+            return GetVotesByPostId(postid);
         }
     }
 }

@@ -19,11 +19,28 @@ namespace BusinessObjects
         private String _FilePath = String.Empty;
         private String _RelativeFileName = String.Empty;
         private String _UserName = string.Empty;
-        private int _Votes = 0;
         private CommentsList _Comments = null;
+        private int _UpLikeAbility = 0;
+        private int _DownLikeAbility = 0;
         #endregion
 
         #region Public Properties
+        public int UpLikeAbility
+        {
+            get
+            {
+                return _UpLikeAbility;
+            }
+        }
+
+        public int DownLikeAbility
+        {
+            get
+            {
+                return _DownLikeAbility;
+            }
+        }
+
         public string UserName
         {
             get
@@ -89,26 +106,7 @@ namespace BusinessObjects
                     RaiseEvent(e);
                 }
             }
-        }
-
-        public int Votes
-        {
-            get { return _Votes; }
-            set
-            {
-                if (_Votes != value)
-                {
-                    _Votes = value;
-                    base.IsDirty = true;
-                    Boolean Savable = IsSavable();
-                    SavableEventArgs e = new SavableEventArgs(Savable);
-                    RaiseEvent(e);
-                }
-            }
-        }
-
-
-
+        }    
         public Guid UserId
         {
             get { return _UserId; }
@@ -260,19 +258,38 @@ namespace BusinessObjects
 
             return result;
         }
+        private void LikeAbility()
+        {
+            Convert.ToInt32(GetLikeAbilityPercentage(base.Id));
+        }
         #endregion
 
         #region Public Methods
-        //public Post GetVotes(Guid id)
-        //{
-        //    Database database = new Database("LooksGoodDatabase");
-        //    DataTable dt = new DataTable();
-        //    database.Command.CommandType = System.Data.CommandType.StoredProcedure;
-        //    database.Command.CommandText = "tblPostGetVotes";
-        //    database.Command.Parameters.Add("@Id", SqlDbType.UniqueIdentifier).Value = id;
-        //    database.Parameter parm = new database.Parameter();
-            
-        //}
+        public Post GetLikeAbilityPercentage(Guid postId)
+        {
+            Database database = new Database("LooksGoodDatabase");
+            DataTable dt = new DataTable();
+            database.Command.CommandType = System.Data.CommandType.StoredProcedure;
+            database.Command.CommandText = "tblPostGetLikeAbility";
+            database.Command.Parameters.Add("@PostId", SqlDbType.UniqueIdentifier).Value = postId;
+            dt = database.ExecuteQuery();
+            if (dt != null)
+            {
+                foreach (DataRow dr in dt.Rows)
+                {
+                    if ((int)dr["vote"] == -1)
+                    {
+                        _DownLikeAbility = (int)dr["Percentage"];
+                    }
+                    else if ((int)dr["vote"] == 1)
+                    {
+                        _UpLikeAbility = (int)dr["Percentage"];
+                    }
+                }
+               
+            }
+            return this;
+        }
 
         public Post GetById(Guid id)
         {
@@ -301,8 +318,7 @@ namespace BusinessObjects
             _ImagePath = dr["ImagePath"].ToString();
             String filepath = System.IO.Path.Combine(_FilePath, Id.ToString() + ".jpg");
             _RelativeFileName = System.IO.Path.Combine("UploadedImages", Id.ToString() + ".jpg");
-            //_Votes = (int)dr["Votes"];
-
+            LikeAbility();
         }
         public Boolean IsSavable()
         {
