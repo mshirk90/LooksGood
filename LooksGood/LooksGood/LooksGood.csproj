@@ -511,6 +511,8 @@
     <Compile Include="BusinessObjects\HeaderData.cs" />
     <Compile Include="BusinessObjects\Post.cs" />
     <Compile Include="BusinessObjects\PostList.cs" />
+    <Compile Include="BusinessObjects\PostVotes.cs" />
+    <Compile Include="BusinessObjects\PostVotesList.cs" />
     <Compile Include="BusinessObjects\User.cs" />
     <Compile Include="BusinessObjects\SavableEventArgs.cs" />
     <Compile Include="ConfigurationHelper\Configuration.cs" />
