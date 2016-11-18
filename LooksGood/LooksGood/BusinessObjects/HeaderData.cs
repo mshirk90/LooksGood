@@ -104,7 +104,7 @@ namespace BusinessObjects
 
         public void Initialize(SqlCommand cmd)
         {
-            _Id = (Guid)cmd.Parameters["@ID"].Value;
+            _Id = (Guid)cmd.Parameters["@Id"].Value;
             _Version = (Int32)cmd.Parameters["@Version"].Value;
             _LastUpdated = (DateTime)cmd.Parameters["@LastUpdated"].Value;
             _Deleted = (Boolean)cmd.Parameters["@Deleted"].Value;

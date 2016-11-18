@@ -26,7 +26,6 @@
                         <a>
                             <h4 class="textfix"><span>Description: {{post.Description}}</span></h4>
                         </a>
-                        <label id="lblLikabilityy">{{post.UpLikeAbility}}%</label>
                         <a>
                             <div>Posted By: {{post.UserName}}</div>
                         </a>
@@ -73,8 +72,8 @@
                 <div ng-controller="commentController">
                     <div class="actionBox">
                         <div class="scrollbarsupreme">
-                            <ul ng-repeat="x in comments">
-                                <li>
+                            <ul style="list-style-type: none">
+                                <li ng-repeat="x in comments">
                                     <div>
                                         <div class="commenterImage">
                                             <p>{{x.UserName}} Says</p>
@@ -130,7 +129,7 @@
 
             angular.element(document).ready(function () {
                 var postId = vote.getAttribute("postid");
-                //var userid = '<%=getUserId()%>';                          
+                                  
 
                 WebServiceRequest("GetPostById", "{'postId': '" + postId + "'}", postLoadSuccess, postLoadFailure)
             });
@@ -150,7 +149,7 @@
 
             angular.element(document).ready(function () {
                 var postId = vote.getAttribute("postid");
-                //var userid = '<%=getUserId()%>';
+               
 
                 WebServiceRequest("GetCommentsByPostId", "{'postId': '" + postId + "'}", commentSuccess, commentFailure)
             });
@@ -180,7 +179,7 @@
 
             angular.element(document).ready(function () {
                 var postId = vote.getAttribute("postid");
-                //var userid = '<%=getUserId()%>';
+               
 
                 WebServiceRequest("GetVotesByPostId", "{'postId': '" + postId + "'}", VoteSuccess, VoteFailure)
             });
@@ -220,6 +219,7 @@
             width: 60%;
             border: 1px solid #bbb;
             margin: auto;
+            margin-top: 20px;
         }
 
         .titleBox {

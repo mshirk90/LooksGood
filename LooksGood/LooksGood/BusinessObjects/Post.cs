@@ -258,38 +258,39 @@ namespace BusinessObjects
 
             return result;
         }
-        private void LikeAbility()
-        {
-            Convert.ToInt32(GetLikeAbilityPercentage(base.Id));
-        }
+        //private void LikeAbility()
+        //{
+        //    Convert.ToInt32(GetLikeAbilityPercentage(base.Id));
+        //    LikeAbility = GetLikeAbilityPercentage(base.Id);
+        //}
         #endregion
 
         #region Public Methods
-        public Post GetLikeAbilityPercentage(Guid postId)
-        {
-            Database database = new Database("LooksGoodDatabase");
-            DataTable dt = new DataTable();
-            database.Command.CommandType = System.Data.CommandType.StoredProcedure;
-            database.Command.CommandText = "tblPostGetLikeAbility";
-            database.Command.Parameters.Add("@PostId", SqlDbType.UniqueIdentifier).Value = postId;
-            dt = database.ExecuteQuery();
-            if (dt != null)
-            {
-                foreach (DataRow dr in dt.Rows)
-                {
-                    if ((int)dr["vote"] == -1)
-                    {
-                        _DownLikeAbility = (int)dr["Percentage"];
-                    }
-                    else if ((int)dr["vote"] == 1)
-                    {
-                        _UpLikeAbility = (int)dr["Percentage"];
-                    }
-                }
+        //public Post GetLikeAbilityPercentage(Guid postId)
+        //{
+        //    Database database = new Database("LooksGoodDatabase");
+        //    DataTable dt = new DataTable();
+        //    database.Command.CommandType = System.Data.CommandType.StoredProcedure;
+        //    database.Command.CommandText = "tblPostGetLikeAbility";
+        //    database.Command.Parameters.Add("@PostId", SqlDbType.UniqueIdentifier).Value = postId;
+        //    dt = database.ExecuteQuery();
+        //    if (dt != null)
+        //    {
+        //        foreach (DataRow dr in dt.Rows)
+        //        {
+        //            if ((int)dr["vote"] == -1)
+        //            {
+        //                _DownLikeAbility = (int)dr["Percentage"];
+        //            }
+        //            else if ((int)dr["vote"] == 1)
+        //            {
+        //                _UpLikeAbility = (int)dr["Percentage"];
+        //            }
+        //        }
                
-            }
-            return this;
-        }
+        //    }
+        //    return this;
+        //}
 
         public Post GetById(Guid id)
         {
@@ -318,7 +319,7 @@ namespace BusinessObjects
             _ImagePath = dr["ImagePath"].ToString();
             String filepath = System.IO.Path.Combine(_FilePath, Id.ToString() + ".jpg");
             _RelativeFileName = System.IO.Path.Combine("UploadedImages", Id.ToString() + ".jpg");
-            LikeAbility();
+            //LikeAbility();
         }
         public Boolean IsSavable()
         {
