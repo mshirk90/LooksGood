@@ -127,8 +127,9 @@ namespace LooksGood
         [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
         public String GetVotesByPostId(string postId)
         {
+            Post post = new Post();
             PostVotesList postvotes = new PostVotesList();
-            postvotes = postvotes.GetPostVotesByPostId(new Guid(postId));
+            postvotes = postvotes.GetPostVotesByPostId(post.Id);
             string jsoncomments = JsonConvert.SerializeObject(postvotes.List);
 
             return jsoncomments;
