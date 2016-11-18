@@ -38,9 +38,9 @@
         </div>
         <%-- --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- --%>
         <div ng-controller="voteController">
-            <div class="textfix">
+            <div <%-- ng-model="vote"--%> class="textfix">
                 <input type="submit" name="submit" value="1" id="btnUpVote" style="background-color: #000; color: #00b7fc; border: 1px solid #00b7fc" />
-                <label id="lblLikability">%</label>
+              <%--  <label id="lblLikability">{{vote.LikeAbility}}</label>--%>
                 <input type="submit" name="submit" value="-1" id="btnDownVote" style="background-color: #000; color: #00b7fc; border: 1px solid #00b7fc" />
             </div>
         </div>
@@ -175,7 +175,8 @@
         });
 
         app.controller("voteController", function ($scope) {
-            $scope.postvotes = [];
+            
+            $scope.postvotes = []
 
             angular.element(document).ready(function () {
                 var postId = vote.getAttribute("postid");

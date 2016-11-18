@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Data;
 using DatabaseHelper;
+using BusinessObjects;
 
 
 namespace BusinessObjects
@@ -22,14 +23,21 @@ namespace BusinessObjects
         private CommentsList _Comments = null;
         private int _UpLikeAbility = 0;
         private int _DownLikeAbility = 0;
+        private int _Likability = 0;
+
         #endregion
 
         #region Public Properties
-        public int UpLikeAbility
+        public int LikeAbility
         {
             get
             {
-                return _UpLikeAbility;
+                Post post = new Post();
+                PostVotes postvotes = new PostVotes();
+                postvotes = postvotes.GetLikability(post.Id);
+                _Likability = Convert.ToInt32(postvotes.Likability);
+                return _Likability;
+             
             }
         }
 

@@ -6,7 +6,7 @@ using System.Data;
 using DatabaseHelper;
 using BusinessObjects;
 
-namespace LooksGood.BusinessObjects
+namespace BusinessObjects
 {
     public class PostVotes : HeaderData
     {
@@ -183,6 +183,30 @@ namespace LooksGood.BusinessObjects
 
             return this;
         }
+
+
+        public PostVotes GetLikability(Guid postId)
+        {
+            Database database = new Database("LooksGoodDatabase");
+            DataTable dt = new DataTable();
+            database.Command.CommandType = CommandType.StoredProcedure;
+            database.Command.CommandText = "tblPostGetLikeAbility";
+            database.Command.Parameters.Add("@PostId", SqlDbType.UniqueIdentifier).Value = postId;
+            dt = database.ExecuteQuery();
+            if (/*dt != null &&*/ dt.Rows.Count == 1 || dt.Rows.Count == 2)
+            {
+                DataRow dr = dt.Rows[0];
+                base.Initialize(dr);
+                InitializeBusinessData(dr);
+                base.IsNew = false;
+                base.IsDirty = false;
+            }
+
+            return this;
+        }
+
+
+
         public void InitializeBusinessData(DataRow dr)
         {
             _vote = (int)dr["Vote"];

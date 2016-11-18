@@ -7,7 +7,7 @@ using DatabaseHelper;
 using System.Data;
 using BusinessObjects;
 
-namespace LooksGood.BusinessObjects
+namespace BusinessObjects
 {
     public class PostVotesList : Event
     {

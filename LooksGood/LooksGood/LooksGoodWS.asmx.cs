@@ -127,7 +127,7 @@ namespace LooksGood
         [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
         public String GetVotesByPostId(string postId)
         {
-            BusinessObjects.PostVotesList postvotes = new BusinessObjects.PostVotesList();
+            PostVotesList postvotes = new PostVotesList();
             postvotes = postvotes.GetPostVotesByPostId(new Guid(postId));
             string jsoncomments = JsonConvert.SerializeObject(postvotes.List);
 
@@ -138,7 +138,7 @@ namespace LooksGood
         [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
         public string SubmitVote(string postid, int vote, string userid)
         {
-            BusinessObjects.PostVotes postvote = new BusinessObjects.PostVotes();
+            PostVotes postvote = new PostVotes();
             postvote.PostId = new Guid(postid);
             postvote.UserId = new Guid(userid);
             postvote.Vote = vote;
