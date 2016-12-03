@@ -128,7 +128,7 @@
             <div class="space">
                 <br />
             </div>
-            <div>
+            <div id="maincontent">
                 <asp:ContentPlaceHolder ID="MainContent" runat="server">
                 </asp:ContentPlaceHolder>
             </div>
