@@ -21,16 +21,25 @@ namespace BusinessObjects
         private String _RelativeFileName = String.Empty;
         private String _UserName = string.Empty;
         private CommentsList _Comments = null;
-        private decimal _LikeAbility = 0;
-
+        //private decimal _LikeAbility = 0;
+        private String _LikeAbility = string.Empty;
         #endregion
 
         #region Public Properties
-        public decimal LikeAbility
+        //public decimal LikeAbility
+        //{
+        //    get
+        //    {                
+        //        return _LikeAbility;                
+        //    }
+        //    set { _LikeAbility = value; }
+        //}
+
+        public String LikeAbility
         {
             get
-            {                
-                return _LikeAbility;                
+            {
+                return _LikeAbility;
             }
             set { _LikeAbility = value; }
         }
@@ -286,7 +295,7 @@ namespace BusinessObjects
             _ImagePath = dr["ImagePath"].ToString();
             String filepath = System.IO.Path.Combine(_FilePath, Id.ToString() + ".jpg");
             _RelativeFileName = System.IO.Path.Combine("UploadedImages", Id.ToString() + ".jpg");
-            _LikeAbility = (decimal)dr["LikeAbility"];
+           _LikeAbility = dr["LikeAbility"].ToString();
         }
         public Boolean IsSavable()
         {

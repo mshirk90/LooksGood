@@ -40,7 +40,7 @@
         </div>
         <%-- --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- --%>
         <div ng-controller="voteController">
-            <div ng-model="post" >
+            <div ng-model="postvotes" >
                 <input type="submit" name="submit" value="1" id="btnUpVote" style="background-color: #000; color: #00b7fc; border: 1px solid #00b7fc" />
                 
                 <input type="submit" name="submit" value="-1" id="btnDownVote" style="background-color: #000; color: #00b7fc; border: 1px solid #00b7fc" />
