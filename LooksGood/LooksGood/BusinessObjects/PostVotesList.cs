@@ -61,11 +61,12 @@ namespace BusinessObjects
             database.Command.Parameters.Add("@PostId", SqlDbType.UniqueIdentifier).Value = postId;
 
             DataTable dt = database.ExecuteQuery();
+            Post post = new Post();
+            post = post.GetById(postId);
             foreach (DataRow dr in dt.Rows)
             {
-                PostVotes postvotes = new PostVotes();
-                Post post = new Post();
-                
+                PostVotes postvotes = new PostVotes();              
+
                 postvotes.Initialize(dr);
                 postvotes.InitializeBusinessData(dr);
                 postvotes.IsNew = false;

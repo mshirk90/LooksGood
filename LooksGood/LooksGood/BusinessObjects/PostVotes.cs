@@ -13,7 +13,7 @@ namespace BusinessObjects
         #region Private Members
         private Guid _UserId = Guid.Empty;
         private Guid _PostId = Guid.Empty;
-        private int _vote = 0;
+        private decimal _vote = 0;
         private Decimal _VoteScore = 0;
         #endregion
 
@@ -56,7 +56,7 @@ namespace BusinessObjects
             }
         }
 
-        public int Vote
+        public decimal Vote
         {
             get { return _vote; }
             set { _vote = value; }
@@ -202,7 +202,7 @@ namespace BusinessObjects
 
         public void InitializeBusinessData(DataRow dr)
         {
-            _vote = (int)dr["Vote"];
+            _vote = (decimal)dr["Vote"];
         }
         public Boolean IsSavable()
         {
