@@ -40,8 +40,10 @@
         </div>
         <%-- --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- --%>
         <div ng-controller="voteController">
-            <div ng-model="postvotes" >
-                <a> <label style="font: bold 30px white; padding: 2px;" id="lblLikeAbility">{{postvotes.LikeAbility}}</label></a>
+            <div ng-model="postvotes">
+                <div>
+                <span>{{postvotes.LikeAbility}}</span>
+                    </div>               
                 <input type="submit" name="submit" value="1" id="btnUpVote" style="background-color: #000; color: #00b7fc; border: 1px solid #00b7fc" />
                 
                 <input type="submit" name="submit" value="-1" id="btnDownVote" style="background-color: #000; color: #00b7fc; border: 1px solid #00b7fc" />
@@ -153,6 +155,7 @@
             function postLoadFailure(response) {
                 alert(response.d.responseText);
             }
+
         });
 
         app.controller("commentController", function ($scope) {
