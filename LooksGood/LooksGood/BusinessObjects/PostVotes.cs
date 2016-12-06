@@ -14,8 +14,7 @@ namespace BusinessObjects
         private Guid _UserId = Guid.Empty;
         private Guid _PostId = Guid.Empty;
         private int _vote = 0;
-        private int _totalvotes = 0;
-        private decimal _likability = 0;
+        private Decimal _VoteScore = 0;
         #endregion
 
         #region Public Properties
@@ -63,16 +62,10 @@ namespace BusinessObjects
             set { _vote = value; }
         }
 
-        public int TotalVotes
+        public Decimal VoteScore
         {
-            get { return _totalvotes; }
-            set { _totalvotes = value; }
-        }
-
-        public Decimal Likability
-        {
-            get { return _likability; }
-            set { _likability = value; }
+            get { return _VoteScore; }
+            set { _VoteScore = value; }
         }
 
         #endregion
@@ -185,7 +178,7 @@ namespace BusinessObjects
         }
 
 
-        public PostVotes GetLikability(Guid postId)
+        public PostVotes GetLikeAbility(Guid postId)
         {
             Database database = new Database("LooksGoodDatabase");
             DataTable dt = new DataTable();

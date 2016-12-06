@@ -21,33 +21,30 @@ namespace BusinessObjects
         private String _RelativeFileName = String.Empty;
         private String _UserName = string.Empty;
         private CommentsList _Comments = null;
-        private int _UpLikeAbility = 0;
-        private int _DownLikeAbility = 0;
-        private int _Likability = 0;
-
+        //private decimal _LikeAbility = 0;
+        private String _LikeAbility = string.Empty;
         #endregion
 
         #region Public Properties
-        public int LikeAbility
+        //public decimal LikeAbility
+        //{
+        //    get
+        //    {                
+        //        return _LikeAbility;                
+        //    }
+        //    set { _LikeAbility = value; }
+        //}
+
+        public String LikeAbility
         {
             get
             {
-                Post post = new Post();
-                PostVotes postvotes = new PostVotes();
-                postvotes = postvotes.GetLikability(post.Id);
-                _Likability = Convert.ToInt32(postvotes.Likability);
-                return _Likability;
-             
+                return _LikeAbility;
             }
+            set { _LikeAbility = value; }
         }
 
-        public int DownLikeAbility
-        {
-            get
-            {
-                return _DownLikeAbility;
-            }
-        }
+
 
         public string UserName
         {
@@ -178,7 +175,6 @@ namespace BusinessObjects
                 database.Command.Parameters.Add("@Title", SqlDbType.VarChar).Value = _Title;
                 database.Command.Parameters.Add("@Description", SqlDbType.VarChar).Value = _Description;
                 database.Command.Parameters.Add("@ImagePath", SqlDbType.VarChar).Value = _ImagePath;
-                //database.Command.Parameters.Add("@Votes", SqlDbType.Int).Value = _Votes;
 
 
                 // Provides the empty buckets
@@ -266,39 +262,11 @@ namespace BusinessObjects
 
             return result;
         }
-        //private void LikeAbility()
-        //{
-        //    Convert.ToInt32(GetLikeAbilityPercentage(base.Id));
-        //    LikeAbility = GetLikeAbilityPercentage(base.Id);
-        //}
+    
         #endregion
 
         #region Public Methods
-        //public Post GetLikeAbilityPercentage(Guid postId)
-        //{
-        //    Database database = new Database("LooksGoodDatabase");
-        //    DataTable dt = new DataTable();
-        //    database.Command.CommandType = System.Data.CommandType.StoredProcedure;
-        //    database.Command.CommandText = "tblPostGetLikeAbility";
-        //    database.Command.Parameters.Add("@PostId", SqlDbType.UniqueIdentifier).Value = postId;
-        //    dt = database.ExecuteQuery();
-        //    if (dt != null)
-        //    {
-        //        foreach (DataRow dr in dt.Rows)
-        //        {
-        //            if ((int)dr["vote"] == -1)
-        //            {
-        //                _DownLikeAbility = (int)dr["Percentage"];
-        //            }
-        //            else if ((int)dr["vote"] == 1)
-        //            {
-        //                _UpLikeAbility = (int)dr["Percentage"];
-        //            }
-        //        }
-               
-        //    }
-        //    return this;
-        //}
+   
 
         public Post GetById(Guid id)
         {
@@ -327,7 +295,7 @@ namespace BusinessObjects
             _ImagePath = dr["ImagePath"].ToString();
             String filepath = System.IO.Path.Combine(_FilePath, Id.ToString() + ".jpg");
             _RelativeFileName = System.IO.Path.Combine("UploadedImages", Id.ToString() + ".jpg");
-            //LikeAbility();
+           _LikeAbility = dr["LikeAbility"].ToString();
         }
         public Boolean IsSavable()
         {

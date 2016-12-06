@@ -13,7 +13,7 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server" style="color: red">
     <input type="hidden" class="form-control" id="vote" postid='<%=Request.QueryString["postId"] %>' />
     <div class="contain" ng-app="MyApp">
-        <div ng-controller="MyController">
+        <div ng-controller="MyController" id="maincontent">
             <div class="contain">
                 <div>
                     <div class="item" ng-model="post">
@@ -29,6 +29,8 @@
                         <a>
                             <div>Posted By: {{post.UserName}}</div>
                         </a>
+                       <a> <label style="font: bold 30px white; padding: 2px;" id="lblLikeAbility">{{post.LikeAbility}}</label></a>
+
                     </div>
                     <a href="#contact" class="btn btn-circle page-scroll">
                         <i class="fa fa-angle-double-down animated"></i>
@@ -38,9 +40,9 @@
         </div>
         <%-- --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- --%>
         <div ng-controller="voteController">
-            <div <%-- ng-model="vote"--%> class="textfix">
+            <div ng-model="postvotes" >
                 <input type="submit" name="submit" value="1" id="btnUpVote" style="background-color: #000; color: #00b7fc; border: 1px solid #00b7fc" />
-              <%--  <label id="lblLikability">{{vote.LikeAbility}}</label>--%>
+                
                 <input type="submit" name="submit" value="-1" id="btnDownVote" style="background-color: #000; color: #00b7fc; border: 1px solid #00b7fc" />
             </div>
         </div>
@@ -96,6 +98,14 @@
     </div>
     <%-- ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- --%>
     <script>
+
+        $(document).ready(function () {
+            $('html, body').animate({
+                scrollTop: $('.space').offset().top
+            }, 'slow');
+        });
+
+
         $("#cmtComment").val('Please Login to comment');
         $("#btnSubmit").val('Please login to comment');
         $("#cmtComment").prop("disabled", true);
@@ -129,7 +139,7 @@
 
             angular.element(document).ready(function () {
                 var postId = vote.getAttribute("postid");
-                                  
+
 
                 WebServiceRequest("GetPostById", "{'postId': '" + postId + "'}", postLoadSuccess, postLoadFailure)
             });
@@ -149,7 +159,7 @@
 
             angular.element(document).ready(function () {
                 var postId = vote.getAttribute("postid");
-               
+
 
                 WebServiceRequest("GetCommentsByPostId", "{'postId': '" + postId + "'}", commentSuccess, commentFailure)
             });
@@ -175,12 +185,12 @@
         });
 
         app.controller("voteController", function ($scope) {
-            
-            $scope.postvotes = []
+
+            $scope.postvotes = {}
 
             angular.element(document).ready(function () {
                 var postId = vote.getAttribute("postid");
-               
+
 
                 WebServiceRequest("GetVotesByPostId", "{'postId': '" + postId + "'}", VoteSuccess, VoteFailure)
             });

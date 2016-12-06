@@ -130,8 +130,9 @@ namespace LooksGood
             Post post = new Post();
             PostVotesList postvotes = new PostVotesList();
             postvotes = postvotes.GetPostVotesByPostId(post.Id);
+            //postvotes = postvotes.LikeAbilityMath(post.Id);
             string jsoncomments = JsonConvert.SerializeObject(postvotes.List);
-
+            
             return jsoncomments;
         }
 
