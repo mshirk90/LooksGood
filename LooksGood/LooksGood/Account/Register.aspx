@@ -10,18 +10,7 @@
     </div>
     <div class="space">
         <br />
-    </div>
-
-   
-        <%--        <asp:PlaceHolder ID="registerForm" runat="server">
-            <div>
-                <h2>Register new account</h2>
-                <asp:PlaceHolder runat="server" ID="ErrorMessage" Visible="false">
-                    <p class="text-danger">
-                        <asp:Literal runat="server" ID="FailureText" />
-                    </p>
-                </asp:PlaceHolder>
-            </div>--%>
+    </div>         
 
  <div class="contain">
         <div>

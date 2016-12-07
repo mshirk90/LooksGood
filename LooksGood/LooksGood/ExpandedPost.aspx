@@ -38,7 +38,6 @@
                     </a>
                 </div>
             </div>
-
             <%-- --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- --%>
             <input type="submit" name="submit" value="1" id="btnUpVote" style="background-color: #000; color: #00b7fc; border: 1px solid #00b7fc" />
 
@@ -96,13 +95,11 @@
     </div>
     <%-- ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- --%>
     <script>
-
         $(document).ready(function () {
             $('html, body').animate({
                 scrollTop: $('.space').offset().top
             }, 'slow');
         });
-
 
         $("#cmtComment").val('Please Login to comment');
         $("#btnSubmit").val('Please login to comment');
@@ -146,7 +143,7 @@
             function VoteSuccess(response) {
                 $scope.post = JSON.parse(response.d);
                 $scope.$apply();
-                // alert(response.d);
+                //alert(response.d);
 
             }
             function VoteFailure(response) {
@@ -207,46 +204,7 @@
                 var userid = '<%=getUserId()%>';
                 WebServiceRequest("SubmitComment", "{'postid': '" + postid + "', 'commentText': '" + commentText + "', 'userid': '" + userid + "'}", commentSuccess, commentFailure)
             });
-
-        });
-
-       <%-- app.controller("voteController", function ($scope) {
-
-            $scope.postvotes = {}
-
-            angular.element(document).ready(function () {
-                var postId = vote.getAttribute("postid");
-
-
-                WebServiceRequest("GetVotesByPostId", "{'postId': '" + postId + "'}", VoteSuccess, VoteFailure)
-            });
-
-            function VoteSuccess(response) {
-                $scope.postvotes = JSON.parse(response.d);
-                $scope.$apply();
-                // alert(response.d);
-
-            }
-            function VoteFailure(response) {
-                alert(response.d.responseText);
-            }
-
-            $("#btnUpVote").click(function (event) {
-                event.preventDefault();
-                var postid = vote.getAttribute("postid");
-                var votes = $("#btnUpVote").val();
-                var userid = '<%=getUserId()%>';
-                WebServiceRequest("SubmitVote", "{'postid': '" + postid + "', 'vote': '" + votes + "', 'userid': '" + userid + "'}", VoteSuccess, VoteFailure)
-            });
-
-            $("#btnDownVote").click(function (event) {
-                event.preventDefault();
-                var postid = vote.getAttribute("postid");
-                var votes = $("#btnDownVote").val();
-                var userid = '<%=getUserId()%>';
-                WebServiceRequest("SubmitVote", "{'postid': '" + postid + "', 'vote': '" + votes + "', 'userid': '" + userid + "'}", VoteSuccess, VoteFailure)
-            });
-        });--%>
+        });     
 
     </script>
     <%-- ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- --%>
@@ -269,20 +227,6 @@
                 margin: 0;
                 display: inline-block;
             }
-
-        /*.commentBox {
-            padding: 10px;
-            border-top: 3px dotted #bbb;             
-        }
-
-        .commentBox .form-group:first-child, .actionBox .form-group:first-child {
-                width: 80%;
-                
-            }
-
-            .commentBox .form-group:nth-child(2), .actionBox .form-group:nth-child(2) {
-                width: 18%;
-            }*/
 
         .actionBox .form-group * {
             width: 100%;

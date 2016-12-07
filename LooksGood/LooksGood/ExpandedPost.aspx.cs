@@ -19,9 +19,6 @@ namespace LooksGood
             getUserId();
             if (Session["User"] != null)
             {
-                //cmtComment.Text = "Please login to comment";
-                //btnSubmit.Visible = false;
-
                 User user = (User)Session["User"];
                 ClientScript.RegisterStartupScript(GetType(), "Javascript", "javascript:UserSignedIn(); ", true);                
             }
@@ -32,12 +29,7 @@ namespace LooksGood
                 comments = comments.GetByPostId(postId);
 
                 Post post = new Post();
-                post = post.GetById(postId);
-                //imgPost.ImageUrl = post.ImagePath;
-
-                //lblHeader.Text = string.Format("Posted by: {0}", post.UserName);
-                //lblTitle.Text = string.Format("Title: {0}", post.Title);
-                //lblDescription.Text = string.Format("Description: {0}", post.Description);
+                post = post.GetById(postId);                
 
                 MasterPage masterpage = Page.Master;
                 HtmlAnchor anchor = (HtmlAnchor)masterpage.FindControl("ancLogin");
