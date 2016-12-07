@@ -29,7 +29,8 @@
                         <a>
                             <div>Posted By: {{post.UserName}}</div>
                         </a>
-                       <a> <label style="font: bold 30px white; padding: 2px;" id="lblLikeAbility">{{post.LikeAbility}}</label></a>
+                        <a>
+                            <label style="font: bold 30px white; padding: 2px;" id="lblLikeAbility">{{post.LikeAbility}}</label></a>
 
                     </div>
                     <a href="#contact" class="btn btn-circle page-scroll">
@@ -37,17 +38,11 @@
                     </a>
                 </div>
             </div>
-        </div>
-        <%-- --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- --%>
-        <div ng-controller="voteController">
-            <div ng-model="postvotes">
-                <div>
-                <span>{{postvotes.LikeAbility}}</span>
-                    </div>               
-                <input type="submit" name="submit" value="1" id="btnUpVote" style="background-color: #000; color: #00b7fc; border: 1px solid #00b7fc" />
-                
-                <input type="submit" name="submit" value="-1" id="btnDownVote" style="background-color: #000; color: #00b7fc; border: 1px solid #00b7fc" />
-            </div>
+
+            <%-- --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- --%>
+            <input type="submit" name="submit" value="1" id="btnUpVote" style="background-color: #000; color: #00b7fc; border: 1px solid #00b7fc" />
+
+            <input type="submit" name="submit" value="-1" id="btnDownVote" style="background-color: #000; color: #00b7fc; border: 1px solid #00b7fc" />
         </div>
         <%-- ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- --%>
         <div class="space">
@@ -145,7 +140,18 @@
 
 
                 WebServiceRequest("GetPostById", "{'postId': '" + postId + "'}", postLoadSuccess, postLoadFailure)
+                WebServiceRequest("GetVotesByPostId", "{'postId': '" + postId + "'}", VoteSuccess, VoteFailure)
             });
+
+            function VoteSuccess(response) {
+                $scope.post = JSON.parse(response.d);
+                $scope.$apply();
+                // alert(response.d);
+
+            }
+            function VoteFailure(response) {
+                alert(response.d.responseText);
+            }
 
             function postLoadSuccess(response) {
                 $scope.post = JSON.parse(response.d);
@@ -155,6 +161,22 @@
             function postLoadFailure(response) {
                 alert(response.d.responseText);
             }
+
+            $("#btnUpVote").click(function (event) {
+                event.preventDefault();
+                var postid = vote.getAttribute("postid");
+                var votes = $("#btnUpVote").val();
+                var userid = '<%=getUserId()%>';
+                WebServiceRequest("SubmitVote", "{'postid': '" + postid + "', 'vote': '" + votes + "', 'userid': '" + userid + "'}", VoteSuccess, VoteFailure)
+            });
+
+            $("#btnDownVote").click(function (event) {
+                event.preventDefault();
+                var postid = vote.getAttribute("postid");
+                var votes = $("#btnDownVote").val();
+                var userid = '<%=getUserId()%>';
+                WebServiceRequest("SubmitVote", "{'postid': '" + postid + "', 'vote': '" + votes + "', 'userid': '" + userid + "'}", VoteSuccess, VoteFailure)
+            });
 
         });
 
@@ -188,7 +210,7 @@
 
         });
 
-        app.controller("voteController", function ($scope) {
+       <%-- app.controller("voteController", function ($scope) {
 
             $scope.postvotes = {}
 
@@ -224,8 +246,7 @@
                 var userid = '<%=getUserId()%>';
                 WebServiceRequest("SubmitVote", "{'postid': '" + postid + "', 'vote': '" + votes + "', 'userid': '" + userid + "'}", VoteSuccess, VoteFailure)
             });
-
-        });
+        });--%>
 
     </script>
     <%-- ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- --%>
