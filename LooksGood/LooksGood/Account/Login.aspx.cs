@@ -57,19 +57,24 @@ namespace LooksGood.Account
                     Response.Cookies["LooksGoodCookies"].Expires = DateTime.MaxValue;
                 }
                 Session.Add("User", user);
-                if (Request.QueryString["returnURL"] != null && Request.QueryString["returnURL"].Contains("ExpandedPost"))
+                //if (Request.QueryString["returnURL"] != null && Request.QueryString["returnURL"].Contains("ExpandedPost"))
+                //{
+                //    string URL = Request.QueryString["returnURL"] + "&userId=" + user.Id;
+                //    Response.Redirect(URL);
+                //}
+                if (Request.QueryString["returnURL"] != null && Request.QueryString["returnURL"].Contains("Profile"))
                 {
-                    string URL = Request.QueryString["returnURL"] + "&userId=" + user.Id;
+                    string URL = Request.QueryString["returnURL"];
                     Response.Redirect(URL);
                 }
-                if (Request.QueryString["returnURL"] != null && Request.QueryString["returnURL"].Contains("Profile"))
+                if (Request.QueryString["returnURL"] != null && Request.QueryString["returnURL"].Contains("Default"))
                 {
                     string URL = Request.QueryString["returnURL"];
                     Response.Redirect(URL);
                 }
                 else
                 {
-                    Response.Redirect("../Default.aspx");
+                    Response.Redirect("../Default.aspx?userId=" + user.Id);
                 }
             }
         }

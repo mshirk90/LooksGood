@@ -49,6 +49,16 @@ namespace BusinessObjects
             }
         }
 
+        public string PostTitle
+        {
+            get
+            {
+                Post post = new Post();
+                post = post.GetById(_PostId);
+                return post.Title;
+            }
+        }
+
         public Guid PostId
         {
             get
@@ -205,7 +215,7 @@ namespace BusinessObjects
             DataTable dt = new DataTable();
             database.Command.CommandType = CommandType.StoredProcedure;
             database.Command.CommandText = "tblCommentsGetById";
-            base.Initialize(database, base.Id);
+            base.Initialize(database, id);
             dt = database.ExecuteQuery();
             if (dt != null && dt.Rows.Count == 1)
             {

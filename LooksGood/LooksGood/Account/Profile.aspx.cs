@@ -37,10 +37,10 @@ namespace LooksGood.Account
                 posts = posts.GetByUserId(userId);
                 CommentsList comments = new CommentsList();
                 comments = comments.GetByUserId(userId);
-                rptPost.DataSource = posts.List;
-                rptPost.DataBind();
-                rptComments.DataSource = comments.List;
-                rptComments.DataBind();
+                //rptPost.DataSource = posts.List;
+                //rptPost.DataBind();
+                //rptComments.DataSource = comments.List;
+                //rptComments.DataBind();
                 anchor.HRef = "/Account/Login.aspx?returnURL=/Account/Profile.aspx?userId=" + userId;
 
 

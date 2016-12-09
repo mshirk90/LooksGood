@@ -2,7 +2,7 @@
 
 
 
-   
+
 <asp:Content ID="header" ContentPlaceHolderID="head" runat="server">
     <style type="text/css">
         #vote {
@@ -11,208 +11,314 @@
     </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server" style="color: red">
-    <div ng-app="MyApp" style="border:solid 5px">
-    <div style="padding-left: 25px">
-        <asp:Label ID="lblHeader" runat="server" Font-Bold="true" Font-Size="XX-Large">
-        </asp:Label>
-        <div>
-            <asp:Label ID="lblTitle" runat="server" Font-Italic="false" Font-Size="X-Large">
-            </asp:Label>
-            <div>
-                <asp:Label ID="lblDescription" runat="server" Font-Size="Larger"></asp:Label>
-                <%--<hr style="display: inline-block; width: 90%" />--%>
-            </div>
-        </div>
-    </div>
-    <div style="padding-left: 25px">
-        <asp:Image ID="imgPost" runat="server" Width="760px" Height="600px"></asp:Image>
-        <br />
-        <br />
-        <%--<div class="well">
-            <div class="row">
-                <div class="col-sm-3 col-md-3 col-lg-3">
-                    <div class="input-group">
-                        <button type="button" id="decreaseButton" class="btn btn-danger" style="background-color: #FF0000; width: 24px; font-weight: bold;">-</button>&nbsp;--%>
-            <input type="hidden" class="form-control" id="vote" postid='<%=Request.QueryString["postId"] %>' userid='<%=Request.QueryString["userId"] %>' />
+    <input type="hidden" class="form-control" id="vote" postid='<%=Request.QueryString["postId"] %>' />
+    <div class="contain" ng-app="MyApp">
+        <div ng-controller="MyController" id="maincontent">
+            <div class="contain">
+                <div>
+                    <div class="item" ng-model="post">
+                        <a>
+                            <h3 class="textfix"><span>{{post.Title}} </span></h3>
+                        </a>
+                        <div>
+                            <img ng-src="{{post.ImagePath}}" width="85%" height="75%" class="imagefix" />
+                        </div>
+                        <a>
+                            <h4 class="textfix"><span>Description: {{post.Description}}</span></h4>
+                        </a>
+                        <a>
+                            <div>Posted By: {{post.UserName}}</div>
+                        </a>
+                       <a> <label style="font: bold 30px white; padding: 2px;" id="lblLikeAbility">{{post.LikeAbility}}</label></a>
 
-                        <%--<button type="button" id="increaseButton" class="btn btn-success" style="background-color: #00CC00; font-weight: bold;">+</button>--%>
-                    <%--</div>
+                    </div>
+                    <a href="#contact" class="btn btn-circle page-scroll">
+                        <i class="fa fa-angle-double-down animated"></i>
+                    </a>
                 </div>
             </div>
         </div>
-       <hr class="customHr" />
-    </div>--%>
+        <%-- --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- --%>
+        <div ng-controller="voteController">
+            <div ng-model="postvotes" >
+                <input type="submit" name="submit" value="1" id="btnUpVote" style="background-color: #000; color: #00b7fc; border: 1px solid #00b7fc" />
+                
+                <input type="submit" name="submit" value="-1" id="btnDownVote" style="background-color: #000; color: #00b7fc; border: 1px solid #00b7fc" />
+            </div>
         </div>
-    <div>
-        <div></div>
-    </div>
-    <div id="comment_form" style="padding-left: 25px" class="div-margin">
-        <div>
-                <textarea class="textarea" style="color: #00b7fc" cols="50" rows="3" name="comment" id="cmtComment" placeholder="Comment"></textarea>
+        <%-- ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- --%>
+        <div class="space">
+            <br />
         </div>
-        <br />
-        <div>
-                <input type="submit" name="submit" value="Submit Comment" id="btnSubmit" style="background-color: #a8a9a9; color: #00b7fc" />
+        <div class="space">
+            <br />
         </div>
-    </div>
-    <br />
-    <br />
-    <div ng-app="MyApp" ng-controller="MyController">
-         <div ng-repeat="x in comments" class="separated" <%--style="text-align:center ; padding-left:30% ; column-count:2 ; display: inline-block"--%>>
-                <div class="dialogbox">
-                    <div class="body ; row" style="text-align:center">                      
-                        <span style="color:#00b7fc">{{x.Comment}}</span>
-                        <div class="message">                           
-                            <a class="a2" href="/Account/Profile.aspx?userId={{x.UserId}}">
-                                <span>Commented by: {{x.UserName}}</span>                                
-                                <span>at: {{x.LastUpdated | date : "short"}}</span>
-                            </a>
-                                </div>
+        <div class="space">
+            <br />
+        </div>
+        <%-- ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- --%>
+        <section id="contact" class="">
+            <div id="comment_form" class="contain">
+                <div>
+                    <textarea class="textarea" style="color: #00b7fc" cols="50" rows="3" name="comment" id="cmtComment" placeholder="Comment"></textarea>
+                </div>
+                <div>
+                    <input type="submit" name="submit" value="" id="btnSubmit" style="background-color: #000; color: #00b7fc; border: 1px solid #00b7fc" />
+                </div>
+            </div>
+            <div class="detailBox">
+                <div class="titleBox">
+                    <label>Comments</label>
+                    <hr />
+                </div>
+                <div ng-controller="commentController">
+                    <div class="actionBox">
+                        <div class="scrollbarsupreme">
+                            <ul style="list-style-type: none">
+                                <li ng-repeat="x in comments">
+                                    <div>
+                                        <div class="commenterImage">
+                                            <p>{{x.UserName}} Says</p>
+                                            <a href="/Account/Profile.aspx?userId={{x.UserId}}"></a>
+                                        </div>
+                                        <br />
+                                        <div class="commentText">
+                                            <p class="commentText">{{x.Comment}}</p>
+                                            <span class="date sub-text">on {{x.LastUpdated | date : "short"}}</span>
+                                        </div>
+                                        <hr style="width: 95%" />
+                                    </div>
+                                </li>
+                            </ul>
                         </div>
                     </div>
                 </div>
             </div>
+        </section>
     </div>
     <%-- ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- --%>
     <script>
+
+        $(document).ready(function () {
+            $('html, body').animate({
+                scrollTop: $('.space').offset().top
+            }, 'slow');
+        });
+
+
+        $("#cmtComment").val('Please Login to comment');
+        $("#btnSubmit").val('Please login to comment');
+        $("#cmtComment").prop("disabled", true);
+        $("#btnSubmit").prop("disabled", true);
+        $("#btnUpVote").prop("disabled", true);
+        $("#btnDownVote").prop("disabled", true);
+        function WebServiceRequest(strMethod, jsonData, cbSuccess, cbError) {
+            $.ajax({
+                type: 'POST',
+                url: 'LooksGoodWS.asmx/' + strMethod,
+                data: jsonData,
+                contentType: 'application/json; charset=utf-8',
+                dataType: 'json',
+                success: cbSuccess,
+                error: cbError
+            });
+        }
+
+        function UserSignedIn() {
+            $("#cmtComment").val('');
+            $("#btnSubmit").val('Submit Comment');
+            $("#cmtComment").prop("disabled", false);
+            $("#btnSubmit").prop("disabled", false);
+            $("#btnUpVote").prop("disabled", false);
+            $("#btnDownVote").prop("disabled", false);
+        }
+
         var app = angular.module("MyApp", []);
-        app.controller("index", ['$scope', function (scope) {
-            scope.items = (function () {
-                var cells = [];
-                for (var i = 0; i < 50; i++) {
-                    cells.push({ name: 'cell ' + i });
-                }
-                return cells;
-            })();
-
-            scope.columnBreak = 5;//max number of cols
-
-            scope.startNewRow = function (index, count) {
-                return ((index) % count) === 0;
-            };
-        }]);
         app.controller("MyController", function ($scope) {
+            $scope.post = {}
+
+            angular.element(document).ready(function () {
+                var postId = vote.getAttribute("postid");
+
+
+                WebServiceRequest("GetPostById", "{'postId': '" + postId + "'}", postLoadSuccess, postLoadFailure)
+            });
+
+            function postLoadSuccess(response) {
+                $scope.post = JSON.parse(response.d);
+                $scope.$apply;
+                //alert(response.d);
+            }
+            function postLoadFailure(response) {
+                alert(response.d.responseText);
+            }
+        });
+
+        app.controller("commentController", function ($scope) {
             $scope.comments = [];
 
             angular.element(document).ready(function () {
-                var id = vote.getAttribute("postid");
-                var userid = vote.getAttribute("userId");
-                if (userid === "") {
-                    $("#cmtComment").val('Please Login to comment');
-                    $("#btnSubmit").val('Please login to comment');
-                    $("#cmtComment").prop("disabled", true);
-                    $("#btnSubmit").prop("disabled", true);
-                } else {
-                    $("#cmtComment").prop("disabled", false);
-                    $("#btnSumbit").prop("disabled", false);
-                    $("#cmtComment").val('');
-                }
-                GetCommentsByPostId(id);
-                //GetVotes(id);
-            });
+                var postId = vote.getAttribute("postid");
 
-            function WebServiceRequest(strMethod, jsonData, cbSuccess, cbError) {
-                $.ajax({
-                    type: 'POST',
-                    url: 'LooksGoodWS.asmx/' + strMethod,
-                    data: jsonData,
-                    contentType: 'application/json; charset=utf-8',
-                    dataType: 'json',
-                    success: cbSuccess,
-                    error: cbError
-                });
-            }
+
+                WebServiceRequest("GetCommentsByPostId", "{'postId': '" + postId + "'}", commentSuccess, commentFailure)
+            });
 
             function commentSuccess(response) {
                 $scope.comments = JSON.parse(response.d);
                 $scope.$apply();
-                alert(response.d);
+                //alert(response.d);
 
             }
             function commentFailure(response) {
                 alert(response.d.responseText);
             }
 
-            $("#btnSubmit").click(function () {
-                var postid = $("#vote").attr("postId").toString();
+            $("#btnSubmit").click(function (event) {
+                event.preventDefault();
+                var postid = vote.getAttribute("postid");
                 var commentText = $("#cmtComment").val();
-                var userid = $("#vote").attr("userid").toString();
+                var userid = '<%=getUserId()%>';
                 WebServiceRequest("SubmitComment", "{'postid': '" + postid + "', 'commentText': '" + commentText + "', 'userid': '" + userid + "'}", commentSuccess, commentFailure)
             });
 
-            
-
-            function GetCommentsByPostId(id) {
-                $.ajax({
-                    type: 'POST',
-                    url: 'LooksGoodWS.asmx/GetCommentsByPostId',
-                    dataType: 'json',
-                    processData: false,
-                    data: "{'id': '" + id + "'}",
-                    contentType: 'application/json; charset=utf-8',
-                    success: function (response) {
-                        alert(response.d);
-                        $scope.comments = JSON.parse(response.d);
-                        $scope.$apply();
-                    },
-                    error: function (response) {
-                        alert(response.responseText);
-                    }
-                });
-            }
-
-            function GetVotes(id) {
-                $.ajax({
-                    type: 'POST',
-                    url: 'LooksGoodWS.asmx/GetVotesByPostId',
-                    dataType: 'json',
-                    processData: false,
-                    data: "{'id': '" + id + "'}",
-                    contentType: 'application/json; charset=utf-8',
-                    success: function (response) {
-                        var txtVote = document.getElementById('vote');
-                        //alert(response.d);
-                        txtVote.value = response.d.Votes;
-                    },
-                    error: function (response) {
-                        alert(response.responseText);
-                    },
-
-                });
-            }
-
-            function ChangeVotes(id, change) {
-                $.ajax({
-                    type: 'POST',
-                    url: 'LooksGoodWS.asmx/ChangeVotesByPostId',
-                    dataType: 'json',
-                    processData: false,
-                    data: "{'id': '" + id + "', 'change': " + change + "}",
-                    contentType: 'application/json; charset=utf-8',
-                    success: function (response) {
-                        var txtVote = document.getElementById('vote');
-                        //alert(response.d);
-                        txtVote.value = response.d.Votes;
-                    },
-                    error: function (response) {
-                        alert(response.responseText);
-                    }
-                });
-            }
-
-            // Create a click handler for your increment button
-            $("#increaseButton").click(function () {
-                var postId = $("#vote").attr("postId").toString();
-                $("#vote").text(ChangeVotes(postId, 1));
-            });
-            // .. and your decrement button
-            $("#decreaseButton").click(function () {
-                var postId = $("#vote").attr("postId").toString();
-                $("#vote").text(ChangeVotes(postId, -1));
-            });
         });
+
+        app.controller("voteController", function ($scope) {
+
+            $scope.postvotes = {}
+
+            angular.element(document).ready(function () {
+                var postId = vote.getAttribute("postid");
+
+
+                WebServiceRequest("GetVotesByPostId", "{'postId': '" + postId + "'}", VoteSuccess, VoteFailure)
+            });
+
+            function VoteSuccess(response) {
+                $scope.postvotes = JSON.parse(response.d);
+                $scope.$apply();
+                // alert(response.d);
+
+            }
+            function VoteFailure(response) {
+                alert(response.d.responseText);
+            }
+
+            $("#btnUpVote").click(function (event) {
+                event.preventDefault();
+                var postid = vote.getAttribute("postid");
+                var votes = $("#btnUpVote").val();
+                var userid = '<%=getUserId()%>';
+                WebServiceRequest("SubmitVote", "{'postid': '" + postid + "', 'vote': '" + votes + "', 'userid': '" + userid + "'}", VoteSuccess, VoteFailure)
+            });
+
+            $("#btnDownVote").click(function (event) {
+                event.preventDefault();
+                var postid = vote.getAttribute("postid");
+                var votes = $("#btnDownVote").val();
+                var userid = '<%=getUserId()%>';
+                WebServiceRequest("SubmitVote", "{'postid': '" + postid + "', 'vote': '" + votes + "', 'userid': '" + userid + "'}", VoteSuccess, VoteFailure)
+            });
+
+        });
+
     </script>
     <%-- ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- --%>
+    <style>
+        .detailBox {
+            width: 60%;
+            border: 1px solid #bbb;
+            margin: auto;
+            margin-top: 20px;
+        }
+
+        .titleBox {
+            background-color: #000;
+            padding: 10px;
+            font-size: 32px;
+        }
+
+            .titleBox label {
+                color: #42DCA3;
+                margin: 0;
+                display: inline-block;
+            }
+
+        /*.commentBox {
+            padding: 10px;
+            border-top: 3px dotted #bbb;             
+        }
+
+        .commentBox .form-group:first-child, .actionBox .form-group:first-child {
+                width: 80%;
+                
+            }
+
+            .commentBox .form-group:nth-child(2), .actionBox .form-group:nth-child(2) {
+                width: 18%;
+            }*/
+
+        .actionBox .form-group * {
+            width: 100%;
+        }
+
+        .taskDescription {
+            margin-top: 10px 0;
+        }
+
+        .commentList {
+            padding: 0;
+            list-style: none;
+            overflow: auto;
+        }
+
+            .commentList li {
+                margin: 0;
+                margin-top: 10px;
+            }
+
+                .commentList li > div {
+                    /*display: table-cell;*/
+                }
+
+        .scrollbarsupreme {
+            max-height: 300px;
+            padding-right: 5px;
+            list-style: none;
+            overflow: auto;
+        }
+
+        .commenterImage {
+            width: 100%;
+            padding-right: 80%;
+            height: 10px;
+        }
+
+            .commenterImage p {
+                width: 100%;
+                /*border-radius: 50%;*/
+            }
+
+        .commentText p {
+            bottom: 0;
+            position: relative;
+            margin: 0;
+            color: #42DCA3;
+        }
+
+        .sub-text {
+            color: #FFF;
+            font-family: verdana;
+            font-size: 11px;
+            float: right;
+        }
+
+        .actionBox {
+            /*border-top: 1px dotted #bbb;*/
+            padding: 10px;
+        }
+    </style>
 </asp:Content>
 
 

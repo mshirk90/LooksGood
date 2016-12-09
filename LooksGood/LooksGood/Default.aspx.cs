@@ -5,6 +5,8 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using BusinessObjects;
+using DatabaseHelper;
+using System.Web.UI.HtmlControls;
 
 namespace LooksGood
 {
@@ -12,10 +14,24 @@ namespace LooksGood
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            MasterPage masterpage = Page.Master;
+            HtmlAnchor anchor = (HtmlAnchor)masterpage.FindControl("ancLogin");
             PostList postList = new PostList();
-            postList = postList.GetMostRecent();            
-            //rptImages.DataSource = postList.List;
-            //rptImages.DataBind();         
+            postList = postList.GetMostRecent();
+
+            if (Session["User"] == null)
+            {
+                //PostList postList = new PostList();
+                //postList = postList.GetMostRecent();
+                //rptImages.DataSource = postList.List;
+                //rptImages.DataBind();
+                //anchor.HRef = "Default.aspx?returnURL=Default.aspx";
+            }
+            if (Request.QueryString["userId"] != null)
+            {
+                Guid userId = new Guid(Request.QueryString["userId"]);             
+                anchor.HRef = "Default.aspx?returnURL=Default.aspx?userId=" + userId;
+            }
         }
     }
 

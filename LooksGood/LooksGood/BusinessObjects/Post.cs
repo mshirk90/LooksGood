@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Data;
 using DatabaseHelper;
+using BusinessObjects;
 
 
 namespace BusinessObjects
@@ -19,11 +20,32 @@ namespace BusinessObjects
         private String _FilePath = String.Empty;
         private String _RelativeFileName = String.Empty;
         private String _UserName = string.Empty;
-        private int _Votes = 0;
         private CommentsList _Comments = null;
+        //private decimal _LikeAbility = 0;
+        private String _LikeAbility = string.Empty;
         #endregion
 
         #region Public Properties
+        //public decimal LikeAbility
+        //{
+        //    get
+        //    {                
+        //        return _LikeAbility;                
+        //    }
+        //    set { _LikeAbility = value; }
+        //}
+
+        public String LikeAbility
+        {
+            get
+            {
+                return _LikeAbility;
+            }
+            set { _LikeAbility = value; }
+        }
+
+
+
         public string UserName
         {
             get
@@ -89,26 +111,7 @@ namespace BusinessObjects
                     RaiseEvent(e);
                 }
             }
-        }
-
-        public int Votes
-        {
-            get { return _Votes; }
-            set
-            {
-                if (_Votes != value)
-                {
-                    _Votes = value;
-                    base.IsDirty = true;
-                    Boolean Savable = IsSavable();
-                    SavableEventArgs e = new SavableEventArgs(Savable);
-                    RaiseEvent(e);
-                }
-            }
-        }
-
-
-
+        }    
         public Guid UserId
         {
             get { return _UserId; }
@@ -172,7 +175,6 @@ namespace BusinessObjects
                 database.Command.Parameters.Add("@Title", SqlDbType.VarChar).Value = _Title;
                 database.Command.Parameters.Add("@Description", SqlDbType.VarChar).Value = _Description;
                 database.Command.Parameters.Add("@ImagePath", SqlDbType.VarChar).Value = _ImagePath;
-                //database.Command.Parameters.Add("@Votes", SqlDbType.Int).Value = _Votes;
 
 
                 // Provides the empty buckets
@@ -260,19 +262,11 @@ namespace BusinessObjects
 
             return result;
         }
+    
         #endregion
 
         #region Public Methods
-        //public Post GetVotes(Guid id)
-        //{
-        //    Database database = new Database("LooksGoodDatabase");
-        //    DataTable dt = new DataTable();
-        //    database.Command.CommandType = System.Data.CommandType.StoredProcedure;
-        //    database.Command.CommandText = "tblPostGetVotes";
-        //    database.Command.Parameters.Add("@Id", SqlDbType.UniqueIdentifier).Value = id;
-        //    database.Parameter parm = new database.Parameter();
-            
-        //}
+   
 
         public Post GetById(Guid id)
         {
@@ -301,8 +295,7 @@ namespace BusinessObjects
             _ImagePath = dr["ImagePath"].ToString();
             String filepath = System.IO.Path.Combine(_FilePath, Id.ToString() + ".jpg");
             _RelativeFileName = System.IO.Path.Combine("UploadedImages", Id.ToString() + ".jpg");
-            //_Votes = (int)dr["Votes"];
-
+           _LikeAbility = dr["LikeAbility"].ToString();
         }
         public Boolean IsSavable()
         {

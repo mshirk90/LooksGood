@@ -41,29 +41,17 @@ namespace LooksGood
             Post post = new Post();
             post = post.GetById(new Guid(id));
 
-            post.Votes += change;
             post.Save();
             return post;
         }
 
 
-
         [WebMethod]
         [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
-        public Post GetVotesByPostId(string id)
-        {
-            Post post = new Post();
-            post = post.GetById(new Guid(id));
-
-            return post;
-        }
-
-        [WebMethod]
-        [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
-        public String GetCommentsByPostId(string id)
+        public String GetCommentsByPostId(string postId)
         {
             CommentsList comments = new CommentsList();
-            comments = comments.GetByPostId(new Guid(id));
+            comments = comments.GetByPostId(new Guid(postId));
             string jsoncomments = JsonConvert.SerializeObject(comments.List);
 
             return jsoncomments;
@@ -91,6 +79,73 @@ namespace LooksGood
             string pList = JsonConvert.SerializeObject(postList.List);
 
             return pList;
+        }
+
+        [WebMethod]
+        [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
+        public string GetPostById(string postId)
+        {
+            Post post = new Post();
+            post = post.GetById(new Guid(postId));
+
+            return JsonConvert.SerializeObject(post);
+        }
+
+        [WebMethod]
+        [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
+        public string GetUserPostById(string userId)
+        {
+            PostList postList = new PostList();
+            postList = postList.GetByUserId(new Guid(userId));
+
+            return JsonConvert.SerializeObject(postList.List);
+        }
+
+        [WebMethod]
+        [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
+        public string GetUserCommentsById(string userId)
+        {
+            CommentsList commentsList = new CommentsList();
+            commentsList = commentsList.GetByUserId(new Guid(userId));
+
+            return JsonConvert.SerializeObject(commentsList.List);
+        }
+
+        [WebMethod]
+        [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
+        public string GetPostByCommentID(string commentId)
+        {
+            Comments comments = new Comments();
+            comments = comments.GetById(new Guid(commentId));
+            Post post = new Post();
+            post = post.GetById(comments.PostId);
+
+            return JsonConvert.SerializeObject(post);
+        }
+
+        [WebMethod]
+        [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
+        public String GetVotesByPostId(string postId)
+        {
+            Post post = new Post();
+            PostVotesList postvotes = new PostVotesList();
+            postvotes = postvotes.GetPostVotesByPostId(post.Id);
+            //postvotes = postvotes.LikeAbilityMath(post.Id);
+            string jsoncomments = JsonConvert.SerializeObject(postvotes.List);
+            
+            return jsoncomments;
+        }
+
+        [WebMethod]
+        [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
+        public string SubmitVote(string postid, int vote, string userid)
+        {
+            PostVotes postvote = new PostVotes();
+            postvote.PostId = new Guid(postid);
+            postvote.UserId = new Guid(userid);
+            postvote.Vote = vote;
+            postvote.Save();
+            return GetVotesByPostId(postid);
         }
     }
 }
