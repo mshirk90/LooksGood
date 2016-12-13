@@ -25,13 +25,13 @@
 
  <div class="contain">
         <div>
-            <asp:TextBox runat="server" ID="txtEmail" CssClass="form-control" TextMode="Email" Placeholder="Email" Width="70%" />
+            <asp:TextBox runat="server" ID="txtEmail" CssClass="form-control" TextMode="Email" Placeholder="Email" Width="70%" style="color:black" />
             <asp:RequiredFieldValidator runat="server" ControlToValidate="txtEmail"
                 CssClass="text-danger" ErrorMessage="The email field is required." ID="EmailVal" />
         </div>
 
         <div>
-            <asp:TextBox runat="server" ID="txtUserName" CssClass="form-control-static input-lg" PlaceHolder="UserName" Width="70%" />
+            <asp:TextBox runat="server" ID="txtUserName" CssClass="form-control-static input-lg" PlaceHolder="UserName" Width="70%" style="color:black" />
             <asp:RequiredFieldValidator runat="server" ControlToValidate="txtUserName" CssClass="text-danger"
                 ErrorMessage="The first name field is required." ID="rvFirstName" ValidationGroup="vgRegister">*</asp:RequiredFieldValidator>
         </div>
