@@ -20,7 +20,7 @@
         </div>
 
         <div>
-            <asp:TextBox runat="server" ID="txtUserName" CssClass="form-control-static input-lg" PlaceHolder="UserName" Width="70%" />
+            <asp:TextBox runat="server" ID="txtUserName" CssClass="form-control-static input-lg" PlaceHolder="UserName" Width="70%" style="color:Black" />
             <asp:RequiredFieldValidator runat="server" ControlToValidate="txtUserName" CssClass="text-danger"
                 ErrorMessage="The first name field is required." ID="rvFirstName" ValidationGroup="vgRegister">*</asp:RequiredFieldValidator>
         </div>
