@@ -86,6 +86,12 @@
                                             <p class="commentText">{{x.Comment}}</p>
                                             <span class="date sub-text">on {{x.LastUpdated | date : "short"}}</span>
                                         </div>
+                                         <div>
+                                                
+                    <textarea class="textarea" style="color: #00b7fc" cols="50" rows="3" name="comment" id="cmtReply" placeholder="Comment"></textarea>
+                
+                    <input type="submit" name="submit" value="Reply" id="btnReply" parentId="{{x.id}}" style="background-color: #000; color: #00b7fc; border: 1px solid #00b7fc" />
+                </div>
                                         <hr style="width: 95%" />
                                     </div>
                                 </li>
@@ -180,6 +186,15 @@
                 var commentText = $("#cmtComment").val();
                 var userid = '<%=getUserId()%>';
                 WebServiceRequest("SubmitComment", "{'postid': '" + postid + "', 'commentText': '" + commentText + "', 'userid': '" + userid + "'}", commentSuccess, commentFailure)
+            });
+             $("#btnReply").click(function (event) {
+                event.preventDefault();
+                var postid = vote.getAttribute("postid");
+                var commentText = $("#cmtReply").val();
+                var parentid = btnReply.getAttribute("parentId");
+                var userid = '<%=getUserId()%>';
+
+                 WebServiceRequest("SubmitReply", "{'parentId': '" + parentId + "', 'postid': '" + postid + "', 'commentText': '" + commentText + "', 'userid': '" + userid + "'}", commentSuccess, commentFailure)
             });
 
         });

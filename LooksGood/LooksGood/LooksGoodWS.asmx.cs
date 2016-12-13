@@ -71,6 +71,19 @@ namespace LooksGood
 
         [WebMethod]
         [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
+        public string SubmitReply(string postid, string commentText, string userid, string parentId)
+        {
+            Comments comment = new Comments();
+            comment.PostId = new Guid(postid);
+            comment.UserId = new Guid(userid);
+            comment.ParentId = new Guid(parentId);
+            comment.Comment = commentText;
+            comment.ReplySave();
+            return GetCommentsByPostId(postid);
+        }
+
+        [WebMethod]
+        [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
         public String GetMostRecentPosts()
         {
             PostList postList = new PostList();
