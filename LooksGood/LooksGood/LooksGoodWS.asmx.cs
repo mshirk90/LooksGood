@@ -34,16 +34,16 @@ namespace LooksGood
             return result;
         }
 
-        [WebMethod]
-        [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
-        public Post ChangeVotesByPostId(string id, int change)
-        {
-            Post post = new Post();
-            post = post.GetById(new Guid(id));
+        //[WebMethod]
+        //[ScriptMethod(ResponseFormat = ResponseFormat.Json)]
+        //public Post ChangeVotesByPostId(string id, int change)
+        //{
+        //    Post post = new Post();
+        //    post = post.GetById(new Guid(id));
 
-            post.Save();
-            return post;
-        }
+        //    post.Save();
+        //    return post;
+        //}
 
 
         [WebMethod]
@@ -71,7 +71,7 @@ namespace LooksGood
 
         [WebMethod]
         [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
-        public string SubmitReply(string postid, string commentText, string userid, string parentId)
+        public string SubmitReply(string parentId, string postid, string commentText, string userid )
         {
             Comments comment = new Comments();
             comment.PostId = new Guid(postid);

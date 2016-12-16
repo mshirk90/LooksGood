@@ -31,14 +31,12 @@
                         </a>
                         <a>
                             <label style="font: bold 30px white; padding: 2px;" id="lblLikeAbility">{{post.LikeAbility}}</label></a>
-
                     </div>
                     <a href="#contact" class="btn btn-circle page-scroll">
                         <i class="fa fa-angle-double-down animated"></i>
                     </a>
                 </div>
             </div>
-
             <%-- --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- --%>
             <input type="submit" name="submit" value="1" id="btnUpVote" style="background-color: #000; color: #00b7fc; border: 1px solid #00b7fc" />
 
@@ -76,13 +74,23 @@
                                 <li ng-repeat="x in comments">
                                     <div>
                                         <div class="commenterImage">
-                                            <p>{{x.UserName}} Says</p>
+                                            <p id="IdforParentId" parentId="{{x.Id}}">{{x.UserName}} Says</p>
                                             <a href="/Account/Profile.aspx?userId={{x.UserId}}"></a>
                                         </div>
                                         <br />
                                         <div class="commentText">
                                             <p class="commentText">{{x.Comment}}</p>
                                             <span class="date sub-text">on {{x.LastUpdated | date : "short"}}</span>
+                                        </div>
+                                        <div>
+                                            <textarea class="textarea" style="color: #00b7fc" cols="50" rows="3" name="comment" id="cmtReply" placeholder="Comment"></textarea>
+                                            <div ng-controller="replyController">
+                                                <ul>
+                                                    <li>
+                                                        <input type="submit" name="submit" value="" id="btnReply" style="background-color: #000; color: #00b7fc; border: 1px solid #00b7fc" />
+                                                    </li>
+                                                </ul>
+                                            </div>
                                         </div>
                                         <hr style="width: 95%" />
                                     </div>
@@ -186,7 +194,36 @@
                 var userid = '<%=getUserId()%>';
                 WebServiceRequest("SubmitComment", "{'postid': '" + postid + "', 'commentText': '" + commentText + "', 'userid': '" + userid + "'}", commentSuccess, commentFailure)
             });
-        });     
+            $("#btnReply").click(function (event) {
+                event.preventDefault();
+                var postid = vote.getAttribute("postid");
+                var commentText = $("#cmtReply").val();
+                var parentId = btnReply.getAttribute("parentId");
+                var userid = '<%=getUserId()%>';
+                WebServiceRequest("SubmitReply", "{'parentId': '" + parentId + "', 'postid': '" + postid + "', 'commentText': '" + commentText + "', 'userid': '" + userid + "'}", commentSuccess, commentFailure)
+            });
+        });
+        app.controller("replyController", function ($scope) {
+            $scope.comments = [];
+
+            function replySuccess(response) {
+                $scope.comments = JSON.parse(response.d);
+                $scope.$apply();
+                //alert(response.d);
+            }
+            function replyFailure(response) {
+                alert(response.d.responseText);
+            }
+
+            $("#btnReply").click(function (event) {
+                event.preventDefault();
+                var postid = vote.getAttribute("postid");
+                var commentText = $("#cmtReply").val();
+                var parentId = IdforParentId.getAttribute("parentId");
+                var userid = '<%=getUserId()%>';
+                WebServiceRequest("SubmitReply", "{'parentId': '" + parentId + "', 'postid': '" + postid + "', 'commentText': '" + commentText + "', 'userid': '" + userid + "'}", replySuccess, replyFailure)
+            });
+        });
     </script>
     <%-- ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- --%>
     <style>

@@ -152,7 +152,7 @@ namespace BusinessObjects
             {
                 database.Command.Parameters.Clear();
                 database.Command.CommandType = System.Data.CommandType.StoredProcedure;
-                database.Command.CommandText = "tblCommentsINSERT";
+                database.Command.CommandText = "tblCommentReplyINSERT";
                 database.Command.Parameters.Add("@UserId", SqlDbType.UniqueIdentifier).Value = _UserId;
                 database.Command.Parameters.Add("@PostId", SqlDbType.UniqueIdentifier).Value = _PostId;
                 database.Command.Parameters.Add("@ParentId", SqlDbType.UniqueIdentifier).Value = _ParentId;
