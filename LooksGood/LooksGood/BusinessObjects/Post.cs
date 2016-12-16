@@ -29,8 +29,8 @@ namespace BusinessObjects
         //public decimal LikeAbility
         //{
         //    get
-        //    {                
-        //        return _LikeAbility;                
+        //    {
+        //        return _LikeAbility;
         //    }
         //    set { _LikeAbility = value; }
         //}

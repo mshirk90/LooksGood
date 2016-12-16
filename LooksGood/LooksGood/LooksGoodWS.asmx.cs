@@ -142,10 +142,8 @@ namespace LooksGood
         {
             Post post = new Post();
             PostVotesList postvotes = new PostVotesList();
-            postvotes = postvotes.GetPostVotesByPostId(post.Id);
-            //postvotes = postvotes.LikeAbilityMath(post.Id);
             string jsoncomments = JsonConvert.SerializeObject(postvotes.List);
-            
+
             return jsoncomments;
         }
 
@@ -158,7 +156,7 @@ namespace LooksGood
             postvote.UserId = new Guid(userid);
             postvote.Vote = vote;
             postvote.Save();
-            return GetVotesByPostId(postid);
+            return GetPostById(postid);
         }
     }
 }

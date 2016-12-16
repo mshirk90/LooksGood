@@ -29,7 +29,8 @@
                         <a>
                             <div>Posted By: {{post.UserName}}</div>
                         </a>
-                       <a> <label style="font: bold 30px white; padding: 2px;" id="lblLikeAbility">{{post.LikeAbility}}</label></a>
+                        <a>
+                            <label style="font: bold 30px white; padding: 2px;" id="lblLikeAbility">{{post.LikeAbility}}</label></a>
 
                     </div>
                     <a href="#contact" class="btn btn-circle page-scroll">
@@ -37,14 +38,11 @@
                     </a>
                 </div>
             </div>
-        </div>
-        <%-- --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- --%>
-        <div ng-controller="voteController">
-            <div ng-model="postvotes" >
-                <input type="submit" name="submit" value="1" id="btnUpVote" style="background-color: #000; color: #00b7fc; border: 1px solid #00b7fc" />
-                
-                <input type="submit" name="submit" value="-1" id="btnDownVote" style="background-color: #000; color: #00b7fc; border: 1px solid #00b7fc" />
-            </div>
+
+            <%-- --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- --%>
+            <input type="submit" name="submit" value="1" id="btnUpVote" style="background-color: #000; color: #00b7fc; border: 1px solid #00b7fc" />
+
+            <input type="submit" name="submit" value="-1" id="btnDownVote" style="background-color: #000; color: #00b7fc; border: 1px solid #00b7fc" />
         </div>
         <%-- ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- --%>
         <div class="space">
@@ -86,12 +84,6 @@
                                             <p class="commentText">{{x.Comment}}</p>
                                             <span class="date sub-text">on {{x.LastUpdated | date : "short"}}</span>
                                         </div>
-                                         <div>
-                                                
-                    <textarea class="textarea" style="color: #00b7fc" cols="50" rows="3" name="comment" id="cmtReply" placeholder="Comment"></textarea>
-                
-                    <input type="submit" name="submit" value="Reply" id="btnReply" parentId="{{x.id}}" style="background-color: #000; color: #00b7fc; border: 1px solid #00b7fc" />
-                </div>
                                         <hr style="width: 95%" />
                                     </div>
                                 </li>
@@ -104,14 +96,11 @@
     </div>
     <%-- ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- --%>
     <script>
-
         $(document).ready(function () {
             $('html, body').animate({
                 scrollTop: $('.space').offset().top
             }, 'slow');
         });
-
-
         $("#cmtComment").val('Please Login to comment');
         $("#btnSubmit").val('Please login to comment');
         $("#cmtComment").prop("disabled", true);
@@ -129,7 +118,6 @@
                 error: cbError
             });
         }
-
         function UserSignedIn() {
             $("#cmtComment").val('');
             $("#btnSubmit").val('Submit Comment');
@@ -138,18 +126,22 @@
             $("#btnUpVote").prop("disabled", false);
             $("#btnDownVote").prop("disabled", false);
         }
-
         var app = angular.module("MyApp", []);
         app.controller("MyController", function ($scope) {
             $scope.post = {}
-
             angular.element(document).ready(function () {
                 var postId = vote.getAttribute("postid");
-
-
                 WebServiceRequest("GetPostById", "{'postId': '" + postId + "'}", postLoadSuccess, postLoadFailure)
+                WebServiceRequest("GetVotesByPostId", "{'postId': '" + postId + "'}", VoteSuccess, VoteFailure)
             });
-
+            function VoteSuccess(response) {
+                $scope.post = JSON.parse(response.d);
+                $scope.$apply();
+                // alert(response.d);
+            }
+            function VoteFailure(response) {
+                alert(response.d.responseText);
+            }
             function postLoadSuccess(response) {
                 $scope.post = JSON.parse(response.d);
                 $scope.$apply;
@@ -158,68 +150,6 @@
             function postLoadFailure(response) {
                 alert(response.d.responseText);
             }
-        });
-
-        app.controller("commentController", function ($scope) {
-            $scope.comments = [];
-
-            angular.element(document).ready(function () {
-                var postId = vote.getAttribute("postid");
-
-
-                WebServiceRequest("GetCommentsByPostId", "{'postId': '" + postId + "'}", commentSuccess, commentFailure)
-            });
-
-            function commentSuccess(response) {
-                $scope.comments = JSON.parse(response.d);
-                $scope.$apply();
-                //alert(response.d);
-
-            }
-            function commentFailure(response) {
-                alert(response.d.responseText);
-            }
-
-            $("#btnSubmit").click(function (event) {
-                event.preventDefault();
-                var postid = vote.getAttribute("postid");
-                var commentText = $("#cmtComment").val();
-                var userid = '<%=getUserId()%>';
-                WebServiceRequest("SubmitComment", "{'postid': '" + postid + "', 'commentText': '" + commentText + "', 'userid': '" + userid + "'}", commentSuccess, commentFailure)
-            });
-             $("#btnReply").click(function (event) {
-                event.preventDefault();
-                var postid = vote.getAttribute("postid");
-                var commentText = $("#cmtReply").val();
-                var parentid = btnReply.getAttribute("parentId");
-                var userid = '<%=getUserId()%>';
-
-                 WebServiceRequest("SubmitReply", "{'parentId': '" + parentId + "', 'postid': '" + postid + "', 'commentText': '" + commentText + "', 'userid': '" + userid + "'}", commentSuccess, commentFailure)
-            });
-
-        });
-
-        app.controller("voteController", function ($scope) {
-
-            $scope.postvotes = {}
-
-            angular.element(document).ready(function () {
-                var postId = vote.getAttribute("postid");
-
-
-                WebServiceRequest("GetVotesByPostId", "{'postId': '" + postId + "'}", VoteSuccess, VoteFailure)
-            });
-
-            function VoteSuccess(response) {
-                $scope.postvotes = JSON.parse(response.d);
-                $scope.$apply();
-                // alert(response.d);
-
-            }
-            function VoteFailure(response) {
-                alert(response.d.responseText);
-            }
-
             $("#btnUpVote").click(function (event) {
                 event.preventDefault();
                 var postid = vote.getAttribute("postid");
@@ -227,7 +157,6 @@
                 var userid = '<%=getUserId()%>';
                 WebServiceRequest("SubmitVote", "{'postid': '" + postid + "', 'vote': '" + votes + "', 'userid': '" + userid + "'}", VoteSuccess, VoteFailure)
             });
-
             $("#btnDownVote").click(function (event) {
                 event.preventDefault();
                 var postid = vote.getAttribute("postid");
@@ -235,9 +164,29 @@
                 var userid = '<%=getUserId()%>';
                 WebServiceRequest("SubmitVote", "{'postid': '" + postid + "', 'vote': '" + votes + "', 'userid': '" + userid + "'}", VoteSuccess, VoteFailure)
             });
-
         });
-
+        app.controller("commentController", function ($scope) {
+            $scope.comments = [];
+            angular.element(document).ready(function () {
+                var postId = vote.getAttribute("postid");
+                WebServiceRequest("GetCommentsByPostId", "{'postId': '" + postId + "'}", commentSuccess, commentFailure)
+            });
+            function commentSuccess(response) {
+                $scope.comments = JSON.parse(response.d);
+                $scope.$apply();
+                //alert(response.d);
+            }
+            function commentFailure(response) {
+                alert(response.d.responseText);
+            }
+            $("#btnSubmit").click(function (event) {
+                event.preventDefault();
+                var postid = vote.getAttribute("postid");
+                var commentText = $("#cmtComment").val();
+                var userid = '<%=getUserId()%>';
+                WebServiceRequest("SubmitComment", "{'postid': '" + postid + "', 'commentText': '" + commentText + "', 'userid': '" + userid + "'}", commentSuccess, commentFailure)
+            });
+        });     
     </script>
     <%-- ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- --%>
     <style>
