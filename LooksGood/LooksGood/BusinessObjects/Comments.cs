@@ -16,6 +16,7 @@ namespace BusinessObjects
         private Guid _ParentId = Guid.Empty;
         private string _Comment = string.Empty;
         private string _UserName = string.Empty;
+        private List<Comments> _Replys = null;
 
         #endregion
 

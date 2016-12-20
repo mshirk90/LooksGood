@@ -32,7 +32,7 @@
         </div>
         <div>
             <%--Enable this once you have account confirmation enabled for password reset functionality--%>
-            <asp:HyperLink NavigateUrl="~/Account/ForgotPassword.aspx" runat="server" ID="ForgotPasswordHyperLink" ViewStateMode="Disabled">Forgot your password?</asp:HyperLink>
+            <asp:HyperLink NavigateUrl="~/Account/Forgot.aspx" runat="server" ID="ForgotPasswordHyperLink" ViewStateMode="Disabled">Forgot your password?</asp:HyperLink>
         </div>
         <asp:Label ID="lblStatus" runat="server"></asp:Label>
         <a href="#contact" class="btn btn-circle page-scroll">
