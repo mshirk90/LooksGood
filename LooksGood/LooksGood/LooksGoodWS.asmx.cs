@@ -158,5 +158,16 @@ namespace LooksGood
             postvote.Save();
             return GetPostById(postid);
         }
+
+        [WebMethod]
+        [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
+        public string GetCommentsAndRepliesByPostId(string postId)
+        {
+            CommentsList comments = new CommentsList();
+            comments = comments.GetByPostId(new Guid(postId));
+            string jsoncomments = JsonConvert.SerializeObject(comments.List);
+
+            return jsoncomments;
+        }
     }
 }
