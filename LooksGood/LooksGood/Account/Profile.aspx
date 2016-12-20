@@ -74,6 +74,15 @@
     </div>
 
     <script>
+            
+        $(document).ready(function () {
+            $('html, body').animate({
+                scrollTop: $('.space').offset().top
+            }, 'slow');
+        });
+          
+
+
         function WebServiceRequest(strMethod, jsonData, cbSuccess, cbError) {
             $.ajax({
                 type: 'POST',

@@ -9,6 +9,7 @@
             width: 42px;
         }
     </style>
+
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server" style="color: red">
     <input type="hidden" class="form-control" id="vote" postid='<%=Request.QueryString["postId"] %>' />
@@ -21,7 +22,7 @@
                             <h3 class="textfix"><span>{{post.Title}} </span></h3>
                         </a>
                         <div>
-                            <img ng-src="{{post.ImagePath}}" width="85%" height="75%" class="imagefix" />
+                            <img ng-src="{{post.ImagePath}}" width="85%" height="75%" class="imagefix" style=" border-radius: 25px;" />
                         </div>
                         <a>
                             <h4 class="textfix"><span>Description: {{post.Description}}</span></h4>
