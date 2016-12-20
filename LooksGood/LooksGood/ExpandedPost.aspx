@@ -67,14 +67,14 @@
                     <label>Comments</label>
                     <hr />
                 </div>
-                <div ng-controller="commentController">
-                    <div class="actionBox">
-                        <div class="scrollbarsupreme">
-                            <ul style="list-style-type: none">
-                                <li ng-repeat="x in comments">
-                                    <div>
+                <div ng-controller="replyController">
+                    <div ng-controller="commentController">
+                        <div class="actionBox">
+                            <div class="scrollbarsupreme">
+                                <ul style="list-style-type: none">
+                                    <li ng-repeat="x in comments">
                                         <div class="commenterImage">
-                                            <p id="IdforParentId" parentId="{{x.Id}}">{{x.UserName}} Says</p>
+                                            <p>{{x.UserName}} Says</p>
                                             <a href="/Account/Profile.aspx?userId={{x.UserId}}"></a>
                                         </div>
                                         <br />
@@ -83,19 +83,16 @@
                                             <span class="date sub-text">on {{x.LastUpdated | date : "short"}}</span>
                                         </div>
                                         <div>
-                                            <textarea class="textarea" style="color: #00b7fc" cols="50" rows="3" name="comment" id="cmtReply" placeholder="Comment"></textarea>
-                                            <div ng-controller="replyController">
-                                                <ul>
-                                                    <li>
-                                                        <input type="submit" name="submit" value="" id="btnReply" style="background-color: #000; color: #00b7fc; border: 1px solid #00b7fc" />
-                                                    </li>
-                                                </ul>
+                                            <textarea class="textarea" style="color: #00b7fc" cols="50" rows="3" name="comment" id="cmtReply" placeholder="Reply" ></textarea>
+                                            <div>
+                                                <input type="hidden" id="IdforParentId" value="{{x.Id}}" />
+                                                <button ng-click="replyFunction();" type="submit" name="submit" value="Reply" id="btnReply" style="background-color: #000; color: #00b7fc; border: 1px solid #00b7fc" />
                                             </div>
                                         </div>
                                         <hr style="width: 95%" />
-                                    </div>
-                                </li>
-                            </ul>
+                                    </li>
+                                </ul>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -174,11 +171,13 @@
             });
         });
         app.controller("commentController", function ($scope) {
-            $scope.comments = [];
+            $scope.comments = [];          
+
             angular.element(document).ready(function () {
                 var postId = vote.getAttribute("postid");
                 WebServiceRequest("GetCommentsByPostId", "{'postId': '" + postId + "'}", commentSuccess, commentFailure)
             });
+
             function commentSuccess(response) {
                 $scope.comments = JSON.parse(response.d);
                 $scope.$apply();
@@ -193,36 +192,27 @@
                 var commentText = $("#cmtComment").val();
                 var userid = '<%=getUserId()%>';
                 WebServiceRequest("SubmitComment", "{'postid': '" + postid + "', 'commentText': '" + commentText + "', 'userid': '" + userid + "'}", commentSuccess, commentFailure)
-            });
-            $("#btnReply").click(function (event) {
+            });          
+        });
+        app.controller("replyController", function ($scope) {
+            $scope.reply = [];
+            $scope.replyFunction = function () {
                 event.preventDefault();
                 var postid = vote.getAttribute("postid");
                 var commentText = $("#cmtReply").val();
-                var parentId = btnReply.getAttribute("parentId");
+                var parentId = $("#IdforParentId").val();
                 var userid = '<%=getUserId()%>';
-                WebServiceRequest("SubmitReply", "{'parentId': '" + parentId + "', 'postid': '" + postid + "', 'commentText': '" + commentText + "', 'userid': '" + userid + "'}", commentSuccess, commentFailure)
-            });
-        });
-        app.controller("replyController", function ($scope) {
-            $scope.comments = [];
+                WebServiceRequest("SubmitReply", "{'parentId': '" + parentId + "', 'postid': '" + postid + "', 'commentText': '" + commentText + "', 'userid': '" + userid + "'}", replySuccess, replyFailure)
+            }
 
             function replySuccess(response) {
-                $scope.comments = JSON.parse(response.d);
+                $scope.reply = JSON.parse(response.d);
                 $scope.$apply();
                 //alert(response.d);
             }
             function replyFailure(response) {
                 alert(response.d.responseText);
-            }
-
-            $("#btnReply").click(function (event) {
-                event.preventDefault();
-                var postid = vote.getAttribute("postid");
-                var commentText = $("#cmtReply").val();
-                var parentId = IdforParentId.getAttribute("parentId");
-                var userid = '<%=getUserId()%>';
-                WebServiceRequest("SubmitReply", "{'parentId': '" + parentId + "', 'postid': '" + postid + "', 'commentText': '" + commentText + "', 'userid': '" + userid + "'}", replySuccess, replyFailure)
-            });
+            }           
         });
     </script>
     <%-- ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- --%>
