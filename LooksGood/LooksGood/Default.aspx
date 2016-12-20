@@ -41,6 +41,7 @@
         }
 
         .imagefix {
+             border-radius: 25px;
             text-align: center;
             margin:auto;
         }

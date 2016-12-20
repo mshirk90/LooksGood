@@ -12,39 +12,110 @@
         <br />
     </div>
 
-   
-        <%--        <asp:PlaceHolder ID="registerForm" runat="server">
+
+
+    <div class="text-center" style="padding-left: 380px;">
             <div>
-                <h2>Register new account</h2>
-                <asp:PlaceHolder runat="server" ID="ErrorMessage" Visible="false">
-                    <p class="text-danger">
-                        <asp:Literal runat="server" ID="FailureText" />
-                    </p>
-                </asp:PlaceHolder>
-            </div>--%>
+                <asp:TextBox runat="server" ID="txtEmail" CssClass="form-control" TextMode="Email" Placeholder="Email" Width="70%" Style="color: black" />
+                <asp:RequiredFieldValidator runat="server" ControlToValidate="txtEmail"
+                    CssClass="text-danger" ErrorMessage="The email field is required." ID="EmailVal" />
+            </div>
 
- <div class="contain">
-        <div>
-            <asp:TextBox runat="server" ID="txtEmail" CssClass="form-control" TextMode="Email" Placeholder="Email" Width="70%" style="color:black" />
-            <asp:RequiredFieldValidator runat="server" ControlToValidate="txtEmail"
-                CssClass="text-danger" ErrorMessage="The email field is required." ID="EmailVal" />
+            <div>
+                <asp:TextBox runat="server" ID="txtUserName" CssClass="form-control" PlaceHolder="UserName" Width="70%" Style="color: black" />
+                <asp:RequiredFieldValidator runat="server" ControlToValidate="txtUserName"
+                    CssClass="text-danger" ErrorMessage="The first name field is required." ID="rvFirstName" ValidationGroup="vgRegister"></asp:RequiredFieldValidator>
+            </div>
+            <div>
+                <asp:Label ID="lblStatus" runat="server" BorderStyle="None" ForeColor="White"></asp:Label>
+            </div>
         </div>
 
-        <div>
-            <asp:TextBox runat="server" ID="txtUserName" CssClass="form-control-static input-lg" PlaceHolder="UserName" Width="70%" style="color:black" />
-            <asp:RequiredFieldValidator runat="server" ControlToValidate="txtUserName" CssClass="text-danger"
-                ErrorMessage="The first name field is required." ID="rvFirstName" ValidationGroup="vgRegister">*</asp:RequiredFieldValidator>
-        </div>
-        <div>
-            <asp:Label ID="lblStatus" runat="server" BorderStyle="None" ForeColor="White"></asp:Label>
-        </div>
-        <div>
-            <asp:Button ID="btnRegister" runat="server" Text="Register" OnClick="btnRegister_Click" Style="color: black;" />
-        </div>
+
+    <asp:Button ID="btnRegister" runat="server" Text="Register" OnClick="btnRegister_Click" Style="color: black;" />
+
+
+    <div>
+    <a href="#contact" class="btn btn-circle page-scroll">
+        <i class="fa fa-angle-double-down animated"></i>
+    </a>
+</div>
+
+
+
+    <div class="space">
+        <br />
+    </div>
+    <div class="space">
+        <br />
+    </div>
+    <div class="space">
+        <br />
+    </div>
+    <div class="space">
+        <br />
+    </div>
+    <div class="space">
+        <br />
+    </div>
+    <div class="space">
+        <br />
+    </div>
+    <div class="space">
+        <br />
+    </div>
+    <div class="space">
+        <br />
     </div>
 
 
+
+
+
+
+
+    <section id="contact" class="download-section text-center">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2">
+                <a href="#page-top" class="btn btn-circle page-scroll">
+                    <i class="fa fa-angle-double-up animated"></i>
+                </a>
+            </div>
+        </div>
+        <br />
+        <%--</section>--%>
+        <div class="text-center">
+            <div>
+                <div>
+                    <h2>Contact Us</h2>
+                    <p>
+                        <a href="mailto:feedback@startbootstrap.com">feedback@startbootstrap.com</a>
+                    </p>
+                    <ul class="list-inline banner-social-buttons">
+                        <li>
+                            <a href="https://twitter.com/SBootstrap" class="btn btn-default btn-lg"><i class="fa fa-twitter fa-fw"></i><span class="network-name">Twitter</span></a>
+                        </li>
+                        <li>
+                            <a href="https://github.com/IronSummitMedia/startbootstrap" class="btn btn-default btn-lg"><i class="fa fa-github fa-fw"></i><span class="network-name">Github</span></a>
+                        </li>
+                        <li>
+                            <a href="https://plus.google.com/+Startbootstrap/posts" class="btn btn-default btn-lg"><i class="fa fa-google-plus fa-fw"></i><span class="network-name">Google+</span></a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
     <script>
+        $(document).ready(function () {
+            $('html, body').animate({
+                scrollTop: $('.space').offset().top
+            }, 'slow');
+        });
+
+
         $('#<%=txtEmail.ClientID %>').keyup(function () {
             var value = $('#<%=txtEmail.ClientID %>').val();
             EmailChecker(value);

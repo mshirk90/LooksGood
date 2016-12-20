@@ -59,5 +59,12 @@
         float:right;
     }
     </style>
+        <script>
+        $(document).ready(function () {
+            $('html, body').animate({
+                scrollTop: $('.space').offset().top
+            }, 'slow');
+        });
+            </script>
 </asp:Content>
 
