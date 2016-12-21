@@ -252,6 +252,7 @@
     <Content Include="Scripts\respond.matchmedia.addListener.js" />
     <Content Include="Scripts\respond.matchmedia.addListener.min.js" />
     <Content Include="Scripts\respond.min.js" />
+    <Content Include="Test.html" />
     <Content Include="WebForm1.aspx" />
     <Content Include="Scripts\angular.min.js.map" />
     <None Include="Scripts\jquery-2.1.0-vsdoc.js" />

@@ -152,6 +152,7 @@
                 $scope.post = JSON.parse(response.d);
                 $scope.$apply;
                 //alert(response.d);
+
             }
             function postLoadFailure(response) {
                 alert(response.d.responseText);
@@ -183,6 +184,7 @@
                 $scope.comments = JSON.parse(response.d);
                 $scope.$apply();
                 //alert(response.d);
+                $("#cmtComment").val('');
             }
             function commentFailure(response) {
                 alert(response.d.responseText);
