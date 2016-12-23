@@ -161,10 +161,10 @@ namespace LooksGood
 
         [WebMethod]
         [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
-        public string GetCommentsAndRepliesByPostId(string postId)
+        public string GetRepliesByParentId(string parentId)
         {
             CommentsList comments = new CommentsList();
-            comments = comments.GetByPostId(new Guid(postId));
+            comments = comments.GetByParentId(new Guid(parentId));
             string jsoncomments = JsonConvert.SerializeObject(comments.List);
 
             return jsoncomments;

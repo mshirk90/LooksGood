@@ -280,6 +280,10 @@ namespace BusinessObjects
             _UserId = (Guid)dr["UserId"];
             _PostId = (Guid)dr["PostId"];
             _Comment = dr["Comment"].ToString();
+            if (dr["ParentId"] != null)
+            {
+                _ParentId = (Guid)dr["ParentId"];
+            }
         }
 
         public bool IsSavable()

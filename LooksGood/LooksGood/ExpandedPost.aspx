@@ -79,7 +79,8 @@
                                             <a href="/Account/Profile.aspx?userId={{x.UserId}}"></a>
                                         </div>
                                         <br />
-                                        <div class="commentText">
+                                        <div class="commentText">                                                                                   
+
                                             <p class="commentText">{{x.Comment}}</p>
                                             <span class="date sub-text">on {{x.LastUpdated | date : "short"}}</span>
                                         </div>
@@ -206,6 +207,20 @@
                 var parentId = $("#IdforParentId").val();
                 var userid = '<%=getUserId()%>';
                 WebServiceRequest("SubmitReply", "{'parentId': '" + parentId + "', 'postid': '" + postid + "', 'commentText': '" + commentText + "', 'userid': '" + userid + "'}", replySuccess, replyFailure)
+            }
+
+            angular.element(document).ready(function () {
+                var parentId = $("#IdforParentId").val();
+                WebServiceRequest("GetRepliesByParentId", "{'parentId': '" + parentId + "'}", repliesSuccess, repliesFailure)
+            });
+
+            function repliesSuccess(response) {
+                $scope.$reply = JSON.parse(response.d)
+                $scope.$apply();
+                alert(response.d)
+            }
+            function repliesFailure(response){
+                alert(response.d.responseText);
             }
 
             function replySuccess(response) {
