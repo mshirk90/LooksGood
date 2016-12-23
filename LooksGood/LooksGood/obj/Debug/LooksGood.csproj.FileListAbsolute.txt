@@ -549,3 +549,17 @@ C:\Users\Chase\Desktop\LooksGood\LooksGood\LooksGood\bin\Microsoft.Owin.Security
 C:\Users\Chase\Desktop\LooksGood\LooksGood\LooksGood\obj\Debug\LooksGood.csprojResolveAssemblyReference.cache
 C:\Users\Chase\Desktop\LooksGood\LooksGood\LooksGood\obj\Debug\LooksGood.dll
 C:\Users\Chase\Desktop\LooksGood\LooksGood\LooksGood\obj\Debug\LooksGood.pdb
+C:\Users\Chase\Desktop\LooksGood\LooksGood\LooksGood\bin\roslyn\csc.exe.config
+C:\Users\Chase\Desktop\LooksGood\LooksGood\LooksGood\bin\roslyn\csc.rsp
+C:\Users\Chase\Desktop\LooksGood\LooksGood\LooksGood\bin\roslyn\csi.exe
+C:\Users\Chase\Desktop\LooksGood\LooksGood\LooksGood\bin\roslyn\csi.rsp
+C:\Users\Chase\Desktop\LooksGood\LooksGood\LooksGood\bin\roslyn\Microsoft.CodeAnalysis.CSharp.Scripting.dll
+C:\Users\Chase\Desktop\LooksGood\LooksGood\LooksGood\bin\roslyn\Microsoft.CodeAnalysis.Scripting.dll
+C:\Users\Chase\Desktop\LooksGood\LooksGood\LooksGood\bin\roslyn\Microsoft.DiaSymReader.Native.amd64.dll
+C:\Users\Chase\Desktop\LooksGood\LooksGood\LooksGood\bin\roslyn\Microsoft.DiaSymReader.Native.x86.dll
+C:\Users\Chase\Desktop\LooksGood\LooksGood\LooksGood\bin\roslyn\System.AppContext.dll
+C:\Users\Chase\Desktop\LooksGood\LooksGood\LooksGood\bin\roslyn\System.Diagnostics.StackTrace.dll
+C:\Users\Chase\Desktop\LooksGood\LooksGood\LooksGood\bin\roslyn\System.IO.FileSystem.dll
+C:\Users\Chase\Desktop\LooksGood\LooksGood\LooksGood\bin\roslyn\System.IO.FileSystem.Primitives.dll
+C:\Users\Chase\Desktop\LooksGood\LooksGood\LooksGood\bin\roslyn\vbc.exe.config
+C:\Users\Chase\Desktop\LooksGood\LooksGood\LooksGood\bin\roslyn\vbc.rsp
