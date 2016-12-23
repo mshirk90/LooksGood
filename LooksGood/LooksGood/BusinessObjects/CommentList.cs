@@ -75,6 +75,30 @@ namespace BusinessObjects
             return this;
         }
 
+        public CommentsList GetByParentId(Guid parentId)
+        {
+            Database database = new Database("LooksGoodDatabase");
+
+            database.Command.Parameters.Clear();
+            database.Command.CommandType = CommandType.StoredProcedure;
+            database.Command.CommandText = "tblCommentsGetByParentId";
+            database.Command.Parameters.Add("@ParentId", SqlDbType.UniqueIdentifier).Value = parentId;
+
+            DataTable dt = database.ExecuteQuery();
+            foreach (DataRow dr in dt.Rows)
+            {
+                Comments comments = new Comments();
+                comments.Initialize(dr);
+                comments.InitializeBusinessData(dr);
+                comments.IsNew = false;
+                comments.IsDirty = false;
+                comments.Savable += Comments_Savable;
+                _List.Add(comments);
+            }
+
+            return this;
+        }
+
         public bool Save()
         {
             bool result = false;

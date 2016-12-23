@@ -10,7 +10,7 @@
         <div class="paddingleft">
             <asp:Image ID="imgProfile" runat="server" BorderStyle="Solid" BorderColor="Red" BorderWidth="3px"></asp:Image>
             <asp:FileUpload ID="fuChangeProfileImage" runat="server" />
-            <asp:Button ID="btnChangePicture" runat="server" OnClick="btnChangePicture_Click" Text="Change Profile Picture" />
+            <asp:Button ID="btnChangePicture" runat="server" OnClick="btnChangePicture_Click" Text="Change Profile Picture" style="color:black" />
         </div>
 
         <div>
@@ -74,6 +74,15 @@
     </div>
 
     <script>
+            
+        $(document).ready(function () {
+            $('html, body').animate({
+                scrollTop: $('.space').offset().top
+            }, 'slow');
+        });
+          
+
+
         function WebServiceRequest(strMethod, jsonData, cbSuccess, cbError) {
             $.ajax({
                 type: 'POST',

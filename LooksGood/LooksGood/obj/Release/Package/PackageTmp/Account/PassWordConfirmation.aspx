@@ -6,4 +6,11 @@
         <asp:Label ID="pwConfirm" CssClass="pull-left" runat="server" Text="Check registered e-mail">   
         </asp:Label>
     </div>
+            <script>
+        $(document).ready(function () {
+            $('html, body').animate({
+                scrollTop: $('.space').offset().top
+            }, 'slow');
+        });
+            </script>
 </asp:Content>

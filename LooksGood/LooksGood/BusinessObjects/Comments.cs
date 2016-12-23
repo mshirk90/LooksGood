@@ -13,8 +13,10 @@ namespace BusinessObjects
         #region Private Members
         private Guid _UserId = Guid.Empty;
         private Guid _PostId = Guid.Empty;
+        private Guid _ParentId = Guid.Empty;
         private string _Comment = string.Empty;
         private string _UserName = string.Empty;
+        private List<Comments> _Replys = null;
 
         #endregion
 
@@ -78,6 +80,25 @@ namespace BusinessObjects
             }
         }
 
+        public Guid ParentId
+        {
+            get
+            {
+                return _ParentId;
+            }
+            set
+            {
+                if (_ParentId != value)
+                {
+                    _ParentId = value;
+                    base.IsDirty = true;
+                    bool Savable = IsSavable();
+                    SavableEventArgs e = new SavableEventArgs(Savable);
+                    RaiseEvent(e);
+                }
+            }
+        }
+
         public String Comment
         {
             get
@@ -124,6 +145,34 @@ namespace BusinessObjects
             return result;
 
         }
+
+        private bool ReplyInsert(Database database)
+        {
+            bool result = true;
+            try
+            {
+                database.Command.Parameters.Clear();
+                database.Command.CommandType = System.Data.CommandType.StoredProcedure;
+                database.Command.CommandText = "tblCommentReplyINSERT";
+                database.Command.Parameters.Add("@UserId", SqlDbType.UniqueIdentifier).Value = _UserId;
+                database.Command.Parameters.Add("@PostId", SqlDbType.UniqueIdentifier).Value = _PostId;
+                database.Command.Parameters.Add("@ParentId", SqlDbType.UniqueIdentifier).Value = _ParentId;
+                database.Command.Parameters.Add("@Comment", SqlDbType.VarChar).Value = _Comment;
+                //PROVIDES THE EMPTY BUCKETS
+                base.Initialize(database, Guid.Empty);
+                database.ExecuteNonQuery();
+                //UNLOADS THE FULL BUCKETS INTO THE OBJECT
+                base.Initialize(database.Command);
+            }
+            catch (Exception e)
+            {
+                result = false;
+                throw;
+            }
+            return result;
+
+        }
+
         private bool Update(Database database)
         {
             bool result = true;
@@ -175,8 +224,6 @@ namespace BusinessObjects
         private bool IsValid()
         {
             bool result = true;
-
-            //INTENTIONALLY LEAVING OUT EMPLOYEEID
 
             if (_PostId == null || _PostId == Guid.Empty)
             {
@@ -233,6 +280,10 @@ namespace BusinessObjects
             _UserId = (Guid)dr["UserId"];
             _PostId = (Guid)dr["PostId"];
             _Comment = dr["Comment"].ToString();
+            if (dr["ParentId"] != null)
+            {
+                _ParentId = (Guid)dr["ParentId"];
+            }
         }
 
         public bool IsSavable()
@@ -269,8 +320,32 @@ namespace BusinessObjects
                 base.IsNew = false;
             }
             return this;
+        }
 
+        public Comments ReplySave()
+        {
+            Database database = new Database("LooksGoodDatabase");
+            bool result = true;
 
+            if (base.IsNew == true && IsSavable() == true)
+            {
+                result = ReplyInsert(database);
+            }
+            else if (base.Deleted == true && base.IsDirty == true)
+            {
+                result = Delete(database);
+            }
+            else if (base.IsNew == false && IsSavable() == true)
+            {
+                result = Update(database);
+            }
+
+            if (result == true)
+            {
+                base.IsDirty = false;
+                base.IsNew = false;
+            }
+            return this;
         }
         #endregion
 

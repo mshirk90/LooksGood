@@ -34,16 +34,16 @@ namespace LooksGood
             return result;
         }
 
-        [WebMethod]
-        [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
-        public Post ChangeVotesByPostId(string id, int change)
-        {
-            Post post = new Post();
-            post = post.GetById(new Guid(id));
+        //[WebMethod]
+        //[ScriptMethod(ResponseFormat = ResponseFormat.Json)]
+        //public Post ChangeVotesByPostId(string id, int change)
+        //{
+        //    Post post = new Post();
+        //    post = post.GetById(new Guid(id));
 
-            post.Save();
-            return post;
-        }
+        //    post.Save();
+        //    return post;
+        //}
 
 
         [WebMethod]
@@ -66,6 +66,19 @@ namespace LooksGood
             comment.UserId = new Guid(userid);
             comment.Comment = commentText;
             comment.Save();
+            return GetCommentsByPostId(postid);
+        }
+
+        [WebMethod]
+        [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
+        public string SubmitReply(string parentId, string postid, string commentText, string userid )
+        {
+            Comments comment = new Comments();
+            comment.PostId = new Guid(postid);
+            comment.UserId = new Guid(userid);
+            comment.ParentId = new Guid(parentId);
+            comment.Comment = commentText;
+            comment.ReplySave();
             return GetCommentsByPostId(postid);
         }
 
@@ -129,10 +142,8 @@ namespace LooksGood
         {
             Post post = new Post();
             PostVotesList postvotes = new PostVotesList();
-            postvotes = postvotes.GetPostVotesByPostId(post.Id);
-            //postvotes = postvotes.LikeAbilityMath(post.Id);
             string jsoncomments = JsonConvert.SerializeObject(postvotes.List);
-            
+
             return jsoncomments;
         }
 
@@ -145,7 +156,18 @@ namespace LooksGood
             postvote.UserId = new Guid(userid);
             postvote.Vote = vote;
             postvote.Save();
-            return GetVotesByPostId(postid);
+            return GetPostById(postid);
+        }
+
+        [WebMethod]
+        [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
+        public string GetRepliesByParentId(string parentId)
+        {
+            CommentsList comments = new CommentsList();
+            comments = comments.GetByParentId(new Guid(parentId));
+            string jsoncomments = JsonConvert.SerializeObject(comments.List);
+
+            return jsoncomments;
         }
     }
 }
