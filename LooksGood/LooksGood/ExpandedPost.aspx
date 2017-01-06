@@ -177,8 +177,10 @@
             $scope.comments = [];          
 
             angular.element(document).ready(function () {
+                var parentId = $("#IdforParentId").val();
                 var postId = vote.getAttribute("postid");
                 WebServiceRequest("GetCommentsByPostId", "{'postId': '" + postId + "'}", commentSuccess, commentFailure)
+                WebServiceRequest("GetRepliesByParentId", "{'parentId': '" + parentId + "'}", repliesSuccess, repliesFailure)
             });
 
             function commentSuccess(response) {
@@ -190,6 +192,16 @@
             function commentFailure(response) {
                 alert(response.d.responseText);
             }
+
+            function repliesSuccess(response) {
+                $scope.$reply = JSON.parse(response.d)
+                $scope.$apply();
+                alert(response.d)
+            }
+            function repliesFailure(response) {
+                alert(response.d.responseText);
+            }
+
             $("#btnSubmit").click(function (event) {
                 event.preventDefault();
                 var postid = vote.getAttribute("postid");
@@ -209,10 +221,10 @@
                 WebServiceRequest("SubmitReply", "{'parentId': '" + parentId + "', 'postid': '" + postid + "', 'commentText': '" + commentText + "', 'userid': '" + userid + "'}", replySuccess, replyFailure)
             }
 
-            angular.element(document).ready(function () {
-                var parentId = $("#IdforParentId").val();
-                WebServiceRequest("GetRepliesByParentId", "{'parentId': '" + parentId + "'}", repliesSuccess, repliesFailure)
-            });
+            //angular.element(document).ready(function () {
+            //    var parentId = $("#IdforParentId").val();
+            //    WebServiceRequest("GetRepliesByParentId", "{'parentId': '" + parentId + "'}", repliesSuccess, repliesFailure)
+            //});
 
             function repliesSuccess(response) {
                 $scope.$reply = JSON.parse(response.d)

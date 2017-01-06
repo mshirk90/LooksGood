@@ -280,9 +280,9 @@ namespace BusinessObjects
             _UserId = (Guid)dr["UserId"];
             _PostId = (Guid)dr["PostId"];
             _Comment = dr["Comment"].ToString();
-            if (dr["ParentId"] != null)
+            if (dr["ParentId"] != System.DBNull.Value)
             {
-                _ParentId = (Guid)dr["ParentId"];
+                _ParentId = new Guid(dr["ParentId"].ToString());
             }
         }
 
