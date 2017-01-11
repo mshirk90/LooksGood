@@ -22,7 +22,7 @@
                             <h3 class="textfix"><span>{{post.Title}} </span></h3>
                         </a>
                         <div>
-                            <img ng-src="{{post.ImagePath}}" width="85%" height="75%" class="imagefix" style="border-radius: 25px;" />
+                            <img ng-src="{{post.ImagePath}}" width="85%" height="75%" class="imagefix" style=" border-radius 25px;" />
                         </div>
                         <a>
                             <h4 class="textfix"><span>Description: {{post.Description}}</span></h4>
@@ -31,7 +31,8 @@
                             <div>Posted By: {{post.UserName}}</div>
                         </a>
                         <a>
-                            <label style="font: bold 30px white; padding: 2px;" id="lblLikeAbility">{{post.LikeAbility}}</label></a>
+                            <label style="font: bold 30px white; padding: 2px;" id="lblLikeAbility">{{post.LikeAbility}}</label>
+                        </a>
                     </div>
                     <a href="#contact" class="btn btn-circle page-scroll">
                         <i class="fa fa-angle-double-down animated"></i>
@@ -80,24 +81,15 @@
                                         </div>
                                         <br />
                                         <div class="commentText">
+
                                             <p class="commentText">{{x.Comment}}</p>
                                             <span class="date sub-text">on {{x.LastUpdated | date : "short"}}</span>
                                         </div>
                                         <div>
-                                            <a ng-click="replyText=!replyText" style="color: #00b7fc; padding-left: 15%">Reply to comment</a>
-                                            <div ng-show="replyText">
-                                                <div class="text-area-container">
-                                                    <textarea id="{{x.Id}}" class="chat-box" rows="2" ng-model="textModel"></textarea>
-                                                </div>
-                                                <div class="button-container btn-group btn-group-chat">
-                                                    
-                                                </div>
-                                                <div>
-                                                    <pre>{{textModel|json}}</pre>
-                                                </div>
-                                                <div>
-                                                    <button ng-click="replyFunction();" type="submit" name="{{x.Id}}" id="parentId" style="background-color: #000; color: #00b7fc; border: 1px solid #00b7fc">Submit Reply</button>
-                                                </div>
+                                            <textarea class="textarea" style="color: #00b7fc" cols="50" rows="3" name="comment" id="cmtReply" placeholder="Reply"></textarea>
+                                            <div>
+                                                <input type="hidden" id="IdforParentId" value="{{x.Id}}" />
+                                                <button ng-click="replyFunction();" type="submit" name="submit" value="Reply" id="btnReply" style="background-color: #000; color: #00b7fc; border: 1px solid #00b7fc" />
                                             </div>
                                         </div>
                                         <hr style="width: 95%" />
@@ -108,7 +100,8 @@
                     </div>
                 </div>
             </div>
-    </section>   
+        </section>
+    </div>
     <%-- ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- --%>
     <script>
         $(document).ready(function () {
@@ -183,21 +176,18 @@
         });
         app.controller("commentController", function ($scope) {
             $scope.comments = [];
-            $scope.replies = [];
-
 
             angular.element(document).ready(function () {
-                //var parentId = $("#IdforParentId").val();
+                var parentId = $("#IdforParentId").val();
                 var postId = vote.getAttribute("postid");
-                WebServiceRequest("GetCommentsByPostId", "{'postId': '" + postId + "'}", commentSuccess, commentFailure)          
+                WebServiceRequest("GetCommentsByPostId", "{'postId': '" + postId + "'}", commentSuccess, commentFailure)
+                WebServiceRequest("GetRepliesByParentId", "{'parentId': '" + parentId + "'}", repliesSuccess, repliesFailure)
             });
 
             function commentSuccess(response) {
                 $scope.comments = JSON.parse(response.d);
                 $scope.$apply();
-                var parentId = $("#IdforParentId").val();
                 //alert(response.d);
-                //WebServiceRequest("GetRepliesByParentId", "{'parentId': '" + parentId + "'}", repliesSuccess, repliesFailure)
                 $("#cmtComment").val('');
             }
             function commentFailure(response) {
@@ -205,7 +195,7 @@
             }
 
             function repliesSuccess(response) {
-                $scope.replies = JSON.parse(response.d)
+                $scope.$reply = JSON.parse(response.d)
                 $scope.$apply();
                 alert(response.d)
             }
@@ -219,11 +209,10 @@
                 var commentText = $("#cmtComment").val();
                 var userid = '<%=getUserId()%>';
                 WebServiceRequest("SubmitComment", "{'postid': '" + postid + "', 'commentText': '" + commentText + "', 'userid': '" + userid + "'}", commentSuccess, commentFailure)
-            });          
+            });
         });
-        app.controller("replyController", function ($scope) {          
-            $scope.textModel = "Reply Preview"
-            //$scope.reply = [];
+        app.controller("replyController", function ($scope) {
+            $scope.reply = [];
             $scope.replyFunction = function () {
                 event.preventDefault();
                 var postid = vote.getAttribute("postid");
@@ -233,14 +222,19 @@
                 WebServiceRequest("SubmitReply", "{'parentId': '" + parentId + "', 'postid': '" + postid + "', 'commentText': '" + commentText + "', 'userid': '" + userid + "'}", replySuccess, replyFailure)
             }
 
-            //function repliesSuccess(response) {
-            //    $scope.$reply = JSON.parse(response.d)
-            //    $scope.$apply();
-            //    alert(response.d)
-            //}
-            //function repliesFailure(response){
-            //    alert(response.d.responseText);
-            //}
+            //angular.element(document).ready(function () {
+            //    var parentId = $("#IdforParentId").val();
+            //    WebServiceRequest("GetRepliesByParentId", "{'parentId': '" + parentId + "'}", repliesSuccess, repliesFailure)
+            //});
+
+            function repliesSuccess(response) {
+                $scope.$reply = JSON.parse(response.d)
+                $scope.$apply();
+                alert(response.d)
+            }
+            function repliesFailure(response){
+                alert(response.d.responseText);
+            }
 
             function replySuccess(response) {
                 $scope.reply = JSON.parse(response.d);
@@ -249,10 +243,8 @@
             }
             function replyFailure(response) {
                 alert(response.d.responseText);
-            }           
+            }
         });
-
-
     </script>
     <%-- ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- --%>
     <style>
@@ -277,12 +269,12 @@
 
         /*.commentBox {
             padding: 10px;
-            border-top: 3px dotted #bbb;             
+            border-top: 3px dotted #bbb;
         }
 
         .commentBox .form-group:first-child, .actionBox .form-group:first-child {
                 width: 80%;
-                
+
             }
 
             .commentBox .form-group:nth-child(2), .actionBox .form-group:nth-child(2) {
