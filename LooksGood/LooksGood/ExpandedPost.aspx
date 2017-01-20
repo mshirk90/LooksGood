@@ -13,10 +13,107 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server" style="color: red">
     <input type="hidden" class="form-control" id="vote" postid='<%=Request.QueryString["postId"] %>' />
-    <div class="contain" ng-app="expandedPostModule">
-        <div>
+    <div class="contain" ng-app="MyApp">
+        <div ng-controller="MyController" id="maincontent">
+            <div class="contain">
+                <div>
+                    <div class="item" ng-model="post">
+                        <a>
+                            <h3 class="textfix"><span>{{post.Title}} </span></h3>
+                        </a>
+                        <div>
+                            <img ng-src="{{post.ImagePath}}" width="85%" height="75%" class="imagefix" style="border-radius: 25px;" />
+                        </div>
+                        <a>
+                            <h4 class="textfix"><span>Description: {{post.Description}}</span></h4>
+                        </a>
+                        <a>
+                            <div>Posted By: {{post.UserName}}</div>
+                        </a>
+                        <a>
+                            <label style="font: bold 30px white; padding: 2px;" id="lblLikeAbility">{{post.LikeAbility}}</label>
+                        </a>
+                    </div>
+                    <a href="#contact" class="btn btn-circle page-scroll">
+                        <i class="fa fa-angle-double-down animated"></i>
+                    </a>
+                </div>
+            </div>
+            <%-- --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- --%>
+            <input type="submit" name="submit" value="1" id="btnUpVote" style="background-color: #000; color: #00b7fc; border: 1px solid #00b7fc" />
+
+            <input type="submit" name="submit" value="-1" id="btnDownVote" style="background-color: #000; color: #00b7fc; border: 1px solid #00b7fc" />
         </div>
-    </div>
+        <%-- ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- --%>
+        <div class="space">
+            <br />
+        </div>
+        <div class="space">
+            <br />
+        </div>
+        <div class="space">
+            <br />
+        </div>
+        <%-- ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- --%>
+        <section id="contact" class="">
+            <div id="comment_form" class="contain">
+                <div>
+                    <textarea class="textarea" style="color: #00b7fc" cols="50" rows="3" name="comment" id="cmtComment" placeholder="Comment"></textarea>
+                </div>
+                <div>
+                    <input type="submit" name="submit" value="" id="btnSubmit" style="background-color: #000; color: #00b7fc; border: 1px solid #00b7fc" />
+                </div>
+            </div>
+            <div class="detailBox">
+                <div class="titleBox">
+                    <label>Comments</label>
+                    <hr />
+                </div>            
+                    <div ng-controller="commentController">
+                        <div class="actionBox">
+                            <div class="scrollbarsupreme">
+                                <ul style="list-style-type: none">
+                                    <li ng-repeat="x in comments">
+                                        <div class="commenterImage">
+                                            <p>{{x.UserName}} Says</p>
+                                            <a href="/Account/Profile.aspx?userId={{x.UserId}}"></a>
+                                        </div>
+                                        <br />
+                                        <div class="commentText">
+                                            
+                                            <p class="commentText">{{x.Comment}}</p>
+                                            <span class="date sub-text">on {{x.LastUpdated | date : "short"}}</span>
+                                        </div>
+                                        <div ng-controller="replyController">
+                                            <button type="button" style="color: #00b7fc; background-color:black; border:none" ng-click="showReplies=!showReplies; getRepliesByParentId()" >Show Replies</button>
+                                            <div ng-show="showReplies">                                                                                         
+                                                    <div ng-repeat="reply in reply">
+                                                        <p>{{reply.UserName}} replied {{reply.Comment}}</p>
+                                                    </div>                                                                                          
+                                            </div>
+                                            <a ng-click="replyText=!replyText" style="color: #00b7fc; padding-left: 15%">Click to reply</a>
+                                            <div ng-show="replyText">
+                                                <textarea id="getParentId" class="chat-box" value="{{x.Id}}" rows="2" placeholder="{{x.Id}}">{{x.Id}}</textarea>
+                                                <div class="text-area-container">
+                                                    <textarea id="replyTextBox" class="chat-box" style="color:black" cols="50" rows="2" ng-model="textModel"></textarea>
+                                                </div>
+                                                <div class="button-container btn-group btn-group-chat">
+                                                </div>
+                                                <div>
+                                                    <button ng-click="replyFunction();" value="{{x.Id}}" type="submit" id="getParentIdd" style="background-color: #000; color: #00b7fc; border: 1px solid #00b7fc">{{x.Id}}</button>
+                                                </div>
+                                            </div>
+                                        </div>                                                                                                          
+                                        <hr style="width: 95%" />
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+        </section>
+    </div> <!-- end of myApp -->
+    
     <%-- ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- --%>
     <script>
         $(document).ready(function () {
@@ -29,7 +126,8 @@
         $("#cmtComment").prop("disabled", true);
         $("#btnSubmit").prop("disabled", true);
         $("#btnUpVote").prop("disabled", true);
-        $("#btnDownVote").prop("disabled", true);
+        $("#btnDownVote").prop("disabled", true);       
+
         function WebServiceRequest(strMethod, jsonData, cbSuccess, cbError) {
             $.ajax({
                 type: 'POST',
@@ -41,6 +139,7 @@
                 error: cbError
             });
         }
+
         function UserSignedIn() {
             $("#cmtComment").val('');
             $("#btnSubmit").val('Submit Comment');
@@ -49,8 +148,9 @@
             $("#btnUpVote").prop("disabled", false);
             $("#btnDownVote").prop("disabled", false);
         }
-        var expandedPost = angular.module("expandedPostModule", []);
-        expandedPost.controller("postController", function ($scope) {
+
+        var app = angular.module("MyApp", []);
+        app.controller("MyController", function ($scope) {
             $scope.post = {}
             angular.element(document).ready(function () {
                 var postId = vote.getAttribute("postid");
@@ -89,14 +189,17 @@
                 WebServiceRequest("SubmitVote", "{'postid': '" + postid + "', 'vote': '" + votes + "', 'userid': '" + userid + "'}", VoteSuccess, VoteFailure)
             });
         });
-        expandedPost.controller("commentController", function ($scope) {
+        app.controller("commentController", function ($scope) {
             $scope.comments = [];
+            $scope.replies = [];
+
 
             angular.element(document).ready(function () {
                 //var parentId = $("#IdforParentId").val();
                 var postId = vote.getAttribute("postid");
                 WebServiceRequest("GetCommentsByPostId", "{'postId': '" + postId + "'}", commentSuccess, commentFailure)
-            });
+            });          
+
             function commentSuccess(response) {
                 $scope.comments = JSON.parse(response.d);
                 $scope.$apply();
@@ -109,6 +212,15 @@
                 alert(response.d.responseText);
             }
 
+            //function repliesSuccess(response) {
+            //    $scope.replies = JSON.parse(response.d)
+            //    $scope.$apply();
+            //    alert(response.d)
+            //}
+            //function repliesFailure(response) {
+            //    alert(response.d.responseText);
+            //}
+
             $("#btnSubmit").click(function (event) {
                 event.preventDefault();
                 var postid = vote.getAttribute("postid");
@@ -118,15 +230,29 @@
             });
         });
         app.controller("replyController", function ($scope) {
-            $scope.textModel = "Reply Text Here"
-            $scope.reply = [];
+            //$scope.textModel = "Reply Text Here"
+            $scope.reply = {};
             $scope.replyFunction = function () {
                 event.preventDefault();
                 var postid = vote.getAttribute("postid");
                 var commentText = $scope.textModel; //$("replyTextBox").val();
-                var parentId = $("#getParentId").val();
+                var parentId = $scope.textArea;
                 var userid = '<%=getUserId()%>';
                 WebServiceRequest("SubmitReply", "{'parentId': '" + parentId + "', 'postid': '" + postid + "', 'commentText': '" + commentText + "', 'userid': '" + userid + "'}", replySuccess, replyFailure)
+            }
+
+            $scope.getRepliesByParentId = function () {
+                var parentId = $("#getParentId").val();
+                WebServiceRequest("GetRepliesByParentId", "{'parentId': '" + parentId + "'}", repliesSuccess, repliesFailure)
+            }
+
+            function repliesSuccess(response) {
+                $scope.reply = JSON.parse(response.d)
+                $scope.$apply();
+                alert(response.d)
+            }
+            function repliesFailure(response){
+                alert(response.d.responseText);
             }
 
             function replySuccess(response) {
@@ -138,6 +264,7 @@
                 alert(response.d.responseText);
             }
         });
+
 
     </script>
     <%-- ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- --%>
@@ -162,18 +289,18 @@
             }
 
         /*.commentBox {
-            padding: 10px;
-            border-top: 3px dotted #bbb;             
-        }
-
-        .commentBox .form-group:first-child, .actionBox .form-group:first-child {
-                width: 80%;
-                
+                padding: 10px;
+                border-top: 3px dotted #bbb;
             }
 
-            .commentBox .form-group:nth-child(2), .actionBox .form-group:nth-child(2) {
-                width: 18%;
-            }*/
+            .commentBox .form-group:first-child, .actionBox .form-group:first-child {
+                    width: 80%;
+
+                }
+
+                .commentBox .form-group:nth-child(2), .actionBox .form-group:nth-child(2) {
+                    width: 18%;
+                }*/
 
         .actionBox .form-group * {
             width: 100%;
@@ -236,7 +363,4 @@
         }
     </style>
 </asp:Content>
-
-
-
 
