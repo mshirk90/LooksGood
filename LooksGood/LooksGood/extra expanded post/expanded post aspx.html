@@ -1,6 +1,8 @@
 ﻿<%@ Page Title="ExpandedPost" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="ExpandedPost.aspx.cs" Inherits="LooksGood.ExpandedPost" %>
 
 
+
+
 <asp:Content ID="header" ContentPlaceHolderID="head" runat="server">
     <style type="text/css">
         #vote {
@@ -66,41 +68,43 @@
                 <div class="titleBox">
                     <label>Comments</label>
                     <hr />
-                </div>            
+                </div>
+                <div ng-controller="replyController">
                     <div ng-controller="commentController">
                         <div class="actionBox">
                             <div class="scrollbarsupreme">
                                 <ul style="list-style-type: none">
-                                    <li ng-repeat="x in comments track by x.Id">
+                                    <li ng-repeat="x in comments">
                                         <div class="commenterImage">
                                             <p>{{x.UserName}} Says</p>
                                             <a href="/Account/Profile.aspx?userId={{x.UserId}}"></a>
                                         </div>
                                         <br />
                                         <div class="commentText">
-                                            
                                             <p class="commentText">{{x.Comment}}</p>
                                             <span class="date sub-text">on {{x.LastUpdated | date : "short"}}</span>
                                         </div>
-                                        <div ng-controller="replyController">
-                                            <button type="button" style="color: #00b7fc; background-color:black; border:none" ng-click="showReplies=!showReplies; getRepliesByParentId(x.Id)" >Show Replies</button>
-                                            <div ng-show="showReplies">                                                                                         
-                                                    <div ng-repeat="reply in reply">
-                                                        <p>{{reply.UserName}} replied {{reply.Comment}}</p>                                                     
-                                                    </div>                                                                                          
-                                            </div>
-                                            <a ng-click="replyText=!replyText" style="color: #00b7fc; padding-left: 15%">Click to reply</a>
+                                        <button type="button" onclick="getRepliesByParentId();">Show Replies</button>
+                                        <div ng-repeat="x in replies">
+                                            <p>{{x.UserName}}Replied: {{x.replies}}</p>
+                                        </div>
+                                        <div>
+                                            <a ng-click="replyText=!replyText" style="color: #00b7fc; padding-left: 15%">Reply to comment</a>
                                             <div ng-show="replyText">
                                                 <div class="text-area-container">
-                                                    <textarea id="replyTextBox" class="chat-box" style="color:black" cols="50" rows="2" ng-model="textModel"></textarea>
+                                                    <textarea id="replyTextBox" class="chat-box" style="color:black" rows="2" ng-model="textModel"></textarea>
                                                 </div>
                                                 <div class="button-container btn-group btn-group-chat">
+
                                                 </div>
+                                                <%--<div>
+                                                    <pre>{{textModel|json}}</pre>
+                                                </div>--%>
                                                 <div>
-                                                    <button ng-click="replyFunction(x.Id);" value="{{x.Id}}" type="submit" id="getParentId{{x.Id}}" style="background-color: #000; color: #00b7fc; border: 1px solid #00b7fc">Submit Reply</button>
+                                                    <button ng-click="replyFunction();" value="{{x.Id}}" type="submit" id="getParentId" style="background-color: #000; color: #00b7fc; border: 1px solid #00b7fc">Submit Reply</button>
                                                 </div>
                                             </div>
-                                        </div>                                                                                                          
+                                        </div>
                                         <hr style="width: 95%" />
                                     </li>
                                 </ul>
@@ -108,8 +112,9 @@
                         </div>
                     </div>
                 </div>
+            </div>
         </section>
-    </div> <!-- end of myApp -->
+    </div>
     
     <%-- ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- --%>
     <script>
@@ -123,8 +128,7 @@
         $("#cmtComment").prop("disabled", true);
         $("#btnSubmit").prop("disabled", true);
         $("#btnUpVote").prop("disabled", true);
-        $("#btnDownVote").prop("disabled", true);       
-
+        $("#btnDownVote").prop("disabled", true);
         function WebServiceRequest(strMethod, jsonData, cbSuccess, cbError) {
             $.ajax({
                 type: 'POST',
@@ -136,7 +140,6 @@
                 error: cbError
             });
         }
-
         function UserSignedIn() {
             $("#cmtComment").val('');
             $("#btnSubmit").val('Submit Comment');
@@ -145,7 +148,6 @@
             $("#btnUpVote").prop("disabled", false);
             $("#btnDownVote").prop("disabled", false);
         }
-
         var app = angular.module("MyApp", []);
         app.controller("MyController", function ($scope) {
             $scope.post = {}
@@ -188,11 +190,19 @@
         });
         app.controller("commentController", function ($scope) {
             $scope.comments = [];
+            $scope.replies = [];
+
 
             angular.element(document).ready(function () {
+                //var parentId = $("#IdforParentId").val();
                 var postId = vote.getAttribute("postid");
                 WebServiceRequest("GetCommentsByPostId", "{'postId': '" + postId + "'}", commentSuccess, commentFailure)
-            });          
+            });
+
+            function getRepliesByParentId() {
+                var parentId = $("#getParentId").val();
+                WebServiceRequest("GetRepliesByParentId", "{'parentId': '" + parentId + "'}", repliesSuccess, repliesFailure)
+            }
 
             function commentSuccess(response) {
                 $scope.comments = JSON.parse(response.d);
@@ -206,6 +216,15 @@
                 alert(response.d.responseText);
             }
 
+            function repliesSuccess(response) {
+                $scope.replies = JSON.parse(response.d)
+                $scope.$apply();
+                alert(response.d)
+            }
+            function repliesFailure(response) {
+                alert(response.d.responseText);
+            }
+
             $("#btnSubmit").click(function (event) {
                 event.preventDefault();
                 var postid = vote.getAttribute("postid");
@@ -215,30 +234,25 @@
             });
         });
         app.controller("replyController", function ($scope) {
-            $scope.textModel = ""
-            $scope.reply = {};
-            $scope.replyFunction = function (commentId) {
+            $scope.textModel = "Reply Text Here"
+            //$scope.reply = [];
+            $scope.replyFunction = function () {
                 event.preventDefault();
                 var postid = vote.getAttribute("postid");
-                var commentText = $scope.textModel;
-                var parentId = document.getElementById('getParentId' + commentId).value;
+                var commentText = $scope.textModel; //$("replyTextBox").val();
+                var parentId = $("#getParentId").val();
                 var userid = '<%=getUserId()%>';
-                WebServiceRequest("SubmitReply", "{'parentId': '" + parentId + "', 'postid': '" + postid + "', 'commentText': '" + commentText + "', 'userid': '" + userid + "'}", replySuccess, replyFailure);
+                WebServiceRequest("SubmitReply", "{'parentId': '" + parentId + "', 'postid': '" + postid + "', 'commentText': '" + commentText + "', 'userid': '" + userid + "'}", replySuccess, replyFailure)
             }
 
-            $scope.getRepliesByParentId = function (commentId) {
-                var parentId = document.getElementById('getParentId' + commentId).value;
-                WebServiceRequest("GetRepliesByParentId", "{'parentId': '" + parentId + "'}", repliesSuccess, repliesFailure)
-            }
-
-            function repliesSuccess(response) {
-                $scope.reply = JSON.parse(response.d)
-                $scope.$apply();
-                //alert(response.d)
-            }
-            function repliesFailure(response){
-                alert(response.d.responseText);
-            }
+            //function repliesSuccess(response) {
+            //    $scope.$reply = JSON.parse(response.d)
+            //    $scope.$apply();
+            //    alert(response.d)
+            //}
+            //function repliesFailure(response){
+            //    alert(response.d.responseText);
+            //}
 
             function replySuccess(response) {
                 $scope.reply = JSON.parse(response.d);
