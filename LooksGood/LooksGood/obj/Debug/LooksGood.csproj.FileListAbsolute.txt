@@ -750,3 +750,10 @@ C:\Users\Patrick Chase\Documents\gitRepos\LooksGood\LooksGood\bin\Microsoft.Owin
 C:\Users\Patrick Chase\Documents\gitRepos\LooksGood\LooksGood\obj\Debug\LooksGood.csprojResolveAssemblyReference.cache
 C:\Users\Patrick Chase\Documents\gitRepos\LooksGood\LooksGood\obj\Debug\LooksGood.dll
 C:\Users\Patrick Chase\Documents\gitRepos\LooksGood\LooksGood\obj\Debug\LooksGood.pdb
+C:\Users\Patrick Chase\Documents\gitRepos\LooksGood\LooksGood\bin\System.Net.Http.Formatting.dll
+C:\Users\Patrick Chase\Documents\gitRepos\LooksGood\LooksGood\bin\System.Web.Cors.dll
+C:\Users\Patrick Chase\Documents\gitRepos\LooksGood\LooksGood\bin\System.Web.Http.Cors.dll
+C:\Users\Patrick Chase\Documents\gitRepos\LooksGood\LooksGood\bin\System.Web.Http.dll
+C:\Users\Patrick Chase\Documents\gitRepos\LooksGood\LooksGood\bin\System.Net.Http.Formatting.xml
+C:\Users\Patrick Chase\Documents\gitRepos\LooksGood\LooksGood\bin\System.Web.Http.xml
+C:\Users\Patrick Chase\Documents\gitRepos\LooksGood\LooksGood\bin\System.Web.Http.Cors.xml
