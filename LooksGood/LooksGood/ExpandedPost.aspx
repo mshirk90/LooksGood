@@ -82,6 +82,10 @@
                                         <div class="commentText">                                                                                   
 
                                             <p class="commentText">{{x.Comment}}</p>
+                                            <span ng-repeat="reply in reply" ng-if="x.id === reply.parentId"></span>
+                                            <div>
+                                                <h1>{{reply.comment}}</h1>
+                                            </div>
                                             <span class="date sub-text">on {{x.LastUpdated | date : "short"}}</span>
                                         </div>
                                         <div>
@@ -207,12 +211,13 @@
                 var parentId = $("#IdforParentId").val();
                 var userid = '<%=getUserId()%>';
                 WebServiceRequest("SubmitReply", "{'parentId': '" + parentId + "', 'postid': '" + postid + "', 'commentText': '" + commentText + "', 'userid': '" + userid + "'}", replySuccess, replyFailure)
+                WebServiceRequest("GetRepliesByParentId", "{'parentId': '" + parentId + "'}", repliesSuccess, repliesFailure)
             }
 
-            angular.element(document).ready(function () {
-                var parentId = $("#IdforParentId").val();
-                WebServiceRequest("GetRepliesByParentId", "{'parentId': '" + parentId + "'}", repliesSuccess, repliesFailure)
-            });
+            //angular.element(document).ready(function () {
+            //    var parentId = $("#IdforParentId").val();
+            //    WebServiceRequest("GetRepliesByParentId", "{'parentId': '" + parentId + "'}", repliesSuccess, repliesFailure)
+            //});
 
             function repliesSuccess(response) {
                 $scope.$reply = JSON.parse(response.d)
