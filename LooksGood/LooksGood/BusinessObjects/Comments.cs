@@ -16,7 +16,7 @@ namespace BusinessObjects
         private Guid _ParentId = Guid.Empty;
         private string _Comment = string.Empty;
         private string _UserName = string.Empty;
-        //private List<Comments> _Replys = null;
+        private List<Comments> _Replys = null;
 
         #endregion
 
@@ -280,7 +280,6 @@ namespace BusinessObjects
             _UserId = (Guid)dr["UserId"];
             _PostId = (Guid)dr["PostId"];
             _Comment = dr["Comment"].ToString();
-            //_ParentId = (Guid)dr["ParentId"];
             if (dr["ParentId"] != System.DBNull.Value)
             {
                 _ParentId = new Guid(dr["ParentId"].ToString());

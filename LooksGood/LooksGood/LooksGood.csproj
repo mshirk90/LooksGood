@@ -217,6 +217,8 @@
     <Content Include="css\grayscale.css" />
     <Content Include="css\grayscale.min.css" />
     <Content Include="ExpandedPost.aspx" />
+    <Content Include="extra expanded post\expanded post aspx.html" />
+    <Content Include="extra expanded post\originalEXPANDEDpost.html" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />
