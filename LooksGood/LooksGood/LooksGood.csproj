@@ -251,6 +251,7 @@
     <Content Include="index.html" />
     <Content Include="js\grayscale.js" />
     <Content Include="js\grayscale.min.js" />
+    <Content Include="looksgoodAPIUser.html" />
     <Content Include="LooksGoodWS.asmx" />
     <Content Include="ProfilePics\default-avatar.jpg" />
     <Content Include="Content\bootstrap.min.css.map" />
