@@ -71,17 +71,3 @@ C:\Users\Patrick Chase\Documents\gitRepos\LooksGood\LooksGoodAPI\bin\Microsoft.O
 C:\Users\Patrick Chase\Documents\gitRepos\LooksGood\LooksGoodAPI\bin\Antlr3.Runtime.dll
 C:\Users\Patrick Chase\Documents\gitRepos\LooksGood\LooksGoodAPI\bin\Microsoft.Owin.Security.OAuth.xml
 C:\Users\Patrick Chase\Documents\gitRepos\LooksGood\LooksGoodAPI\bin\Antlr3.Runtime.pdb
-C:\Users\Patrick Chase\Documents\gitRepos\LooksGood\LooksGoodAPI\bin\roslyn\csc.exe.config
-C:\Users\Patrick Chase\Documents\gitRepos\LooksGood\LooksGoodAPI\bin\roslyn\csc.rsp
-C:\Users\Patrick Chase\Documents\gitRepos\LooksGood\LooksGoodAPI\bin\roslyn\csi.exe
-C:\Users\Patrick Chase\Documents\gitRepos\LooksGood\LooksGoodAPI\bin\roslyn\csi.rsp
-C:\Users\Patrick Chase\Documents\gitRepos\LooksGood\LooksGoodAPI\bin\roslyn\Microsoft.CodeAnalysis.CSharp.Scripting.dll
-C:\Users\Patrick Chase\Documents\gitRepos\LooksGood\LooksGoodAPI\bin\roslyn\Microsoft.CodeAnalysis.Scripting.dll
-C:\Users\Patrick Chase\Documents\gitRepos\LooksGood\LooksGoodAPI\bin\roslyn\Microsoft.DiaSymReader.Native.amd64.dll
-C:\Users\Patrick Chase\Documents\gitRepos\LooksGood\LooksGoodAPI\bin\roslyn\Microsoft.DiaSymReader.Native.x86.dll
-C:\Users\Patrick Chase\Documents\gitRepos\LooksGood\LooksGoodAPI\bin\roslyn\System.AppContext.dll
-C:\Users\Patrick Chase\Documents\gitRepos\LooksGood\LooksGoodAPI\bin\roslyn\System.Diagnostics.StackTrace.dll
-C:\Users\Patrick Chase\Documents\gitRepos\LooksGood\LooksGoodAPI\bin\roslyn\System.IO.FileSystem.dll
-C:\Users\Patrick Chase\Documents\gitRepos\LooksGood\LooksGoodAPI\bin\roslyn\System.IO.FileSystem.Primitives.dll
-C:\Users\Patrick Chase\Documents\gitRepos\LooksGood\LooksGoodAPI\bin\roslyn\vbc.exe.config
-C:\Users\Patrick Chase\Documents\gitRepos\LooksGood\LooksGoodAPI\bin\roslyn\vbc.rsp
