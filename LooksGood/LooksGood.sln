@@ -1,11 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
-VisualStudioVersion = 14.0.23107.0
+VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LooksGood", "LooksGood\LooksGood.csproj", "{F384E4F4-3EDB-43CC-A961-FA52066D94BC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LooksGoodAPI", "E:\LooksGoodAPI\LooksGoodAPI.csproj", "{3FA8B250-DD9B-4D31-BD75-FCA4F660130A}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LooksGoodAPI", "LooksGoodAPI\LooksGoodAPI.csproj", "{3FA8B250-DD9B-4D31-BD75-FCA4F660130A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

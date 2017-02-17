@@ -1,5 +1,6 @@
 ﻿using System.Configuration;
 
+
 namespace ConfigurationHelper
 {
     public class Configuration
