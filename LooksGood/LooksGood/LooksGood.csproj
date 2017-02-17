@@ -206,6 +206,7 @@
     <Content Include="Account\Login.aspx" />
     <Content Include="Account\Logout.aspx" />
     <Content Include="Account\Register.aspx" />
+    <Content Include="APITest.html" />
     <Content Include="code for chase\default.txt" />
     <Content Include="Contact.aspx" />
     <Content Include="Content\2-col-portfolio.css" />
