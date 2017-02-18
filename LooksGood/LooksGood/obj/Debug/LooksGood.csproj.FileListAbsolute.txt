@@ -777,3 +777,4 @@ C:\Users\Chase\Desktop\LooksGood\LooksGood\LooksGood\bin\System.Web.Http.dll
 C:\Users\Chase\Desktop\LooksGood\LooksGood\LooksGood\bin\System.Net.Http.Formatting.xml
 C:\Users\Chase\Desktop\LooksGood\LooksGood\LooksGood\bin\System.Web.Http.xml
 C:\Users\Chase\Desktop\LooksGood\LooksGood\LooksGood\bin\System.Web.Http.Cors.xml
+C:\Users\Chase\Desktop\LooksGood\LooksGood\LooksGood\obj\Debug\LooksGood.csprojResolveAssemblyReference.cache
